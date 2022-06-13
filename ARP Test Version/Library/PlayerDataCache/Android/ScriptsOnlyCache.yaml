@@ -1573,4 +1573,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/User/Documents/Cursos/Udemy/Realidad Aumentada/ARP Test Version/ARP.apk
+  playerPath: C:/Users/User/Documents/TEG/Buster-teg-test/ARP Test Version/ARP.apk
