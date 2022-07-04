@@ -1,8 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Controller
     - RecoScript
-    - Spawn
+    - SpawnerEnd
+    - SpawnerStart
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     Vuforia.UnityExtensions.dll:
@@ -71,9 +73,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10228}
     - Class: 114
       Script: {instanceID: 10338}
+    - Class: 114
+      Script: {instanceID: 13772}
+    - Class: 114
+      Script: {instanceID: 15338}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
@@ -990,10 +994,10 @@ ScriptsOnlyBuild:
     className: TMP_Asset
   - hash:
       serializedVersion: 2
-      Hash: d57708d009e17072171bec9763182d14
+      Hash: 5ae469852a3d24770828b3c53025210a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Spawn
+    className: SpawnerStart
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1570,6 +1574,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 31cd1285e6b48f2b5bc5188aa1e9f86b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Controller
+  - hash:
+      serializedVersion: 2
+      Hash: c8929c0683fd4e722781518413b9e6e0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnerEnd
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

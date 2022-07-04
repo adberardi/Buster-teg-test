@@ -27,11 +27,14 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
 
             // Spawn.current.start = true;
             //float r = Random.Range(0, 1f);
-            Spawn.current.StartGenerator(0);
+            SpawnerStart.current.CreateObjectStart();
+            //SpawnerEnd.current.CreateObjectEnd();
+
         }
         else
         {
-            Spawn.current.start = false;
+            SpawnerStart.current.start = false;
+            SpawnerEnd.current.start = false;
             //Spawn.current.DesactivatedCharacter();
         }
     }
