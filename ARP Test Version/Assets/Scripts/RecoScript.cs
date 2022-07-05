@@ -24,18 +24,19 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
+            if(Controller.controlCharacter.GetOnGoingGame())
+            {
+                if(Controller.controlCharacter.startRigth)
+                    SpawnerStart.current.CreateObjectStart();
 
-            // Spawn.current.start = true;
-            //float r = Random.Range(0, 1f);
-            SpawnerStart.current.CreateObjectStart();
-            //SpawnerEnd.current.CreateObjectEnd();
-
+                if (Controller.controlCharacter.startLeft)
+                    SpawnerEnd.current.CreateObjectEnd();
+            }
         }
         else
         {
             SpawnerStart.current.start = false;
             SpawnerEnd.current.start = false;
-            //Spawn.current.DesactivatedCharacter();
         }
     }
 }

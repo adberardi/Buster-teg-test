@@ -21,31 +21,36 @@ public class SpawnerEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (start)
+        if (Controller.controlCharacter.GetOnGoingGame())
         {
-            newCharacterEnd.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
-            pos = newCharacterEnd.localPosition;
-            if(Vector3.Distance(pos, destination) < 0.003f)
+            if (start == true)
             {
-                newCharacterEnd.GetComponent<Animation>().Stop();
-                DestroyObjectEnd();
-                Controller.controlCharacter.CreateObject("Rigth");
+                newCharacterEnd.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
+                pos = newCharacterEnd.localPosition;
+                if (Vector3.Distance(pos, destination) < 0.003f)
+                {
+                    newCharacterEnd.GetComponent<Animation>().Stop();
+                    DestroyObjectEnd();
+                    Controller.controlCharacter.CreateObject("Rigth");
+                }
             }
-
-            /*if(Controller.controlCharacter.startLeft)
-            {
-                Invoke("CreateObjectEnd", 0.5f);
-            }*/
         }
+        
     }
 
     public void CreateObjectEnd()
     {
-        newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
-        newCharacterEnd.SetParent(newParent);
-        newCharacterEnd.localPosition = new Vector3(-0.09f, 0, 0);
-        newCharacterEnd.GetComponent<Animation>().Play();
-        start = true;
+        Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.GetPeoplecounterLeft());
+        if (Controller.controlCharacter.GetPeoplecounterLeft() > 0)
+        {
+            newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
+            Controller.controlCharacter.DecreasePeopleCounterLeft();
+            newCharacterEnd.SetParent(newParent);
+            newCharacterEnd.localPosition = new Vector3(-0.09f, 0, 0);
+            newCharacterEnd.GetComponent<Animation>().Play();
+            start = true;
+        }
+
     }
 
 

@@ -29,39 +29,42 @@ public class SpawnerStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(start == true)
+        if (Controller.controlCharacter.GetOnGoingGame())
         {
-            //Instantiate(prefab, transform.position, transform.rotation);
-            newCharacterStart.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
-            Vector3 pos = newCharacterStart.localPosition;
-            Vector3 posLimit = limit.localPosition;
-            if(Vector3.Distance(pos, posLimit) < 0.003f)
+            if (start == true)
             {
-                //newCharacterStart.localPosition = initialPosition;
-                DestroyObjectStart();
-                start = false;
-                Controller.controlCharacter.CreateObject("Left");
+                //Instantiate(prefab, transform.position, transform.rotation);
+                newCharacterStart.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
+                Vector3 pos = newCharacterStart.localPosition;
+                Vector3 posLimit = limit.localPosition;
+                if (Vector3.Distance(pos, posLimit) < 0.003f)
+                {
+                    //newCharacterStart.localPosition = initialPosition;
+                    DestroyObjectStart();
+                    start = false;
+                    Controller.controlCharacter.CreateObject("Left");
+                }
             }
-
-            /*if(Controller.controlCharacter.startRigth)
-            {
-                Invoke("CreateObjectStart", 0.5f);
-            }*/
-
-            //Debug.Log("Distancia entre objetos:"+Vector3.Distance(pos, posLimit));
         }
+        
     }
 
     public void CreateObjectStart()
     {
-        newCharacterStart = Instantiate(prefab, transform.position, transform.rotation);
-        newCharacterStart.SetParent(newParent);
-        newCharacterStart.localPosition = new Vector3(0.478f, 0, 0);
-        //newCharacterStart.localRotation = Quaternion.identity;
-        //newCharacterStart.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        newCharacterStart.GetComponent<Animation>().Play();
-        start = true;
-        //Debug.Log("Objeto creado No:" + transform.childCount);
+        Debug.Log("GetPeoplecounterRigth:" + Controller.controlCharacter.GetPeoplecounterRigth());
+        if (Controller.controlCharacter.GetPeoplecounterRigth() > 0)
+        {
+            newCharacterStart = Instantiate(prefab, transform.position, transform.rotation);
+            Controller.controlCharacter.DecreasePeopleCounteRigth();
+            newCharacterStart.SetParent(newParent);
+            newCharacterStart.localPosition = new Vector3(0.478f, 0, 0);
+            //newCharacterStart.localRotation = Quaternion.identity;
+            //newCharacterStart.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            newCharacterStart.GetComponent<Animation>().Play();
+            start = true;
+            //Debug.Log("Objeto creado No:" + transform.childCount);
+        }
+
     }
 
 
