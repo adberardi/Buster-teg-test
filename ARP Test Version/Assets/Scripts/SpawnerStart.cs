@@ -42,7 +42,10 @@ public class SpawnerStart : MonoBehaviour
                     //newCharacterStart.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
-                    Controller.controlCharacter.CreateObject("Left");
+                    if (Controller.controlCharacter.GetPeoplecounterRigth() == 0)
+                        Controller.controlCharacter.CreateObject("Left");
+                    else
+                        Controller.controlCharacter.CreateObject("Rigth");
                 }
             }
         }
@@ -58,8 +61,6 @@ public class SpawnerStart : MonoBehaviour
             Controller.controlCharacter.DecreasePeopleCounteRigth();
             newCharacterStart.SetParent(newParent);
             newCharacterStart.localPosition = new Vector3(0.478f, 0, 0);
-            //newCharacterStart.localRotation = Quaternion.identity;
-            //newCharacterStart.localScale = new Vector3(0.1f, 0.1f, 0.1f);
             newCharacterStart.GetComponent<Animation>().Play();
             start = true;
             //Debug.Log("Objeto creado No:" + transform.childCount);

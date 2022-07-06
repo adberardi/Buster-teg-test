@@ -18,7 +18,7 @@ public class Controller : MonoBehaviour
         controlCharacter = this;
         startRigth = true;
         startLeft = false;
-        peopleCounterLeft = 2;
+        peopleCounterLeft = 1;
         peopleCounterRigth = 2;
     }
 
