@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
         startRigth = true;
         startLeft = false;
         peopleCounterLeft = 1;
-        peopleCounterRigth = 2;
+        peopleCounterRigth = 3;
         finalResult = peopleCounterRigth - peopleCounterLeft;
     }
 
@@ -42,7 +42,17 @@ public class Controller : MonoBehaviour
     {
         onGoingGame = newValue;
         if (onGoingGame == false)
-            Debug.Log("Resultado final: " + ObtainResult());
+        {
+            int valuef = ObtainResult();
+            Debug.Log("Resultado final: " + valuef);
+            int count = 0;
+            while(count < valuef)
+            {
+                SpawnerResult.current.CreateObjectResult(0.1f * count);
+                count++;
+            }
+            DisplayResultInsideHouse();
+        }
     }
 
     // Return actual value of status game
@@ -100,7 +110,7 @@ public class Controller : MonoBehaviour
     // The house disappears at the end of the game.
     public void DisplayResultInsideHouse()
     {
-        house.SetActive(true);
+        house.SetActive(false);
     }
 
     // Creates the object according to the passing value.

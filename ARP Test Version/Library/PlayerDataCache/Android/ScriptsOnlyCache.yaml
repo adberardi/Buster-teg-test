@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - Controller
     - RecoScript
     - SpawnerEnd
+    - SpawnerResult
     - SpawnerStart
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -77,6 +78,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10340}
     - Class: 114
       Script: {instanceID: 10936}
+    - Class: 114
+      Script: {instanceID: 20822}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 137
@@ -1586,6 +1589,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b29be6081b95b508cdbe942e0184a226
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnerResult
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
