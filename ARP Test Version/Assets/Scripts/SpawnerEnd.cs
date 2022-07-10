@@ -32,7 +32,10 @@ public class SpawnerEnd : MonoBehaviour
                     newCharacterEnd.GetComponent<Animation>().Stop();
                     DestroyObjectEnd();
                     if (Controller.controlCharacter.GetPeoplecounterLeft() == 0)
-                        Controller.controlCharacter.CreateObject("Rigth");
+                    {
+                        //Controller.controlCharacter.CreateObject("Rigth");
+                        Controller.controlCharacter.SetOnGoingGame(false);
+                    }
                     else
                         Controller.controlCharacter.CreateObject("Left");
                 }

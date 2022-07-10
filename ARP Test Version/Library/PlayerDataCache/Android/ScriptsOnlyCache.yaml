@@ -1366,7 +1366,7 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 31cd1285e6b48f2b5bc5188aa1e9f86b
+      Hash: 9ff99a527445387cccb161e000ffa53d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller

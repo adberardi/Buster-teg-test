@@ -9,6 +9,8 @@ public class Controller : MonoBehaviour
     public bool startLeft;
     private int peopleCounterLeft;
     private int peopleCounterRigth;
+    int finalResult;
+    public GameObject house;
     public static Controller controlCharacter;
 
 
@@ -20,6 +22,7 @@ public class Controller : MonoBehaviour
         startLeft = false;
         peopleCounterLeft = 1;
         peopleCounterRigth = 2;
+        finalResult = peopleCounterRigth - peopleCounterLeft;
     }
 
     // Start is called before the first frame update
@@ -38,6 +41,8 @@ public class Controller : MonoBehaviour
     public void SetOnGoingGame(bool newValue)
     {
         onGoingGame = newValue;
+        if (onGoingGame == false)
+            Debug.Log("Resultado final: " + ObtainResult());
     }
 
     // Return actual value of status game
@@ -46,38 +51,56 @@ public class Controller : MonoBehaviour
         return onGoingGame;
     }
 
+    // Increase the value of people's counter  from the rigth.
     public int IncreasePeopleCounterLeft()
     {
         peopleCounterLeft++;
         return peopleCounterLeft;
     }
 
+    // Decrease the value of people's counter  from the left.
     public int DecreasePeopleCounterLeft()
     {
         peopleCounterLeft--;
         return peopleCounterLeft;
     }
 
+    // Increase the value of people's counter  from the rigth.
     public int IncreasePeopleCounterRigth()
     {
         peopleCounterRigth++;
         return peopleCounterRigth;
     }
 
+    // Decrease the value of people's counter  from the rigth.
     public int DecreasePeopleCounteRigth()
     {
         peopleCounterRigth--;
         return peopleCounterRigth;
     }
 
+    // Return the value of people's counter from the left
     public int GetPeoplecounterLeft()
     {
         return peopleCounterLeft;
     }
 
+    // Return the value of people's counter from the rigth
     public int GetPeoplecounterRigth()
     {
         return peopleCounterRigth;
+    }
+
+    // Return the result of people it will be inside the house.
+    public int ObtainResult()
+    {
+        return finalResult;
+    }
+
+    // The house disappears at the end of the game.
+    public void DisplayResultInsideHouse()
+    {
+        house.SetActive(true);
     }
 
     // Creates the object according to the passing value.
