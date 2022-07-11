@@ -23,6 +23,7 @@ public class Controller : MonoBehaviour
         peopleCounterLeft = 1;
         peopleCounterRigth = 3;
         finalResult = peopleCounterRigth - peopleCounterLeft;
+        house.GetComponent<Animator>().speed = 0;
     }
 
     // Start is called before the first frame update
@@ -110,7 +111,9 @@ public class Controller : MonoBehaviour
     // The house disappears at the end of the game.
     public void DisplayResultInsideHouse()
     {
-        house.SetActive(false);
+        house.GetComponent<Animator>().speed = 1;
+        house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
+        //house.SetActive(false);
     }
 
     // Creates the object according to the passing value.
