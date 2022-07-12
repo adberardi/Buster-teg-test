@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Jul 10 21:42:12 VET 2022
+#Mon Jul 11 22:34:39 VET 2022
 124.path=bin/Data/Managed/UnityEngine.ClothModule.dll
 60.set=ASSET
 52.set=ASSET

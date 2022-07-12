@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Controller : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Controller : MonoBehaviour
     private int peopleCounterLeft;
     private int peopleCounterRigth;
     int finalResult;
+    int[,] operations = { { 2, 4 }, { 3, 4 } };
+    System.Random rnd;
+    int op;
     public GameObject house;
     public static Controller controlCharacter;
 
@@ -20,8 +24,10 @@ public class Controller : MonoBehaviour
         controlCharacter = this;
         startRigth = true;
         startLeft = false;
-        peopleCounterLeft = 1;
-        peopleCounterRigth = 3;
+        rnd = new System.Random();
+        op = rnd.Next(operations.Length - 1);
+        peopleCounterLeft = operations[op,0];
+        peopleCounterRigth = operations[op,1];
         finalResult = peopleCounterRigth - peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
     }
@@ -114,6 +120,8 @@ public class Controller : MonoBehaviour
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
         //house.SetActive(false);
+        //int p = rnd.Next(10);
+        Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
     }
 
     // Creates the object according to the passing value.
