@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - SpawnerEnd
     - SpawnerResult
     - SpawnerStart
+    - TextScript
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -105,6 +106,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10468}
     - Class: 114
       Script: {instanceID: 10938}
+    - Class: 114
+      Script: {instanceID: 25412}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1630,6 +1633,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f5d40cd05a1722eb56dd9c90598441e1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

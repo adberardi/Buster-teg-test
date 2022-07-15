@@ -37,7 +37,7 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TextScript.current.SetText("Juego en progreso");
     }
 
     // Update is called once per frame
@@ -123,6 +123,7 @@ public class Controller : MonoBehaviour
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
+        TextScript.current.SetText("Juego Finalizado");
         Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
     }
 

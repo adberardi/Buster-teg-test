@@ -1,25 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
-    public static TextScript txt;
-    public GUIText t;
+    public Text txt;
+    public static TextScript current;
 
     private void Awake()
     {
-        txt = this;
+        current = this;
     }
+
     // Start is called before the first frame update
     void Start()
     {
-        t.text = "Contador";
+        //txt.text = "Probando";
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetText(string newWord)
+    {
+        txt.text = newWord;
     }
 }
