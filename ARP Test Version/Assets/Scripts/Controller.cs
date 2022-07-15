@@ -25,9 +25,11 @@ public class Controller : MonoBehaviour
         startRigth = true;
         startLeft = false;
         rnd = new System.Random();
-        op = rnd.Next(operations.Length - 1);
-        peopleCounterLeft = operations[op,0];
-        peopleCounterRigth = operations[op,1];
+        //op = rnd.Next(operations.Length - 1);
+        //peopleCounterLeft = operations[op,0];
+        //peopleCounterRigth = operations[op,1];
+        peopleCounterRigth = rnd.Next(10);
+        peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
     }

@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Text
     Vuforia.UnityExtensions.dll:
     - Vuforia.ImageTargetBehaviour
     - Vuforia.TurnOffBehaviour
@@ -81,6 +82,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9450}
     - Class: 114
+      Script: {instanceID: 9452}
+    - Class: 114
       Script: {instanceID: 9712}
     - Class: 114
       Script: {instanceID: 9740}
@@ -103,6 +106,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10938}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}

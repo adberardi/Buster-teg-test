@@ -1,6 +1,6 @@
 #Internal package file, do not edit.
-#Tue Jul 12 00:22:07 VET 2022
-124.path=bin/Data/GI/level0/57/5715a768722cba92ed6d8b056d7f98e1.caw
+#Thu Jul 14 23:17:26 VET 2022
+124.path=bin/Data/Managed/UnityEngine.ClothModule.dll
 60.set=ASSET
 52.set=ASSET
 118.baseType=DIRECTORY
@@ -73,7 +73,7 @@
 11.baseType=DIRECTORY
 84.path=bin/Data/Managed/UnityEngine.Purchasing.dll
 99.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-123.path=bin/Data/Managed/UnityEngine.ClothModule.dll
+123.path=bin/Data/GI/level0/57/5715a768722cba92ed6d8b056d7f98e1.caw
 50.set=NATIVE_RESOURCE
 42.set=NATIVE_RESOURCE
 52.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
@@ -151,7 +151,7 @@
 58.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 16.set=ASSET
 94.set=ASSET
-86.set=ASSET
+86.set=NATIVE_RESOURCE
 115.baseType=DIRECTORY
 78.set=ASSET
 11.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
@@ -187,7 +187,7 @@
 15.set=ASSET
 59.baseType=DIRECTORY
 93.set=ASSET
-85.set=NATIVE_RESOURCE
+85.set=ASSET
 62.baseType=DIRECTORY
 34.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 77.set=ASSET
@@ -348,7 +348,7 @@ count=127
 96.baseType=DIRECTORY
 39.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 49.set=ASSET
-86.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
+86.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
 19.baseType=DIRECTORY
 110.path=bin/Data/Managed/UnityEngine.TextCoreModule.dll
 125.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
@@ -422,7 +422,7 @@ count=127
 61.baseType=DIRECTORY
 38.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 39.set=ASSET
-85.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
+85.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 124.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 116.path=lib/armeabi-v7a/libVuforiaDL.so
 3.baseType=DIRECTORY
@@ -441,7 +441,7 @@ count=127
 47.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 39.path=bin/Data/Managed/System.Core.dll
 94.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-86.path=bin/Data/GI/level0/57/5715a768722cba92ed6d8b056d7f98e1.ecm
+86.path=lib/armeabi-v7a/libMonoPosixHelper.so
 84.baseType=DIRECTORY
 125.path=bin/Data/Managed/Assembly-CSharp.dll
 70.set=ASSET
@@ -508,4 +508,4 @@ count=127
 86.baseType=DIRECTORY
 93.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 9.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-85.path=lib/armeabi-v7a/libMonoPosixHelper.so
+85.path=bin/Data/GI/level0/57/5715a768722cba92ed6d8b056d7f98e1.ecm
