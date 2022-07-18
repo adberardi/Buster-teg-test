@@ -25,8 +25,10 @@ public class TextScript : MonoBehaviour
         
     }
 
-    public void SetText(string newWord)
+    public void SetText(int newNum)
     {
-        txt.text = newWord;
+        Debug.Log("Contador para iniciar juego:" + newNum);
+        //txt.text = string.Format("{0}", newNum);
+        txt.text = newNum.ToString();
     }
 }

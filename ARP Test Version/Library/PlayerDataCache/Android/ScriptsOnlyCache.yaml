@@ -89,25 +89,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9740}
     - Class: 114
-      Script: {instanceID: 9874}
+      Script: {instanceID: 9804}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9876}
     - Class: 114
-      Script: {instanceID: 9904}
+      Script: {instanceID: 9898}
     - Class: 114
       Script: {instanceID: 9906}
     - Class: 114
-      Script: {instanceID: 10108}
+      Script: {instanceID: 9908}
     - Class: 114
-      Script: {instanceID: 10230}
+      Script: {instanceID: 10110}
     - Class: 114
-      Script: {instanceID: 10340}
+      Script: {instanceID: 10232}
     - Class: 114
-      Script: {instanceID: 10468}
+      Script: {instanceID: 10342}
     - Class: 114
-      Script: {instanceID: 10938}
+      Script: {instanceID: 10470}
     - Class: 114
-      Script: {instanceID: 25412}
+      Script: {instanceID: 10940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -607,6 +607,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Analytics.Tracker.dll
     namespaceName: UnityEngine.Analytics
     className: AnalyticsTracker
+  - hash:
+      serializedVersion: 2
+      Hash: f5d40cd05a1722eb56dd9c90598441e1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TextScript
   - hash:
       serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
@@ -1633,12 +1639,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: f5d40cd05a1722eb56dd9c90598441e1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: TextScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

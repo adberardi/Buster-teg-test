@@ -32,6 +32,10 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
                 if (Controller.controlCharacter.startLeft)
                     SpawnerEnd.current.CreateObjectEnd();
             }
+            else
+            {
+                Controller.controlCharacter.ShowCounterToStartGame();
+            }
         }
         else
         {

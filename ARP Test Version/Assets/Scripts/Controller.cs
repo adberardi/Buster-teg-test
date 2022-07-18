@@ -5,7 +5,7 @@ using System;
 
 public class Controller : MonoBehaviour
 {
-    private bool onGoingGame = true;
+    private bool onGoingGame = false;
     public bool startRigth;
     public bool startLeft;
     private int peopleCounterLeft;
@@ -14,6 +14,7 @@ public class Controller : MonoBehaviour
     int[,] operations = { { 2, 4 }, { 3, 4 } };
     System.Random rnd;
     int op;
+    int counterToStart;
     public GameObject house;
     public static Controller controlCharacter;
 
@@ -21,6 +22,7 @@ public class Controller : MonoBehaviour
 
     private void Awake()
     {
+        counterToStart = 3;
         controlCharacter = this;
         startRigth = true;
         startLeft = false;
@@ -37,13 +39,33 @@ public class Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TextScript.current.SetText("Juego en progreso");
+        //TextScript.current.SetText("Juego en progreso");
+        ShowCounterToStartGame();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void ShowCounterToStartGame()
+    {
+        if (counterToStart > 0)
+        {
+            counterToStart--;
+            Invoke("UpdateCounterToStart", 1.0f);
+        }
+        else
+        {
+            onGoingGame = true;
+        }
+    }
+
+    private void UpdateCounterToStart()
+    {
+        TextScript.current.SetText(counterToStart);
+        Invoke("ShowCounterToStartGame", 1.0f);
     }
 
     // Update value
@@ -123,7 +145,7 @@ public class Controller : MonoBehaviour
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
-        TextScript.current.SetText("Juego Finalizado");
+        //TextScript.current.SetText("Juego Finalizado");
         Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
     }
 
