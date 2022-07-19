@@ -58,6 +58,7 @@ public class Controller : MonoBehaviour
         else
         {
             onGoingGame = true;
+            SpawnerStart.current.CreateObjectStart();
         }
     }
 
