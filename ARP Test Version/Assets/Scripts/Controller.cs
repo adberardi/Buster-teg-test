@@ -40,7 +40,6 @@ public class Controller : MonoBehaviour
     void Start()
     {
         //TextScript.current.SetText("Juego en progreso");
-        ShowCounterToStartGame();
     }
 
     // Update is called once per frame

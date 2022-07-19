@@ -609,7 +609,7 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
-      Hash: f5d40cd05a1722eb56dd9c90598441e1
+      Hash: f7b48d73fde9f366a3df6f329beed95b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TextScript
