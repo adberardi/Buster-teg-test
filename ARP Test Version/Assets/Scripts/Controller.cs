@@ -86,6 +86,11 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void CallFinishText()
+    {
+        TextScript.current.FinishText();
+    }
+
     // Return actual value of status game
     public bool GetOnGoingGame()
     {
@@ -147,6 +152,7 @@ public class Controller : MonoBehaviour
         //int p = rnd.Next(10);
         //TextScript.current.SetText("Juego Finalizado");
         Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
+        Invoke("CallFinishText", 0.5f);
     }
 
     // Creates the object according to the passing value.

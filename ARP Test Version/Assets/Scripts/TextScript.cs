@@ -45,4 +45,11 @@ public class TextScript : MonoBehaviour
     {
         txtField.gameObject.SetActive(false);
     }
+
+    public void FinishText()
+    {
+        txtField.gameObject.SetActive(true);
+        txtField.text = "Juego Finalizado";
+        txtField.color = Color.red;
+    }
 }
