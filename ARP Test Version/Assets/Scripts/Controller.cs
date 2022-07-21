@@ -95,11 +95,15 @@ public class Controller : MonoBehaviour
         textInput.gameObject.SetActive(true);
         InputField resultInput = textInput.GetComponent<InputField>();
         resultInput.Select();
-        //resultInput.ActivateInputField();
+        resultInput.ActivateInputField();
+        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(); });
     }
+
+    
 
     public void CallFinishText()
     {
+        textInput.gameObject.SetActive(false);
         TextScript.current.FinishText();
     }
 
@@ -163,7 +167,7 @@ public class Controller : MonoBehaviour
         //house.SetActive(false);
         //int p = rnd.Next(10);
         //TextScript.current.SetText("Juego Finalizado");
-        //Invoke("CallFinishText", 0.5f);
+        Invoke("CallFinishText", 0.5f);
     }
 
     // Creates the object according to the passing value.
