@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     int op;
     int counterToStart;
     public GameObject house;
+    public GameObject textInput;
     public static Controller controlCharacter;
 
 
@@ -82,8 +83,19 @@ public class Controller : MonoBehaviour
                 SpawnerResult.current.CreateObjectResult(0.1f * count);
                 count++;
             }
-            DisplayResultInsideHouse();
+
+            ActivateInputResult();
+
+            //DisplayResultInsideHouse();
         }
+    }
+
+    private void ActivateInputResult()
+    {
+        textInput.gameObject.SetActive(true);
+        InputField resultInput = textInput.GetComponent<InputField>();
+        resultInput.Select();
+        //resultInput.ActivateInputField();
     }
 
     public void CallFinishText()
@@ -151,8 +163,7 @@ public class Controller : MonoBehaviour
         //house.SetActive(false);
         //int p = rnd.Next(10);
         //TextScript.current.SetText("Juego Finalizado");
-        Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
-        Invoke("CallFinishText", 0.5f);
+        //Invoke("CallFinishText", 0.5f);
     }
 
     // Creates the object according to the passing value.
