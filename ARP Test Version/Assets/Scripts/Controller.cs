@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class Controller : MonoBehaviour
     System.Random rnd;
     int op;
     int counterToStart;
+    int responseUser;
     public GameObject house;
     public GameObject textInput;
     public static Controller controlCharacter;
@@ -27,6 +29,7 @@ public class Controller : MonoBehaviour
         controlCharacter = this;
         startRigth = true;
         startLeft = false;
+        responseUser = 0;
         rnd = new System.Random();
         //op = rnd.Next(operations.Length - 1);
         //peopleCounterLeft = operations[op,0];
@@ -96,7 +99,7 @@ public class Controller : MonoBehaviour
         InputField resultInput = textInput.GetComponent<InputField>();
         resultInput.Select();
         resultInput.ActivateInputField();
-        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(); });
+        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(Int32.Parse(resultInput.text)); });
     }
 
     
@@ -104,7 +107,7 @@ public class Controller : MonoBehaviour
     public void CallFinishText()
     {
         textInput.gameObject.SetActive(false);
-        TextScript.current.FinishText();
+        TextScript.current.FinishText(ObtainResult(),responseUser);
     }
 
     // Return actual value of status game
@@ -160,13 +163,14 @@ public class Controller : MonoBehaviour
     }
 
     // The house disappears at the end of the game.
-    public void DisplayResultInsideHouse()
+    public void DisplayResultInsideHouse(int answer)
     {
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
         //TextScript.current.SetText("Juego Finalizado");
+        responseUser = answer;
         Invoke("CallFinishText", 0.5f);
     }
 

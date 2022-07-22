@@ -46,10 +46,19 @@ public class TextScript : MonoBehaviour
         txtField.gameObject.SetActive(false);
     }
 
-    public void FinishText()
+    public void FinishText(int peopleInHouse,int responseUser)
     {
         txtField.gameObject.SetActive(true);
-        txtField.text = "Juego Finalizado";
-        txtField.color = Color.red;
+        if (peopleInHouse == responseUser)
+        {
+            txtField.text = "Respuesta correcta!";
+            txtField.color = Color.green;
+        }
+        else
+        {
+            txtField.text = "Respuesta erronea";
+            txtField.color = Color.red;
+        }
+
     }
 }
