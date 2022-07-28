@@ -7,8 +7,9 @@ public class SpawnerEnd : MonoBehaviour
     public static SpawnerEnd current;
     Transform newCharacterEnd;
     public bool start = false;
-    public Transform prefab;
-    public Transform newParent;
+    Transform prefab;
+    //public Transform newParent;
+    Transform newParent;
     Vector3 pos;
     Vector3 destination = new Vector3(-0.439f, 0, 0);
 
@@ -16,6 +17,8 @@ public class SpawnerEnd : MonoBehaviour
     void Start()
     {
         current = this;
+        prefab = Controller.controlCharacter.GetPrefab();
+        newParent = Controller.controlCharacter.GetNewParent();
     }
 
     // Update is called once per frame

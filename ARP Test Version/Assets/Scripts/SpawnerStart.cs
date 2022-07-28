@@ -5,19 +5,25 @@ using Vuforia;
 
 public class SpawnerStart : MonoBehaviour
 {
-    public Transform prefab;
-    public Transform newParent;
+    //public Transform prefab;
+    Transform prefab;
+    //public Transform newParent;
+    Transform newParent;
     Transform newCharacterStart;
     Transform newCharacterEnd;
     Vector3 initialPosition;
     public bool start;
     public static SpawnerStart current;
-    public Transform limit;
+    //public Transform limit;
+    Transform limit;
     float valorPrueba = 0.296f;
 
     private void Awake()
     {
         current = this;
+        prefab = Controller.controlCharacter.GetPrefab();
+        newParent = Controller.controlCharacter.GetNewParent();
+        limit = Controller.controlCharacter.GetLimitInsideHouse();
     }
     // Start is called before the first frame update
     void Start()
@@ -54,7 +60,6 @@ public class SpawnerStart : MonoBehaviour
 
     public void CreateObjectStart()
     {
-        Debug.Log("GetPeoplecounterRigth:" + Controller.controlCharacter.GetPeoplecounterRigth());
         if (Controller.controlCharacter.GetPeoplecounterRigth() > 0)
         {
             newCharacterStart = Instantiate(prefab, transform.position, transform.rotation);

@@ -19,6 +19,9 @@ public class Controller : MonoBehaviour
     int responseUser;
     public GameObject house;
     public GameObject textInput;
+    public Transform prefab;
+    public Transform newParent;
+    public Transform limitInsideHouse;
     public static Controller controlCharacter;
 
 
@@ -50,6 +53,22 @@ public class Controller : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Transform GetPrefab()
+    {
+        return prefab;
+    }
+
+    public Transform GetNewParent()
+    {
+        return newParent;
+    }
+
+
+    public Transform GetLimitInsideHouse()
+    {
+        return limitInsideHouse;
     }
 
     public void ShowCounterToStartGame()

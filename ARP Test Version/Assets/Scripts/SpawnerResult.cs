@@ -5,8 +5,10 @@ using UnityEngine;
 public class SpawnerResult : MonoBehaviour
 {
     Transform newCharacterResult;
-    public Transform prefab;
-    public Transform newParent;
+    //public Transform prefab;
+    Transform prefab;
+    //public Transform newParent;
+    Transform newParent;
     public static SpawnerResult current;
 
     private void Awake()
@@ -17,7 +19,8 @@ public class SpawnerResult : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        prefab = Controller.controlCharacter.GetPrefab();
+        newParent = Controller.controlCharacter.GetNewParent();
     }
 
     // Update is called once per frame
@@ -32,7 +35,7 @@ public class SpawnerResult : MonoBehaviour
         //Controller.controlCharacter.DecreasePeopleCounteRigth();
         newCharacterResult.SetParent(newParent);
         newCharacterResult.localPosition = new Vector3(newPos, 0, 0);
-        newCharacterResult.GetComponent<Animation>().Play();
+        //newCharacterResult.GetComponent<Animation>().Play();
         //start = true;
         //Debug.Log("Objeto creado No:" + transform.childCount);
     }
