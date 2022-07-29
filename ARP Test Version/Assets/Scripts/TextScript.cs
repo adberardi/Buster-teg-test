@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class TextScript : MonoBehaviour
 {
-    public Text txtField;
+    Text txtField;
     public static TextScript current;
 
     private void Awake()
     {
         current = this;
+        txtField = Controller.controlCharacter.GetTextField();
     }
 
     // Start is called before the first frame update

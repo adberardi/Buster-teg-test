@@ -88,29 +88,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9712}
+      Script: {instanceID: 9716}
     - Class: 114
-      Script: {instanceID: 9740}
+      Script: {instanceID: 9744}
     - Class: 114
-      Script: {instanceID: 9804}
+      Script: {instanceID: 9808}
     - Class: 114
-      Script: {instanceID: 9876}
-    - Class: 114
-      Script: {instanceID: 9898}
+      Script: {instanceID: 9884}
     - Class: 114
       Script: {instanceID: 9906}
     - Class: 114
-      Script: {instanceID: 9908}
+      Script: {instanceID: 9914}
     - Class: 114
-      Script: {instanceID: 10110}
+      Script: {instanceID: 9916}
     - Class: 114
-      Script: {instanceID: 10232}
+      Script: {instanceID: 10120}
     - Class: 114
-      Script: {instanceID: 10342}
+      Script: {instanceID: 10246}
     - Class: 114
-      Script: {instanceID: 10470}
+      Script: {instanceID: 10356}
     - Class: 114
-      Script: {instanceID: 10940}
+      Script: {instanceID: 10484}
+    - Class: 114
+      Script: {instanceID: 10956}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -564,10 +564,22 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rocket5
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rocket1
   - hash:
       serializedVersion: 2
       Hash: f08a111e17bb701f9c9ec57bb78d9920
@@ -612,7 +624,7 @@ ScriptsOnlyBuild:
     className: AnalyticsTracker
   - hash:
       serializedVersion: 2
-      Hash: f7b48d73fde9f366a3df6f329beed95b
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TextScript
@@ -636,6 +648,18 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rocket3
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Firecracker1
+  - hash:
+      serializedVersion: 2
       Hash: 0077fc8e4fbae67f80e80ebd534de5a0
     assemblyName: Vuforia.UnityExtensions.dll
     namespaceName: Vuforia
@@ -1042,6 +1066,12 @@ ScriptsOnlyBuild:
     assemblyName: Vuforia.UnityExtensions.dll
     namespaceName: Vuforia
     className: WireframeTrackableEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rocket4
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -1054,6 +1084,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnerStart
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Rocket2
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1072,6 +1108,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Firecracker3
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1186,6 +1228,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: c5c412db9af59ce084a97e767f862372
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Firecracker2
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1422,7 +1470,7 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 36f29ac8636ff66455e67b0bb4f13ddf
+      Hash: 9ed5c9d47b9c47d26df2431fdd33afb6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller
@@ -1642,54 +1690,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker3
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker2
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket5
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket1
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket3
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker1
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket4
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket2
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

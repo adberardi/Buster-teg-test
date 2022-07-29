@@ -289,6 +289,7 @@ MonoBehaviour:
   prefab: {fileID: 400104, guid: de5eab967c5239c45b75177c02c52b8a, type: 3}
   newParent: {fileID: 797128331}
   limitInsideHouse: {fileID: 24770281}
+  textField: {fileID: 1071199920}
 --- !u!1 &209772570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,7 +1663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca328e4966c7cf459bf3eabcff8783e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtField: {fileID: 1071199920}
 --- !u!1 &1077738719
 GameObject:
   m_ObjectHideFlags: 0
