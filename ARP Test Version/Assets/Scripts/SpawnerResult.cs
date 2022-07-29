@@ -9,6 +9,8 @@ public class SpawnerResult : MonoBehaviour
     Transform prefab;
     //public Transform newParent;
     Transform newParent;
+    public AnimationClip idle;
+    public AnimationClip animWalk;
     public static SpawnerResult current;
 
     private void Awake()
@@ -35,7 +37,9 @@ public class SpawnerResult : MonoBehaviour
         //Controller.controlCharacter.DecreasePeopleCounteRigth();
         newCharacterResult.SetParent(newParent);
         newCharacterResult.localPosition = new Vector3(newPos, 0, 0);
-        //newCharacterResult.GetComponent<Animation>().Play();
+        newCharacterResult.GetComponent<Animation>().RemoveClip(animWalk);
+        newCharacterResult.GetComponent<Animation>().AddClip(idle, "Idle");
+        newCharacterResult.GetComponent<Animation>().Play("Idle");
         //start = true;
         //Debug.Log("Objeto creado No:" + transform.childCount);
     }
