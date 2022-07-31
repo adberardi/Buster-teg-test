@@ -38,15 +38,19 @@ public class SpawnerEnd : MonoBehaviour
                     {
                         //Controller.controlCharacter.CreateObject("Rigth");
                         Controller.controlCharacter.SetOnGoingGame(false);
+                        Controller.controlCharacter.startLeft = true;
                     }
+                    
                     else
                         Controller.controlCharacter.CreateObject("Left");
+                    
                 }
             }
         }
         
     }
 
+    // Creates the Character it's going out from the house
     public void CreateObjectEnd()
     {
         Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.GetPeoplecounterLeft());
@@ -62,10 +66,23 @@ public class SpawnerEnd : MonoBehaviour
 
     }
 
-
+    // The character that leaves the house at the end of the route will be destroyed.
     public void DestroyObjectEnd()
     {
         Destroy(newCharacterEnd.gameObject, 0.5f);
     }
 
+
+    // Return the current position from the Character
+    public Vector3 GetCharacterPosition()
+    {
+        return newCharacterEnd.localPosition;
+    }
+
+    // Sets the current position to character
+    public void SetCurrentPosition(Vector3 currentPosition)
+    {
+        newCharacterEnd.localPosition = currentPosition;
+        start = true;
+    }
 }

@@ -1480,7 +1480,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Texto de prueba
+  m_Text: Enfoca el dibujo
 --- !u!222 &1071199921
 CanvasRenderer:
   m_ObjectHideFlags: 0

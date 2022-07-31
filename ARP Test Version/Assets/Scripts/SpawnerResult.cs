@@ -31,6 +31,7 @@ public class SpawnerResult : MonoBehaviour
         
     }
 
+    // Creates the character stays inside the house
     public void CreateObjectResult(float newPos)
     {
         newCharacterResult = Instantiate(prefab, transform.position, transform.rotation);
@@ -44,6 +45,7 @@ public class SpawnerResult : MonoBehaviour
         //Debug.Log("Objeto creado No:" + transform.childCount);
     }
 
+    // The character will be destroyed when tha game ends.
     public void DestroyObjectResult()
     {
         //newCharacterStart.GetComponent<Animation>().Stop();

@@ -6,9 +6,11 @@ using Vuforia;
 public class RecoScript : MonoBehaviour, ITrackableEventHandler
 {
     private TrackableBehaviour mTrackableBehaviour;
+    Vector3 currentPosition;
 
     void Start()
     {
+        currentPosition = new Vector3(0,0,0);
         mTrackableBehaviour = GetComponent<TrackableBehaviour>();
         if (mTrackableBehaviour)
         {
@@ -16,6 +18,7 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
         }
     }
 
+    // Method that indicates when the App Detectes the image target.
     public void OnTrackableStateChanged(
                                     TrackableBehaviour.Status previousStatus,
                                     TrackableBehaviour.Status newStatus)
@@ -26,11 +29,13 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
         {
             if(Controller.controlCharacter.GetOnGoingGame())
             {
-                if(Controller.controlCharacter.startRigth)
-                    SpawnerStart.current.CreateObjectStart();
+                if (Controller.controlCharacter.startRigth)
+                    //SpawnerStart.current.CreateObjectStart();
+                    SpawnerStart.current.SetCurrentPosition(currentPosition);
 
                 if (Controller.controlCharacter.startLeft)
-                    SpawnerEnd.current.CreateObjectEnd();
+                    //SpawnerEnd.current.CreateObjectEnd();
+                    SpawnerEnd.current.SetCurrentPosition(currentPosition);
             }
             else
             {
@@ -39,8 +44,21 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
         }
         else
         {
-            SpawnerStart.current.start = false;
-            SpawnerEnd.current.start = false;
+            if (Controller.controlCharacter.GetOnGoingGame())
+            {
+                if (Controller.controlCharacter.startRigth)
+                {
+                    SpawnerStart.current.start = false;
+                    currentPosition = SpawnerStart.current.GetCharacterPosition();
+                }
+
+                else
+                {
+                    SpawnerEnd.current.start = false;
+                    currentPosition = SpawnerEnd.current.GetCharacterPosition();
+                }
+            }
+
         }
     }
 }

@@ -56,27 +56,31 @@ public class Controller : MonoBehaviour
         
     }
 
+    // Returns the prefab passed as parameter from Unity
     public Transform GetPrefab()
     {
         return prefab;
     }
 
+    // Returns the parent of the prefab
     public Transform GetNewParent()
     {
         return newParent;
     }
 
-
+    // Returns the boundary located inside the house and thus deletes the character that entered.
     public Transform GetLimitInsideHouse()
     {
         return limitInsideHouse;
     }
 
+    // Returns the TextField from the Game's UI
     public Text GetTextField()
     {
         return textField;
     }
 
+    // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
         if (counterToStart > 0)
@@ -91,6 +95,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
     private void UpdateCounterToStart()
     {
         TextScript.current.SetText(counterToStart);
@@ -118,6 +123,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // Enables data input to the user to indicate their response.
     private void ActivateInputResult()
     {
         textInput.gameObject.SetActive(true);
@@ -125,10 +131,11 @@ public class Controller : MonoBehaviour
         resultInput.Select();
         resultInput.ActivateInputField();
         resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(Int32.Parse(resultInput.text)); });
+        // TODO: Implementar Borrado de Listeners, revisar documentacion
     }
 
-    
 
+    // Enable text indicating the correct answer
     public void CallFinishText()
     {
         textInput.gameObject.SetActive(false);
@@ -166,6 +173,7 @@ public class Controller : MonoBehaviour
     public int DecreasePeopleCounteRigth()
     {
         peopleCounterRigth--;
+        Debug.Log("     DecreasePeopleCounteRigth:"+ peopleCounterRigth);
         return peopleCounterRigth;
     }
 
@@ -206,13 +214,9 @@ public class Controller : MonoBehaviour
         {
             case "Left":
                 SpawnerEnd.current.CreateObjectEnd();
-                controlCharacter.startLeft = false;
-                controlCharacter.startRigth = true;
                 break;
             case "Rigth":
                 SpawnerStart.current.CreateObjectStart();
-                controlCharacter.startLeft = true;
-                controlCharacter.startRigth = false;
                 break;
             default:
                 break;

@@ -26,6 +26,7 @@ public class TextScript : MonoBehaviour
         
     }
 
+    // Assigns a specific text to the TextField of the set.
     public void SetText(int newNum)
     {
         Debug.Log("Contador para iniciar juego:" + newNum);
@@ -42,11 +43,13 @@ public class TextScript : MonoBehaviour
 
     }
 
+    // Disable the game TextField
     private void DeactivateText()
     {
         txtField.gameObject.SetActive(false);
     }
 
+    // Assigns a specific text to the TextField when the game ends
     public void FinishText(int peopleInHouse,int responseUser)
     {
         txtField.gameObject.SetActive(true);

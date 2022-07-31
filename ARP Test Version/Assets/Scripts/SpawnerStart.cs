@@ -49,15 +49,22 @@ public class SpawnerStart : MonoBehaviour
                     DestroyObjectStart();
                     start = false;
                     if (Controller.controlCharacter.GetPeoplecounterRigth() == 0)
+                    {
+                        Controller.controlCharacter.startRigth = false;
+                        Controller.controlCharacter.startLeft = true;
                         Controller.controlCharacter.CreateObject("Left");
+                    }
                     else
+                    {
                         Controller.controlCharacter.CreateObject("Rigth");
+                    }
                 }
             }
         }
         
     }
 
+    // Creates the character that will enter the house
     public void CreateObjectStart()
     {
         if (Controller.controlCharacter.GetPeoplecounterRigth() > 0)
@@ -73,7 +80,7 @@ public class SpawnerStart : MonoBehaviour
 
     }
 
-
+    // The character that enter in the house  at the end of the route (once stay inside the house) will be destroyed.
     public void DestroyObjectStart()
     {
         //newCharacterStart.GetComponent<Animation>().Stop();
@@ -81,29 +88,16 @@ public class SpawnerStart : MonoBehaviour
         Debug.Log("Objeto Destruido");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    // Return the current position from the Character
+    public Vector3 GetCharacterPosition()
     {
-        Debug.Log("OnCollisionEnter");
+        return newCharacterStart.localPosition;
     }
 
-    private void OnCollisionExit(Collision collision)
+    // Sets the current position to character
+    public void SetCurrentPosition(Vector3 currentPosition)
     {
-        Debug.Log("OnCollisionExit");
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("OnCollisionExit");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("OnTriggerEnter");
-        if (other.gameObject.tag == "Wall")
-        {
-            newCharacterStart.localPosition = initialPosition;
-            //newCharacterStart.GetComponent<Animation>().Stop();
-            //start = false;
-        }
+        newCharacterStart.localPosition = currentPosition;
+        start = true;
     }
 }
