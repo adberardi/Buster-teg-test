@@ -10,8 +10,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -58,6 +60,10 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -118,6 +124,10 @@ ScriptsOnlyBuild:
     - Class: 137
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -564,22 +574,10 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket5
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalAsset
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket1
   - hash:
       serializedVersion: 2
       Hash: f08a111e17bb701f9c9ec57bb78d9920
@@ -648,18 +646,6 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket3
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker1
-  - hash:
-      serializedVersion: 2
       Hash: 0077fc8e4fbae67f80e80ebd534de5a0
     assemblyName: Vuforia.UnityExtensions.dll
     namespaceName: Vuforia
@@ -1066,12 +1052,6 @@ ScriptsOnlyBuild:
     assemblyName: Vuforia.UnityExtensions.dll
     namespaceName: Vuforia
     className: WireframeTrackableEventHandler
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket4
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -1084,12 +1064,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnerStart
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Rocket2
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1108,12 +1082,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker3
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1228,12 +1196,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
-  - hash:
-      serializedVersion: 2
-      Hash: c5c412db9af59ce084a97e767f862372
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Firecracker2
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -1470,7 +1432,7 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 9ed5c9d47b9c47d26df2431fdd33afb6
+      Hash: 7bb1df9e59b53166ad5aa1df1ddce5cd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller

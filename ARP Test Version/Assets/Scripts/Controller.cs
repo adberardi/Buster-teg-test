@@ -23,6 +23,7 @@ public class Controller : MonoBehaviour
     public Transform newParent;
     public Transform limitInsideHouse;
     public Text textField;
+    public GameObject effectsToWinner;
     public static Controller controlCharacter;
 
 
@@ -140,6 +141,8 @@ public class Controller : MonoBehaviour
     {
         textInput.gameObject.SetActive(false);
         TextScript.current.FinishText(ObtainResult(),responseUser);
+        if (ObtainResult() == responseUser)
+            effectsToWinner.SetActive(true);
     }
 
     // Return actual value of status game
