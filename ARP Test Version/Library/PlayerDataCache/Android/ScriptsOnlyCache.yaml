@@ -10,10 +10,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -80,19 +78,19 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9394}
+      Script: {instanceID: 9398}
     - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9404}
     - Class: 114
-      Script: {instanceID: 9406}
+      Script: {instanceID: 9410}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9418}
     - Class: 114
-      Script: {instanceID: 9416}
+      Script: {instanceID: 9420}
     - Class: 114
-      Script: {instanceID: 9450}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9452}
+      Script: {instanceID: 9456}
     - Class: 114
       Script: {instanceID: 9716}
     - Class: 114
@@ -100,23 +98,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9808}
     - Class: 114
-      Script: {instanceID: 9884}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9906}
+      Script: {instanceID: 9902}
     - Class: 114
-      Script: {instanceID: 9914}
+      Script: {instanceID: 9910}
     - Class: 114
-      Script: {instanceID: 9916}
+      Script: {instanceID: 9912}
     - Class: 114
-      Script: {instanceID: 10120}
+      Script: {instanceID: 10114}
     - Class: 114
-      Script: {instanceID: 10246}
+      Script: {instanceID: 10236}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10484}
+      Script: {instanceID: 10474}
     - Class: 114
-      Script: {instanceID: 10956}
+      Script: {instanceID: 10944}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1432,7 +1430,7 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 7bb1df9e59b53166ad5aa1df1ddce5cd
+      Hash: 8cbfc269b447f39452754b798fe62137
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller

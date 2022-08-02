@@ -17,6 +17,7 @@ public class Controller : MonoBehaviour
     int op;
     int counterToStart;
     int responseUser;
+    AudioSource soundGame;
     public GameObject house;
     public GameObject textInput;
     public Transform prefab;
@@ -24,6 +25,8 @@ public class Controller : MonoBehaviour
     public Transform limitInsideHouse;
     public Text textField;
     public GameObject effectsToWinner;
+    public AudioClip soundWinner;
+    public AudioClip soundLoser;
     public static Controller controlCharacter;
 
 
@@ -43,6 +46,7 @@ public class Controller : MonoBehaviour
         peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
+        soundGame = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -92,6 +96,7 @@ public class Controller : MonoBehaviour
         else
         {
             onGoingGame = true;
+            soundGame.Play();
             SpawnerStart.current.CreateObjectStart();
         }
     }
@@ -135,6 +140,15 @@ public class Controller : MonoBehaviour
         // TODO: Implementar Borrado de Listeners, revisar documentacion
     }
 
+    // Change the sound in the game.
+    public void UpdateSound(AudioClip newSound)
+    {
+        soundGame.Stop();
+        soundGame.clip = newSound;
+        soundGame.Play();
+        soundGame.loop = true;
+    }
+
 
     // Enable text indicating the correct answer
     public void CallFinishText()
@@ -142,7 +156,16 @@ public class Controller : MonoBehaviour
         textInput.gameObject.SetActive(false);
         TextScript.current.FinishText(ObtainResult(),responseUser);
         if (ObtainResult() == responseUser)
+        {
+            // User Win
             effectsToWinner.SetActive(true);
+            UpdateSound(soundWinner);
+        }
+        else
+        {
+            // User Lose
+            UpdateSound(soundLoser);
+        }
     }
 
     // Return actual value of status game
