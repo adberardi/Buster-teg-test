@@ -12,7 +12,8 @@ public class Controller : MonoBehaviour
     private int peopleCounterLeft;
     private int peopleCounterRigth;
     int finalResult;
-    int[,] operations = { { 2, 4 }, { 3, 4 } };
+    // {Numero limite generador personajes , Factor Velocidad Personaje}
+    int[,] difficulty = { { 1, 5 }, { 2, 8 }, {3, 10} };
     System.Random rnd;
     int op;
     int counterToStart;
@@ -39,9 +40,9 @@ public class Controller : MonoBehaviour
         startLeft = false;
         responseUser = 0;
         rnd = new System.Random();
-        //op = rnd.Next(operations.Length - 1);
-        //peopleCounterLeft = operations[op,0];
-        //peopleCounterRigth = operations[op,1];
+        //op = rnd.Next(difficulty.Length - 1);
+        //peopleCounterLeft = difficulty[op,0];
+        //peopleCounterRigth = difficulty[op,1];
         peopleCounterRigth = rnd.Next(10);
         peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
@@ -99,6 +100,12 @@ public class Controller : MonoBehaviour
             soundGame.Play();
             SpawnerStart.current.CreateObjectStart();
         }
+    }
+
+
+    public AudioSource GetAudioClip()
+    {
+        return soundGame;
     }
 
     // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)

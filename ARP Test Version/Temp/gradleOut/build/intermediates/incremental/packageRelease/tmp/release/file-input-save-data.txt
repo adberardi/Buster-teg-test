@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Aug 01 23:21:06 VET 2022
+#Tue Aug 02 23:39:22 VET 2022
 124.path=bin/Data/Managed/UnityEngine.VideoModule.dll
 60.set=NATIVE_RESOURCE
 52.set=NATIVE_RESOURCE
