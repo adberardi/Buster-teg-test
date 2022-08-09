@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     int[,] difficulty = { { 1, 5 }, { 2, 8 }, {3, 10} };
     System.Random rnd;
     int op;
+    public float Speed { get; set; }
     int counterToStart;
     int responseUser;
     AudioSource soundGame;
@@ -28,6 +29,7 @@ public class Controller : MonoBehaviour
     public GameObject effectsToWinner;
     public AudioClip soundWinner;
     public AudioClip soundLoser;
+    public Text btnTextSound;
     public static Controller controlCharacter;
 
 
@@ -41,8 +43,9 @@ public class Controller : MonoBehaviour
         responseUser = 0;
         rnd = new System.Random();
         //op = rnd.Next(difficulty.Length - 1);
+        op = 0;
         //peopleCounterLeft = difficulty[op,0];
-        //peopleCounterRigth = difficulty[op,1];
+        Speed = difficulty[op,1] * 0.1f;
         peopleCounterRigth = rnd.Next(10);
         peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
@@ -103,6 +106,12 @@ public class Controller : MonoBehaviour
     }
 
 
+    public Text GetSoundButton()
+    {
+        return btnTextSound;
+    }
+
+    // Return the audio clip it will be played
     public AudioSource GetAudioClip()
     {
         return soundGame;

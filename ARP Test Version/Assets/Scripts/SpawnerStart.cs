@@ -40,7 +40,7 @@ public class SpawnerStart : MonoBehaviour
             if (start == true)
             {
                 //Instantiate(prefab, transform.position, transform.rotation);
-                newCharacterStart.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
+                newCharacterStart.Translate(new Vector3(0, 0, Controller.controlCharacter.Speed) * Time.deltaTime);
                 Vector3 pos = newCharacterStart.localPosition;
                 Vector3 posLimit = limit.localPosition;
                 if (Vector3.Distance(pos, posLimit) < 0.003f)

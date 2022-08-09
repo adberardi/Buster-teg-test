@@ -28,7 +28,7 @@ public class SpawnerEnd : MonoBehaviour
         {
             if (start == true)
             {
-                newCharacterEnd.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
+                newCharacterEnd.Translate(new Vector3(0, 0, Controller.controlCharacter.Speed) * Time.deltaTime);
                 pos = newCharacterEnd.localPosition;
                 if (Vector3.Distance(pos, destination) < 0.003f)
                 {

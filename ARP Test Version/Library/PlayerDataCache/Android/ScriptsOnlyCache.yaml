@@ -110,17 +110,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9912}
     - Class: 114
-      Script: {instanceID: 10114}
+      Script: {instanceID: 10028}
     - Class: 114
-      Script: {instanceID: 10236}
+      Script: {instanceID: 10116}
     - Class: 114
-      Script: {instanceID: 10346}
+      Script: {instanceID: 10238}
     - Class: 114
-      Script: {instanceID: 10474}
+      Script: {instanceID: 10348}
     - Class: 114
-      Script: {instanceID: 10944}
+      Script: {instanceID: 10476}
     - Class: 114
-      Script: {instanceID: 13032}
+      Script: {instanceID: 10946}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1058,6 +1058,12 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundScript
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1436,7 +1442,7 @@ ScriptsOnlyBuild:
     className: WireframeTrackableEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 8cbfc269b447f39452754b798fe62137
+      Hash: c01d37b03e6a629222d4d2a95582c632
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Controller
@@ -1656,12 +1662,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SoundScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
