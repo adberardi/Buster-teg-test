@@ -27,7 +27,7 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
-            if(Controller.controlCharacter.GetOnGoingGame())
+            if(Controller.controlCharacter.onGoingGame)
             {
                 if (Controller.controlCharacter.startRigth)
                     //SpawnerStart.current.CreateObjectStart();
@@ -44,7 +44,7 @@ public class RecoScript : MonoBehaviour, ITrackableEventHandler
         }
         else
         {
-            if (Controller.controlCharacter.GetOnGoingGame())
+            if (Controller.controlCharacter.onGoingGame)
             {
                 if (Controller.controlCharacter.startRigth)
                 {

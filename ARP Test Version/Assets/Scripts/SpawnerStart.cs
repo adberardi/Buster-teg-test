@@ -35,7 +35,7 @@ public class SpawnerStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Controller.controlCharacter.GetOnGoingGame())
+        if (Controller.controlCharacter.onGoingGame)
         {
             if (start == true)
             {
@@ -48,7 +48,7 @@ public class SpawnerStart : MonoBehaviour
                     //newCharacterStart.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
-                    if (Controller.controlCharacter.GetPeoplecounterRigth() == 0)
+                    if (Controller.controlCharacter.peopleCounterRigth == 0)
                     {
                         Controller.controlCharacter.startRigth = false;
                         Controller.controlCharacter.startLeft = true;
@@ -67,7 +67,7 @@ public class SpawnerStart : MonoBehaviour
     // Creates the character that will enter the house
     public void CreateObjectStart()
     {
-        if (Controller.controlCharacter.GetPeoplecounterRigth() > 0)
+        if (Controller.controlCharacter.peopleCounterRigth > 0)
         {
             newCharacterStart = Instantiate(prefab, transform.position, transform.rotation);
             Controller.controlCharacter.DecreasePeopleCounteRigth();

@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
-    private bool onGoingGame = false;
+    public bool onGoingGame { get; set; }
     public bool startRigth;
     public bool startLeft;
-    private int peopleCounterLeft;
-    private int peopleCounterRigth;
+    public int peopleCounterLeft { get; set; }
+    public int peopleCounterRigth { get; set; }
     int finalResult;
     // {Numero limite generador personajes , Factor Velocidad Personaje}
     int[,] difficulty = { { 1, 5 }, { 2, 8 }, {3, 10} };
@@ -36,6 +36,7 @@ public class Controller : MonoBehaviour
 
     private void Awake()
     {
+        onGoingGame = false;
         counterToStart = 3;
         controlCharacter = this;
         startRigth = true;
@@ -124,10 +125,9 @@ public class Controller : MonoBehaviour
         Invoke("ShowCounterToStartGame", 1.0f);
     }
 
-    // Update value
-    public void SetOnGoingGame(bool newValue)
+    // show the final result
+    public void ShowResult()
     {
-        onGoingGame = newValue;
         if (onGoingGame == false)
         {
             int valuef = ObtainResult();
@@ -184,51 +184,30 @@ public class Controller : MonoBehaviour
         }
     }
 
-    // Return actual value of status game
-    public bool GetOnGoingGame()
-    {
-        return onGoingGame;
-    }
-
     // Increase the value of people's counter  from the rigth.
-    public int IncreasePeopleCounterLeft()
+    public void IncreasePeopleCounterLeft()
     {
         peopleCounterLeft++;
-        return peopleCounterLeft;
     }
 
     // Decrease the value of people's counter  from the left.
-    public int DecreasePeopleCounterLeft()
+    public void DecreasePeopleCounterLeft()
     {
         peopleCounterLeft--;
-        return peopleCounterLeft;
+        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterLeft);
     }
 
     // Increase the value of people's counter  from the rigth.
-    public int IncreasePeopleCounterRigth()
+    public void IncreasePeopleCounterRigth()
     {
         peopleCounterRigth++;
-        return peopleCounterRigth;
     }
 
     // Decrease the value of people's counter  from the rigth.
-    public int DecreasePeopleCounteRigth()
+    public void DecreasePeopleCounteRigth()
     {
         peopleCounterRigth--;
         Debug.Log("     DecreasePeopleCounteRigth:"+ peopleCounterRigth);
-        return peopleCounterRigth;
-    }
-
-    // Return the value of people's counter from the left
-    public int GetPeoplecounterLeft()
-    {
-        return peopleCounterLeft;
-    }
-
-    // Return the value of people's counter from the rigth
-    public int GetPeoplecounterRigth()
-    {
-        return peopleCounterRigth;
     }
 
     // Return the result of people it will be inside the house.

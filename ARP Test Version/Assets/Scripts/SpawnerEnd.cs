@@ -24,7 +24,7 @@ public class SpawnerEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Controller.controlCharacter.GetOnGoingGame())
+        if (Controller.controlCharacter.onGoingGame)
         {
             if (start == true)
             {
@@ -34,11 +34,12 @@ public class SpawnerEnd : MonoBehaviour
                 {
                     newCharacterEnd.GetComponent<Animation>().Stop();
                     DestroyObjectEnd();
-                    if (Controller.controlCharacter.GetPeoplecounterLeft() == 0)
+                    if (Controller.controlCharacter.peopleCounterLeft == 0)
                     {
                         //Controller.controlCharacter.CreateObject("Rigth");
-                        Controller.controlCharacter.SetOnGoingGame(false);
+                        Controller.controlCharacter.onGoingGame = false;
                         Controller.controlCharacter.startLeft = true;
+                        Controller.controlCharacter.ShowResult();
                     }
                     
                     else
@@ -53,8 +54,8 @@ public class SpawnerEnd : MonoBehaviour
     // Creates the Character it's going out from the house
     public void CreateObjectEnd()
     {
-        Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.GetPeoplecounterLeft());
-        if (Controller.controlCharacter.GetPeoplecounterLeft() > 0)
+        Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.peopleCounterLeft);
+        if (Controller.controlCharacter.peopleCounterLeft > 0)
         {
             newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
             Controller.controlCharacter.DecreasePeopleCounterLeft();
