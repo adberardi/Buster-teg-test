@@ -12,8 +12,8 @@ public class SpawnerResult : MonoBehaviour
     public AnimationClip idle;
     public AnimationClip animWalk;
     public static SpawnerResult current;
-    float domain;
-    float range;
+    public float domain;
+    public float range;
 
     private void Awake()
     {

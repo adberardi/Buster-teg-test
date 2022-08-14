@@ -45,6 +45,7 @@ public class SpawnerStart : MonoBehaviour
                 Vector3 posLimit = limit.localPosition;
                 if (Vector3.Distance(pos, posLimit) < 0.003f)
                 {
+                    Controller.controlCharacter.endRoute = true;
                     //newCharacterStart.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
@@ -56,7 +57,8 @@ public class SpawnerStart : MonoBehaviour
                     }
                     else
                     {
-                        Controller.controlCharacter.CreateObject("Rigth");
+                        if (Controller.controlCharacter.endRoute)
+                            Controller.controlCharacter.CreateObject("Rigth");
                     }
                 }
             }

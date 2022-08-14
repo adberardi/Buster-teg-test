@@ -32,6 +32,7 @@ public class SpawnerEnd : MonoBehaviour
                 pos = newCharacterEnd.localPosition;
                 if (Vector3.Distance(pos, destination) < 0.003f)
                 {
+                    Controller.controlCharacter.endRoute = true;
                     newCharacterEnd.GetComponent<Animation>().Stop();
                     DestroyObjectEnd();
                     if (Controller.controlCharacter.peopleCounterLeft == 0)
@@ -39,11 +40,12 @@ public class SpawnerEnd : MonoBehaviour
                         //Controller.controlCharacter.CreateObject("Rigth");
                         Controller.controlCharacter.onGoingGame = false;
                         Controller.controlCharacter.startLeft = true;
-                        Controller.controlCharacter.ShowResult();
+                        Controller.controlCharacter.ShowResult(SpawnerResult.current.domain, SpawnerResult.current.range);
                     }
                     
                     else
-                        Controller.controlCharacter.CreateObject("Left");
+                        if (Controller.controlCharacter.endRoute)
+                            Controller.controlCharacter.CreateObject("Left");
                     
                 }
             }

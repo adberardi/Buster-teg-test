@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Controller : MonoBehaviour
 {
     public bool onGoingGame { get; set; }
+    public bool endRoute { get; set; }
     public bool startRigth;
     public bool startLeft;
     public int peopleCounterLeft { get; set; }
@@ -36,6 +37,7 @@ public class Controller : MonoBehaviour
 
     private void Awake()
     {
+        endRoute = false;
         onGoingGame = false;
         counterToStart = 3;
         controlCharacter = this;
@@ -126,13 +128,15 @@ public class Controller : MonoBehaviour
     }
 
     // show the final result
-    public void ShowResult()
+    public void ShowResult(float axisX, float axisZ)
     {
         if (onGoingGame == false)
         {
             int valuef = ObtainResult();
             Debug.Log("Resultado final: " + valuef);
             int count = 0;
+            axisX = axisX / 2;
+            axisZ = axisZ / 2;
             for (float x = -0.0200f; x < 0.0200f; x = x + 0.0100f)
             {
                 Debug.Log("Primer Loop For");
