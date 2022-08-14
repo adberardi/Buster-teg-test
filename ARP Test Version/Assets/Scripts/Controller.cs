@@ -133,11 +133,26 @@ public class Controller : MonoBehaviour
             int valuef = ObtainResult();
             Debug.Log("Resultado final: " + valuef);
             int count = 0;
-            while(count < valuef)
+            for (float x = -0.0200f; x < 0.0200f; x = x + 0.0100f)
             {
-                SpawnerResult.current.CreateObjectResult(0.1f * count);
-                count++;
+                Debug.Log("Primer Loop For");
+                for (float z = 0.0200f; z > -0.0200f; z = z - 0.0100f)
+                {
+                    Debug.Log("Segundo Loop For");
+                    if (count < valuef)
+                    {
+                        Debug.Log("Antes de entrar a CreateObjectResult");
+                        SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
+                        count++;
+                    }
+                }
             }
+
+            /*while(count < valuef)
+            {
+                SpawnerResult.current.CreateObjectResult(0.1f * count, 0.01f * count);
+                count++;
+            }*/
 
             ActivateInputResult();
 

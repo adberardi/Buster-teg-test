@@ -12,6 +12,8 @@ public class SpawnerResult : MonoBehaviour
     public AnimationClip idle;
     public AnimationClip animWalk;
     public static SpawnerResult current;
+    float domain;
+    float range;
 
     private void Awake()
     {
@@ -23,6 +25,8 @@ public class SpawnerResult : MonoBehaviour
     {
         prefab = Controller.controlCharacter.GetPrefab();
         newParent = Controller.controlCharacter.GetNewParent();
+        domain = 0.0450f;
+        range = 0.0450f;
     }
 
     // Update is called once per frame
@@ -32,12 +36,12 @@ public class SpawnerResult : MonoBehaviour
     }
 
     // Creates the character stays inside the house
-    public void CreateObjectResult(float newPos)
+    public void CreateObjectResult(float newPosX, float newPosZ)
     {
         newCharacterResult = Instantiate(prefab, transform.position, transform.rotation);
         //Controller.controlCharacter.DecreasePeopleCounteRigth();
         newCharacterResult.SetParent(newParent);
-        newCharacterResult.localPosition = new Vector3(newPos, 0, 0);
+        newCharacterResult.localPosition = new Vector3(newPosX, 0, newPosZ);
         newCharacterResult.GetComponent<Animation>().RemoveClip(animWalk);
         newCharacterResult.GetComponent<Animation>().AddClip(idle, "Idle");
         newCharacterResult.GetComponent<Animation>().Play("Idle");
