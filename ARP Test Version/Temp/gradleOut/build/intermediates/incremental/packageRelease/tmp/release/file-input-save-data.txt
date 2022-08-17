@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Aug 14 19:31:48 VET 2022
+#Tue Aug 16 22:52:49 VET 2022
 124.path=bin/Data/66d0d78a3000021448b598bb54a3bfdf
 60.set=ASSET
 52.set=ASSET
@@ -412,7 +412,7 @@ count=129
 28.baseType=DIRECTORY
 115.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 24.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-16.path=bin/Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll
+16.path=bin/Data/GI/level0/6b/6b1a5da5217a09c2c1e5e0afa319f707.rgb
 71.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 31.baseType=DIRECTORY
 78.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
@@ -432,7 +432,7 @@ count=129
 39.set=ASSET
 85.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 124.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-116.path=bin/Data/GI/level0/6b/6b1a5da5217a09c2c1e5e0afa319f707.iws.neo
+116.path=bin/Data/Managed/UnityEngine.PhysicsModule.dll
 3.baseType=DIRECTORY
 25.path=bin/Data/unity default resources
 111.set=ASSET
@@ -491,7 +491,7 @@ count=129
 63.baseType=DIRECTORY
 45.set=ASSET
 23.baseType=DIRECTORY
-17.path=bin/Data/GI/level0/6b/6b1a5da5217a09c2c1e5e0afa319f707.rgb
+17.path=bin/Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll
 30.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 37.set=ASSET
 64.path=bin/Data/f40623b353e2f1943b1b3ba42975db7a
@@ -501,7 +501,7 @@ count=129
 99.set=ASSET
 5.baseType=DIRECTORY
 123.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
-115.path=bin/Data/Managed/UnityEngine.PhysicsModule.dll
+115.path=bin/Data/GI/level0/6b/6b1a5da5217a09c2c1e5e0afa319f707.iws.neo
 24.path=bin/Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll
 101.set=ASSET
 71.path=bin/Data/Managed/UnityEngine.AssetBundleModule.dll

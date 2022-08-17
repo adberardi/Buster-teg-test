@@ -74,6 +74,11 @@ public class Controller : MonoBehaviour
         return prefab;
     }
 
+    public GameObject GetHouse()
+    {
+        return house;
+    }
+
     // Returns the parent of the prefab
     public Transform GetNewParent()
     {
@@ -133,19 +138,15 @@ public class Controller : MonoBehaviour
         if (onGoingGame == false)
         {
             int valuef = ObtainResult();
-            Debug.Log("Resultado final: " + valuef);
             int count = 0;
-            axisX = axisX / 2;
-            axisZ = axisZ / 2;
-            for (float x = -0.0200f; x < 0.0200f; x = x + 0.0100f)
+            axisX = (axisX - 0.0200f) / 2;
+            axisZ = (axisZ - 0.0200f) / 2;
+            for (float x = -axisX; x < axisX; x = x + 0.0100f)
             {
-                Debug.Log("Primer Loop For");
-                for (float z = 0.0200f; z > -0.0200f; z = z - 0.0100f)
+                for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
                 {
-                    Debug.Log("Segundo Loop For");
                     if (count < valuef)
                     {
-                        Debug.Log("Antes de entrar a CreateObjectResult");
                         SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
                         count++;
                     }

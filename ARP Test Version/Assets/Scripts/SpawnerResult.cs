@@ -25,8 +25,10 @@ public class SpawnerResult : MonoBehaviour
     {
         prefab = Controller.controlCharacter.GetPrefab();
         newParent = Controller.controlCharacter.GetNewParent();
-        domain = 0.0450f;
-        range = 0.0450f;
+        domain = Controller.controlCharacter.GetHouse().transform.localScale.x;
+        //domain = 0.0450f;
+        range = Controller.controlCharacter.GetHouse().transform.localScale.z;
+        //range = 0.0450f;
     }
 
     // Update is called once per frame
@@ -45,6 +47,8 @@ public class SpawnerResult : MonoBehaviour
         newCharacterResult.GetComponent<Animation>().RemoveClip(animWalk);
         newCharacterResult.GetComponent<Animation>().AddClip(idle, "Idle");
         newCharacterResult.GetComponent<Animation>().Play("Idle");
+        Debug.Log("Escala con transform " + Controller.controlCharacter.GetHouse().transform.localScale.x);
+
         //start = true;
         //Debug.Log("Objeto creado No:" + transform.childCount);
     }
