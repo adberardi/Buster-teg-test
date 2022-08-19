@@ -16,7 +16,6 @@ public class SpawnerStart : MonoBehaviour
     public static SpawnerStart current;
     //public Transform limit;
     Transform limit;
-    float valorPrueba = 0.296f;
 
     private void Awake()
     {

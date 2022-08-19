@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class SoundScript : MonoBehaviour
 {
     AudioSource soundBtn;
-    bool statusSound;
     Text buttonTextSound;
     // Start is called before the first frame update
     void Start()
     {
         soundBtn = Controller.controlCharacter.GetAudioClip();
-        statusSound = false;
         buttonTextSound = Controller.controlCharacter.GetSoundButton();
     }
 
