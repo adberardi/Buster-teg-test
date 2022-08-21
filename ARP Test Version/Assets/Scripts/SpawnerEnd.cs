@@ -7,8 +7,9 @@ public class SpawnerEnd : MonoBehaviour
     public static SpawnerEnd current;
     Transform newCharacterEnd;
     public bool start = false;
-    public Transform prefab;
-    public Transform newParent;
+    Transform prefab;
+    //public Transform newParent;
+    Transform newParent;
     Vector3 pos;
     Vector3 destination = new Vector3(-0.439f, 0, 0);
 
@@ -16,38 +17,47 @@ public class SpawnerEnd : MonoBehaviour
     void Start()
     {
         current = this;
+        prefab = Controller.controlCharacter.GetPrefab();
+        newParent = Controller.controlCharacter.GetNewParent();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Controller.controlCharacter.GetOnGoingGame())
+        if (Controller.controlCharacter.onGoingGame)
         {
             if (start == true)
             {
-                newCharacterEnd.Translate(new Vector3(0, 0, 0.5f) * Time.deltaTime);
+                newCharacterEnd.Translate(new Vector3(0, 0, Controller.controlCharacter.Speed) * Time.deltaTime);
                 pos = newCharacterEnd.localPosition;
                 if (Vector3.Distance(pos, destination) < 0.003f)
                 {
+                    Controller.controlCharacter.endRoute = true;
                     newCharacterEnd.GetComponent<Animation>().Stop();
                     DestroyObjectEnd();
-                    if (Controller.controlCharacter.GetPeoplecounterLeft() == 0)
+                    if (Controller.controlCharacter.peopleCounterLeft == 0)
                     {
                         //Controller.controlCharacter.CreateObject("Rigth");
-                        Controller.controlCharacter.SetOnGoingGame(false);
+                        Controller.controlCharacter.onGoingGame = false;
+                        Controller.controlCharacter.startLeft = true;
+                        Controller.controlCharacter.ShowResult(SpawnerResult.current.domain, SpawnerResult.current.range);
                     }
+                    
                     else
-                        Controller.controlCharacter.CreateObject("Left");
+                        if (Controller.controlCharacter.endRoute)
+                            Controller.controlCharacter.CreateObject("Left");
+                    
                 }
             }
         }
         
     }
 
+    // Creates the Character it's going out from the house
     public void CreateObjectEnd()
     {
-        Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.GetPeoplecounterLeft());
-        if (Controller.controlCharacter.GetPeoplecounterLeft() > 0)
+        Debug.Log("GetPeoplecounterLeft:" + Controller.controlCharacter.peopleCounterLeft);
+        if (Controller.controlCharacter.peopleCounterLeft > 0)
         {
             newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
             Controller.controlCharacter.DecreasePeopleCounterLeft();
@@ -59,10 +69,23 @@ public class SpawnerEnd : MonoBehaviour
 
     }
 
-
+    // The character that leaves the house at the end of the route will be destroyed.
     public void DestroyObjectEnd()
     {
         Destroy(newCharacterEnd.gameObject, 0.5f);
     }
 
+
+    // Return the current position from the Character
+    public Vector3 GetCharacterPosition()
+    {
+        return newCharacterEnd.localPosition;
+    }
+
+    // Sets the current position to character
+    public void SetCurrentPosition(Vector3 currentPosition)
+    {
+        newCharacterEnd.localPosition = currentPosition;
+        start = true;
+    }
 }

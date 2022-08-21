@@ -1,41 +1,65 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
-    private bool onGoingGame = true;
+    public bool onGoingGame { get; set; }
+    public bool endRoute { get; set; }
     public bool startRigth;
     public bool startLeft;
-    private int peopleCounterLeft;
-    private int peopleCounterRigth;
+    public int peopleCounterLeft { get; set; }
+    public int peopleCounterRigth { get; set; }
     int finalResult;
-    int[,] operations = { { 2, 4 }, { 3, 4 } };
+    // {Numero limite generador personajes , Factor Velocidad Personaje}
+    int[,] difficulty = { { 1, 5 }, { 2, 8 }, {3, 10} };
     System.Random rnd;
     int op;
+    public float Speed { get; set; }
+    int counterToStart;
+    int responseUser;
+    AudioSource soundGame;
     public GameObject house;
+    public GameObject textInput;
+    public Transform prefab;
+    public Transform newParent;
+    public Transform limitInsideHouse;
+    public Text textField;
+    public GameObject effectsToWinner;
+    public AudioClip soundWinner;
+    public AudioClip soundLoser;
+    public Text btnTextSound;
     public static Controller controlCharacter;
 
 
 
     private void Awake()
     {
+        endRoute = false;
+        onGoingGame = false;
+        counterToStart = 3;
         controlCharacter = this;
         startRigth = true;
         startLeft = false;
+        responseUser = 0;
         rnd = new System.Random();
-        op = rnd.Next(operations.Length - 1);
-        peopleCounterLeft = operations[op,0];
-        peopleCounterRigth = operations[op,1];
+        //op = rnd.Next(difficulty.Length - 1);
+        op = 0;
+        //peopleCounterLeft = difficulty[op,0];
+        Speed = difficulty[op,1] * 0.1f;
+        peopleCounterRigth = rnd.Next(10);
+        peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
+        soundGame = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //TextScript.current.SetText("Juego en progreso");
     }
 
     // Update is called once per frame
@@ -44,68 +68,166 @@ public class Controller : MonoBehaviour
         
     }
 
-    // Update value
-    public void SetOnGoingGame(bool newValue)
+    // Returns the prefab passed as parameter from Unity
+    public Transform GetPrefab()
     {
-        onGoingGame = newValue;
-        if (onGoingGame == false)
+        return prefab;
+    }
+
+    public GameObject GetHouse()
+    {
+        return house;
+    }
+
+    // Returns the parent of the prefab
+    public Transform GetNewParent()
+    {
+        return newParent;
+    }
+
+    // Returns the boundary located inside the house and thus deletes the character that entered.
+    public Transform GetLimitInsideHouse()
+    {
+        return limitInsideHouse;
+    }
+
+    // Returns the TextField from the Game's UI
+    public Text GetTextField()
+    {
+        return textField;
+    }
+
+    // Shows the countdown to start the game
+    public void ShowCounterToStartGame()
+    {
+        if (counterToStart > 0)
         {
-            int valuef = ObtainResult();
-            Debug.Log("Resultado final: " + valuef);
-            int count = 0;
-            while(count < valuef)
-            {
-                SpawnerResult.current.CreateObjectResult(0.1f * count);
-                count++;
-            }
-            DisplayResultInsideHouse();
+            counterToStart--;
+            Invoke("UpdateCounterToStart", 1.0f);
+        }
+        else
+        {
+            onGoingGame = true;
+            soundGame.Play();
+            SpawnerStart.current.CreateObjectStart();
         }
     }
 
-    // Return actual value of status game
-    public bool GetOnGoingGame()
+
+    public Text GetSoundButton()
     {
-        return onGoingGame;
+        return btnTextSound;
+    }
+
+    // Return the audio clip it will be played
+    public AudioSource GetAudioClip()
+    {
+        return soundGame;
+    }
+
+    // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
+    private void UpdateCounterToStart()
+    {
+        TextScript.current.SetText(counterToStart);
+        Invoke("ShowCounterToStartGame", 1.0f);
+    }
+
+    // show the final result
+    public void ShowResult(float axisX, float axisZ)
+    {
+        if (onGoingGame == false)
+        {
+            int valuef = ObtainResult();
+            int count = 0;
+            axisX = (axisX - 0.0200f) / 2;
+            axisZ = (axisZ - 0.0200f) / 2;
+            for (float x = -axisX; x < axisX; x = x + 0.0100f)
+            {
+                for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
+                {
+                    if (count < valuef)
+                    {
+                        SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
+                        count++;
+                    }
+                }
+            }
+
+            /*while(count < valuef)
+            {
+                SpawnerResult.current.CreateObjectResult(0.1f * count, 0.01f * count);
+                count++;
+            }*/
+
+            ActivateInputResult();
+
+            //DisplayResultInsideHouse();
+        }
+    }
+
+    // Enables data input to the user to indicate their response.
+    private void ActivateInputResult()
+    {
+        textInput.gameObject.SetActive(true);
+        InputField resultInput = textInput.GetComponent<InputField>();
+        resultInput.Select();
+        resultInput.ActivateInputField();
+        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(Int32.Parse(resultInput.text)); });
+        // TODO: Implementar Borrado de Listeners, revisar documentacion
+    }
+
+    // Change the sound in the game.
+    public void UpdateSound(AudioClip newSound)
+    {
+        soundGame.Stop();
+        soundGame.clip = newSound;
+        soundGame.Play();
+        soundGame.loop = true;
+    }
+
+
+    // Enable text indicating the correct answer
+    public void CallFinishText()
+    {
+        textInput.gameObject.SetActive(false);
+        TextScript.current.FinishText(ObtainResult(),responseUser);
+        if (ObtainResult() == responseUser)
+        {
+            // User Win
+            effectsToWinner.SetActive(true);
+            UpdateSound(soundWinner);
+        }
+        else
+        {
+            // User Lose
+            UpdateSound(soundLoser);
+        }
     }
 
     // Increase the value of people's counter  from the rigth.
-    public int IncreasePeopleCounterLeft()
+    public void IncreasePeopleCounterLeft()
     {
         peopleCounterLeft++;
-        return peopleCounterLeft;
     }
 
     // Decrease the value of people's counter  from the left.
-    public int DecreasePeopleCounterLeft()
+    public void DecreasePeopleCounterLeft()
     {
         peopleCounterLeft--;
-        return peopleCounterLeft;
+        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterLeft);
     }
 
     // Increase the value of people's counter  from the rigth.
-    public int IncreasePeopleCounterRigth()
+    public void IncreasePeopleCounterRigth()
     {
         peopleCounterRigth++;
-        return peopleCounterRigth;
     }
 
     // Decrease the value of people's counter  from the rigth.
-    public int DecreasePeopleCounteRigth()
+    public void DecreasePeopleCounteRigth()
     {
         peopleCounterRigth--;
-        return peopleCounterRigth;
-    }
-
-    // Return the value of people's counter from the left
-    public int GetPeoplecounterLeft()
-    {
-        return peopleCounterLeft;
-    }
-
-    // Return the value of people's counter from the rigth
-    public int GetPeoplecounterRigth()
-    {
-        return peopleCounterRigth;
+        Debug.Log("     DecreasePeopleCounteRigth:"+ peopleCounterRigth);
     }
 
     // Return the result of people it will be inside the house.
@@ -115,13 +237,15 @@ public class Controller : MonoBehaviour
     }
 
     // The house disappears at the end of the game.
-    public void DisplayResultInsideHouse()
+    public void DisplayResultInsideHouse(int answer)
     {
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1,0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
-        Debug.Log("Valor  array multidimensional:" + operations[0,1]+" Numero random"+ rnd.Next(10));
+        //TextScript.current.SetText("Juego Finalizado");
+        responseUser = answer;
+        Invoke("CallFinishText", 0.5f);
     }
 
     // Creates the object according to the passing value.
@@ -131,13 +255,9 @@ public class Controller : MonoBehaviour
         {
             case "Left":
                 SpawnerEnd.current.CreateObjectEnd();
-                controlCharacter.startLeft = false;
-                controlCharacter.startRigth = true;
                 break;
             case "Rigth":
                 SpawnerStart.current.CreateObjectStart();
-                controlCharacter.startLeft = true;
-                controlCharacter.startRigth = false;
                 break;
             default:
                 break;

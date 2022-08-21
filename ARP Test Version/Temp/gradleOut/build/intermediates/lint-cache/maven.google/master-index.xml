@@ -58,6 +58,7 @@
   <androidx.heifwriter/>
   <androidx.hilt/>
   <androidx.interpolator/>
+  <androidx.javascriptengine/>
   <androidx.leanback/>
   <androidx.legacy/>
   <androidx.lifecycle/>
@@ -199,7 +200,9 @@
   <com.google.ar.sceneform.ux/>
   <com.google.assistant.appactions/>
   <com.google.assistant.suggestion/>
+  <com.google.camerax.effects/>
   <com.google.chromeos/>
+  <com.google.d2c/>
   <com.google.devtools.ksp/>
   <com.google.fhir/>
   <com.google.firebase/>

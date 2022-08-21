@@ -1,0 +1,69 @@
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m            SpawnerStart.current.[1;31mCreateObject[mStart();
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m                        Debug.Log("Antes de entrar a [1;31mCreateObject[mResult");
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m                        SpawnerResult.current.[1;31mCreateObject[mResult(x * 10, z * 10);
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m                SpawnerResult.current.[1;31mCreateObject[mResult(0.1f * count, 0.01f * count);
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m    public void [1;31mCreateObject[m(string index)
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m                SpawnerEnd.current.[1;31mCreateObject[mEnd();
+ARP Test Version/Assets/Scripts/Controller.cs[36m:[m                SpawnerStart.current.[1;31mCreateObject[mStart();
+ARP Test Version/Assets/Scripts/RecoScript.cs[36m:[m                    //SpawnerStart.current.[1;31mCreateObject[mStart();
+ARP Test Version/Assets/Scripts/RecoScript.cs[36m:[m                    //SpawnerEnd.current.[1;31mCreateObject[mEnd();
+ARP Test Version/Assets/Scripts/SpawnerEnd.cs[36m:[m                            //Controller.controlCharacter.[1;31mCreateObject[m("Rigth");
+ARP Test Version/Assets/Scripts/SpawnerEnd.cs[36m:[m                            Controller.controlCharacter.[1;31mCreateObject[m("Left");
+ARP Test Version/Assets/Scripts/SpawnerEnd.cs[36m:[m    public void [1;31mCreateObject[mEnd()
+ARP Test Version/Assets/Scripts/SpawnerResult.cs[36m:[m    public void [1;31mCreateObject[mResult(float newPosX, float newPosZ)
+ARP Test Version/Assets/Scripts/SpawnerStart.cs[36m:[m                            Controller.controlCharacter.[1;31mCreateObject[m("Left");
+ARP Test Version/Assets/Scripts/SpawnerStart.cs[36m:[m                            Controller.controlCharacter.[1;31mCreateObject[m("Rigth");
+ARP Test Version/Assets/Scripts/SpawnerStart.cs[36m:[m    public void [1;31mCreateObject[mStart()
+ARP Test Version/Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Editor/TMPro_CreateObjectMenu.cs[36m:[m    public static class TMPro_[1;31mCreateObject[mMenu
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/Assembly-CSharp.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/System.ComponentModel.Composition.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/System.Data.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/System.Runtime.Serialization.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/System.ServiceModel.Internals.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/System.Xml.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/Vuforia.UnityExtensions.dll matches
+Binary file ARP Test Version/Library/PlayerDataCache/Android/Data/Managed/mscorlib.dll matches
+Binary file ARP Test Version/Library/ScriptAssemblies/Assembly-CSharp.dll matches
+Binary file ARP Test Version/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll matches
+Binary file ARP Test Version/Library/assetDatabase3 matches
+Binary file ARP Test Version/Library/metadata/05/05a96d4bd69eaeb40b08564f691d3026 matches
+Binary file ARP Test Version/Library/metadata/05/05c9a12f137ca3c43839cc13ece83668 matches
+Binary file ARP Test Version/Library/metadata/70/7065397ff8184621aa3ca4f854491259 matches
+Binary file ARP Test Version/Library/metadata/70/7065397ff8184621aa3ca4f854491259.info matches
+Binary file ARP Test Version/Library/metadata/c0/c06d07b3fc1249b4cb46d7961f0d6b89 matches
+Binary file ARP Test Version/Library/metadata/e6/e6492bd6708df3541a33f46066a0f07c matches
+Binary file ARP Test Version/Library/metadata/fd/fd7f5f9858371dc4d98db96e823749dc matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/Assembly-CSharp.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/System.ComponentModel.Composition.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/System.Data.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/System.Runtime.Serialization.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/System.ServiceModel.Internals.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/System.Xml.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/Vuforia.UnityExtensions.dll matches
+Binary file ARP Test Version/Temp/StagingArea/assets/bin/Data/Managed/mscorlib.dll matches
+Binary file ARP Test Version/Temp/StagingArea/libs/armeabi-v7a/libunity.so matches
+ARP Test Version/Temp/UnityTempFile-33e9b673a56930844b0670921285f9f5[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+ARP Test Version/Temp/UnityTempFile-40d8fb53db1ff8344ab8de4500f6fcf9[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+ARP Test Version/Temp/UnityTempFile-4a8ff1d8d121dd04bb57d2afa71e52e0[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+ARP Test Version/Temp/UnityTempFile-6360fb378f3627d4e937a2fbe7f7c8a7[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+ARP Test Version/Temp/UnityTempFile-641414e39881a8d42b2f1a0855c76ad7[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+ARP Test Version/Temp/UnityTempFile-975c4f537c056c74e8333ecd3c9f4bd0[36m:[m"C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\Library\PackageCache\com.unity.textmeshpro@2.0.1\Scripts\Editor\TMPro_[1;31mCreateObject[mMenu.cs"
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/jniLibs/release/armeabi-v7a/libunity.so matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/Assembly-CSharp.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/System.ComponentModel.Composition.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/System.Data.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/System.Runtime.Serialization.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/System.ServiceModel.Internals.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/System.Xml.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/Vuforia.UnityExtensions.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/merged_assets/release/mergeReleaseAssets/out/bin/Data/Managed/mscorlib.dll matches
+Binary file ARP Test Version/Temp/gradleOut/build/intermediates/transforms/mergeJniLibs/release/0/lib/armeabi-v7a/libunity.so matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/Assembly-CSharp.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/System.ComponentModel.Composition.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/System.Data.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/System.Runtime.Serialization.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/System.ServiceModel.Internals.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/System.Xml.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/Vuforia.UnityExtensions.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/assets/bin/Data/Managed/mscorlib.dll matches
+Binary file ARP Test Version/Temp/gradleOut/src/main/jniLibs/armeabi-v7a/libunity.so matches
