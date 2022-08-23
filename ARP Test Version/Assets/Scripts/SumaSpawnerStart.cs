@@ -50,13 +50,12 @@ public class SumaSpawnerStart : MonoBehaviour
                     if (SumaController.controlCharacter.peopleCounterRigth == 0)
                     {
                         SumaController.controlCharacter.onGoingGame = false;
-                        SumaController.controlCharacter.startLeft = true;
                         SumaController.controlCharacter.ShowResult(SumaSpawnerResult.current.domain, SumaSpawnerResult.current.range);
                     }
                     else
                     {
-                        if (SumaController.controlCharacter.endRoute)
-                            SumaController.controlCharacter.CreateObject("Rigth");
+                        if (SumaController.controlCharacter.endRoute) 
+                            SumaController.controlCharacter.CreateObject();
                     }
                 }
             }
@@ -67,6 +66,7 @@ public class SumaSpawnerStart : MonoBehaviour
     // Creates the character that will enter the house
     public void CreateObjectStart()
     {
+        Debug.Log("CreateObjectStart");
         if (SumaController.controlCharacter.peopleCounterRigth > 0)
         {
             newCharacterStart = Instantiate(prefab, transform.position, transform.rotation);
@@ -75,7 +75,7 @@ public class SumaSpawnerStart : MonoBehaviour
             newCharacterStart.localPosition = new Vector3(0.478f, 0, 0);
             newCharacterStart.GetComponent<Animation>().Play();
             start = true;
-            //Debug.Log("Objeto creado No:" + transform.childCount);
+            Debug.Log("Objeto creado ");
         }
 
     }

@@ -43,9 +43,7 @@ public class SumaController : MonoBehaviour
         startRigth = true;
         responseUser = 0;
         rnd = new System.Random();
-        //op = rnd.Next(difficulty.Length - 1);
         op = 0;
-        //peopleCounterLeft = difficulty[op,0];
         Speed = difficulty[op, 1] * 0.1f;
         peopleCounterRigth = rnd.Next(10);
         peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
@@ -98,16 +96,19 @@ public class SumaController : MonoBehaviour
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
+        Debug.Log("ShowCounterToStartGame");
         if (counterToStart > 0)
         {
+            Debug.Log("Denro del if");
             counterToStart--;
             Invoke("UpdateCounterToStart", 1.0f);
         }
         else
         {
+            Debug.Log("Dentro del else");
             onGoingGame = true;
             soundGame.Play();
-            SumaSpawnerStart.current.CreateObjectStart();
+            //SumaSpawnerStart.current.CreateObjectStart();
         }
     }
 
@@ -150,6 +151,7 @@ public class SumaController : MonoBehaviour
                     }
                 }
             }
+
 
             ActivateInputResult();
         }
@@ -226,16 +228,8 @@ public class SumaController : MonoBehaviour
     }
 
     // Creates the object according to the passing value.
-    public void CreateObject(string index)
+    public void CreateObject()
     {
-        switch (index)
-        {
-            case "Rigth":
-                SumaSpawnerStart.current.CreateObjectStart();
-                break;
-            default:
-                break;
-        }
-
+        SumaSpawnerStart.current.CreateObjectStart();
     }
 }

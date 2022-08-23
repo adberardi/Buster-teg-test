@@ -29,24 +29,21 @@ public class SumaRecoScript : MonoBehaviour, ITrackableEventHandler
         {
             if(SumaController.controlCharacter.onGoingGame)
             {
-                if (SumaController.controlCharacter.startRigth)
-                    //SumaSpawnerStart.current.CreateObjectStart();
-                    SumaSpawnerStart.current.SetCurrentPosition(currentPosition);
+                //SumaSpawnerStart.current.CreateObjectStart();
+                SumaSpawnerStart.current.SetCurrentPosition(currentPosition);
             }
             else
             {
-                SumaController.controlCharacter.ShowCounterToStartGame();
+                //SumaController.controlCharacter.ShowCounterToStartGame();
+                SumaController.controlCharacter.CreateObject();
             }
         }
         else
         {
             if (SumaController.controlCharacter.onGoingGame)
             {
-                if (SumaController.controlCharacter.startRigth)
-                {
-                    SumaSpawnerStart.current.start = false;
-                    currentPosition = SumaSpawnerStart.current.GetCharacterPosition();
-                }
+                SumaSpawnerStart.current.start = false;
+                currentPosition = SumaSpawnerStart.current.GetCharacterPosition();
             }
 
         }
