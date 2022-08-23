@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Aug 23 00:04:23 VET 2022
+#Tue Aug 23 00:14:33 VET 2022
 124.path=lib/arm64-v8a/libVuforiaDL.so
 60.set=ASSET
 52.set=ASSET

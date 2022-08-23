@@ -75,6 +75,7 @@ public class SumaSpawnerStart : MonoBehaviour
             newCharacterStart.localPosition = new Vector3(0.478f, 0, 0);
             newCharacterStart.GetComponent<Animation>().Play();
             start = true;
+            SumaController.controlCharacter.onGoingGame = true;
             Debug.Log("Objeto creado ");
         }
 
