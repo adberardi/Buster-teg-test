@@ -10,7 +10,7 @@ public class SumaSoundScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        soundBtn = SumaController.controlCharacter.GetAudioClip();
+        //soundBtn = SumaController.controlCharacter.GetAudioClip();
         buttonTextSound = SumaController.controlCharacter.GetSoundButton();
     }
 
@@ -25,6 +25,7 @@ public class SumaSoundScript : MonoBehaviour
     // Mutes the sound in the game and change the button's text
     public void MuteSound()
     {
+        soundBtn = SumaController.controlCharacter.GetAudioClip();
         soundBtn.mute = !soundBtn.mute;
         if (soundBtn.mute)
         {

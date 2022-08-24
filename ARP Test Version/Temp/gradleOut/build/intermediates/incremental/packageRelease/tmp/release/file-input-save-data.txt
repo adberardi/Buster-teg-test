@@ -1,6 +1,6 @@
 #Internal package file, do not edit.
-#Tue Aug 23 00:14:33 VET 2022
-124.path=lib/arm64-v8a/libVuforiaDL.so
+#Wed Aug 24 00:23:41 VET 2022
+124.path=bin/Data/sharedassets1.assets.split3
 60.set=ASSET
 52.set=ASSET
 118.baseType=DIRECTORY
@@ -236,7 +236,7 @@
 55.baseType=DIRECTORY
 133.set=ASSET
 15.baseType=DIRECTORY
-125.set=ASSET
+125.set=NATIVE_RESOURCE
 117.set=ASSET
 134.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 124.baseType=DIRECTORY
@@ -280,7 +280,7 @@
 3.set=ASSET
 132.set=NATIVE_RESOURCE
 142.path=lib/armeabi-v7a/libVuforiaUnityPlayer.so
-124.set=NATIVE_RESOURCE
+124.set=ASSET
 19.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 51.path=Vuforia/TEG-PROJECT-AMRAG.dat
 116.set=ASSET
@@ -336,7 +336,7 @@
 90.baseType=DIRECTORY
 96.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 50.baseType=DIRECTORY
-88.path=bin/Data/GI/level3/6b/6b1a5da5217a09c2c1e5e0afa319f707.vis
+88.path=bin/Data/Managed/UnityEngine.FileSystemHttpModule.dll
 120.path=bin/Data/Managed/UnityEngine.GameCenterModule.dll
 20.set=ASSET
 127.path=bin/Data/sharedassets1.assets.split4
@@ -397,7 +397,7 @@ count=143
 86.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 19.baseType=DIRECTORY
 110.path=bin/Data/GI/level3/6b/6b1a5da5217a09c2c1e5e0afa319f707.caw
-125.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
+125.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
 0.set=ASSET
 117.path=bin/Data/Managed/UnityEngine.dll
 22.baseType=DIRECTORY
@@ -422,7 +422,7 @@ count=143
 80.path=lib/arm64-v8a/libVuforiaUnityPlayer.so
 48.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 95.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
-87.path=bin/Data/Managed/UnityEngine.FileSystemHttpModule.dll
+87.path=bin/Data/GI/level3/6b/6b1a5da5217a09c2c1e5e0afa319f707.vis
 10.set=ASSET
 126.path=bin/Data/Managed/UnityEngine.TextCoreModule.dll
 80.set=NATIVE_RESOURCE
@@ -477,7 +477,7 @@ count=143
 38.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 39.set=ASSET
 85.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
-124.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\mergeJniLibs\\release\\0
+124.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 116.path=bin/Data/Managed/UnityEngine.VFXModule.dll
 3.baseType=DIRECTORY
 25.path=bin/Data/sharedassets2.assets
@@ -500,7 +500,7 @@ count=143
 94.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out
 86.path=bin/Data/Managed/UnityEngine.WindModule.dll
 84.baseType=DIRECTORY
-125.path=bin/Data/sharedassets1.assets.split3
+125.path=lib/arm64-v8a/libVuforiaDL.so
 70.set=ASSET
 62.set=ASSET
 54.base=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\merged_assets\\release\\mergeReleaseAssets\\out

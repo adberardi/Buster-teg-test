@@ -19,7 +19,7 @@ public class SumaController : MonoBehaviour
     public float Speed { get; set; }
     int counterToStart;
     int responseUser;
-    AudioSource soundGame;
+    AudioSource soundGame { get; set; }
     public GameObject house;
     public GameObject textInput;
     public Transform prefab;
@@ -49,12 +49,13 @@ public class SumaController : MonoBehaviour
         peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
         finalResult = peopleCounterRigth - peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
-        soundGame = GetComponent<AudioSource>();
+        //soundGame = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        //soundGame = GetComponent<AudioSource>();
         //SumaTextScript.current.SetText("Juego en progreso");
     }
 
@@ -107,8 +108,9 @@ public class SumaController : MonoBehaviour
         {
             Debug.Log("Dentro del else");
             onGoingGame = true;
+            soundGame = GetComponent<AudioSource>();
             soundGame.Play();
-            //SumaSpawnerStart.current.CreateObjectStart();
+            SumaSpawnerStart.current.CreateObjectStart();
         }
     }
 
@@ -164,7 +166,7 @@ public class SumaController : MonoBehaviour
         InputField resultInput = textInput.GetComponent<InputField>();
         resultInput.Select();
         resultInput.ActivateInputField();
-        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(Int32.Parse(resultInput.text)); });
+        resultInput.onEndEdit.AddListener(delegate { DisplayResultInsideHouse(resultInput.text); });
         // TODO: Implementar Borrado de Listeners, revisar documentacion
     }
 
@@ -216,14 +218,15 @@ public class SumaController : MonoBehaviour
     }
 
     // The house disappears at the end of the game.
-    public void DisplayResultInsideHouse(int answer)
+    public void DisplayResultInsideHouse(String answer)
     {
+        Debug.Log("Valor de answer: " + answer);
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
         //SumaTextScript.current.SetText("Juego Finalizado");
-        responseUser = answer;
+        responseUser = Int32.Parse(answer);
         Invoke("CallFinishText", 0.5f);
     }
 

@@ -34,8 +34,8 @@ public class SumaRecoScript : MonoBehaviour, ITrackableEventHandler
             }
             else
             {
-                //SumaController.controlCharacter.ShowCounterToStartGame();
-                SumaController.controlCharacter.CreateObject();
+                SumaController.controlCharacter.ShowCounterToStartGame();
+                //SumaController.controlCharacter.CreateObject();
             }
         }
         else
