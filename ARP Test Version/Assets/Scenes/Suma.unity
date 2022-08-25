@@ -2184,7 +2184,7 @@ PrefabInstance:
     - target: {fileID: 4819874549862270530, guid: 47c096f27ad8b7d4ab43a2bec720eb41,
         type: 3}
       propertyPath: m_Name
-      value: Building 01
+      value: Suma_House
       objectReference: {fileID: 0}
     - target: {fileID: 4819874549862177378, guid: 47c096f27ad8b7d4ab43a2bec720eb41,
         type: 3}
@@ -2280,7 +2280,7 @@ Animator:
   m_GameObject: {fileID: 1623723950}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6be7a43566a72794195d108c035864fb, type: 2}
+  m_Controller: {fileID: 9100000, guid: e2220a2b5d2d9fc44bf562bd91512479, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

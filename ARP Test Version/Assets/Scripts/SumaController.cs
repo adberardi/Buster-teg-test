@@ -46,8 +46,7 @@ public class SumaController : MonoBehaviour
         op = 0;
         Speed = difficulty[op, 1] * 0.1f;
         peopleCounterRigth = rnd.Next(10);
-        peopleCounterLeft = rnd.Next(1, peopleCounterRigth);
-        finalResult = peopleCounterRigth - peopleCounterLeft;
+        finalResult = peopleCounterRigth;
         house.GetComponent<Animator>().speed = 0;
         //soundGame = GetComponent<AudioSource>();
     }
