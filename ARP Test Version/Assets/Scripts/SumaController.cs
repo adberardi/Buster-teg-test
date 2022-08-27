@@ -96,10 +96,8 @@ public class SumaController : MonoBehaviour
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
-        Debug.Log("ShowCounterToStartGame");
         if (counterToStart > 0)
         {
-            Debug.Log("Denro del if");
             counterToStart--;
             Invoke("UpdateCounterToStart", 1.0f);
         }
@@ -139,8 +137,8 @@ public class SumaController : MonoBehaviour
         {
             int valuef = ObtainResult();
             int count = 0;
-            axisX = (axisX - 0.0200f) / 2;
-            axisZ = (axisZ - 0.0200f) / 2;
+            axisX = (axisX + 0.0200f) / 2;
+            axisZ = (axisZ + 0.0200f) / 2;
             for (float x = -axisX; x < axisX; x = x + 0.0100f)
             {
                 for (float z = axisZ; z > -axisZ; z = z - 0.0100f)

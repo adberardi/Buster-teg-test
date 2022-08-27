@@ -1,0 +1,4 @@
+#Fri Aug 26 22:35:52 VET 2022
+base.0=C\:\\Users\\User\\Documents\\TEG\\Buster-teg-test\\ARP Test Version\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
