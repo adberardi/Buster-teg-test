@@ -125,7 +125,7 @@ public class RestaController : MonoBehaviour
     // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
     private void UpdateCounterToStart()
     {
-        RestaTextScript.current.SetText(counterToStart);
+        //RestaTextScript.current.SetText(counterToStart);
         Invoke("ShowCounterToStartGame", 1.0f);
     }
 

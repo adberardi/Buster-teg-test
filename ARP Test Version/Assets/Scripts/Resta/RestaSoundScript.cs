@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SumaSoundScript : MonoBehaviour
+public class RestaSoundScript : MonoBehaviour
 {
     AudioSource soundBtn;
     Text buttonTextSound;

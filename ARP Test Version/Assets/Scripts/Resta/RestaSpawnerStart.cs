@@ -69,7 +69,8 @@ public class RestaSpawnerStart : MonoBehaviour
         Debug.Log("CreateObjectStart");
         if (RestaController.controlCharacter.peopleCounterLeft > 0)
         {
-            newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
+            Debug.Log("Dentro del CreateObjectStart");
+            newCharacterEnd = Instantiate(RestaController.controlCharacter.GetPrefab(), transform.position, transform.rotation);
             RestaController.controlCharacter.DecreasePeopleCounteLeft();
             newCharacterEnd.SetParent(newParent);
             newCharacterEnd.localPosition = new Vector3(0.478f, 0, 0);
