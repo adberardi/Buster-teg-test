@@ -34,8 +34,8 @@ public class RestaRecoScript : MonoBehaviour, ITrackableEventHandler
             }
             else
             {
-                //RestaController.controlCharacter.ShowCounterToStartGame();
-                RestaController.controlCharacter.CreateObject();
+                RestaController.controlCharacter.ShowCounterToStartGame();
+                //RestaController.controlCharacter.CreateObject();
             }
         }
         else

@@ -17,16 +17,20 @@ public class RestaSpawnerStart : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Entrando por Awake de RestaSpawnerStart");
         current = this;
-        prefab = RestaController.controlCharacter.GetPrefab();
-        newParent = RestaController.controlCharacter.GetNewParent();
-        limit = RestaController.controlCharacter.GetLimitInsideHouse();
+        //prefab = RestaController.controlCharacter.GetPrefab();
+        //newParent = RestaController.controlCharacter.GetNewParent();
+        //limit = RestaController.controlCharacter.GetLimitInsideHouse();
     }
     // Start is called before the first frame update
     void Start()
     {
         start = false;
         initialPosition = new Vector3(0.379f, 0, 0);
+        prefab = RestaController.controlCharacter.GetPrefab();
+        newParent = RestaController.controlCharacter.GetNewParent();
+        limit = RestaController.controlCharacter.GetLimitInsideHouse();
     }
 
     // Update is called once per frame
@@ -70,7 +74,7 @@ public class RestaSpawnerStart : MonoBehaviour
         if (RestaController.controlCharacter.peopleCounterLeft > 0)
         {
             Debug.Log("Dentro del CreateObjectStart");
-            newCharacterEnd = Instantiate(RestaController.controlCharacter.GetPrefab(), transform.position, transform.rotation);
+            newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
             RestaController.controlCharacter.DecreasePeopleCounteLeft();
             newCharacterEnd.SetParent(newParent);
             newCharacterEnd.localPosition = new Vector3(0.478f, 0, 0);

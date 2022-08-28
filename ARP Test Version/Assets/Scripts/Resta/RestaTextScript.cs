@@ -11,13 +11,14 @@ public class RestaTextScript : MonoBehaviour
     private void Awake()
     {
         current = this;
-        txtField = RestaController.controlCharacter.GetTextField();
+        //txtField = RestaController.controlCharacter.GetTextField();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //txtField.text = "Probando";
+        txtField = RestaController.controlCharacter.GetTextField();
     }
 
     // Update is called once per frame

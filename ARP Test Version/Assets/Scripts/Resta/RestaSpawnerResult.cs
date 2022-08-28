@@ -23,11 +23,11 @@ public class RestaSpawnerResult : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        prefab = Controller.controlCharacter.GetPrefab();
-        newParent = Controller.controlCharacter.GetNewParent();
-        domain = Controller.controlCharacter.GetHouse().transform.localScale.x;
+        prefab = RestaController.controlCharacter.GetPrefab();
+        newParent = RestaController.controlCharacter.GetNewParent();
+        domain = RestaController.controlCharacter.GetHouse().transform.localScale.x;
         //domain = 0.0450f;
-        range = Controller.controlCharacter.GetHouse().transform.localScale.z;
+        range = RestaController.controlCharacter.GetHouse().transform.localScale.z;
         //range = 0.0450f;
     }
 
@@ -41,13 +41,13 @@ public class RestaSpawnerResult : MonoBehaviour
     public void CreateObjectResult(float newPosX, float newPosZ)
     {
         newCharacterResult = Instantiate(prefab, transform.position, transform.rotation);
-        //Controller.controlCharacter.DecreasePeopleCounteRigth();
+        //RestaController.controlCharacter.DecreasePeopleCounteRigth();
         newCharacterResult.SetParent(newParent);
         newCharacterResult.localPosition = new Vector3(newPosX, 0, newPosZ);
         newCharacterResult.GetComponent<Animation>().RemoveClip(animWalk);
         newCharacterResult.GetComponent<Animation>().AddClip(idle, "Idle");
         newCharacterResult.GetComponent<Animation>().Play("Idle");
-        Debug.Log("Escala con transform " + Controller.controlCharacter.GetHouse().transform.localScale.x);
+        Debug.Log("Escala con transform " + RestaController.controlCharacter.GetHouse().transform.localScale.x);
 
         //start = true;
         //Debug.Log("Objeto creado No:" + transform.childCount);

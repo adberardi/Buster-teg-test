@@ -8,7 +8,7 @@ public class RestaController : MonoBehaviour
 {
     public bool onGoingGame { get; set; }
     public bool endRoute { get; set; }
-    public bool startRigth;
+    public bool startLeft;
     public int peopleCounterLeft { get; set; }
     int finalResult;
     // {Numero limite generador personajes , Factor Velocidad Personaje}
@@ -39,7 +39,7 @@ public class RestaController : MonoBehaviour
         onGoingGame = false;
         counterToStart = 3;
         controlCharacter = this;
-        startRigth = true;
+        startLeft = true;
         responseUser = 0;
         rnd = new System.Random();
         op = 0;
@@ -47,7 +47,6 @@ public class RestaController : MonoBehaviour
         peopleCounterLeft = rnd.Next(10);
         finalResult = peopleCounterLeft;
         house.GetComponent<Animator>().speed = 0;
-        //soundGame = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
