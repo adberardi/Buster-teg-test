@@ -31,8 +31,6 @@ public class RestaController : MonoBehaviour
     public Text btnTextSound;
     public static RestaController controlCharacter;
 
-
-
     private void Awake()
     {
         endRoute = false;
@@ -101,7 +99,7 @@ public class RestaController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Dentro del else");
+            RestaController.controlCharacter.MoveHouseToDown();
             onGoingGame = true;
             soundGame = GetComponent<AudioSource>();
             soundGame.Play();
@@ -216,6 +214,7 @@ public class RestaController : MonoBehaviour
     public void DisplayResultInsideHouse(String answer)
     {
         Debug.Log("Valor de answer: " + answer);
+        house.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/RestaResult");
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0);
         //house.SetActive(false);
@@ -223,6 +222,16 @@ public class RestaController : MonoBehaviour
         //SumaTextScript.current.SetText("Juego Finalizado");
         responseUser = Int32.Parse(answer);
         Invoke("CallFinishText", 0.5f);
+    }
+
+    // The house move to the plane of the game.
+    public void MoveHouseToDown()
+    {
+        house.GetComponent<Animator>().speed = 1;
+        house.GetComponent<Animator>().Play("Base Layer.MoveHouseDown", -1, 0);
+        //house.SetActive(false);
+        
+        //Invoke("CallFinishText", 0.5f);
     }
 
     // Creates the object according to the passing value.
