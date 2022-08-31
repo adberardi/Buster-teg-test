@@ -25,10 +25,12 @@ public class RestaSpawnerResult : MonoBehaviour
     {
         prefab = RestaController.controlCharacter.GetPrefab();
         newParent = RestaController.controlCharacter.GetNewParent();
-        domain = RestaController.controlCharacter.GetHouse().transform.localScale.x;
+        //domain = RestaController.controlCharacter.GetHouse().transform.localScale.x;
+        domain = RestaController.controlCharacter.GetHouse().transform.position.x;
         //domain = 0.0450f;
         range = RestaController.controlCharacter.GetHouse().transform.localScale.z;
         //range = 0.0450f;
+        
     }
 
     // Update is called once per frame
@@ -47,7 +49,7 @@ public class RestaSpawnerResult : MonoBehaviour
         newCharacterResult.GetComponent<Animation>().RemoveClip(animWalk);
         newCharacterResult.GetComponent<Animation>().AddClip(idle, "Idle");
         newCharacterResult.GetComponent<Animation>().Play("Idle");
-        Debug.Log("Escala con transform " + RestaController.controlCharacter.GetHouse().transform.localScale.x);
+        Debug.Log("Escala con transform " + RestaController.controlCharacter.GetHouse().transform.position.x);
 
         //start = true;
         //Debug.Log("Objeto creado No:" + transform.childCount);

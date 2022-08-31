@@ -1689,7 +1689,7 @@ GameObject:
   - component: {fileID: 1298265201}
   - component: {fileID: 1298265200}
   m_Layer: 0
-  m_Name: RestaSpawnerEnd
+  m_Name: RestaSpawnerStart
   m_TagString: Untagged
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2433,15 +2433,15 @@ RectTransform:
   m_GameObject: {fileID: 2017067577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.4875, y: 1.824, z: 1}
   m_Children: []
   m_Father: {fileID: 529431365}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -5.3, y: 3}
+  m_SizeDelta: {x: 151.1, y: 23.919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017067579
 MonoBehaviour:

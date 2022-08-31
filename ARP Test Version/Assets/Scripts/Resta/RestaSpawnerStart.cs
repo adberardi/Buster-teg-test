@@ -17,7 +17,6 @@ public class RestaSpawnerStart : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Entrando por Awake de RestaSpawnerStart");
         current = this;
         //prefab = RestaController.controlCharacter.GetPrefab();
         //newParent = RestaController.controlCharacter.GetNewParent();
@@ -50,7 +49,7 @@ public class RestaSpawnerStart : MonoBehaviour
                     //newCharacterEnd.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
-                    if (RestaController.controlCharacter.peopleCounterLeft == 0)
+                    if (RestaController.controlCharacter.peopleCounterRigth == 0)
                     {
                         RestaController.controlCharacter.onGoingGame = false;
                         RestaController.controlCharacter.ShowResult(RestaSpawnerResult.current.domain, RestaSpawnerResult.current.range);
@@ -71,13 +70,13 @@ public class RestaSpawnerStart : MonoBehaviour
     public void CreateObjectStart()
     {
         Debug.Log("CreateObjectStart");
-        if (RestaController.controlCharacter.peopleCounterLeft > 0)
+        if (RestaController.controlCharacter.peopleCounterRigth > 0)
         {
-            Debug.Log("Dentro del CreateObjectStart");
+            Debug.Log("Dentro del CreateObjectStart - current.transform.localPosition.x: "+ RestaController.controlCharacter.house.transform.localPosition.x);
             newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);
             RestaController.controlCharacter.DecreasePeopleCounteLeft();
             newCharacterEnd.SetParent(newParent);
-            newCharacterEnd.localPosition = new Vector3(0.478f, 0, 0);
+            newCharacterEnd.localPosition = new Vector3(RestaController.controlCharacter.house.transform.localPosition.x, 0, 0);
             newCharacterEnd.GetComponent<Animation>().Play();
             start = true;
             RestaController.controlCharacter.onGoingGame = true;

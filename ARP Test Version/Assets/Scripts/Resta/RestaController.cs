@@ -9,7 +9,8 @@ public class RestaController : MonoBehaviour
     public bool onGoingGame { get; set; }
     public bool endRoute { get; set; }
     public bool startLeft;
-    public int peopleCounterLeft { get; set; }
+    public int peopleCounterRigth { get; set; }
+    public int peopleCounterLeaving { get; set; }
     int finalResult;
     // {Numero limite generador personajes , Factor Velocidad Personaje}
     int[,] difficulty = { { 1, 5 }, { 2, 8 }, { 3, 10 } };
@@ -18,6 +19,7 @@ public class RestaController : MonoBehaviour
     public float Speed { get; set; }
     int counterToStart;
     int responseUser;
+    bool showPeople { get; set; }
     AudioSource soundGame { get; set; }
     public GameObject house;
     public GameObject textInput;
@@ -42,8 +44,9 @@ public class RestaController : MonoBehaviour
         rnd = new System.Random();
         op = 0;
         Speed = difficulty[op, 1] * 0.1f;
-        peopleCounterLeft = rnd.Next(10);
-        finalResult = peopleCounterLeft;
+        peopleCounterRigth = rnd.Next(10);
+        peopleCounterLeaving = rnd.Next(1, peopleCounterRigth);
+        finalResult = peopleCounterRigth - peopleCounterLeaving;
         house.GetComponent<Animator>().speed = 0;
     }
 
@@ -52,12 +55,17 @@ public class RestaController : MonoBehaviour
     {
         //soundGame = GetComponent<AudioSource>();
         //SumaTextScript.current.SetText("Juego en progreso");
+        showPeople = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        /*if (showPeople)
+        {
+            ShowPeopleResult();
+        }*/
     }
 
     // Returns the prefab passed as parameter from Unity
@@ -103,7 +111,8 @@ public class RestaController : MonoBehaviour
             onGoingGame = true;
             soundGame = GetComponent<AudioSource>();
             soundGame.Play();
-            RestaSpawnerStart.current.CreateObjectStart();
+            showPeople = false;
+            //RestaSpawnerStart.current.CreateObjectStart();
         }
     }
 
@@ -122,8 +131,31 @@ public class RestaController : MonoBehaviour
     // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
     private void UpdateCounterToStart()
     {
-        //RestaTextScript.current.SetText(counterToStart);
+        RestaTextScript.current.SetText(counterToStart);
         Invoke("ShowCounterToStartGame", 1.0f);
+    }
+
+    public void ShowPeopleResult()
+    {
+        Debug.Log(" --------> ShowPeopleResult");
+        float axisX = GetHouse().transform.localPosition.x;
+        float axisZ = GetHouse().transform.localScale.z;
+            //int valuef = ObtainResult();
+            int valuef = 5;
+            int count = 0;
+            axisX = (axisX + 0.0200f) / 2;
+            axisZ = (axisZ - 0.0200f) / 2;
+            for (float x = -axisX; x < axisX; x = x + 0.0100f)
+            {
+                for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
+                {
+                    if (count < valuef)
+                    {
+                        RestaSpawnerResult.current.CreateObjectResult(x * 10, z * 10);
+                        count++;
+                    }
+                }
+            }
     }
 
     // show the final result
@@ -194,14 +226,14 @@ public class RestaController : MonoBehaviour
     // Increase the value of people's counter  from the rigth.
     public void IncreasePeopleCounterLeft()
     {
-        peopleCounterLeft++;
+        peopleCounterRigth++;
     }
 
     // Decrease the value of people's counter  from the rigth.
     public void DecreasePeopleCounteLeft()
     {
-        peopleCounterLeft--;
-        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterLeft);
+        peopleCounterRigth--;
+        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterRigth);
     }
 
     // Return the result of people it will be inside the house.
@@ -230,8 +262,9 @@ public class RestaController : MonoBehaviour
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseDown", -1, 0);
         //house.SetActive(false);
-        
+
         //Invoke("CallFinishText", 0.5f);
+        Invoke("CreateObject", 1f);
     }
 
     // Creates the object according to the passing value.
