@@ -145,7 +145,7 @@ public class RestaController : MonoBehaviour
             int count = 0;
             axisX = (axisX + 0.0200f) / 2;
             axisZ = (axisZ - 0.0200f) / 2;
-            for (float x = -axisX; x < axisX; x = x + 0.0100f)
+            for (float x = axisX; x > 0; x = x - 0.0100f)
             {
                 for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
                 {
@@ -166,8 +166,8 @@ public class RestaController : MonoBehaviour
             int valuef = ObtainResult();
             int count = 0;
             axisX = (axisX + 0.0200f) / 2;
-            axisZ = (axisZ + 0.0200f) / 2;
-            for (float x = -axisX; x < axisX; x = x + 0.0100f)
+            axisZ = (axisZ - 0.0200f) / 2;
+            for (float x = axisX; x > 0; x = x - 0.0100f)
             {
                 for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
                 {

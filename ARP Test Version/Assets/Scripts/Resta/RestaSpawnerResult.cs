@@ -25,8 +25,8 @@ public class RestaSpawnerResult : MonoBehaviour
     {
         prefab = RestaController.controlCharacter.GetPrefab();
         newParent = RestaController.controlCharacter.GetNewParent();
-        //domain = RestaController.controlCharacter.GetHouse().transform.localScale.x;
-        domain = RestaController.controlCharacter.GetHouse().transform.position.x;
+        domain = RestaController.controlCharacter.GetHouse().transform.localScale.x;
+        //domain = RestaController.controlCharacter.GetHouse().transform.position.x;
         //domain = 0.0450f;
         range = RestaController.controlCharacter.GetHouse().transform.localScale.z;
         //range = 0.0450f;

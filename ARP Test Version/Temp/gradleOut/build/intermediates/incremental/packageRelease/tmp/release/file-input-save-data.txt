@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Aug 30 23:42:13 VET 2022
+#Thu Sep 01 23:14:28 VET 2022
 124.path=bin/Data/sharedassets1.assets.split3
 60.set=ASSET
 52.set=ASSET
