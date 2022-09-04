@@ -20,6 +20,7 @@ public class RestaController : MonoBehaviour
     int counterToStart;
     int responseUser;
     bool showPeople { get; set; }
+    int counterDownHouse { get; set; }
     AudioSource soundGame { get; set; }
     public GameObject house;
     public GameObject textInput;
@@ -54,18 +55,14 @@ public class RestaController : MonoBehaviour
     void Start()
     {
         //soundGame = GetComponent<AudioSource>();
-        //SumaTextScript.current.SetText("Juego en progreso");
         showPeople = true;
-        
+        counterDownHouse = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (showPeople)
-        {
-            ShowPeopleResult();
-        }*/
+
     }
 
     // Returns the prefab passed as parameter from Unity
@@ -107,13 +104,36 @@ public class RestaController : MonoBehaviour
         }
         else
         {
-            RestaController.controlCharacter.MoveHouseToDown();
+            controlCharacter.UpdateCounterToDownHouse();
             onGoingGame = true;
             soundGame = GetComponent<AudioSource>();
             soundGame.Play();
             showPeople = false;
             //RestaSpawnerStart.current.CreateObjectStart();
         }
+    }
+
+    // Shows the counter to down the house and start to create the characters.
+    public void ShowCounterToDownHouse()
+    {
+        if (counterDownHouse > 0)
+        {
+            counterDownHouse--;
+            Invoke("UpdateCounterToDownHouse", 1.0f);
+        }
+        else
+        {
+            showPeople = false;
+            controlCharacter.MoveHouseToDown();
+            //RestaSpawnerStart.current.CreateObjectStart();
+        }
+    }
+
+    // Counter to down the house
+    public void UpdateCounterToDownHouse()
+    {
+        RestaTextScript.current.SetTextCounterDownHouse(counterDownHouse);
+        Invoke("ShowCounterToDownHouse", 1.0f);
     }
 
 
@@ -138,10 +158,11 @@ public class RestaController : MonoBehaviour
     public void ShowPeopleResult()
     {
         Debug.Log(" --------> ShowPeopleResult");
-        float axisX = GetHouse().transform.localPosition.x;
+        //float axisX = GetHouse().transform.localPosition.x;
+        float axisX = GetHouse().transform.localScale.x;
         float axisZ = GetHouse().transform.localScale.z;
             //int valuef = ObtainResult();
-            int valuef = 5;
+            int valuef = peopleCounterRigth;
             int count = 0;
             axisX = (axisX + 0.0200f) / 2;
             axisZ = (axisZ - 0.0200f) / 2;

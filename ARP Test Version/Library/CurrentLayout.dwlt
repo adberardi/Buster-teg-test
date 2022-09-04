@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -44,10 +44,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 681, y: 494}
-  m_MaxSize: {x: 14002, y: 14044}
+  m_MinSize: {x: 683, y: 494}
+  m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
-  controlID: 83
+  controlID: 53
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 494}
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
-  controlID: 84
+  controlID: 54
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 222}
   m_MaxSize: {x: 8006, y: 4022}
   vertical: 0
-  controlID: 85
+  controlID: 55
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000d82f0000902e000000000000ec2e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -601,7 +601,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 14a4ffff42a4ffff12a5ffff16a5ffffb6a5ffffbaa5ffff40a6ffff6ea6ffff3ea7ffff42a7ffffe2a7ffffe6a7ffff64a8ffff92a8ffff62a9ffff66a9ffff06aaffff0aaaffff88aaffffb6aaffff60adffff64adffff12aeffff16aeffff10afffff3eafffffe8b1ffffecb1ffff9ab2ffff9eb2ffff9cb3ffffcab3ffff9ab4ffff9eb4ffff3eb5ffff42b5ffffc0b5ffffeeb5ffff82b8ffff86b8ffff34b9ffff38b9ffffaebaffffb2baffff60bbffff64bbffff68bcffff9abcffff28bfffff2cbfffffdabfffffdebfffff7ac2ffffacc3ffff22c5ffff56c6ffffd6c6ffff04c7ffffaec9ffffb2c9ffff60caffff64caffff76cbffffa4cbffff4eceffff52ceffff00cfffff04cfffff5ed0ffff8cd0ffff36d3ffff3ad3ffffe8d3ffffecd3ffffe8d4ffff16d5ffffc0d7ffffc4d7ffff72d8ffff76d8ffff72d9ffffa0d9ffff70daffff74daffff14dbffff18dbffff96dbffffc4dbffff6edeffff72deffff20dfffff24dfffffa6e0ffffd8e0ffffa8e1fffface1ffff4ce2ffff50e2ffffd6e2ffff08e3ffffb6e5ffffbee5ffff70e6ffff78e6ffffcee7fffffce7ffffa6eaffffaaeaffff58ebffff5cebffffa0ecffffceecffff78efffff7cefffff2af0ffff2ef0ffff28f1ffff56f1ffff00f4ffff04f4ffffb2f4ffffb6f4ffffbaf5ffffecf5ffff96f8ffff9af8ffff48f9ffff4cf9ffff6efbffff36300000b4300000385800001e59000014730000fa730000ca790000b07a0000b28200005a83000068830000b4830000c0830000ca830000908400003885000046850000908500009c850000a6850000
+      m_ExpandedIDs: 8ce1ffffbae1ffff64e4ffff68e4ffff16e5ffff1ae5ffff1ee6ffff50e6fffffae8fffffee8fffface9ffffb0e9ffffe4eaffff12ebffffe2ebffffe6ebffff86ecffff8aecffff12edffff40edffffeaefffffeeefffff9cf0ffffa0f0ffff9cf1ffffcaf1ffff74f4ffff78f4ffff26f5ffff2af5ffff26f6ffff54f6fffffef8ffff02f9ffffb2f9ffffb6f9ffff6efbffffc84a0000ae4b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

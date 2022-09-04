@@ -34,6 +34,24 @@ public class RestaTextScript : MonoBehaviour
         if (newNum == 0)
         {
             txtField.text = "EMPIEZA!!";
+            txtField.color = Color.yellow;
+        }
+        else
+        {
+            //txtField.text = string.Format("{0}", newNum);
+            txtField.text = newNum.ToString();
+        }
+
+    }
+
+    // Assigns a specific text to the TextField of the set, when the counter to down the house is active
+    public void SetTextCounterDownHouse(int newNum)
+    {
+        
+        Debug.Log("Bajar casa en: " + newNum);
+        if (newNum == 0)
+        {
+            txtField.text = "EMPIEZA!!";
             Invoke("DeactivateText", 1f);
         }
         else
