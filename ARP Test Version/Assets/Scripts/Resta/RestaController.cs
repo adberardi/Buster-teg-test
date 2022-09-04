@@ -104,6 +104,7 @@ public class RestaController : MonoBehaviour
         }
         else
         {
+            ShowPeopleResult();
             controlCharacter.UpdateCounterToDownHouse();
             onGoingGame = true;
             soundGame = GetComponent<AudioSource>();
@@ -253,8 +254,8 @@ public class RestaController : MonoBehaviour
     // Decrease the value of people's counter  from the rigth.
     public void DecreasePeopleCounteLeft()
     {
-        peopleCounterRigth--;
-        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterRigth);
+        peopleCounterLeaving--;
+        Debug.Log("     DecreasePeopleCounteLeft:" + peopleCounterLeaving);
     }
 
     // Return the result of people it will be inside the house.
@@ -283,14 +284,25 @@ public class RestaController : MonoBehaviour
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseDown", -1, 0);
         //house.SetActive(false);
+        Debug.Log("Total creado de prefabs: " + prefab.childCount);
+        Invoke("CreateObject", 1.0f);
+    }
 
-        //Invoke("CallFinishText", 0.5f);
-        Invoke("CreateObject", 1f);
+    public static void ResetPeopleInsideHouse()
+    {
+        int totalinside = controlCharacter.newParent.childCount;
+        Transform aux;
+        for(int i = 0; i < totalinside; i++)
+        {
+            aux = controlCharacter.newParent.transform.GetChild(i);
+            Destroy(aux.gameObject);
+        }
     }
 
     // Creates the object according to the passing value.
     public void CreateObject()
     {
+        ResetPeopleInsideHouse();
         RestaSpawnerStart.current.CreateObjectStart();
     }
 }

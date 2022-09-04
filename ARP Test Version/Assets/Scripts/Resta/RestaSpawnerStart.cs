@@ -49,7 +49,7 @@ public class RestaSpawnerStart : MonoBehaviour
                     //newCharacterEnd.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
-                    if (RestaController.controlCharacter.peopleCounterRigth == 0)
+                    if (RestaController.controlCharacter.peopleCounterLeaving == 0)
                     {
                         RestaController.controlCharacter.onGoingGame = false;
                         RestaController.controlCharacter.ShowResult(RestaSpawnerResult.current.domain, RestaSpawnerResult.current.range);
@@ -70,7 +70,7 @@ public class RestaSpawnerStart : MonoBehaviour
     public void CreateObjectStart()
     {
         Debug.Log("CreateObjectStart");
-        if (RestaController.controlCharacter.peopleCounterRigth > 0)
+        if (RestaController.controlCharacter.peopleCounterLeaving > 0)
         {
             Debug.Log("Dentro del CreateObjectStart - current.transform.localPosition.x: "+ RestaController.controlCharacter.house.transform.localPosition.x);
             newCharacterEnd = Instantiate(prefab, transform.position, transform.rotation);

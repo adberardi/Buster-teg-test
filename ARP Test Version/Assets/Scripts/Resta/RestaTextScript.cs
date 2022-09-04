@@ -17,7 +17,6 @@ public class RestaTextScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //txtField.text = "Probando";
         txtField = RestaController.controlCharacter.GetTextField();
     }
 
@@ -48,16 +47,15 @@ public class RestaTextScript : MonoBehaviour
     public void SetTextCounterDownHouse(int newNum)
     {
         
-        Debug.Log("Bajar casa en: " + newNum);
         if (newNum == 0)
         {
-            txtField.text = "EMPIEZA!!";
+            txtField.text = "Bajando Casa";
             Invoke("DeactivateText", 1f);
         }
         else
         {
             //txtField.text = string.Format("{0}", newNum);
-            txtField.text = newNum.ToString();
+            txtField.text = "Bajar casa en: "+newNum.ToString();
         }
 
     }
