@@ -14,6 +14,12 @@ ScriptsOnlyBuild:
     - SpawnerEnd
     - SpawnerResult
     - SpawnerStart
+    - SumaController
+    - SumaRecoScript
+    - SumaSoundScript
+    - SumaSpawnerResult
+    - SumaSpawnerStart
+    - SumaTextScript
     - TextScript
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
@@ -54,28 +60,32 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9394}
+    - Class: 114
+      Script: {instanceID: 9396}
     - Class: 114
       Script: {instanceID: 9402}
     - Class: 114
       Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9460}
-    - Class: 114
-      Script: {instanceID: 9770}
+      Script: {instanceID: 9766}
     - Class: 114
       Script: {instanceID: 9920}
     - Class: 115
@@ -136,31 +146,25 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9288}
+      Script: {instanceID: 9394}
     - Class: 114
-      Script: {instanceID: 9330}
-    - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9396}
     - Class: 114
       Script: {instanceID: 9402}
     - Class: 114
       Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9418}
     - Class: 114
-      Script: {instanceID: 9424}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9460}
+      Script: {instanceID: 9742}
     - Class: 114
-      Script: {instanceID: 9636}
-    - Class: 114
-      Script: {instanceID: 9750}
-    - Class: 114
-      Script: {instanceID: 9770}
+      Script: {instanceID: 9766}
     - Class: 114
       Script: {instanceID: 9888}
     - Class: 114
@@ -168,13 +172,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9918}
     - Class: 114
-      Script: {instanceID: 10166}
+      Script: {instanceID: 10360}
     - Class: 114
-      Script: {instanceID: 10358}
+      Script: {instanceID: 13548}
     - Class: 114
-      Script: {instanceID: 10498}
+      Script: {instanceID: 13550}
     - Class: 114
-      Script: {instanceID: 10798}
+      Script: {instanceID: 13552}
+    - Class: 114
+      Script: {instanceID: 13554}
+    - Class: 114
+      Script: {instanceID: 13556}
+    - Class: 114
+      Script: {instanceID: 13558}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -241,29 +251,29 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9394}
+    - Class: 114
+      Script: {instanceID: 9396}
     - Class: 114
       Script: {instanceID: 9402}
     - Class: 114
       Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9418}
     - Class: 114
-      Script: {instanceID: 9424}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9460}
+      Script: {instanceID: 9714}
     - Class: 114
-      Script: {instanceID: 9722}
+      Script: {instanceID: 9742}
     - Class: 114
-      Script: {instanceID: 9750}
+      Script: {instanceID: 9766}
     - Class: 114
-      Script: {instanceID: 9770}
-    - Class: 114
-      Script: {instanceID: 9816}
+      Script: {instanceID: 9814}
     - Class: 114
       Script: {instanceID: 9888}
     - Class: 114
@@ -277,11 +287,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10248}
     - Class: 114
-      Script: {instanceID: 10358}
+      Script: {instanceID: 10360}
     - Class: 114
-      Script: {instanceID: 10486}
+      Script: {instanceID: 10488}
     - Class: 114
-      Script: {instanceID: 10960}
+      Script: {instanceID: 10958}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -348,29 +358,33 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9400}
+      Script: {instanceID: 9394}
+    - Class: 114
+      Script: {instanceID: 9396}
     - Class: 114
       Script: {instanceID: 9402}
     - Class: 114
       Script: {instanceID: 9408}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9416}
     - Class: 114
-      Script: {instanceID: 9422}
+      Script: {instanceID: 9418}
     - Class: 114
-      Script: {instanceID: 9424}
+      Script: {instanceID: 9452}
     - Class: 114
-      Script: {instanceID: 9458}
+      Script: {instanceID: 9454}
     - Class: 114
-      Script: {instanceID: 9460}
-    - Class: 114
-      Script: {instanceID: 9722}
+      Script: {instanceID: 9742}
     - Class: 114
       Script: {instanceID: 9750}
     - Class: 114
-      Script: {instanceID: 9770}
+      Script: {instanceID: 9752}
     - Class: 114
-      Script: {instanceID: 9816}
+      Script: {instanceID: 9766}
+    - Class: 114
+      Script: {instanceID: 9774}
+    - Class: 114
+      Script: {instanceID: 9824}
     - Class: 114
       Script: {instanceID: 9888}
     - Class: 114
@@ -378,17 +392,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9918}
     - Class: 114
-      Script: {instanceID: 10036}
+      Script: {instanceID: 10230}
     - Class: 114
-      Script: {instanceID: 10124}
+      Script: {instanceID: 10268}
     - Class: 114
-      Script: {instanceID: 10248}
-    - Class: 114
-      Script: {instanceID: 10358}
-    - Class: 114
-      Script: {instanceID: 10486}
-    - Class: 114
-      Script: {instanceID: 10960}
+      Script: {instanceID: 10360}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -424,12 +432,6 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
-      Hash: eb51524a6a39291c03d06ef10175b7c7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaSpawnerResult
-  - hash:
-      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -446,12 +448,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ScrollbarEventHandler
-  - hash:
-      serializedVersion: 2
-      Hash: a56ae5c26bfb7dee6c6cde9a1330ad3d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaController
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -862,12 +858,6 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaRecoScript
-  - hash:
-      serializedVersion: 2
       Hash: f08a111e17bb701f9c9ec57bb78d9920
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -898,10 +888,28 @@ ScriptsOnlyBuild:
     className: DefaultInitializationErrorHandler
   - hash:
       serializedVersion: 2
+      Hash: eb51524a6a39291c03d06ef10175b7c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaSpawnerResult
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaTextScript
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LoadSceneRetoSumaResta
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaRecoScript
   - hash:
       serializedVersion: 2
       Hash: 303ad70ce203ad874efe2965d0fbcff9
@@ -926,6 +934,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 48785ff315e6299fac12f2d1856c5cdf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaController
   - hash:
       serializedVersion: 2
       Hash: b8a5e8091ab0b8861d2add371082c5e0
@@ -1372,12 +1386,6 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: d485c84b6a420ffb32d2bee8340640a3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaSpawnerStart
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.Analytics.Editor.dll
     namespaceName: UnityEditor.Analytics
@@ -1390,6 +1398,12 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaSoundScript
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1400,6 +1414,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RecoScript
+  - hash:
+      serializedVersion: 2
+      Hash: d485c84b6a420ffb32d2bee8340640a3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SumaSpawnerStart
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1486,12 +1506,6 @@ ScriptsOnlyBuild:
     className: DefaultModelRecoEventHandler
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaSoundScript
-  - hash:
-      serializedVersion: 2
       Hash: ee0cef6caaac8ae485bfa82f000f0f7b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1520,12 +1534,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: RestaTextScript
   - hash:
       serializedVersion: 2
       Hash: 5372ed2ce39229b1ac910757999a8be2
@@ -1970,6 +1978,42 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: eb51524a6a39291c03d06ef10175b7c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaSpawnerResult
+  - hash:
+      serializedVersion: 2
+      Hash: a56ae5c26bfb7dee6c6cde9a1330ad3d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaController
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaRecoScript
+  - hash:
+      serializedVersion: 2
+      Hash: d485c84b6a420ffb32d2bee8340640a3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaSpawnerStart
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaSoundScript
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestaTextScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
