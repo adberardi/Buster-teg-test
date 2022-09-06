@@ -96,10 +96,10 @@ public class SumaController : MonoBehaviour
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
-        if (counterToStart > 0)
+        if (counterToStart >= 0)
         {
-            counterToStart--;
             Invoke("UpdateCounterToStart", 1.0f);
+            
         }
         else
         {
@@ -127,6 +127,7 @@ public class SumaController : MonoBehaviour
     private void UpdateCounterToStart()
     {
         SumaTextScript.current.SetText(counterToStart);
+        counterToStart--;
         Invoke("ShowCounterToStartGame", 1.0f);
     }
 

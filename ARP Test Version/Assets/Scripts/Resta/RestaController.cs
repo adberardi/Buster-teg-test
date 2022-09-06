@@ -97,9 +97,8 @@ public class RestaController : MonoBehaviour
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
-        if (counterToStart > 0)
+        if (counterToStart >= 0)
         {
-            counterToStart--;
             Invoke("UpdateCounterToStart", 1.0f);
         }
         else
@@ -117,9 +116,9 @@ public class RestaController : MonoBehaviour
     // Shows the counter to down the house and start to create the characters.
     public void ShowCounterToDownHouse()
     {
-        if (counterDownHouse > 0)
+        if (counterDownHouse >= 0)
         {
-            counterDownHouse--;
+            
             Invoke("UpdateCounterToDownHouse", 1.0f);
         }
         else
@@ -134,6 +133,7 @@ public class RestaController : MonoBehaviour
     public void UpdateCounterToDownHouse()
     {
         RestaTextScript.current.SetTextCounterDownHouse(counterDownHouse);
+        counterDownHouse--;
         Invoke("ShowCounterToDownHouse", 1.0f);
     }
 
@@ -152,7 +152,9 @@ public class RestaController : MonoBehaviour
     // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
     private void UpdateCounterToStart()
     {
+        
         RestaTextScript.current.SetText(counterToStart);
+        counterToStart--;
         Invoke("ShowCounterToStartGame", 1.0f);
     }
 
