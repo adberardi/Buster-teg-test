@@ -57,6 +57,7 @@ public class RestaController : MonoBehaviour
         //soundGame = GetComponent<AudioSource>();
         showPeople = true;
         counterDownHouse = 3;
+        
     }
 
     // Update is called once per frame
@@ -103,6 +104,7 @@ public class RestaController : MonoBehaviour
         }
         else
         {
+            MoveHouseToUp();
             ShowPeopleResult();
             controlCharacter.UpdateCounterToDownHouse();
             onGoingGame = true;
@@ -116,6 +118,7 @@ public class RestaController : MonoBehaviour
     // Shows the counter to down the house and start to create the characters.
     public void ShowCounterToDownHouse()
     {
+
         if (counterDownHouse >= 0)
         {
             
@@ -269,13 +272,8 @@ public class RestaController : MonoBehaviour
     // The house disappears at the end of the game.
     public void DisplayResultInsideHouse(String answer)
     {
-        Debug.Log("Valor de answer: " + answer);
-        house.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/RestaResult");
-        house.GetComponent<Animator>().speed = 1;
-        house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0);
-        //house.SetActive(false);
-        //int p = rnd.Next(10);
-        //SumaTextScript.current.SetText("Juego Finalizado");
+        Debug.Log("----> DisplayResultInsideHouse <----");
+        MoveHouseToUp();
         responseUser = Int32.Parse(answer);
         Invoke("CallFinishText", 0.5f);
     }
@@ -283,11 +281,26 @@ public class RestaController : MonoBehaviour
     // The house move to the plane of the game.
     public void MoveHouseToDown()
     {
+        /*
+        house.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animation/RestaMoveDown");
         house.GetComponent<Animator>().speed = 1;
         house.GetComponent<Animator>().Play("Base Layer.MoveHouseDown", -1, 0);
-        //house.SetActive(false);
-        Debug.Log("Total creado de prefabs: " + prefab.childCount);
-        Invoke("CreateObject", 1.0f);
+        */
+        house.GetComponent<Animator>().SetBool("MoveHouseDown", true);
+        house.GetComponent<Animator>().SetBool("MoveHouseUp", false);
+        Invoke("CreateObject", 2.0f);
+    }
+
+    public void MoveHouseToUp()
+    {
+        /*
+        house.GetComponent<Animator>().speed = 1;
+        house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0.0f);
+        */
+        house.GetComponent<Animator>().SetBool("MoveHouseDown", false);
+        house.GetComponent<Animator>().SetBool("MoveHouseUp", true);
+        house.GetComponent<Animator>().speed = 1;
+        house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0.0f);
     }
 
     public static void ResetPeopleInsideHouse()
