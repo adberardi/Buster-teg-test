@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RetoSumaResta.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/DragObject.unity
+    guid: 7f3d5ecceabd81042a492aa877c96443
   m_configObjects: {}

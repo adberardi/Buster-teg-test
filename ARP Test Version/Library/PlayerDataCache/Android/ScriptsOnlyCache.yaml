@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Controller
     - LoadSceneRetoSumaResta
+    - ObjectManipulator
     - RecoScript
     - RestaController
     - RestaRecoScript
@@ -24,10 +25,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -49,6 +48,49 @@ ScriptsOnlyBuild:
     - DefaultInitializationErrorHandler
     - DefaultTrackableEventHandler
   sceneClasses:
+    Assets/Scenes/DragObject.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9750}
+    - Class: 114
+      Script: {instanceID: 9896}
+    - Class: 114
+      Script: {instanceID: 9918}
+    - Class: 114
+      Script: {instanceID: 9926}
+    - Class: 114
+      Script: {instanceID: 10370}
+    - Class: 114
+      Script: {instanceID: 12622}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
     Assets/Scenes/Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -2016,10 +2058,17 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 5f24a39d7462f9a5bf68b5a0840801e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ObjectManipulator
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Suma.unity
   - Assets/Scenes/Resta.unity
   - Assets/Scenes/RetoSumaResta.unity
+  - Assets/Scenes/DragObject.unity
   playerPath: C:/Users/User/Documents/TEG/Buster-teg-test/ARP Test Version/ARP.apk
