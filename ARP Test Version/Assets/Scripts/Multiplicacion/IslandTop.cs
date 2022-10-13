@@ -30,8 +30,9 @@ public class IslandTop : MonoBehaviour
             if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
             {
                 Debug.Log("Presionando sobre isla");
+                boat.GetComponent<Animator>().SetBool("IdleToTop", true);
                 boat.GetComponent<Animator>().speed = 1;
-                boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
+                //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
             }
 
         }

@@ -5,6 +5,8 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Controller
     - ControllerMultiplicacion
+    - IslandBottom
+    - IslandMiddle
     - IslandTop
     - LoadSceneRetoSumaResta
     - RecoScript
@@ -33,8 +35,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -96,17 +100,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9558}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 9970}
+      Script: {instanceID: 9972}
     - Class: 114
-      Script: {instanceID: 10066}
+      Script: {instanceID: 10068}
     - Class: 114
-      Script: {instanceID: 10612}
+      Script: {instanceID: 10614}
     - Class: 114
-      Script: {instanceID: 10626}
+      Script: {instanceID: 10628}
     - Class: 114
-      Script: {instanceID: 11062}
+      Script: {instanceID: 11064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -148,33 +152,69 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
+      Script: {instanceID: 0}
+    - Class: 102
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9868}
+      Script: {instanceID: 9498}
     - Class: 114
-      Script: {instanceID: 10034}
+      Script: {instanceID: 9500}
     - Class: 114
-      Script: {instanceID: 10056}
+      Script: {instanceID: 9506}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 9512}
     - Class: 114
-      Script: {instanceID: 10502}
+      Script: {instanceID: 9520}
     - Class: 114
-      Script: {instanceID: 10596}
+      Script: {instanceID: 9556}
     - Class: 114
-      Script: {instanceID: 10608}
+      Script: {instanceID: 9558}
     - Class: 114
-      Script: {instanceID: 16664}
+      Script: {instanceID: 9756}
+    - Class: 114
+      Script: {instanceID: 9870}
+    - Class: 114
+      Script: {instanceID: 10036}
+    - Class: 114
+      Script: {instanceID: 10058}
+    - Class: 114
+      Script: {instanceID: 10066}
+    - Class: 114
+      Script: {instanceID: 10504}
+    - Class: 114
+      Script: {instanceID: 10598}
+    - Class: 114
+      Script: {instanceID: 10610}
+    - Class: 114
+      Script: {instanceID: 19966}
+    - Class: 114
+      Script: {instanceID: 19972}
     - Class: 115
       Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/Resta.unity:
     - Class: 1
@@ -242,23 +282,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9742}
     - Class: 114
-      Script: {instanceID: 9868}
+      Script: {instanceID: 9870}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 10034}
+      Script: {instanceID: 10036}
     - Class: 114
-      Script: {instanceID: 10056}
+      Script: {instanceID: 10058}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10350}
+      Script: {instanceID: 10352}
     - Class: 114
-      Script: {instanceID: 10596}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10762}
+      Script: {instanceID: 10764}
     - Class: 114
-      Script: {instanceID: 11096}
+      Script: {instanceID: 11098}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -341,31 +381,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9558}
     - Class: 114
-      Script: {instanceID: 9834}
+      Script: {instanceID: 9836}
     - Class: 114
-      Script: {instanceID: 9868}
+      Script: {instanceID: 9870}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 9950}
+      Script: {instanceID: 9952}
     - Class: 114
-      Script: {instanceID: 10034}
+      Script: {instanceID: 10036}
     - Class: 114
-      Script: {instanceID: 10056}
+      Script: {instanceID: 10058}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10196}
+      Script: {instanceID: 10198}
     - Class: 114
-      Script: {instanceID: 10296}
+      Script: {instanceID: 10298}
     - Class: 114
-      Script: {instanceID: 10460}
+      Script: {instanceID: 10462}
     - Class: 114
-      Script: {instanceID: 10596}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10746}
+      Script: {instanceID: 10748}
     - Class: 114
-      Script: {instanceID: 11266}
+      Script: {instanceID: 11268}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -448,29 +488,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9558}
     - Class: 114
-      Script: {instanceID: 9868}
-    - Class: 114
-      Script: {instanceID: 9876}
+      Script: {instanceID: 9870}
     - Class: 114
       Script: {instanceID: 9878}
     - Class: 114
-      Script: {instanceID: 9896}
+      Script: {instanceID: 9880}
     - Class: 114
-      Script: {instanceID: 9904}
+      Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9906}
     - Class: 114
-      Script: {instanceID: 10034}
+      Script: {instanceID: 9968}
     - Class: 114
-      Script: {instanceID: 10056}
+      Script: {instanceID: 10036}
     - Class: 114
-      Script: {instanceID: 10064}
+      Script: {instanceID: 10058}
     - Class: 114
-      Script: {instanceID: 10438}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10486}
+      Script: {instanceID: 10440}
     - Class: 114
-      Script: {instanceID: 10596}
+      Script: {instanceID: 10488}
+    - Class: 114
+      Script: {instanceID: 10598}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1062,6 +1102,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Worq
     className: WaypointIdentifier
+  - hash:
+      serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IslandTop
   - hash:
       serializedVersion: 2
       Hash: e540a01426f9ad59088593bf72bcd255
@@ -1880,7 +1926,7 @@ ScriptsOnlyBuild:
     className: FreeLookCam
   - hash:
       serializedVersion: 2
-      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+      Hash: 3b1ac0b773afa09fcbba338a5ee1acb3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ControllerMultiplicacion
@@ -2687,7 +2733,13 @@ ScriptsOnlyBuild:
       Hash: ddb065ccd8c2f76612965d4ef06ce7d2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: IslandTop
+    className: IslandMiddle
+  - hash:
+      serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IslandBottom
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
