@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MultiplicationController : MonoBehaviour
 {
     public static MultiplicationController current;
-    AudioSource soundGame;
+    AudioSource soundGame { get; set; }
     public bool onGoingGame { get; set; }
     int responseUser;
     int finalResult;
@@ -30,6 +30,7 @@ public class MultiplicationController : MonoBehaviour
     void Start()
     {
         counterToStart = 3;
+        onGoingGame = false;
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class MultiplicationController : MonoBehaviour
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
+        Debug.Log("Entrando en ShowCounterToStartGame");
         if (counterToStart >= 0)
         {
             Invoke("UpdateCounterToStart", 1.0f);
@@ -54,6 +56,7 @@ public class MultiplicationController : MonoBehaviour
         else
         {
             onGoingGame = true;
+            soundGame = GetComponent<AudioSource>();
             soundGame.Play();
         }
     }

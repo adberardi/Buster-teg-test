@@ -10,14 +10,15 @@ public class MultiplicationTextScript : MonoBehaviour
 
     private void Awake()
     {
-        current = this;
-        txtField = MultiplicationController.current.GetTextField();
+       // current = this;
+       // txtField = MultiplicationController.current.GetTextField();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //txtField.text = "Probando";
+        current = this;
+        txtField = MultiplicationController.current.GetTextField();
     }
 
     // Update is called once per frame
