@@ -4,11 +4,13 @@ ScriptsOnlyBuild:
     - UnityStandardAssets.Water.Water
     Assembly-CSharp.dll:
     - Controller
-    - ControllerMultiplicacion
     - IslandBottom
     - IslandMiddle
     - IslandTop
+    - LoadSceneMenu
     - LoadSceneRetoSumaResta
+    - MultiplicationController
+    - MultiplicationTextScript
     - RecoScript
     - RestaController
     - RestaRecoScript
@@ -16,6 +18,7 @@ ScriptsOnlyBuild:
     - RestaSpawnerResult
     - RestaSpawnerStart
     - RestaTextScript
+    - SoundMultiplication
     - SoundScript
     - SpawnerEnd
     - SpawnerResult
@@ -35,10 +38,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -106,11 +107,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10068}
     - Class: 114
-      Script: {instanceID: 10614}
+      Script: {instanceID: 10618}
     - Class: 114
-      Script: {instanceID: 10628}
+      Script: {instanceID: 10632}
     - Class: 114
-      Script: {instanceID: 11064}
+      Script: {instanceID: 11068}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -152,6 +153,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
     - Class: 83
       Script: {instanceID: 0}
     - Class: 91
@@ -189,15 +192,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10504}
+      Script: {instanceID: 10394}
     - Class: 114
-      Script: {instanceID: 10598}
+      Script: {instanceID: 10506}
     - Class: 114
-      Script: {instanceID: 10610}
+      Script: {instanceID: 10564}
     - Class: 114
-      Script: {instanceID: 19966}
+      Script: {instanceID: 10602}
     - Class: 114
-      Script: {instanceID: 19972}
+      Script: {instanceID: 10614}
+    - Class: 114
+      Script: {instanceID: 19064}
+    - Class: 114
+      Script: {instanceID: 24944}
+    - Class: 114
+      Script: {instanceID: 33316}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -294,11 +303,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10352}
     - Class: 114
-      Script: {instanceID: 10598}
+      Script: {instanceID: 10602}
     - Class: 114
-      Script: {instanceID: 10764}
+      Script: {instanceID: 10768}
     - Class: 114
-      Script: {instanceID: 11098}
+      Script: {instanceID: 11102}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -399,13 +408,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10298}
     - Class: 114
-      Script: {instanceID: 10462}
+      Script: {instanceID: 10464}
     - Class: 114
-      Script: {instanceID: 10598}
+      Script: {instanceID: 10602}
     - Class: 114
-      Script: {instanceID: 10748}
+      Script: {instanceID: 10752}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11272}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -506,11 +515,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10440}
+      Script: {instanceID: 10442}
     - Class: 114
-      Script: {instanceID: 10488}
+      Script: {instanceID: 10490}
     - Class: 114
-      Script: {instanceID: 10598}
+      Script: {instanceID: 10602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1836,6 +1845,12 @@ ScriptsOnlyBuild:
     className: ParticleSceneControls
   - hash:
       serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IslandBottom
+  - hash:
+      serializedVersion: 2
       Hash: 65c9e8f2d0653991d518373cd4240b97
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
@@ -1926,10 +1941,10 @@ ScriptsOnlyBuild:
     className: FreeLookCam
   - hash:
       serializedVersion: 2
-      Hash: 3b1ac0b773afa09fcbba338a5ee1acb3
+      Hash: 8e68df367e1bcf044d725f1655d3bfcf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ControllerMultiplicacion
+    className: MultiplicationController
   - hash:
       serializedVersion: 2
       Hash: 2294ba4929e515b4b46046eff1f6b057
@@ -1960,6 +1975,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Water
     className: SpecularLighting
+  - hash:
+      serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IslandMiddle
   - hash:
       serializedVersion: 2
       Hash: 9a40de0f5a84ec02044ccfb05875df71
@@ -2730,16 +2751,22 @@ ScriptsOnlyBuild:
     className: AutoMobileShaderSwitch
   - hash:
       serializedVersion: 2
-      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: IslandMiddle
+    className: SoundMultiplication
   - hash:
       serializedVersion: 2
-      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: IslandBottom
+    className: LoadSceneMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MultiplicationTextScript
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
