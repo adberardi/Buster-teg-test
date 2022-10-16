@@ -12,6 +12,7 @@ public class MultiplicationController : MonoBehaviour
     int responseUser;
     int finalResult;
     int counterToStart;
+    public bool onRoad { get; set; }
     public Text btnTextSound;
     public Text textField;
     public GameObject boat;
@@ -105,6 +106,20 @@ public class MultiplicationController : MonoBehaviour
             // User Lose
             UpdateSound(soundLoser);
         }
+    }
+
+    // Return the current position from the Boat
+    public Vector3 GetBoatPosition()
+    {
+        boat.gameObject.GetComponent<Animator>().speed = 0;
+        return boat.transform.localPosition;
+    }
+
+    // Sets the current position to Boat
+    public void SetBoatPosition(Vector3 currentPosition)
+    {
+        boat.gameObject.GetComponent<Animator>().speed = 1;
+        boat.transform.localPosition = currentPosition;
     }
 
     // Return the result of people it will be inside the house.

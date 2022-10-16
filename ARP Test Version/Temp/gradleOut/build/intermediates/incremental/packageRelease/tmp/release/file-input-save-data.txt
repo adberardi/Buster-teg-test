@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Oct 15 00:10:27 VET 2022
+#Sun Oct 16 01:11:59 VET 2022
 2.path=bin/Data/Managed/UnityEngine.CoreModule.dll
 14.set=ASSET
 107.baseType=DIRECTORY

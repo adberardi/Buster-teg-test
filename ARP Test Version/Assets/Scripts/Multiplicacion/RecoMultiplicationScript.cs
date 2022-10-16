@@ -27,12 +27,19 @@ public class RecoMultiplicationScript : MonoBehaviour, ITrackableEventHandler
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
         {
-            MultiplicationController.current.ShowCounterToStartGame();
-/*            if (!MultiplicationController.current.onGoingGame)
+            
+            if (MultiplicationController.current.onGoingGame)
+            {
+                MultiplicationController.current.SetBoatPosition(currentPosition);
+            }
+            else
             {
                 MultiplicationController.current.ShowCounterToStartGame();
             }
-*/
+        }
+        else
+        {
+            currentPosition = MultiplicationController.current.GetBoatPosition();
         }
     }
 }

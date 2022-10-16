@@ -25,16 +25,20 @@ public class IslandMiddle : MonoBehaviour
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit Hit;
-        if (Input.GetMouseButtonDown(0))
+        if (MultiplicationController.current.onGoingGame)
         {
-            if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Presionando sobre isla");
-                boat.GetComponent<Animator>().SetBool("IdleToMiddle", true);
-                boat.GetComponent<Animator>().speed = 1;
-                //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
-            }
+                if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
+                {
+                    Debug.Log("Presionando sobre isla");
+                    boat.GetComponent<Animator>().SetBool("IdleToMiddle", true);
+                    boat.GetComponent<Animator>().speed = 1;
+                    //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
+                }
 
+            }
         }
+
     }
 }
