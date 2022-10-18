@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MultiplicationController : MonoBehaviour
 {
@@ -37,7 +38,13 @@ public class MultiplicationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (boat.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).speed == 0)
+            Debug.Log(" La animacion ha terminado");
+    }
 
+    void restartGame()
+    {
+        SceneManager.LoadScene(4);
     }
 
     // Returns the TextField from the Game's UI
