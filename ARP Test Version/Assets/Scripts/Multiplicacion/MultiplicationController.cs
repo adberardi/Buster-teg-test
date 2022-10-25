@@ -38,13 +38,18 @@ public class MultiplicationController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (boat.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).speed == 0)
-            Debug.Log(" La animacion ha terminado");
+
     }
 
     void restartGame()
     {
         SceneManager.LoadScene(4);
+    }
+
+    // Returns the prefab passed as parameter from Unity
+    public GameObject GetBoat()
+    {
+        return boat;
     }
 
     // Returns the TextField from the Game's UI
