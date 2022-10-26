@@ -20,6 +20,10 @@ public class MultiplicationController : MonoBehaviour
     public GameObject effectsToWinner;
     public AudioClip soundWinner;
     public AudioClip soundLoser;
+    public TextMesh txtop;
+    public TextMesh txtmiddle;
+    public TextMesh txtbottom;
+    public TextMesh txtOperation;
     public UnityEvent OnClick = new UnityEvent();
 
 
@@ -33,6 +37,8 @@ public class MultiplicationController : MonoBehaviour
     {
         counterToStart = 3;
         onGoingGame = false;
+        finalResult = 4*2;
+        responseUser = 8;
     }
 
     // Update is called once per frame
