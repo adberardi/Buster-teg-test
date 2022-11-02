@@ -10,8 +10,13 @@ public class MultiplicationController : MonoBehaviour
     public static MultiplicationController current;
     AudioSource soundGame { get; set; }
     public bool onGoingGame { get; set; }
+    List<string> islands = new List<string> { "TopIsland", "MiddleIsland", "BottomIsland" };
     int responseUser;
+    string responseCorrect;
+    System.Random rnd = new System.Random();
     int finalResult;
+    int factor1;
+    int factor2;
     int counterToStart;
     public bool onRoad { get; set; }
     public Text btnTextSound;
@@ -37,8 +42,30 @@ public class MultiplicationController : MonoBehaviour
     {
         counterToStart = 3;
         onGoingGame = false;
-        finalResult = 4*2;
+        factor1 = rnd.Next(10);
+        factor2 = rnd.Next(factor1);
+
+        txtOperation.text = factor1.ToString() + "x" + factor2.ToString();
+        finalResult = factor1*factor2;
         responseUser = 8;
+        string option = islands[rnd.Next(2)];
+        switch (option) {
+            case "TopIsland": responseCorrect = option;
+                txtop.text = finalResult.ToString();
+                txtmiddle.text = rnd.Next(10 - factor1).ToString();
+                txtbottom.text = rnd.Next(10 - factor2).ToString();
+                break;
+            case "MiddleIsland": responseCorrect = option;
+                txtmiddle.text = finalResult.ToString();
+                txtop.text = rnd.Next(10 - factor2).ToString();
+                txtbottom.text = rnd.Next(10 - factor1).ToString();
+                break;
+            case "BottomIsland": responseCorrect = option;
+                txtbottom.text = finalResult.ToString();
+                txtop.text = rnd.Next(10 - factor1).ToString();
+                txtmiddle.text = rnd.Next(10 - factor2).ToString();
+                break;
+        }
     }
 
     // Update is called once per frame
