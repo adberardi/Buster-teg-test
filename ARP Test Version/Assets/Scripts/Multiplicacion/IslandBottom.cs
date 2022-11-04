@@ -29,6 +29,7 @@ public class IslandBottom : MonoBehaviour
                     Debug.Log("Presionando sobre isla");
                     boat.GetComponent<Animator>().SetBool("IdleToBottom", true);
                     boat.GetComponent<Animator>().speed = 1;
+                    MultiplicationController.current.responseUser = "BottomIsland";
                     //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
                 }
 

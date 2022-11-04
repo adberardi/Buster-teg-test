@@ -51,10 +51,10 @@ public class MultiplicationTextScript : MonoBehaviour
     }
 
     // Assigns a specific text to the TextField when the game ends
-    public void FinishText(int peopleInHouse, int responseUser)
+    public void FinishText(string responseCorrect, string responseUser)
     {
         txtField.gameObject.SetActive(true);
-        if (peopleInHouse == responseUser)
+        if (responseCorrect == responseUser)
         {
             txtField.text = "Respuesta correcta!";
             txtField.color = Color.green;

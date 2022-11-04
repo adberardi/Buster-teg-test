@@ -11,13 +11,14 @@ public class MultiplicationController : MonoBehaviour
     AudioSource soundGame { get; set; }
     public bool onGoingGame { get; set; }
     List<string> islands = new List<string> { "TopIsland", "MiddleIsland", "BottomIsland" };
-    int responseUser;
-    string responseCorrect;
+    public string responseUser { get; set; }
+    int question { get; set;}
+    string responseCorrect { get; set; }
     System.Random rnd = new System.Random();
-    int finalResult;
     int factor1;
     int factor2;
     int counterToStart;
+    public Vector3 initialPos { get; set; }
     public bool onRoad { get; set; }
     public Text btnTextSound;
     public Text textField;
@@ -29,6 +30,7 @@ public class MultiplicationController : MonoBehaviour
     public TextMesh txtmiddle;
     public TextMesh txtbottom;
     public TextMesh txtOperation;
+    public Button btnRestart;
     public UnityEvent OnClick = new UnityEvent();
 
 
@@ -41,31 +43,15 @@ public class MultiplicationController : MonoBehaviour
     void Start()
     {
         counterToStart = 3;
+        initialPos = boat.transform.localPosition;
         onGoingGame = false;
         factor1 = rnd.Next(10);
         factor2 = rnd.Next(factor1);
-
+        question = factor1 * factor2;
         txtOperation.text = factor1.ToString() + "x" + factor2.ToString();
-        finalResult = factor1*factor2;
-        responseUser = 8;
-        string option = islands[rnd.Next(2)];
-        switch (option) {
-            case "TopIsland": responseCorrect = option;
-                txtop.text = finalResult.ToString();
-                txtmiddle.text = rnd.Next(10 - factor1).ToString();
-                txtbottom.text = rnd.Next(10 - factor2).ToString();
-                break;
-            case "MiddleIsland": responseCorrect = option;
-                txtmiddle.text = finalResult.ToString();
-                txtop.text = rnd.Next(10 - factor2).ToString();
-                txtbottom.text = rnd.Next(10 - factor1).ToString();
-                break;
-            case "BottomIsland": responseCorrect = option;
-                txtbottom.text = finalResult.ToString();
-                txtop.text = rnd.Next(10 - factor1).ToString();
-                txtmiddle.text = rnd.Next(10 - factor2).ToString();
-                break;
-        }
+        responseCorrect = "";
+        responseUser = "";
+        AssignValuesToIsland();
     }
 
     // Update is called once per frame
@@ -74,9 +60,31 @@ public class MultiplicationController : MonoBehaviour
 
     }
 
-    void restartGame()
+    // This function is assigns the values to the island, one correct and two incorrects answers.
+    void AssignValuesToIsland()
     {
-        SceneManager.LoadScene(4);
+        string option = islands[rnd.Next(2)];
+        switch (option)
+        {
+            case "TopIsland":
+                responseCorrect = option;
+                txtop.text = question.ToString();
+                txtmiddle.text = rnd.Next(10 - factor1).ToString();
+                txtbottom.text = rnd.Next(10 - factor2).ToString();
+                break;
+            case "MiddleIsland":
+                responseCorrect = option;
+                txtmiddle.text = question.ToString();
+                txtop.text = rnd.Next(10 - factor2).ToString();
+                txtbottom.text = rnd.Next(10 - factor1).ToString();
+                break;
+            case "BottomIsland":
+                responseCorrect = option;
+                txtbottom.text = question.ToString();
+                txtop.text = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
+                txtmiddle.text = (rnd.Next(factor2 + 1) * factor1).ToString();
+                break;
+        }
     }
 
     // Returns the prefab passed as parameter from Unity
@@ -151,6 +159,7 @@ public class MultiplicationController : MonoBehaviour
             // User Lose
             UpdateSound(soundLoser);
         }
+        btnRestart.gameObject.SetActive(true);
     }
 
     // Return the current position from the Boat
@@ -168,8 +177,8 @@ public class MultiplicationController : MonoBehaviour
     }
 
     // Return the result of people it will be inside the house.
-    public int ObtainResult()
+    public string ObtainResult()
     {
-        return finalResult;
+        return responseCorrect;
     }
 }

@@ -34,6 +34,7 @@ public class IslandMiddle : MonoBehaviour
                     Debug.Log("Presionando sobre isla");
                     boat.GetComponent<Animator>().SetBool("IdleToMiddle", true);
                     boat.GetComponent<Animator>().speed = 1;
+                    MultiplicationController.current.responseUser = "MiddleIsland";
                     //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
                 }
 
