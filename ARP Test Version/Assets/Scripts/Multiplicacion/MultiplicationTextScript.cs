@@ -27,6 +27,11 @@ public class MultiplicationTextScript : MonoBehaviour
 
     }
 
+    public void ActivatedTextCounter()
+    {
+        txtField.gameObject.SetActive(true);
+    }
+
     // Assigns a specific text to the TextField of the set.
     public void SetText(int newNum)
     {
@@ -45,7 +50,7 @@ public class MultiplicationTextScript : MonoBehaviour
     }
 
     // Disable the game TextField
-    private void DeactivateText()
+    public void DeactivateText()
     {
         txtField.gameObject.SetActive(false);
     }

@@ -3233,6 +3233,7 @@ MonoBehaviour:
   effectsToWinner: {fileID: 208222666}
   soundWinner: {fileID: 8300000, guid: 67fdd4bf43f822c4cafa99ea41608f15, type: 3}
   soundLoser: {fileID: 8300000, guid: c2a9eff35dea13542b899fbd3894eed2, type: 3}
+  soundMain: {fileID: 8300000, guid: 51d6769c37f7383459f7c26773b48a47, type: 3}
   txtop: {fileID: 761111841}
   txtmiddle: {fileID: 463407937}
   txtbottom: {fileID: 2142249565}

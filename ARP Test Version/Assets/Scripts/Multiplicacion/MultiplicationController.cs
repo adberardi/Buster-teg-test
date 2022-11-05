@@ -14,6 +14,7 @@ public class MultiplicationController : MonoBehaviour
     public string responseUser { get; set; }
     int question { get; set;}
     string responseCorrect { get; set; }
+    public int repeats { get; set; }
     System.Random rnd = new System.Random();
     int factor1;
     int factor2;
@@ -26,6 +27,7 @@ public class MultiplicationController : MonoBehaviour
     public GameObject effectsToWinner;
     public AudioClip soundWinner;
     public AudioClip soundLoser;
+    public AudioClip soundMain;
     public TextMesh txtop;
     public TextMesh txtmiddle;
     public TextMesh txtbottom;
@@ -43,6 +45,7 @@ public class MultiplicationController : MonoBehaviour
     void Start()
     {
         counterToStart = 3;
+        repeats = 1;
         initialPos = boat.transform.localPosition;
         onGoingGame = false;
         factor1 = rnd.Next(10);
@@ -180,5 +183,15 @@ public class MultiplicationController : MonoBehaviour
     public string ObtainResult()
     {
         return responseCorrect;
+    }
+
+    public void RestartGame()
+    {
+        counterToStart = 3;
+        //MultiplicationTextScript.current.DeactivateText();
+        MultiplicationTextScript.current.ActivatedTextCounter();
+        ShowCounterToStartGame();
+        effectsToWinner.SetActive(false);
+        UpdateSound(soundMain);
     }
 }

@@ -15,6 +15,7 @@ public class MultiplicationAnimManage : StateMachineBehaviour
         base.OnStateExit(animator, stateInfo, layerIndex);
         Debug.Log("OnStateExit");
         animator.SetBool("IdleToTop", false);
-        animator.SetBool("TopToExit", true);
+        //if (MultiplicationController.current.repeats == 3)
+            //animator.SetBool("TopToExit", true);
     }
 }

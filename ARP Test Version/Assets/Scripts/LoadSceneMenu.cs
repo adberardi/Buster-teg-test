@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneMenu : MonoBehaviour
 {
-    public int repeats { get; set; }
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        repeats = 1;
+        
     }
 
     // Update is called once per frame
@@ -26,13 +26,16 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void restartGame()
     {
-        if (repeats < 3)
+        if (MultiplicationController.current.repeats <= 3)
         {
-            Debug.Log("Reiniciando Juego> " + repeats.ToString());
-            repeats = repeats + 1;
+            Debug.Log("Reiniciando Juego> " + MultiplicationController.current.repeats.ToString());
+            MultiplicationController.current.repeats = MultiplicationController.current.repeats + 1;
             //boat.transform.localPosition = new Vector3(-0.274f, 0.01f, 0f);
             //SceneManager.LoadScene(4);
-            MultiplicationController.current.btnRestart.gameObject.SetActive(false);
+            //MultiplicationController.current.btnRestart.gameObject.SetActive(false);
+            GameObject aux = MultiplicationController.current.GetBoat();
+            aux.GetComponent<Animator>().SetBool("TopToIdle", true);
+            MultiplicationController.current.RestartGame();
         }
 
     }
