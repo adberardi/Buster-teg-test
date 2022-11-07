@@ -29,6 +29,7 @@ public class MultiplicationTextScript : MonoBehaviour
 
     public void ActivatedTextCounter()
     {
+        ChangeTextColor("green");
         txtField.gameObject.SetActive(true);
     }
 
@@ -55,19 +56,34 @@ public class MultiplicationTextScript : MonoBehaviour
         txtField.gameObject.SetActive(false);
     }
 
+
+    public void ChangeTextColor(string op)
+    {
+        switch (op)
+        {
+            case "green":
+                txtField.color = Color.green;
+                break;
+            case "red":
+                txtField.color = Color.red;
+                break;
+        }
+    }
+
     // Assigns a specific text to the TextField when the game ends
     public void FinishText(string responseCorrect, string responseUser)
     {
         txtField.gameObject.SetActive(true);
+        Debug.Log("RESULTADO: responseCorrect" + responseCorrect + " responseUser:" + responseUser);
         if (responseCorrect == responseUser)
         {
             txtField.text = "Respuesta correcta!";
-            txtField.color = Color.green;
+            ChangeTextColor("green");
         }
         else
         {
             txtField.text = "Respuesta erronea";
-            txtField.color = Color.red;
+            ChangeTextColor("red");
         }
 
     }

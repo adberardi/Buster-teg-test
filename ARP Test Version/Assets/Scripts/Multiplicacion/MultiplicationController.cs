@@ -11,8 +11,13 @@ public class MultiplicationController : MonoBehaviour
     AudioSource soundGame { get; set; }
     public bool onGoingGame { get; set; }
     List<string> islands = new List<string> { "TopIsland", "MiddleIsland", "BottomIsland" };
+    Dictionary<string, string> answer = new Dictionary<string, string>(){
+        {"top","" },
+        {"middle","" },
+        {"bottom","" }
+    };
     public string responseUser { get; set; }
-    int question { get; set;}
+    int question { get; set; }
     string responseCorrect { get; set; }
     public int repeats { get; set; }
     System.Random rnd = new System.Random();
@@ -47,14 +52,10 @@ public class MultiplicationController : MonoBehaviour
         counterToStart = 3;
         repeats = 1;
         initialPos = boat.transform.localPosition;
-        onGoingGame = false;
-        factor1 = rnd.Next(10);
-        factor2 = rnd.Next(factor1);
-        question = factor1 * factor2;
-        txtOperation.text = factor1.ToString() + "x" + factor2.ToString();
         responseCorrect = "";
         responseUser = "";
-        AssignValuesToIsland();
+        onGoingGame = false;
+        CalculateAnswer();
     }
 
     // Update is called once per frame
@@ -71,23 +72,41 @@ public class MultiplicationController : MonoBehaviour
         {
             case "TopIsland":
                 responseCorrect = option;
-                txtop.text = question.ToString();
-                txtmiddle.text = rnd.Next(10 - factor1).ToString();
-                txtbottom.text = rnd.Next(10 - factor2).ToString();
+                answer["top"] = question.ToString();
+                //txtop.text = question.ToString();
+                answer["middle"] = rnd.Next(10 - factor1).ToString();
+                //txtmiddle.text = rnd.Next(10 - factor1).ToString();
+                answer["bottom"] = rnd.Next(10 - factor2).ToString();
+                //txtbottom.text = rnd.Next(10 - factor2).ToString();
                 break;
             case "MiddleIsland":
                 responseCorrect = option;
-                txtmiddle.text = question.ToString();
-                txtop.text = rnd.Next(10 - factor2).ToString();
-                txtbottom.text = rnd.Next(10 - factor1).ToString();
+                answer["top"] = rnd.Next(10 - factor2).ToString();
+                //txtop.text = rnd.Next(10 - factor2).ToString();
+                answer["middle"] = question.ToString();
+                //txtmiddle.text = question.ToString();
+                answer["bottom"] = rnd.Next(10 - factor1).ToString();
+                //txtbottom.text = rnd.Next(10 - factor1).ToString();
                 break;
             case "BottomIsland":
                 responseCorrect = option;
-                txtbottom.text = question.ToString();
-                txtop.text = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
-                txtmiddle.text = (rnd.Next(factor2 + 1) * factor1).ToString();
+                answer["top"] = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
+                //txtop.text = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
+                answer["middle"] = (rnd.Next(factor2 + 1) * factor1).ToString();
+                //txtmiddle.text = (rnd.Next(factor2 + 1) * factor1).ToString();
+                answer["bottom"] = question.ToString();
+                //txtbottom.text = question.ToString();
                 break;
         }
+    }
+
+    void CalculateAnswer()
+    {
+        factor1 = rnd.Next(10);
+        factor2 = rnd.Next(factor1);
+        question = factor1 * factor2;
+        answer["operation"] = factor1.ToString()+"x"+factor2.ToString();
+        AssignValuesToIsland();
     }
 
     // Returns the prefab passed as parameter from Unity
@@ -102,6 +121,14 @@ public class MultiplicationController : MonoBehaviour
         return textField;
     }
 
+    void UpdateStatusText(bool flag)
+    {
+        txtOperation.gameObject.SetActive(flag);
+        txtop.gameObject.SetActive(flag);
+        txtmiddle.gameObject.SetActive(flag);
+        txtbottom.gameObject.SetActive(flag);
+    }
+
     // Shows the countdown to start the game
     public void ShowCounterToStartGame()
     {
@@ -113,7 +140,12 @@ public class MultiplicationController : MonoBehaviour
         else
         {
             onGoingGame = true;
+            txtop.text = answer["top"];
+            txtmiddle.text = answer["middle"];
+            txtbottom.text = answer["bottom"];
+            txtOperation.text = answer["operation"];
             soundGame = GetComponent<AudioSource>();
+            UpdateStatusText(true);
             soundGame.Play();
         }
     }
@@ -145,6 +177,13 @@ public class MultiplicationController : MonoBehaviour
     public AudioSource GetAudioClip()
     {
         return soundGame;
+    }
+
+    public void TakeControl(string animationClip)
+    {
+        CallFinishText();
+        if (repeats <= 3)
+            CalculateAnswer();
     }
 
     // Enable text indicating the correct answer
@@ -187,10 +226,12 @@ public class MultiplicationController : MonoBehaviour
 
     public void RestartGame()
     {
+        btnRestart.gameObject.SetActive(false);
         counterToStart = 3;
         //MultiplicationTextScript.current.DeactivateText();
         MultiplicationTextScript.current.ActivatedTextCounter();
         ShowCounterToStartGame();
+        UpdateStatusText(false);
         effectsToWinner.SetActive(false);
         UpdateSound(soundMain);
     }

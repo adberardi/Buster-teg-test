@@ -15,6 +15,8 @@ public class MultiplicationAnimManage : StateMachineBehaviour
         base.OnStateExit(animator, stateInfo, layerIndex);
         Debug.Log("OnStateExit");
         animator.SetBool("IdleToTop", false);
+        if (stateInfo.IsName("MoveBoatMiddle"))
+            Debug.Log("|||||||||||||| Voy a la isla del medio");
         //if (MultiplicationController.current.repeats == 3)
             //animator.SetBool("TopToExit", true);
     }

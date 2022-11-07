@@ -18,7 +18,14 @@ public class Boat : MonoBehaviour
 
     public void FinishAnimation()
     {
+        string routeSelected = "";
         Debug.Log("->Termino animacion!!!!");
-        MultiplicationController.current.CallFinishText();
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("MoveBoatTop"))
+            routeSelected = "MoveBoatTop";
+        else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("MoveBoatMiddle"))
+            routeSelected = "MoveBoatMiddle";
+        else
+            routeSelected = "MoveBoatBottom";
+        MultiplicationController.current.TakeControl(routeSelected);
     }
 }
