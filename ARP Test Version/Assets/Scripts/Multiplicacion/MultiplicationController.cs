@@ -21,6 +21,7 @@ public class MultiplicationController : MonoBehaviour
     string responseCorrect { get; set; }
     public int repeats { get; set; }
     System.Random rnd = new System.Random();
+    int seed;
     int factor1;
     int factor2;
     int counterToStart;
@@ -74,25 +75,25 @@ public class MultiplicationController : MonoBehaviour
                 responseCorrect = option;
                 answer["top"] = question.ToString();
                 //txtop.text = question.ToString();
-                answer["middle"] = rnd.Next(10 - factor1).ToString();
+                answer["middle"] = (Random.Range(seed,10) * factor1).ToString();
                 //txtmiddle.text = rnd.Next(10 - factor1).ToString();
-                answer["bottom"] = rnd.Next(10 - factor2).ToString();
+                answer["bottom"] = (Random.Range(1,seed) * factor2).ToString();
                 //txtbottom.text = rnd.Next(10 - factor2).ToString();
                 break;
             case "MiddleIsland":
                 responseCorrect = option;
-                answer["top"] = rnd.Next(10 - factor2).ToString();
+                answer["top"] = (Random.Range(seed, 10) * factor1).ToString();
                 //txtop.text = rnd.Next(10 - factor2).ToString();
                 answer["middle"] = question.ToString();
                 //txtmiddle.text = question.ToString();
-                answer["bottom"] = rnd.Next(10 - factor1).ToString();
+                answer["bottom"] = (Random.Range(1, seed) * factor2).ToString();
                 //txtbottom.text = rnd.Next(10 - factor1).ToString();
                 break;
             case "BottomIsland":
                 responseCorrect = option;
-                answer["top"] = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
+                answer["top"] = (Random.Range(seed, 10) * factor1).ToString();
                 //txtop.text = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
-                answer["middle"] = (rnd.Next(factor2 + 1) * factor1).ToString();
+                answer["middle"] = (Random.Range(1, seed) * factor2).ToString();
                 //txtmiddle.text = (rnd.Next(factor2 + 1) * factor1).ToString();
                 answer["bottom"] = question.ToString();
                 //txtbottom.text = question.ToString();
@@ -100,10 +101,12 @@ public class MultiplicationController : MonoBehaviour
         }
     }
 
+    // Calcular las opciones para retar al usuario.
     void CalculateAnswer()
     {
-        factor1 = rnd.Next(10);
-        factor2 = rnd.Next(factor1);
+        seed =  Random.Range(0, 10);
+        factor1 = Random.Range(seed, 10);
+        factor2 =  Random.Range(factor1,10);
         question = factor1 * factor2;
         answer["operation"] = factor1.ToString()+"x"+factor2.ToString();
         AssignValuesToIsland();
@@ -158,7 +161,7 @@ public class MultiplicationController : MonoBehaviour
         Invoke("ShowCounterToStartGame", 1.0f);
     }
 
-
+    // Get the  sound's button text.
     public Text GetSoundButton()
     {
         return btnTextSound;
@@ -179,11 +182,16 @@ public class MultiplicationController : MonoBehaviour
         return soundGame;
     }
 
+    // Take control' again at the end of the animation when restarting the game..
     public void TakeControl(string animationClip)
     {
         CallFinishText();
-        if (repeats <= 3)
+        if (ValidateAttempts())
+        {
             CalculateAnswer();
+            
+        }
+            
     }
 
     // Enable text indicating the correct answer
@@ -201,7 +209,8 @@ public class MultiplicationController : MonoBehaviour
             // User Lose
             UpdateSound(soundLoser);
         }
-        btnRestart.gameObject.SetActive(true);
+        if (ValidateAttempts())
+            btnRestart.gameObject.SetActive(true);
     }
 
     // Return the current position from the Boat
@@ -224,15 +233,30 @@ public class MultiplicationController : MonoBehaviour
         return responseCorrect;
     }
 
+    // Restart the game (3 times)
     public void RestartGame()
     {
-        btnRestart.gameObject.SetActive(false);
-        counterToStart = 3;
-        //MultiplicationTextScript.current.DeactivateText();
-        MultiplicationTextScript.current.ActivatedTextCounter();
-        ShowCounterToStartGame();
-        UpdateStatusText(false);
-        effectsToWinner.SetActive(false);
-        UpdateSound(soundMain);
+        if(ValidateAttempts())
+        {
+            counterToStart = 3;
+            //MultiplicationTextScript.current.DeactivateText();
+            MultiplicationTextScript.current.ActivatedTextCounter();
+            ShowCounterToStartGame();
+            UpdateStatusText(false);
+            effectsToWinner.SetActive(false);
+            UpdateSound(soundMain);
+            repeats = repeats + 1;
+            btnRestart.gameObject.SetActive(false);
+        }
+
+        
+    }
+
+    // Return if gets the limit of attempts.
+    public bool ValidateAttempts()
+    {
+        if (repeats < 3)
+            return true;
+        return false;
     }
 }

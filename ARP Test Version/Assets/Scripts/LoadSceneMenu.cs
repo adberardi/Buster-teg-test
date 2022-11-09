@@ -24,15 +24,14 @@ public class LoadSceneMenu : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void restartGame()
+    public void RestartGame()
     {
-        if (MultiplicationController.current.repeats <= 3)
+        if (MultiplicationController.current.ValidateAttempts())
         {
             Debug.Log("Reiniciando Juego> " + MultiplicationController.current.repeats.ToString());
-            MultiplicationController.current.repeats = MultiplicationController.current.repeats + 1;
+       
             //boat.transform.localPosition = new Vector3(-0.274f, 0.01f, 0f);
             //SceneManager.LoadScene(4);
-            //MultiplicationController.current.btnRestart.gameObject.SetActive(false);
             GameObject aux = MultiplicationController.current.GetBoat();
             aux.GetComponent<Animator>().SetBool("TopToIdle", true);
             MultiplicationController.current.RestartGame();
