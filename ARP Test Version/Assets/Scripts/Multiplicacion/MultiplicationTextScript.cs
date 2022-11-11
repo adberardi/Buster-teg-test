@@ -74,7 +74,7 @@ public class MultiplicationTextScript : MonoBehaviour
     public void FinishText(string responseCorrect, string responseUser)
     {
         txtField.gameObject.SetActive(true);
-        Debug.Log("RESULTADO: responseCorrect" + responseCorrect + " responseUser:" + responseUser);
+        Debug.Log("RESULTADO: responseCorrect:" + responseCorrect + " | " +" responseUser:" + responseUser);
         if (responseCorrect == responseUser)
         {
             txtField.text = "Respuesta correcta!";

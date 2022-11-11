@@ -19,6 +19,7 @@ public class MultiplicationController : MonoBehaviour
     public string responseUser { get; set; }
     int question { get; set; }
     string responseCorrect { get; set; }
+    public string FlagIdTransition {get; set;}
     public int repeats { get; set; }
     System.Random rnd = new System.Random();
     int seed;
@@ -26,7 +27,7 @@ public class MultiplicationController : MonoBehaviour
     int factor2;
     int counterToStart;
     public Vector3 initialPos { get; set; }
-    public bool onRoad { get; set; }
+    public string routeSelected { get; set; }
     public Text btnTextSound;
     public Text textField;
     public GameObject boat;
@@ -183,14 +184,9 @@ public class MultiplicationController : MonoBehaviour
     }
 
     // Take control' again at the end of the animation when restarting the game..
-    public void TakeControl(string animationClip)
+    public void TakeControl()
     {
         CallFinishText();
-        if (ValidateAttempts())
-        {
-            CalculateAnswer();
-            
-        }
             
     }
 
@@ -238,11 +234,17 @@ public class MultiplicationController : MonoBehaviour
     {
         if(ValidateAttempts())
         {
+            CalculateAnswer();
             counterToStart = 3;
-            //MultiplicationTextScript.current.DeactivateText();
+            UpdateStatusText(false);
+            // posiciona al barco al inicio.
+            boat.GetComponent<Animator>().Play(routeSelected, -1, 0f);
+            boat.GetComponent<Animator>().speed = 0;
+            boat.GetComponent<Animator>().SetBool(FlagIdTransition, false);
+            MultiplicationTextScript.current.DeactivateText();
             MultiplicationTextScript.current.ActivatedTextCounter();
             ShowCounterToStartGame();
-            UpdateStatusText(false);
+            
             effectsToWinner.SetActive(false);
             UpdateSound(soundMain);
             repeats = repeats + 1;

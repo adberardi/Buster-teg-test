@@ -33,7 +33,10 @@ public class IslandTop : MonoBehaviour
                 {
                     Debug.Log("Presionando sobre isla");
                     //boat.GetComponent<Animator>().SetBool("TopToIdle", false);
+                    MultiplicationController.current.responseUser = "TopIsland";
+                    MultiplicationController.current.FlagIdTransition = "IdleToTop";
                     boat.GetComponent<Animator>().SetBool("IdleToTop", true);
+                    boat.GetComponent<Animator>().Play("MoveBoatTop", -1, 0f);
                     boat.GetComponent<Animator>().speed = 1;
                 }
 

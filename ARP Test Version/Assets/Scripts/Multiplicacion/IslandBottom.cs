@@ -27,10 +27,11 @@ public class IslandBottom : MonoBehaviour
                 if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
                 {
                     Debug.Log("Presionando sobre isla");
-                    boat.GetComponent<Animator>().SetBool("IdleToBottom", true);
-                    boat.GetComponent<Animator>().speed = 1;
                     MultiplicationController.current.responseUser = "BottomIsland";
-                    //boat.GetComponent<Animator>().Play("Base Layer.MoveBoatTop");
+                    MultiplicationController.current.FlagIdTransition = "IdleToBottom";
+                    boat.GetComponent<Animator>().SetBool("IdleToBottom", true);
+                    boat.GetComponent<Animator>().Play("MoveBoatBottom", -1, 0f);
+                    boat.GetComponent<Animator>().speed = 1;
                 }
 
             }

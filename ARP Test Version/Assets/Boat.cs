@@ -19,23 +19,25 @@ public class Boat : MonoBehaviour
     // Trigger when end the animation.
     public void FinishAnimation()
     {
-        string routeSelected = "";
-        Debug.Log("->Termino animacion!!!!");
-        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("MoveBoatTop"))
+        string road = "";
+
+        switch (MultiplicationController.current.responseUser)
         {
-            routeSelected = "MoveBoatTop";
-           /* if (MultiplicationController.current.ValidateAttempts())
-            {
-                GetComponent<Animator>().SetBool("TopToIdle", true);
-                GetComponent<Animator>().SetBool("IdleToTop", false);
-            } */
-                
+            case "TopIsland":
+                road = "MoveBoatTop";
+                break;
+            case "MiddleIsland":
+                road = "MoveBoatMiddle";
+                break;
+            case "BottomIsland":
+                road = "BottomIsland";
+                break;
         }
-            
-        else if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("MoveBoatMiddle"))
-            routeSelected = "MoveBoatMiddle";
-        else
-            routeSelected = "MoveBoatBottom";
-        MultiplicationController.current.TakeControl(routeSelected);
+
+       
+        MultiplicationController.current.routeSelected = road;
+        Debug.Log("->Termino animacion!!!! Isla seleccionada: "+ road);
+        MultiplicationController.current.CallFinishText();
     }
+    
 }

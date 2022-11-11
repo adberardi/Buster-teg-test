@@ -28,12 +28,11 @@ public class LoadSceneMenu : MonoBehaviour
     {
         if (MultiplicationController.current.ValidateAttempts())
         {
-            Debug.Log("Reiniciando Juego> " + MultiplicationController.current.repeats.ToString());
        
             //boat.transform.localPosition = new Vector3(-0.274f, 0.01f, 0f);
             //SceneManager.LoadScene(4);
             GameObject aux = MultiplicationController.current.GetBoat();
-            aux.GetComponent<Animator>().SetBool("TopToIdle", true);
+            //aux.GetComponent<Animator>().SetBool("TopToIdle", true);
             MultiplicationController.current.RestartGame();
         }
 
