@@ -22,16 +22,17 @@ public class IslandBottom : MonoBehaviour
         RaycastHit Hit;
         if (MultiplicationController.current.onGoingGame)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && MultiplicationController.current.AllowAnswers)
             {
                 if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
                 {
                     Debug.Log("Presionando sobre isla");
-                    MultiplicationController.current.responseUser = "BottomIsland";
                     MultiplicationController.current.FlagIdTransition = "IdleToBottom";
                     boat.GetComponent<Animator>().SetBool("IdleToBottom", true);
                     boat.GetComponent<Animator>().Play("MoveBoatBottom", -1, 0f);
                     boat.GetComponent<Animator>().speed = 1;
+
+                    MultiplicationController.current.responseUser = "BottomIsland";
                 }
 
             }

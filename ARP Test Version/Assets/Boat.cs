@@ -30,7 +30,7 @@ public class Boat : MonoBehaviour
                 road = "MoveBoatMiddle";
                 break;
             case "BottomIsland":
-                road = "BottomIsland";
+                road = "MoveBoatBottom";
                 break;
         }
 

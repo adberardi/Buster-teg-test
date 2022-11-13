@@ -27,7 +27,7 @@ public class IslandMiddle : MonoBehaviour
         RaycastHit Hit;
         if (MultiplicationController.current.onGoingGame)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && MultiplicationController.current.AllowAnswers)
             {
                 if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
                 {

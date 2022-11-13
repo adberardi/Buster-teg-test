@@ -28,6 +28,7 @@ public class MultiplicationController : MonoBehaviour
     int counterToStart;
     public Vector3 initialPos { get; set; }
     public string routeSelected { get; set; }
+    public bool AllowAnswers { get; set; }
     public Text btnTextSound;
     public Text textField;
     public GameObject boat;
@@ -57,6 +58,7 @@ public class MultiplicationController : MonoBehaviour
         responseCorrect = "";
         responseUser = "";
         onGoingGame = false;
+        AllowAnswers = false;
         CalculateAnswer();
     }
 
@@ -70,12 +72,15 @@ public class MultiplicationController : MonoBehaviour
     void AssignValuesToIsland()
     {
         string option = islands[rnd.Next(2)];
+        // Apply Unmatch
+        factor1 = factor1 - 1;
         switch (option)
         {
             case "TopIsland":
                 responseCorrect = option;
                 answer["top"] = question.ToString();
                 //txtop.text = question.ToString();
+                factor1 = factor1 - 1;
                 answer["middle"] = (Random.Range(seed,10) * factor1).ToString();
                 //txtmiddle.text = rnd.Next(10 - factor1).ToString();
                 answer["bottom"] = (Random.Range(1,seed) * factor2).ToString();
@@ -150,6 +155,7 @@ public class MultiplicationController : MonoBehaviour
             txtOperation.text = answer["operation"];
             soundGame = GetComponent<AudioSource>();
             UpdateStatusText(true);
+            AllowAnswers = true;
             soundGame.Play();
         }
     }
@@ -234,6 +240,7 @@ public class MultiplicationController : MonoBehaviour
     {
         if(ValidateAttempts())
         {
+            AllowAnswers = false;
             CalculateAnswer();
             counterToStart = 3;
             UpdateStatusText(false);

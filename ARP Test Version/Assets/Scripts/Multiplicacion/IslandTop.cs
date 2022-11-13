@@ -27,12 +27,11 @@ public class IslandTop : MonoBehaviour
         RaycastHit Hit;
         if (MultiplicationController.current.onGoingGame)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && MultiplicationController.current.AllowAnswers)
             {
                 if (Physics.Raycast(ray, out Hit) && Hit.collider.gameObject == gameObject)
                 {
                     Debug.Log("Presionando sobre isla");
-                    //boat.GetComponent<Animator>().SetBool("TopToIdle", false);
                     MultiplicationController.current.responseUser = "TopIsland";
                     MultiplicationController.current.FlagIdTransition = "IdleToTop";
                     boat.GetComponent<Animator>().SetBool("IdleToTop", true);
