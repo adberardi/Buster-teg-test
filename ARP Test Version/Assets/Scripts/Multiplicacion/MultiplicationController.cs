@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using Random = UnityEngine.Random;
 
 public class MultiplicationController : MonoBehaviour
 {
@@ -40,6 +42,13 @@ public class MultiplicationController : MonoBehaviour
     public TextMesh txtmiddle;
     public TextMesh txtbottom;
     public TextMesh txtOperation;
+    public GameObject PanelResultado;
+    public Text TxtTotalCorrectas;
+    public int TotalCorrectas { get; set; }
+    public Text TxtTotalIncorrectas;
+    public int TotalIncorrectas { get; set; }
+    public Text TxtIntentosRestantes;
+    public int TotalIntentosRestantes { get; set; }
     public Button btnRestart;
     public UnityEvent OnClick = new UnityEvent();
 
@@ -57,15 +66,37 @@ public class MultiplicationController : MonoBehaviour
         initialPos = boat.transform.localPosition;
         responseCorrect = "";
         responseUser = "";
+        TotalCorrectas = 0;
+        TotalIncorrectas = 0;
+        TotalIntentosRestantes = 0;
         onGoingGame = false;
         AllowAnswers = false;
         CalculateAnswer();
     }
 
+
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void UpdateTotalCorrects()
+    {
+        TotalCorrectas = TotalCorrectas + 1;
+        TxtTotalCorrectas.text = TotalCorrectas.ToString();
+    }
+
+    public void UpdateTotalIncorrects()
+    {
+        TotalIncorrectas = TotalIncorrectas + 1;
+        TxtTotalIncorrectas.text = TotalIncorrectas.ToString();
+    }
+
+    public void UpdateRemainingAttempts()
+    {
+        TotalIntentosRestantes = TotalIntentosRestantes + 1;
+        TxtIntentosRestantes.text = TotalIntentosRestantes.ToString() + " de 3";
     }
 
     // This function is assigns the values to the island, one correct and two incorrects answers.
@@ -203,16 +234,25 @@ public class MultiplicationController : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+            UpdateTotalCorrects();
             effectsToWinner.SetActive(true);
             UpdateSound(soundWinner);
         }
         else
         {
             // User Lose
+            UpdateTotalIncorrects();
             UpdateSound(soundLoser);
         }
         if (ValidateAttempts())
+        {
             btnRestart.gameObject.SetActive(true);
+        }
+
+        UpdateRemainingAttempts();
+        PanelResultado.SetActive(true);
+        
+
     }
 
     // Return the current position from the Boat
@@ -240,6 +280,8 @@ public class MultiplicationController : MonoBehaviour
     {
         if(ValidateAttempts())
         {
+
+            
             AllowAnswers = false;
             CalculateAnswer();
             counterToStart = 3;
@@ -256,6 +298,7 @@ public class MultiplicationController : MonoBehaviour
             UpdateSound(soundMain);
             repeats = repeats + 1;
             btnRestart.gameObject.SetActive(false);
+            PanelResultado.SetActive(false);
         }
 
         

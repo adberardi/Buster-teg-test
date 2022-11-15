@@ -79,11 +79,13 @@ public class MultiplicationTextScript : MonoBehaviour
         {
             txtField.text = "Respuesta correcta!";
             ChangeTextColor("green");
+            
         }
         else
         {
             txtField.text = "Respuesta erronea";
             ChangeTextColor("red");
+
         }
 
     }
