@@ -31,8 +31,8 @@ public class IslandBottom : MonoBehaviour
                     boat.GetComponent<Animator>().SetBool("IdleToBottom", true);
                     boat.GetComponent<Animator>().Play("MoveBoatBottom", -1, 0f);
                     boat.GetComponent<Animator>().speed = 1;
-
                     MultiplicationController.current.responseUser = "BottomIsland";
+                    TimerStart.current.StopTimer();
                 }
 
             }

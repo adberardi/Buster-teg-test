@@ -37,10 +37,12 @@ public class IslandTop : MonoBehaviour
                     boat.GetComponent<Animator>().SetBool("IdleToTop", true);
                     boat.GetComponent<Animator>().Play("MoveBoatTop", -1, 0f);
                     boat.GetComponent<Animator>().speed = 1;
+                    TimerStart.current.StopTimer();
                 }
 
             }
         }
 
     }
+
 }

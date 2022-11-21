@@ -33,6 +33,7 @@ ScriptsOnlyBuild:
     - SumaSpawnerStart
     - SumaTextScript
     - TextScript
+    - TimerStart
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -106,15 +107,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 9964}
+      Script: {instanceID: 9966}
     - Class: 114
-      Script: {instanceID: 10060}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10606}
+      Script: {instanceID: 10610}
     - Class: 114
-      Script: {instanceID: 10620}
+      Script: {instanceID: 10624}
     - Class: 114
-      Script: {instanceID: 11050}
+      Script: {instanceID: 11054}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -191,31 +192,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9862}
     - Class: 114
-      Script: {instanceID: 10028}
+      Script: {instanceID: 9958}
     - Class: 114
-      Script: {instanceID: 10050}
+      Script: {instanceID: 10030}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10052}
     - Class: 114
-      Script: {instanceID: 10382}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10420}
+      Script: {instanceID: 10386}
     - Class: 114
-      Script: {instanceID: 10494}
+      Script: {instanceID: 10424}
     - Class: 114
-      Script: {instanceID: 10552}
+      Script: {instanceID: 10498}
     - Class: 114
-      Script: {instanceID: 10590}
+      Script: {instanceID: 10556}
     - Class: 114
-      Script: {instanceID: 10602}
+      Script: {instanceID: 10594}
     - Class: 114
-      Script: {instanceID: 10680}
+      Script: {instanceID: 10606}
     - Class: 114
-      Script: {instanceID: 10710}
+      Script: {instanceID: 10684}
     - Class: 114
-      Script: {instanceID: 10732}
+      Script: {instanceID: 10714}
     - Class: 114
-      Script: {instanceID: 11088}
+      Script: {instanceID: 10736}
+    - Class: 114
+      Script: {instanceID: 11092}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -304,19 +307,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 10028}
+      Script: {instanceID: 10030}
     - Class: 114
-      Script: {instanceID: 10050}
+      Script: {instanceID: 10052}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10342}
+      Script: {instanceID: 10346}
     - Class: 114
-      Script: {instanceID: 10590}
+      Script: {instanceID: 10594}
     - Class: 114
-      Script: {instanceID: 10754}
+      Script: {instanceID: 10758}
     - Class: 114
-      Script: {instanceID: 11084}
+      Script: {instanceID: 11088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -407,23 +410,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9944}
     - Class: 114
-      Script: {instanceID: 10028}
+      Script: {instanceID: 10030}
     - Class: 114
-      Script: {instanceID: 10050}
+      Script: {instanceID: 10052}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10190}
+      Script: {instanceID: 10194}
     - Class: 114
-      Script: {instanceID: 10288}
+      Script: {instanceID: 10292}
     - Class: 114
-      Script: {instanceID: 10454}
+      Script: {instanceID: 10458}
     - Class: 114
-      Script: {instanceID: 10590}
+      Script: {instanceID: 10594}
     - Class: 114
-      Script: {instanceID: 10740}
+      Script: {instanceID: 10744}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11252}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -516,19 +519,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 9960}
+      Script: {instanceID: 9962}
     - Class: 114
-      Script: {instanceID: 10028}
+      Script: {instanceID: 10030}
     - Class: 114
-      Script: {instanceID: 10050}
+      Script: {instanceID: 10052}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10060}
     - Class: 114
-      Script: {instanceID: 10432}
+      Script: {instanceID: 10436}
     - Class: 114
-      Script: {instanceID: 10480}
+      Script: {instanceID: 10484}
     - Class: 114
-      Script: {instanceID: 10590}
+      Script: {instanceID: 10594}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1266,6 +1269,12 @@ ScriptsOnlyBuild:
     className: AeroplaneAudio
   - hash:
       serializedVersion: 2
+      Hash: d03d15d5c933bfe6ce6a5dca1c87e86e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TimerStart
+  - hash:
+      serializedVersion: 2
       Hash: 9452dc0dca800cf5f781114ef25a9a87
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
@@ -1504,6 +1513,12 @@ ScriptsOnlyBuild:
     assemblyName: Vuforia.UnityExtensions.dll
     namespaceName: Vuforia
     className: WireframeTrackableEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TimerStop
   - hash:
       serializedVersion: 2
       Hash: 4f631fd718256a8c69483c396671a274

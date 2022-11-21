@@ -188,6 +188,8 @@ public class MultiplicationController : MonoBehaviour
             UpdateStatusText(true);
             AllowAnswers = true;
             soundGame.Play();
+            //if (!TimerStart.current.runningTimer)
+                TimerStart.current.StartTimer();
         }
     }
 
@@ -236,11 +238,13 @@ public class MultiplicationController : MonoBehaviour
             // User Win
             UpdateTotalCorrects();
             effectsToWinner.SetActive(true);
+            TimerStart.current.DisplayTimerResult();
             UpdateSound(soundWinner);
         }
         else
         {
             // User Lose
+            TimerStart.current.AddPenalty();
             UpdateTotalIncorrects();
             UpdateSound(soundLoser);
         }
@@ -281,7 +285,7 @@ public class MultiplicationController : MonoBehaviour
         if(ValidateAttempts())
         {
 
-            
+            TimerStart.current.RestartTimer();
             AllowAnswers = false;
             CalculateAnswer();
             counterToStart = 3;
