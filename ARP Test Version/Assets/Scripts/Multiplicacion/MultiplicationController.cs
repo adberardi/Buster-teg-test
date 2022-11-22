@@ -43,6 +43,7 @@ public class MultiplicationController : MonoBehaviour
     public TextMesh txtbottom;
     public TextMesh txtOperation;
     public GameObject PanelResultado;
+    public GameObject PanelTime;
     public Text TxtTotalCorrectas;
     public int TotalCorrectas { get; set; }
     public Text TxtTotalIncorrectas;
@@ -251,6 +252,11 @@ public class MultiplicationController : MonoBehaviour
         if (ValidateAttempts())
         {
             btnRestart.gameObject.SetActive(true);
+        }
+        else
+        {
+            TimerStart.current.DisplayFinalTimers();
+            PanelTime.SetActive(true);
         }
 
         UpdateRemainingAttempts();

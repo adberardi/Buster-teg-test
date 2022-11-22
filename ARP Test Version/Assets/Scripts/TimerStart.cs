@@ -13,6 +13,14 @@ public class TimerStart : MonoBehaviour
     public Text txtInfoPenalty;
     public Text previousChrono;
     public Text totalChrono;
+    public TextMesh txtChrono;
+    List<string> resultsTimer = new List<string>();
+    public Text finalTextOne;
+    public Text finalTextTwo;
+    public Text finalTextThree;
+    public Text finalText;
+    TimeSpan TimeFinal { get; set; }
+
 
 
     private void Awake()
@@ -49,11 +57,22 @@ public class TimerStart : MonoBehaviour
         txtInfoPenalty.gameObject.SetActive(false);
         previousChrono.text = "00:00:00";
         totalChrono.text = "00:00:00";
+        txtChrono.text = "00:00:00";
+    }
+
+    public void DisplayFinalTimers()
+    {
+        finalTextOne.text = resultsTimer[0];
+        finalTextTwo.text = resultsTimer[1];
+        finalTextThree.text = resultsTimer[2];
+        finalText.text = TimeFinal.ToString("mm':'ss':'ff");
     }
 
     public void DisplayTimerResult()
     {
         totalChrono.text = timeChrono.ToString("mm':'ss':'ff");
+        TimeFinal += timeChrono;
+        resultsTimer.Add(totalChrono.text);
     }
 
     public void AddPenalty()
@@ -62,6 +81,9 @@ public class TimerStart : MonoBehaviour
         txtInfoPenalty.gameObject.SetActive(true);
         previousChrono.text = timeChrono.ToString("mm':'ss':'ff");
         totalChrono.text = (timeChrono + penaltyAdd).ToString("mm':'ss':'ff");
+        TimeFinal += (timeChrono + penaltyAdd);
+        resultsTimer.Add(totalChrono.text);
+        
         //DisplayTimerResult();
     }
 
@@ -71,7 +93,7 @@ public class TimerStart : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             timeChrono = TimeSpan.FromSeconds(timeElapsed);
-            previousChrono.text = timeChrono.ToString("mm':'ss':'ff");
+            txtChrono.text = timeChrono.ToString("mm':'ss':'ff");
             //DisplayTimerResult();
             yield return null;
 
