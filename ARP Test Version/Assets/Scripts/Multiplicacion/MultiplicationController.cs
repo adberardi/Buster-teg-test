@@ -105,36 +105,74 @@ public class MultiplicationController : MonoBehaviour
     {
         string option = islands[rnd.Next(2)];
         // Apply Unmatch
-        factor1 = factor1 - 1;
+        //factor1 = factor1 - 1;
+        if (factor1 == factor2)
+        {
+            seed = Random.Range(factor1 + 1, 10);
+        }
+        else
+        {
+            seed = Math.Max(factor1, factor2);
+        }
+        Dictionary<string, int> aux = new Dictionary<string, int>()
+            { {"top",0},
+            { "mid", 0},
+            { "bot",0 }
+        };
         switch (option)
         {
             case "TopIsland":
                 responseCorrect = option;
                 answer["top"] = question.ToString();
-                //txtop.text = question.ToString();
                 factor1 = factor1 - 1;
-                answer["middle"] = (Random.Range(seed,10) * factor1).ToString();
-                //txtmiddle.text = rnd.Next(10 - factor1).ToString();
-                answer["bottom"] = (Random.Range(1,seed) * factor2).ToString();
-                //txtbottom.text = rnd.Next(10 - factor2).ToString();
+                aux["top"] = question;
+                aux["mid"] = (Random.Range(seed, 10) * factor1);
+                aux["bot"] = (Random.Range(1, seed) * factor2);
+
+
+                if (aux["top"] == aux["mid"])
+                    aux["mid"] = aux["mid"] - factor2;
+                if (aux["top"] == aux["bot"])
+                    aux["bot"] = aux["bot"] + factor1;
+
+                answer["middle"] = aux["mid"].ToString();
+                answer["bottom"] = aux["bot"].ToString();
                 break;
             case "MiddleIsland":
                 responseCorrect = option;
-                answer["top"] = (Random.Range(seed, 10) * factor1).ToString();
-                //txtop.text = rnd.Next(10 - factor2).ToString();
                 answer["middle"] = question.ToString();
-                //txtmiddle.text = question.ToString();
-                answer["bottom"] = (Random.Range(1, seed) * factor2).ToString();
-                //txtbottom.text = rnd.Next(10 - factor1).ToString();
+
+                
+                aux["top"] = Random.Range(seed, 10) * factor1;
+                aux["mid"] = question;
+                aux["bot"] = Random.Range(1, seed) * factor2;
+                
+
+                if (aux["mid"] == aux["top"])
+                    aux["top"] = aux["top"] - factor1;
+                if (aux["mid"] == aux["bot"])
+                    aux["bot"] = aux["bot"] + factor2;
+
+
+                answer["top"] = aux["top"].ToString();
+                answer["bottom"] = aux["bot"].ToString();
                 break;
             case "BottomIsland":
                 responseCorrect = option;
-                answer["top"] = (Random.Range(seed, 10) * factor1).ToString();
-                //txtop.text = (rnd.Next(System.Math.Abs(factor1 - 1)) * factor2).ToString();
-                answer["middle"] = (Random.Range(1, seed) * factor2).ToString();
-                //txtmiddle.text = (rnd.Next(factor2 + 1) * factor1).ToString();
                 answer["bottom"] = question.ToString();
-                //txtbottom.text = question.ToString();
+                aux["top"] = Random.Range(seed, 10) * factor1;
+                aux["mid"] = Random.Range(1, seed) * factor2;
+                aux["bot"] = question;
+
+
+                if (aux["bot"] == aux["top"])
+                    aux["top"] = aux["top"] - factor2;
+                if (aux["bot"] == aux["mid"])
+                    aux["mid"] = aux["mid"] + factor1;
+
+                answer["top"] = aux["top"].ToString();
+                answer["middle"] = aux["mid"].ToString();
+
                 break;
         }
     }
