@@ -220,7 +220,7 @@ public class SumaController : MonoBehaviour
     {
         Debug.Log("Valor de answer: " + answer);
         house.GetComponent<Animator>().speed = 1;
-        house.GetComponent<Animator>().Play("Base Layer.MoveHouseUp", -1, 0);
+        house.GetComponent<Animator>().Play("Base Layer.MoveHouseSuma", 1, 0);
         //house.SetActive(false);
         //int p = rnd.Next(10);
         //SumaTextScript.current.SetText("Juego Finalizado");
