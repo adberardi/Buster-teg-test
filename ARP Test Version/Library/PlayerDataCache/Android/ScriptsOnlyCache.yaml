@@ -4,15 +4,22 @@ ScriptsOnlyBuild:
     - UnityStandardAssets.Water.Water
     Assembly-CSharp.dll:
     - Boat
+    - BoatDivision
+    - BottomDestination
     - Controller
+    - DivisionController
+    - DivisionTextScript
     - IslandBottom
     - IslandMiddle
     - IslandTop
+    - LoadSceneDivision
     - LoadSceneMenu
     - LoadSceneRetoSumaResta
+    - MiddleDestination
     - MultiplicationAnimManage
     - MultiplicationController
     - MultiplicationTextScript
+    - RecoDivisionScript
     - RecoMultiplicationScript
     - RecoScript
     - RestaController
@@ -21,6 +28,7 @@ ScriptsOnlyBuild:
     - RestaSpawnerResult
     - RestaSpawnerStart
     - RestaTextScript
+    - SoundDivision
     - SoundMultiplication
     - SoundScript
     - SpawnerEnd
@@ -34,6 +42,7 @@ ScriptsOnlyBuild:
     - SumaTextScript
     - TextScript
     - TimerStart
+    - TopDestination
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
@@ -42,11 +51,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateEditor
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -68,6 +74,113 @@ ScriptsOnlyBuild:
     - DefaultInitializationErrorHandler
     - DefaultTrackableEventHandler
   sceneClasses:
+    Assets/Scenes/Division.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 102
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 9496}
+    - Class: 114
+      Script: {instanceID: 9498}
+    - Class: 114
+      Script: {instanceID: 9504}
+    - Class: 114
+      Script: {instanceID: 9510}
+    - Class: 114
+      Script: {instanceID: 9518}
+    - Class: 114
+      Script: {instanceID: 9554}
+    - Class: 114
+      Script: {instanceID: 9556}
+    - Class: 114
+      Script: {instanceID: 9862}
+    - Class: 114
+      Script: {instanceID: 9958}
+    - Class: 114
+      Script: {instanceID: 9962}
+    - Class: 114
+      Script: {instanceID: 10032}
+    - Class: 114
+      Script: {instanceID: 10054}
+    - Class: 114
+      Script: {instanceID: 10062}
+    - Class: 114
+      Script: {instanceID: 10576}
+    - Class: 114
+      Script: {instanceID: 10598}
+    - Class: 114
+      Script: {instanceID: 10610}
+    - Class: 114
+      Script: {instanceID: 10706}
+    - Class: 114
+      Script: {instanceID: 10742}
+    - Class: 114
+      Script: {instanceID: 10760}
+    - Class: 114
+      Script: {instanceID: 10850}
+    - Class: 114
+      Script: {instanceID: 10974}
+    - Class: 114
+      Script: {instanceID: 10978}
+    - Class: 114
+      Script: {instanceID: 43016}
+    - Class: 114
+      Script: {instanceID: 52048}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -110,15 +223,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 9966}
+      Script: {instanceID: 9968}
     - Class: 114
-      Script: {instanceID: 10062}
+      Script: {instanceID: 10064}
     - Class: 114
-      Script: {instanceID: 10610}
+      Script: {instanceID: 10614}
     - Class: 114
-      Script: {instanceID: 10624}
+      Script: {instanceID: 10628}
     - Class: 114
-      Script: {instanceID: 11054}
+      Script: {instanceID: 11068}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -197,31 +310,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9958}
     - Class: 114
-      Script: {instanceID: 10030}
+      Script: {instanceID: 10032}
     - Class: 114
-      Script: {instanceID: 10052}
+      Script: {instanceID: 10054}
     - Class: 114
-      Script: {instanceID: 10060}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10386}
+      Script: {instanceID: 10388}
     - Class: 114
-      Script: {instanceID: 10424}
+      Script: {instanceID: 10426}
     - Class: 114
-      Script: {instanceID: 10498}
+      Script: {instanceID: 10500}
     - Class: 114
-      Script: {instanceID: 10556}
+      Script: {instanceID: 10558}
     - Class: 114
-      Script: {instanceID: 10594}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10606}
+      Script: {instanceID: 10610}
     - Class: 114
-      Script: {instanceID: 10684}
+      Script: {instanceID: 10688}
     - Class: 114
-      Script: {instanceID: 10714}
+      Script: {instanceID: 10720}
     - Class: 114
-      Script: {instanceID: 10736}
+      Script: {instanceID: 10742}
     - Class: 114
-      Script: {instanceID: 11092}
+      Script: {instanceID: 11106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -310,19 +423,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9890}
     - Class: 114
-      Script: {instanceID: 10030}
+      Script: {instanceID: 10032}
     - Class: 114
-      Script: {instanceID: 10052}
+      Script: {instanceID: 10054}
     - Class: 114
-      Script: {instanceID: 10060}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10346}
+      Script: {instanceID: 10348}
     - Class: 114
-      Script: {instanceID: 10594}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10758}
+      Script: {instanceID: 10766}
     - Class: 114
-      Script: {instanceID: 11088}
+      Script: {instanceID: 11102}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -413,23 +526,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9944}
     - Class: 114
-      Script: {instanceID: 10030}
+      Script: {instanceID: 10032}
     - Class: 114
-      Script: {instanceID: 10052}
+      Script: {instanceID: 10054}
     - Class: 114
-      Script: {instanceID: 10060}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10194}
+      Script: {instanceID: 10196}
     - Class: 114
-      Script: {instanceID: 10292}
+      Script: {instanceID: 10294}
     - Class: 114
-      Script: {instanceID: 10458}
+      Script: {instanceID: 10460}
     - Class: 114
-      Script: {instanceID: 10594}
+      Script: {instanceID: 10598}
     - Class: 114
-      Script: {instanceID: 10744}
+      Script: {instanceID: 10750}
     - Class: 114
-      Script: {instanceID: 11252}
+      Script: {instanceID: 11266}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -522,19 +635,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9898}
     - Class: 114
-      Script: {instanceID: 9962}
+      Script: {instanceID: 9964}
     - Class: 114
-      Script: {instanceID: 10030}
+      Script: {instanceID: 10032}
     - Class: 114
-      Script: {instanceID: 10052}
+      Script: {instanceID: 10054}
     - Class: 114
-      Script: {instanceID: 10060}
+      Script: {instanceID: 10062}
     - Class: 114
-      Script: {instanceID: 10436}
+      Script: {instanceID: 10438}
     - Class: 114
-      Script: {instanceID: 10484}
+      Script: {instanceID: 10486}
     - Class: 114
-      Script: {instanceID: 10594}
+      Script: {instanceID: 10598}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1282,6 +1395,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
     className: AeroplaneController
+  - hash:
+      serializedVersion: 2
+      Hash: 70856e9264675149a385a54def5b09e2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DivisionController
   - hash:
       serializedVersion: 2
       Hash: 48785ff315e6299fac12f2d1856c5cdf
@@ -2034,6 +2153,12 @@ ScriptsOnlyBuild:
     className: TargetFieldOfView
   - hash:
       serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TopDestination
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: VuforiaScripts.dll
     namespaceName: 
@@ -2142,6 +2267,12 @@ ScriptsOnlyBuild:
     className: RecoMultiplicationScript
   - hash:
       serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BottomDestination
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -2200,6 +2331,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Car
     className: Mudguard
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RecoDivisionScript
   - hash:
       serializedVersion: 2
       Hash: dff7a11839abb9fb7222280cf3c0a95a
@@ -2262,6 +2399,12 @@ ScriptsOnlyBuild:
     className: AudioTrack
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DivisionTextScript
+  - hash:
+      serializedVersion: 2
       Hash: 323ef9904ec6149348cdcc45975c0dbe
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Effects
@@ -2302,6 +2445,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: TimedObjectDestructor
+  - hash:
+      serializedVersion: 2
+      Hash: ddb065ccd8c2f76612965d4ef06ce7d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MiddleDestination
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundDivision
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -2812,6 +2967,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: AutoMobileShaderSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LoadSceneDivision
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BoatDivision
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
@@ -2819,4 +2986,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Resta.unity
   - Assets/Scenes/RetoSumaResta.unity
   - Assets/Scenes/Multiplicacion.unity
+  - Assets/Scenes/Division.unity
   playerPath: C:/Users/User/Documents/TEG/Buster-teg-test/ARP Test Version/ARP.apk
