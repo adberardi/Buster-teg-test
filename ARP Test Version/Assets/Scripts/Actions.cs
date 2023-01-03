@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Actions : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class Actions : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 
     public void CreateUser()
@@ -59,6 +65,13 @@ public class Actions : MonoBehaviour
             Firebase.Auth.FirebaseUser newUser = task.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})",
                 newUser.DisplayName, newUser.UserId);
+            ChangeScene(1);
         });
+    }
+
+    public void Logout()
+    {
+        auth.SignOut();
+        ChangeScene(0);
     }
 }
