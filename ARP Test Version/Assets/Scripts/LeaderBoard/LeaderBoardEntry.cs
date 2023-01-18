@@ -14,9 +14,9 @@ public class LeaderBoardEntry : MonoBehaviour
         this.score = score;
     }
 
-    public Dictionary<string, System.Object> ListScore()
+    public Dictionary<string, object> ListScore()
         {
-        Dictionary<string, System.Object> result = new Dictionary<string, System.Object>();
+        Dictionary<string, object> result = new Dictionary<string, object>();
         result["userId"] = userId;
         result["score"] = score;
         return result;

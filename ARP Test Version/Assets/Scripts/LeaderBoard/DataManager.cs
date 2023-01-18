@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase;
+using Firebase.Firestore;
+using Firebase.Extensions;
 using Firebase.Database;
 using System;
 
@@ -11,73 +12,50 @@ public class DataManager : MonoBehaviour
     string databaseUrl = "https://tesis-database-5fd22-default-rtdb.firebaseio.com/";
 
     DatabaseReference reference;
+    FirebaseFirestore db;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        reference = FirebaseDatabase.DefaultInstance.RootReference;
+        //reference = FirebaseDatabase.DefaultInstance.RootReference;
+        db = FirebaseFirestore.DefaultInstance;
     }
 
-
-    private void WriteUser(string userID, int score)
+    public void SaveData()
     {
-        LeaderBoardEntry leaderBoard = new LeaderBoardEntry(userID, score);
-        string dataJson = JsonUtility.ToJson(leaderBoard);
-        reference.Child("users").Child(userID).SetRawJsonValueAsync(dataJson);
-    }
-
-    public void WriteNewScore(string userID, int score)
-    {
-        // Create new entry at /user-scores/$userid/$scoreid and at
-        // /leaderboard/$scoreid simultaneously
-        string key = reference.Child("scores").Push().Key;
-        LeaderBoardEntry leaderBoardEntry = new LeaderBoardEntry(userID, score);
-        Dictionary<string, object> entryValues = leaderBoardEntry.ListScore();
-        Dictionary<string, object> childUpdates = new Dictionary<string, object>();
-        childUpdates["/scores/" + key] = entryValues;
-        childUpdates["/user-scores/" + userID + "/" + key] = entryValues;
-        reference.UpdateChildrenAsync(childUpdates).ContinueWith(task => 
+        DocumentReference docRef = db.Collection("users").Document("alovelace");
+        Dictionary<string, object> user = new Dictionary<string, object>
         {
-            if (task.IsFaulted)
-            {
-                Debug.Log("Ha ocurrido un error: "+task.Exception.ToString());
-            }
-
-            if (task.IsCanceled)
-            {
-                Debug.Log("El proceso de actualizacion ha sido cancelado: "+task.Exception.ToString());
-            }
+            { "First", "Ada" },
+            { "Last", "Lovelace" },
+            { "Born", 1815 },
+        };
+        docRef.SetAsync(user).ContinueWithOnMainThread(task =>
+        {
+            Debug.Log("Added data to the alovelace document in the users collection.");
         });
     }
 
-
-    private void ReadScore()
+    public void ReadData()
     {
-        FirebaseDatabase.DefaultInstance.GetReference("scores").GetValueAsync().ContinueWith(task => 
+        CollectionReference docRef = db.Collection("users");
+        docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
-            if (task.IsFaulted)
+            QuerySnapshot snapshot = task.Result;
+            foreach(DocumentSnapshot doc in snapshot.Documents)
             {
-                Debug.Log("Ha ocurrido un error: " + task.Exception.ToString());
-            }
-            else if (task.IsCanceled)
-            {
-                Debug.Log("El proceso de actualizacion ha sido cancelado: " + task.Exception.ToString());
-            }
-            else if(task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
-                Debug.Log("Reading from Scores!");
-                foreach (var item in (Dictionary<string, object>) snapshot.Value)
+                Debug.Log(string.Format("User: {0}", doc.Id));
+                Dictionary<string, object> documentDic = doc.ToDictionary();
+                Debug.Log(string.Format("First: {0}", documentDic["First"]));
+                if (documentDic.ContainsKey("Middle"))
                 {
-                    Dictionary<string, object> attributes = (Dictionary<string, object>)item.Value;
-                    Debug.LogFormat(" -> Item {0}", item.Value);
-                    foreach (var score in attributes)
-                    {
-                        Debug.LogFormat(" --> Item {0} - {1}", score.Key, score.Value);
-                    }
+                    Debug.Log(string.Format("Middle: {0}", documentDic["Middle"]));
                 }
+                Debug.Log(String.Format("Last: {0}", documentDic["Last"]));
+                Debug.Log(String.Format("Born: {0}", documentDic["Born"]));
             }
+            Debug.Log("Read all data from the users collection.");
         });
     }
 
@@ -92,10 +70,5 @@ public class DataManager : MonoBehaviour
         {
             //Do something
         }
-    }
-
-    public void InvocarWriteNewScore()
-    {
-        WriteNewScore("usuario1", 20);
     }
 }
