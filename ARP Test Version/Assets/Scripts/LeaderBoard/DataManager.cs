@@ -11,6 +11,12 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     string databaseUrl = "https://tesis-database-5fd22-default-rtdb.firebaseio.com/";
 
+    [SerializeField]
+    private string pathCollectionUser = "users";
+
+    [SerializeField]
+    private string pathDocUser = "alovelace";
+
     DatabaseReference reference;
     FirebaseFirestore db;
 
@@ -24,7 +30,7 @@ public class DataManager : MonoBehaviour
 
     public void SaveData()
     {
-        DocumentReference docRef = db.Collection("users").Document("alovelace");
+        DocumentReference docRef = db.Collection(pathCollectionUser).Document(pathDocUser);
         Dictionary<string, object> user = new Dictionary<string, object>
         {
             { "First", "Ada" },
@@ -39,7 +45,7 @@ public class DataManager : MonoBehaviour
 
     public void ReadData()
     {
-        CollectionReference docRef = db.Collection("users");
+        CollectionReference docRef = db.Collection(pathCollectionUser);
         docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
         {
             QuerySnapshot snapshot = task.Result;
@@ -57,18 +63,5 @@ public class DataManager : MonoBehaviour
             }
             Debug.Log("Read all data from the users collection.");
         });
-    }
-
-    void HandleValueChanged(object sender, ValueChangedEventArgs args)
-    {
-        if (args.DatabaseError != null)
-        {
-            Debug.LogError(args.DatabaseError.Message);
-            return;
-        }
-        else
-        {
-            //Do something
-        }
     }
 }
