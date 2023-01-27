@@ -28,6 +28,8 @@ public class DataManager : MonoBehaviour
         db = FirebaseFirestore.DefaultInstance;
     }
 
+    
+
     public void SaveData()
     {
         DocumentReference docRef = db.Collection(pathCollectionUser).Document(pathDocUser);

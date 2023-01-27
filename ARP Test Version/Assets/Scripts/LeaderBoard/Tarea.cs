@@ -1,24 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ARProject;
 
-public class Tarea : MonoBehaviour
+namespace ARProject
 {
-    private int idTarea { get; set; }
-    
-    // TODO: Por agregar clase Temario
-    private string tema { get; set; }
-    private int pondracion { get; set; }
-
-    // Start is called before the first frame update
-    void Start()
+    class Tarea
     {
-        
-    }
+        private int IdTarea { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // TODO: Por agregar clase Temario
+        private Temario Tema { get; set; }
+        private int Ponderacion { get; set; }
+
+        public Tarea()
+        {
+
+        }
     }
 }
+
+

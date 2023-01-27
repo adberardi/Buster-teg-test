@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Grupo : MonoBehaviour
+namespace ARProject
 {
-    private int idGrupo { get; set; }
-    private string nombreGrupo { get; set; }
-    private DateTime fechaCreacion {get; set;}
-    private DateTime fechaUpdate { get; set; }
-    private int idAutor { get; set; }
-    // TODO: Por agregar clases Estudiante y Tarea
-    private string participante { get; set; }
-    private string asignacion { get; set; }
-
-
-    // Start is called before the first frame update
-    void Start()
+    class Grupo
     {
-        
-    }
+        private int IdGrupo { get; set; }
+        private string NombreGrupo { get; set; }
+        private DateTime FechaCreacion { get; set; }
+        private DateTime FechaUpdate { get; set; }
+        private int IdAutor { get; set; }
+        // TODO: Por agregar clases Estudiante y Tarea
+        private string Participante { get; set; }
+        private string Asignacion { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        public Grupo()
+        {
+
+        }
+
     }
 }
+
+
