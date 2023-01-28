@@ -7,16 +7,16 @@ using Firebase.Auth;
 using System;
 
 
-namespace ARProject
+namespace ARProject.Usuario
 {
     class Usuario
     {
-        Firebase.Auth.FirebaseAuth auth;
+        FirebaseAuth auth;
         public InputField emailField;
         public InputField passwField;
 
 
-        private int IdUsuario { get; set; }
+        private string IdUsuario { get; set; }
 
         public string Username { get; set; }
 
@@ -54,10 +54,10 @@ namespace ARProject
             SceneManager.LoadScene(index);
         }
 
-        public void CreateUser()
+        public void CreateUser(string emailField, string passwField)
         {
 
-            auth.CreateUserWithEmailAndPasswordAsync(emailField.text, passwField.text).ContinueWith(task => {
+            auth.CreateUserWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
                 if (task.IsCanceled)
                 {
                     Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
@@ -70,9 +70,10 @@ namespace ARProject
                 }
 
                 // Firebase user has been created.
-                Firebase.Auth.FirebaseUser newUser = task.Result;
+                FirebaseUser newUser = task.Result;
                 Debug.LogFormat("Firebase user created successfully: {0} ({1})",
                     newUser.DisplayName, newUser.UserId);
+                IdUsuario = newUser.UserId;
             });
         }
 
@@ -90,9 +91,10 @@ namespace ARProject
                     return;
                 }
 
-                Firebase.Auth.FirebaseUser newUser = task.Result;
+                FirebaseUser userSignedUp = task.Result;
                 Debug.LogFormat("User signed in successfully: {0} ({1})",
-                    newUser.DisplayName, newUser.UserId);
+                    userSignedUp.DisplayName, userSignedUp.UserId);
+                IdUsuario = userSignedUp.UserId;
                 ChangeScene(1);
             });
         }
@@ -107,13 +109,13 @@ namespace ARProject
     //Herencia
     class Docente: Usuario
     {
-        public Grupo Salon { get; set; }
+        public Grupo.Grupo Salon { get; set; }
     }
 
     //Herencia
     class Estudiante: Usuario
     {
-        public RecordAcademico Nota { get; set; }
+        public RecordAcademico.RecordAcademico Nota { get; set; }
     }
 
 }

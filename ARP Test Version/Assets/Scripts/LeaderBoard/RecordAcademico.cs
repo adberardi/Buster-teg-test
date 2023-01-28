@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ARProject;
 
 
-namespace ARProject
+namespace ARProject.RecordAcademico
 {
     public class RecordAcademico
     {
@@ -12,7 +11,7 @@ namespace ARProject
         private int IdUser { get; set; }
         private int Nota { get; set; }
         // TODO: Por agregar clase Contenido
-        private Contenido Contenido { get; set; }
+        private Contenido.Contenido Programa { get; set; }
 
         public RecordAcademico()
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ARProject
+namespace ARProject.Temario
 {
     class Temario
     {
