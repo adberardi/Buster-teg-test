@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ARProject;
 
 public class Actions : MonoBehaviour
 {
@@ -50,23 +51,8 @@ public class Actions : MonoBehaviour
 
     public void Login()
     {
-        auth.SignInWithEmailAndPasswordAsync(email.text, passw.text).ContinueWith(task => {
-            if (task.IsCanceled)
-            {
-                Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-                return;
-            }
-            if (task.IsFaulted)
-            {
-                Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                return;
-            }
-
-            Firebase.Auth.FirebaseUser newUser = task.Result;
-            Debug.LogFormat("User signed in successfully: {0} ({1})",
-                newUser.DisplayName, newUser.UserId);
-            ChangeScene(1);
-        });
+        Usuario user = new Usuario(auth);
+        user.Login(email.text, passw.text);
     }
 
     public void Logout()

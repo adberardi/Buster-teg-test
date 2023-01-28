@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using ARProject;
+using Firebase.Auth;
 using System;
 
 
@@ -32,7 +32,7 @@ namespace ARProject
 
         public string Role { get; set; }
 
-        public Usuario (Firebase.Auth.FirebaseAuth auth, InputField emailField, InputField passwField)
+        public Usuario (FirebaseAuth auth, InputField emailField, InputField passwField)
         {
             this.auth = auth;
             this.emailField = emailField;
@@ -42,6 +42,11 @@ namespace ARProject
         public Usuario ()
         {
 
+        }
+
+        public Usuario (FirebaseAuth auth)
+        {
+            this.auth = auth;
         }
 
         public void ChangeScene(int index)
@@ -71,9 +76,9 @@ namespace ARProject
             });
         }
 
-        public void Login()
+        public void Login(string emailField, string passwField)
         {
-            auth.SignInWithEmailAndPasswordAsync(emailField.text, passwField.text).ContinueWith(task => {
+            auth.SignInWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
                 if (task.IsCanceled)
                 {
                     Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
