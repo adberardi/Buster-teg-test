@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: dcf5293f210108f4a8ea388d47874102
+  - enabled: 1
+    path: Assets/Scenes/Registro.unity
+    guid: 9a77163dd812ba04b812c4a2dd93a2e5
   m_configObjects: {}
