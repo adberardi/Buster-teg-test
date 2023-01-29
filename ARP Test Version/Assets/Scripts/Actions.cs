@@ -5,18 +5,22 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.Usuario;
 using Firebase.Auth;
+using Firebase.Firestore;
 
 public class Actions : MonoBehaviour
 {
     FirebaseAuth auth;
     public InputField email;
     public InputField passw;
-    private Usuario user;
+    public InputField userName;
+    public InputField firstName;
+    public InputField lastName;
+    private static Usuario user;
     // Start is called before the first frame update
     void Start()
     {
         //auth = FirebaseAuth.DefaultInstance;
-       user = new Usuario(FirebaseAuth.DefaultInstance);
+       user = new Usuario(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
     }
 
     // Update is called once per frame
@@ -32,7 +36,7 @@ public class Actions : MonoBehaviour
 
     public void CreateUser()
     {
-        user.CreateUser(email.text, passw.text);
+        user.CreateUser(email.text, "userName.text", passw.text, "firstName.text", "lastName.text");
     }
 
     public void Login()

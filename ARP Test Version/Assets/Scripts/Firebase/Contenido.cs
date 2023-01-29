@@ -19,6 +19,16 @@ namespace ARProject.Contenido
         {
 
         }
+
+        public Dictionary<string, string> GetContenido()
+        {
+            return new Dictionary<string, string>
+            {
+                { "Titulo", "TituloUno" },
+                { "Temario", "Matematica"},
+                { "Nivel", "1"},
+            };
+        }
     }
 }
 
