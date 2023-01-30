@@ -1,26 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ARProject.Temario;
 
-namespace ARProject.Contenido
+namespace ARProject.Content
 {
-    class Contenido
+    class Content
     {
-        private int IdContenido { get; set; }
+        private int IdContent { get; set; }
         private string Titulo { get; set; }
-        // TODO: Por agregar clase Temario
-        private Temario.Temario Tema { get; set; }
 
         private string Nivel { get; set; }
         private string Grado { get; set; }
 
-        public Contenido()
+        public Content()
         {
 
         }
 
-        public Dictionary<string, string> GetContenido()
+        public Dictionary<string, string> GetContent()
         {
             return new Dictionary<string, string>
             {

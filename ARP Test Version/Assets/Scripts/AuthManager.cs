@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-
+using Firebase.Auth;
+using Firebase.Firestore;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ARProject.User;
 
 
 public class AuthManager : MonoBehaviour
@@ -23,15 +25,24 @@ public class AuthManager : MonoBehaviour
     public InputField passwordRegisterVerifyField;
     public Text warningRegisterText;
 
+    FirebaseAuth auth;
+    private static User user;
 
- 
 
 
 
-   
+
+
     void Awake()
     {
        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //auth = FirebaseAuth.DefaultInstance;
+        user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
     }
 
     private void InitializeFirebase()
@@ -49,6 +60,7 @@ public class AuthManager : MonoBehaviour
         //Call the login coroutine passing the email and password
         StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
     }
+
     //Function for the register button
     public IEnumerator RegisterButton()
     {
@@ -70,10 +82,16 @@ public class AuthManager : MonoBehaviour
     }
     private IEnumerator Login(string _email, string _password)
     {
-      
-            SceneManager.LoadScene("home");
+        user.Login(_email, _password);
+        SceneManager.LoadScene("Home");
         yield return "";
 
+    }
+
+
+    public void CreateUser()
+    {
+        user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
     }
 
     //private IEnumerator Register(string _email, string _password, string _username)

@@ -9,9 +9,9 @@ using Firebase.Extensions;
 using System;
 
 
-namespace ARProject.Usuario
+namespace ARProject.User
 {
-    class Usuario
+    class User
     {
         FirebaseAuth auth;
 
@@ -21,7 +21,7 @@ namespace ARProject.Usuario
         public InputField passwField;
 
 
-        private string IdUsuario { get; set; }
+        private string IdUser { get; set; }
 
         public string Username { get; set; }
 
@@ -37,19 +37,19 @@ namespace ARProject.Usuario
 
         public string Role { get; set; }
 
-        public Usuario (FirebaseAuth auth, InputField emailField, InputField passwField)
+        public User (FirebaseAuth auth, InputField emailField, InputField passwField)
         {
             this.auth = auth;
             this.emailField = emailField;
             this.passwField = passwField;
         }
 
-        public Usuario ()
+        public User ()
         {
 
         }
 
-        public Usuario (FirebaseAuth auth, FirebaseFirestore db)
+        public User (FirebaseAuth auth, FirebaseFirestore db)
         {
             this.auth = auth;
             this.db = db;
@@ -79,7 +79,7 @@ namespace ARProject.Usuario
                 FirebaseUser newUser = task.Result;
                 Debug.LogFormat("Firebase user created successfully: {0} ({1})",
                     newUser.DisplayName, newUser.UserId);
-                IdUsuario = newUser.UserId;
+                IdUser = newUser.UserId;
                 //Username = usernameField;
                 Email = emailField;
                 Username = "Pepito123";
@@ -87,7 +87,7 @@ namespace ARProject.Usuario
                 LastName = "Perez";
                 SaveSessionDataUser();
                 SaveUser();
-                RecordAcademico.RecordAcademico aux = new RecordAcademico.RecordAcademico(db);
+                Score.Score aux = new Score.Score(db);
                 aux.SaveScore();
             });
         }
@@ -109,7 +109,7 @@ namespace ARProject.Usuario
                 FirebaseUser userSignedUp = task.Result;
                 Debug.LogFormat("User signed in successfully: {0} ({1})",
                     userSignedUp.DisplayName, userSignedUp.UserId);
-                IdUsuario = userSignedUp.UserId;
+                IdUser = userSignedUp.UserId;
                 ChangeScene(1);
             });
         }
@@ -123,7 +123,7 @@ namespace ARProject.Usuario
 
         public void SaveUser()
         {
-            DocumentReference docRef = db.Collection("Users").Document(IdUsuario);
+            DocumentReference docRef = db.Collection("Users").Document(IdUser);
             Dictionary<string, object> user = new Dictionary<string, object>
         {
                 { "birthday", DateTime.Now },
@@ -153,7 +153,7 @@ namespace ARProject.Usuario
 
         public void SaveSessionDataUser()
         {
-            PlayerPrefs.SetString("IDUser", IdUsuario);
+            PlayerPrefs.SetString("IDUser", IdUser);
         }
 
         public string GetSessionDataUser()
@@ -168,15 +168,15 @@ namespace ARProject.Usuario
     }
 
     //Herencia
-    class Docente: Usuario
+    class Docente: User
     {
-        public Grupo.Grupo Salon { get; set; }
+        public Group.Group Salon { get; set; }
     }
 
     //Herencia
-    class Estudiante: Usuario
+    class Estudiante: User
     {
-        public RecordAcademico.RecordAcademico Nota { get; set; }
+        public Score.Score Nota { get; set; }
     }
 
 }

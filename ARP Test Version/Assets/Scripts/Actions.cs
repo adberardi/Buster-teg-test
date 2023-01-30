@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using ARProject.Usuario;
+using ARProject.User;
 using Firebase.Auth;
 using Firebase.Firestore;
 
@@ -15,12 +15,12 @@ public class Actions : MonoBehaviour
     public InputField userName;
     public InputField firstName;
     public InputField lastName;
-    private static Usuario user;
+    private static User user;
     // Start is called before the first frame update
     void Start()
     {
         //auth = FirebaseAuth.DefaultInstance;
-       user = new Usuario(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
+       user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
     }
 
     // Update is called once per frame

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace ARProject.Grupo
+namespace ARProject.Group
 {
-    class Grupo
+    class Group
     {
-        private int IdGrupo { get; set; }
-        private string NombreGrupo { get; set; }
+        private int IdGroup { get; set; }
+        private string NombreGroup { get; set; }
         private DateTime FechaCreacion { get; set; }
         private DateTime FechaUpdate { get; set; }
         private int IdAutor { get; set; }
@@ -17,7 +17,7 @@ namespace ARProject.Grupo
         private string Asignacion { get; set; }
 
 
-        public Grupo()
+        public Group()
         {
 
         }
