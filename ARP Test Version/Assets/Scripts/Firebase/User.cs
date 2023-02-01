@@ -37,6 +37,8 @@ namespace ARProject.User
 
         public string Role { get; set; }
 
+        public string Profile { get; set; }
+
         public User (FirebaseAuth auth, InputField emailField, InputField passwField)
         {
             this.auth = auth;
@@ -85,6 +87,7 @@ namespace ARProject.User
                 Username = "Pepito123";
                 FirstName = "Jaimito";
                 LastName = "Perez";
+                Profile = "Ruta Imagen Perfil";
                 SaveSessionDataUser();
                 SaveUser();
                 Score.Score aux = new Score.Score(db);
@@ -94,24 +97,34 @@ namespace ARProject.User
 
         public void Login(string emailField, string passwField)
         {
-            auth.SignInWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
-                if (task.IsCanceled)
-                {
-                    Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                    return;
-                }
+            if (ValidateInputFieldsLogin(emailField, passwField))
+            {
+                auth.SignInWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
+                    if (task.IsCanceled)
+                    {
+                        Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
+                        return;
+                    }
+                    if (task.IsFaulted)
+                    {
+                        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+                        return;
+                    }
 
-                FirebaseUser userSignedUp = task.Result;
-                Debug.LogFormat("User signed in successfully: {0} ({1})",
-                    userSignedUp.DisplayName, userSignedUp.UserId);
-                IdUser = userSignedUp.UserId;
-                ChangeScene(1);
-            });
+                    FirebaseUser userSignedUp = task.Result;
+                    Debug.LogFormat("User signed in successfully: {0} ({1})",
+                        userSignedUp.DisplayName, userSignedUp.UserId);
+                    IdUser = userSignedUp.UserId;
+                    SaveSessionDataUser();
+                    ChangeScene(1);
+                    ReadUser();
+                });
+            }
+            else
+            {
+                Debug.Log(" CAMPOS DE ENTRADA VACIO(S)");
+            }
+                
         }
 
         public void Logout()
@@ -130,7 +143,8 @@ namespace ARProject.User
                 { "email", emailField },
                 { "firstName", FirstName },
                 { "lastName", LastName },
-                { "userName", Username}
+                { "userName", Username},
+                { "profile", Profile }
         };
             docRef.SetAsync(user).ContinueWithOnMainThread(task =>
             {
@@ -151,6 +165,28 @@ namespace ARProject.User
         }
 
 
+        public void ReadUser()
+        {
+            Debug.Log("ENTRANDO EN READUSER");
+            DocumentReference docRef = db.Collection("Users").Document(GetSessionDataUser());
+            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                DocumentSnapshot doc = task.Result;
+                Dictionary<string, object> documentDic = doc.ToDictionary();
+                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", documentDic["birthday"], documentDic["email"], documentDic["firstName"], documentDic["lastName"], documentDic["userName"]));
+                Email = documentDic["email"].ToString();
+                Username = documentDic["userName"].ToString();
+                Birthday = Convert.ToDateTime(documentDic["birthday"]);
+                FirstName = documentDic["firstName"].ToString();
+                LastName = documentDic["lastName"].ToString();
+                Profile = documentDic["profile"].ToString();
+                Debug.Log("Read all data from the users collection.");
+                
+            });
+            new Score.Score(db).ReadScore();
+        }
+
+
         public void SaveSessionDataUser()
         {
             PlayerPrefs.SetString("IDUser", IdUser);
@@ -164,6 +200,20 @@ namespace ARProject.User
         public void ClearSessionDataUser()
         {
             PlayerPrefs.DeleteKey("IDUser");
+        }
+
+        public bool ValidateInputFieldsLogin(string emailField, string passwField)
+        {
+            if (emailField != "" && passwField != "")
+                return true;
+            return false;
+        }
+
+        public bool ValidateInputFieldsRegister(string usernameField, string birthdayField, string emailField, string passwField, string passwVerifyField)
+        {
+            if (usernameField != "" && birthdayField != "" && emailField != "" && passwField != "" && passwVerifyField != "")
+                return true;
+            return false;
         }
     }
 
