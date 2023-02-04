@@ -183,7 +183,10 @@ namespace ARProject.User
                 Debug.Log("Read all data from the users collection.");
                 
             });
-            new Score.Score(db).ReadScore();
+            Group.Group group = new Group.Group(db);
+            //group.SaveGroup();
+            group.ReadGroup();
+
         }
 
 

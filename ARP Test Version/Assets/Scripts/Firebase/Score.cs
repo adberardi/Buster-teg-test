@@ -83,13 +83,14 @@ namespace ARProject.Score
             Debug.Log("///VOY POR READ SCORE");
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
+
                 DocumentSnapshot doc = task.Result;
                 Dictionary<string, object> documentDic = doc.ToDictionary();
                 Debug.Log(string.Format("user: {0}", documentDic["user"]));
                 Debug.Log("Read all data from the scores collection.");
             });
 
-            CollectionReference subcollRef = db.Collection("Scores").Document("prueba").Collection("test");
+            CollectionReference subcollRef = docRef.Collection("test");
             subcollRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
                 QuerySnapshot subcoll = task.Result;
