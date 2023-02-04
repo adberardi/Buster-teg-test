@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Home.unity
     guid: b28b8f463e1787245991828a35907d6a
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
+  - enabled: 0
+    path: 
     guid: 1271843bd2fb0454b99a0efdb3398dc1
   - enabled: 1
     path: Assets/Scenes/Suma.unity
@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Registro.unity
     guid: 9a77163dd812ba04b812c4a2dd93a2e5
+  - enabled: 1
+    path: Assets/Scenes/Botin.unity
+    guid: b028ba3c6c7eaac4db0375908dd1384f
+  - enabled: 1
+    path: Assets/Scenes/MenuActividades.unity
+    guid: 64a7136f8e9f0a4489a774f6acd37d23
+  - enabled: 1
+    path: Assets/CodeMonkey_Graph/GameScene_Graph.unity
+    guid: 58a9a54f5174bbc4aa12bda01d1287fb
   m_configObjects: {}

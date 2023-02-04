@@ -368,7 +368,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 915a718350ce64d14b50b1502508fd51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8935e2db9b4084c5c89a6d962dbe3882, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4512,7 +4512,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RECOMPENSAS
+  m_Text: Botin
 --- !u!222 &1907406347
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4819,7 +4819,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0abdec134578f406ea8e5b73ad101480, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c1f449646ae64dd78e573d70eb2fe19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4971,7 +4971,7 @@ GameObject:
   - component: {fileID: 2102029719}
   - component: {fileID: 2102029718}
   m_Layer: 5
-  m_Name: BtnRewards
+  m_Name: BtnBotin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
