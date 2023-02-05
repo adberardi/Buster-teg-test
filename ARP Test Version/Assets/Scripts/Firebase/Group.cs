@@ -12,14 +12,13 @@ namespace ARProject.Group
         private int IdGroup { get; set; }
         private string NombreGroup { get; set; }
         private DateTime FechaCreacion { get; set; }
-        private DateTime FechaUpdate { get; set; }
-        private int IdAutor { get; set; }
+        private string Admin { get; set; }
         // TODO: Por agregar clases Estudiante y Tarea
-        private string Participante { get; set; }
-        private string Asignacion { get; set; }
+        private ArrayList Participante { get; set; }
+        private ArrayList Asignacion { get; set; }
 
         private FirebaseFirestore db;
-
+        private FirestoreError ErrorCode;
 
         public Group(FirebaseFirestore db)
         {
@@ -46,20 +45,37 @@ namespace ARProject.Group
 
         public void ReadGroup()
         {
-            DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> docGroup = doc.ToDictionary();
-                foreach(var index in (List<object>)docGroup["participantsGroup"])
+                DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
+                docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
                 {
-                        Debug.Log(string.Format("Valor de J : {0}", index));
-                }
-               // Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2}", docGroup["admin"], docGroup["name"], docGroup["participantsGroup"].GetType()));
-            });
+                    if (task.IsCanceled)
+                    {
+                        Debug.Log(" La operaion ha sido cancelada");
+                    }
+                    else
+                    {
+                        DocumentSnapshot doc = task.Result;
+                        Dictionary<string, object> docGroup = doc.ToDictionary();
+                        Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2}", docGroup["admin"], docGroup["name"], docGroup["participantsGroup"].GetType()));
+
+                        foreach (var index in (List<object>)docGroup["participantsGroup"])
+                        {
+                            Debug.Log(string.Format("Ciclo: {0}", index));
+                            //TODO: corregir Participante.Add(index)
+                            Participante.Add(index);
+                        }
+                        NombreGroup = docGroup["name"].ToString();
+                        Admin = docGroup["admin"].ToString();
+                        //FechaCreacion = (DateTime)docGroup["dateCreated"];
+                        //Asignacion.Add((ArrayList)docGroup["assignedActivities"]);
+                        //Debug.Log(string.Format("=> Longitud Asignacion: ", Asignacion.Count));
+                    }
+
+                });
+            }
         }
 
     }
-}
+
 
 
