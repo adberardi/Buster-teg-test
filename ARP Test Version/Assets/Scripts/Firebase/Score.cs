@@ -49,7 +49,7 @@ namespace ARProject.Score
             DocumentReference docRef = db.Collection("Scores").Document("prueba").Collection("test").Document();
             Dictionary<string, object> subcoll = new Dictionary<string, object>
             {
-                { "dayPlayed", DateTime.Now },
+                { "dayPlayed", DateTime.Now.ToString() },
                 { "finalScore", 14 },
                 { "finalTimer", "01:34:00" }
             };
@@ -60,21 +60,7 @@ namespace ARProject.Score
             ReadScore();
         }
 
-        public void CreateSubColeccionGroupGame()
-        {
-            //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser()).Collection("PersonalGame").Document();
-            DocumentReference docRef = db.Collection("Scores").Document("prueba").Collection("test").Document();
-            Dictionary<string, object> subcoll = new Dictionary<string, object>
-            {
-                { "dayPlayed", DateTime.Now },
-                { "finalScore", 14 },
-                { "finalTimer", "01:34:00" }
-            };
-            docRef.SetAsync(subcoll).ContinueWithOnMainThread(task =>
-            {
-                Debug.Log("Added data in the scores collection.");
-            });
-        }
+
 
         public void ReadScore()
         {
@@ -86,7 +72,7 @@ namespace ARProject.Score
 
                 DocumentSnapshot doc = task.Result;
                 Dictionary<string, object> documentDic = doc.ToDictionary();
-                Debug.Log(string.Format("user: {0}", documentDic["user"]));
+                Debug.Log(string.Format("user: {0}", documentDic["username"]));
                 Debug.Log("Read all data from the scores collection.");
             });
 
@@ -97,7 +83,7 @@ namespace ARProject.Score
                 foreach (DocumentSnapshot sub in subcoll.Documents)
                 {
                     Dictionary<string, object> data = sub.ToDictionary();
-                    Debug.Log(string.Format("     _> Subcolleccion: DAYPLAYED {0} FINALSCORE {1} FINALTIMER {2}", data["dayPlayed"], data["finalScore"], data["finalTimer"]));
+                    Debug.Log(string.Format("     _> Subcolleccion: DAYPLAYED {0} ", data["dayPlayed"]));
                 }
             });
         }

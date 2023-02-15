@@ -58,14 +58,14 @@ public class AuthManager : MonoBehaviour
        
         Debug.Log("entreeeee " );
         //Call the login coroutine passing the email and password
-        StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
+        Login(emailLoginField.text, passwordLoginField.text);
     }
 
     //Function for the register button
-    public IEnumerator RegisterButton()
+    public void RegisterButton()
     {
         SceneManager.LoadScene("Registro");
-        yield return "";
+        //yield return "";
         ////Call the register coroutine passing the email, password, and username
         //StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
@@ -80,11 +80,10 @@ public class AuthManager : MonoBehaviour
 
         
     }
-    private IEnumerator Login(string _email, string _password)
+    public void Login(string _email, string _password)
     {
         user.Login(_email, _password);
         SceneManager.LoadScene("Home");
-        yield return "";
 
     }
 

@@ -176,17 +176,16 @@ namespace ARProject.User
                 Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", documentDic["birthday"], documentDic["email"], documentDic["firstName"], documentDic["lastName"], documentDic["userName"]));
                 Email = documentDic["email"].ToString();
                 Username = documentDic["userName"].ToString();
-                Birthday = Convert.ToDateTime(documentDic["birthday"]);
+                Birthday = DateTime.Parse(documentDic["birthday"].ToString());
                 FirstName = documentDic["firstName"].ToString();
                 LastName = documentDic["lastName"].ToString();
                 Profile = documentDic["profile"].ToString();
                 Debug.Log("Read all data from the users collection.");
                 
             });
-            Group.Group group = new Group.Group(db);
-            //group.SaveGroup();
-            group.ReadGroup();
-
+            Task.Task taskGame = new Task.Task(db);
+            //taskGame.SaveTask();
+            taskGame.ReadTask();
         }
 
 
