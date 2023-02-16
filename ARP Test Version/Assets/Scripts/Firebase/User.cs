@@ -183,9 +183,9 @@ namespace ARProject.User
                 Debug.Log("Read all data from the users collection.");
                 
             });
-            Task.Task taskGame = new Task.Task(db);
-            //taskGame.SaveTask();
-            taskGame.ReadTask();
+            AchievementClass.Achievement ach = new AchievementClass.Achievement(db);
+            ach.SaveAchievement("Nuevocontenido");
+            ach.ReadAchievement("Nuevocontenido");
         }
 
 

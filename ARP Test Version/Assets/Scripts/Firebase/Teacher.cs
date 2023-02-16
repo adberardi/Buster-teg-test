@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Docente : MonoBehaviour
 {
-    private int idDocente { get; set; }
+    private string IdDocente { get; set; }
     // TODO: se debe crear primero clase Grupo y Usuario
-    private string salon { get; set; }
-    private string usuario { get; set; }
+    private string Salon { get; set; }
+    private string Usuario { get; set; }
 
     // Start is called before the first frame update
     void Start()
