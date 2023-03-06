@@ -160,10 +160,25 @@ namespace ARProject.Group
             });
         }
 
+        /*GetClassRoom: Get All participants from the Class Room */
+        public List<string> GetClassRoom(string idClassRoom, string IdUser)
+        {
+            List<string> aux = new List<string>();
+            DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
+            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                DocumentSnapshot doc = task.Result;
+                Dictionary<string, object> p = doc.ToDictionary();
+                aux = (List<string>) p["participantsGroup"];
+            });
+            Debug.Log(string.Format("Longitud List: {0}", aux.Count));
+            return aux;
+        }
+
         public void ReadSubColeccionGroupGame(string nameGame)
         {
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser());
-            DocumentReference docRef = db.Collection("GamesPlayedGroup").Document("DKxpe27YWpey5VtLnD18");
+            DocumentReference docRef = db.Collection("GamesPlayedGroup").Document(nameGame);
             Debug.Log("///VOY POR READ SCORE");
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
@@ -202,6 +217,28 @@ namespace ARProject.Group
             {
                 Debug.Log("Added data in the scores collection.");
             });
+        }
+
+        public Dictionary<string, object> GetRecord(string IdUser)
+        {
+            Dictionary<string, object> aux = new Dictionary<string, object>();
+            CollectionReference collRef = db.Collection("Scores").Document(IdUser).Collection("GamesPlayed");
+            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                QuerySnapshot query = task.Result;
+                foreach (DocumentSnapshot doc in query.Documents)
+                {
+                    Dictionary<string, object> p = doc.ToDictionary();
+                    //TODO: Completar carga de los datos.
+                    /*object data = new object()
+                    {
+                        { "datePlayed": p["datePlayed"].ToString()};
+
+                    };*/
+                }
+            });
+            Debug.Log(string.Format("Longitud List: {0}", aux.Count));
+            return aux;
         }
     }
 

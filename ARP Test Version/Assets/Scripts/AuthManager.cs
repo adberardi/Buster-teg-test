@@ -82,7 +82,7 @@ public class AuthManager : MonoBehaviour
     }
     public void Login(string _email, string _password)
     {
-        user.Login(_email, _password);
+        //user.Login(_email, _password);
         SceneManager.LoadScene("Home");
 
     }

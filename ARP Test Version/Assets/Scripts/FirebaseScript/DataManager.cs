@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Firebase.Firestore;
 using Firebase.Extensions;
-using Firebase.Database;
 using System;
 
 public class DataManager : MonoBehaviour
@@ -17,7 +16,6 @@ public class DataManager : MonoBehaviour
     [SerializeField]
     private string pathDocUser = "alovelace";
 
-    DatabaseReference reference;
     FirebaseFirestore db;
 
 
@@ -27,8 +25,6 @@ public class DataManager : MonoBehaviour
         //reference = FirebaseDatabase.DefaultInstance.RootReference;
         db = FirebaseFirestore.DefaultInstance;
     }
-
-    
 
     public void SaveData()
     {

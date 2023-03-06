@@ -16,12 +16,12 @@ namespace ARProject.User
         FirebaseAuth auth;
 
         [SerializeField]
-        FirebaseFirestore db;
+        protected FirebaseFirestore db;
         public InputField emailField;
         public InputField passwField;
 
 
-        private string IdUser { get; set; }
+        protected string IdUser { get; set; }
 
         public string Username { get; set; }
 
@@ -217,18 +217,49 @@ namespace ARProject.User
                 return true;
             return false;
         }
-    }
 
-    //Herencia
-    class Docente: User
-    {
-        public Group.Group Salon { get; set; }
-    }
+        /* GetAllClassRoom: Gets the role from the specific classrooms (Admin or Student). */
+        public string GetRoleUser(string idClassRoom)
+        {
+            DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
+            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                DocumentSnapshot doc = task.Result;
+                Dictionary<string, object> p = doc.ToDictionary();
+                if (p["admin"].ToString() == IdUser)
+                {
+                    Role = "Admin";
+                }
+                else
+                {
+                    Role = "Student";
+                }
+            });
+            return Role;
+        }
 
-    //Herencia
-    class Estudiante: User
-    {
-        public Score.Score Nota { get; set; }
+        /* GetAllClassRoom: Gets all the classrooms where the user is the administrator. */
+        public Dictionary<string, string> GetAllClassRoom()
+        {
+            Dictionary<string, string> aux = new Dictionary<string, string>();
+            CollectionReference collRef = db.Collection("Groups");
+            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+            {
+                QuerySnapshot query = task.Result;
+                foreach(DocumentSnapshot doc in query.Documents)
+                {
+                    Dictionary<string, object> p = doc.ToDictionary();
+                    if (p["admin"].ToString() == IdUser)
+                    {
+                        aux.Add(p["name"].ToString(), p["id"].ToString());
+                    }
+                }
+            });
+            Debug.Log(string.Format("Longitud List: {0}", aux.Count));
+            return aux;
+        }
+
+
     }
 
 }
