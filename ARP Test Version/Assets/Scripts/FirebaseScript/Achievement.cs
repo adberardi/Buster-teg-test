@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 namespace ARProject.AchievementClass
 {
@@ -12,14 +10,13 @@ namespace ARProject.AchievementClass
         public string GoalAch { get; set; }
         public string ImgAch { get; set; }
 
-        FirebaseFirestore db;
 
-        public Achievement(FirebaseFirestore db)
+        /*public Achievement(FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
-        public void SaveAchievement(string idAchievement)
+        /*public void SaveAchievement(string idAchievement)
         {
             DocumentReference docRef = db.Collection("Achievement").Document(idAchievement);
             Dictionary<string, object> content = new Dictionary<string, object>
@@ -33,9 +30,9 @@ namespace ARProject.AchievementClass
             {
                 Debug.Log("Se registro de manera exitosa la logro");
             });
-        }
+        }*/
 
-        public void ReadAchievement(string idAchievement)
+        /*public void ReadAchievement(string idAchievement)
         {
             DocumentReference docRef = db.Collection("Achievement").Document(idAchievement);
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -50,6 +47,6 @@ namespace ARProject.AchievementClass
 
             });
 
-        }
+        }*/
     }
 }

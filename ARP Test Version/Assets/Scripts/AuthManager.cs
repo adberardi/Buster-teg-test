@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-using Firebase.Auth;
-using Firebase.Firestore;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.User;
-
+using MongoDB.Driver;
+using System.Collections.Generic;
 
 public class AuthManager : MonoBehaviour
 {
@@ -25,10 +24,12 @@ public class AuthManager : MonoBehaviour
     public InputField passwordRegisterVerifyField;
     public Text warningRegisterText;
 
-    FirebaseAuth auth;
     private static User user;
 
-
+    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
+    public const string DATABASE_NAME = "Mercurio";
+    public MongoClient client;
+    public IMongoDatabase db;
 
 
 
@@ -42,13 +43,13 @@ public class AuthManager : MonoBehaviour
     void Start()
     {
         //auth = FirebaseAuth.DefaultInstance;
-        user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
+        client = new MongoClient(MONGO_URI);
+        db = client.GetDatabase(DATABASE_NAME);
+        user = new User(db);
     }
 
     private void InitializeFirebase()
     {
- 
-      
 
     }
 
@@ -56,9 +57,11 @@ public class AuthManager : MonoBehaviour
     public void LoginButton()
     {
        
-        Debug.Log("entreeeee " );
+        Debug.Log("entreeeee "+ emailLoginField.text+" Password: "+ passwordLoginField.text);
         //Call the login coroutine passing the email and password
-        Login(emailLoginField.text, passwordLoginField.text);
+
+
+        user.Login(emailLoginField.text, passwordLoginField.text);
     }
 
     //Function for the register button
@@ -82,6 +85,7 @@ public class AuthManager : MonoBehaviour
     }
     public void Login(string _email, string _password)
     {
+        Debug.Log("AuthManager Login");
         //user.Login(_email, _password);
         SceneManager.LoadScene("Home");
 
@@ -90,7 +94,7 @@ public class AuthManager : MonoBehaviour
 
     public void CreateUser()
     {
-        user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
+        //user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
     }
 
     //private IEnumerator Register(string _email, string _password, string _username)

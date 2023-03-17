@@ -3,66 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Firebase.Auth;
-using Firebase.Firestore;
-using Firebase.Extensions;
 using System;
-
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ARProject.User
 {
     class User
     {
-        FirebaseAuth auth;
 
         [SerializeField]
-        protected FirebaseFirestore db;
+        //protected FirebaseFirestore db;
         public InputField emailField;
         public InputField passwField;
 
+        [MongoDB.Bson.Serialization.Attributes.BsonId]
+        public ObjectId _id { get; set; }
 
-        protected string IdUser { get; set; }
-
-        public string Username { get; set; }
-
+        public string UserName { get; set; }
         public string Password { get; set; }
-
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
         public string Email { get; set; }
-
-        public DateTime Birthday { get; set; }
-
+        public string Birthday { get; set; }
         public string Role { get; set; }
-
         public string Profile { get; set; }
+        public bool StatusOnline { get; set; }
 
-        public User (FirebaseAuth auth, InputField emailField, InputField passwField)
+        public IMongoDatabase db;
+
+        /*public User (FirebaseAuth auth, InputField emailField, InputField passwField)
         {
             this.auth = auth;
             this.emailField = emailField;
             this.passwField = passwField;
-        }
+        }*/
 
-        public User ()
+        public User (IMongoDatabase db)
         {
-
+            this.db = db;
         }
 
-        public User (FirebaseAuth auth, FirebaseFirestore db)
+        /*public User (FirebaseAuth auth, IMongoDatabase db)
         {
             this.auth = auth;
             this.db = db;
-        }
+        }*/
 
         public void ChangeScene(int index)
         {
             SceneManager.LoadScene(index);
         }
 
-        public void CreateUser(string emailField, string usernameField, string passwField, string firstnameField, string lastnameField)
+        /*public void CreateUser(string emailField, string usernameField, string passwField, string firstnameField, string lastnameField)
         {
 
             auth.CreateUserWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
@@ -90,35 +83,30 @@ namespace ARProject.User
                 Profile = "Ruta Imagen Perfil";
                 SaveSessionDataUser();
                 SaveUser();
-                Score.Score aux = new Score.Score(db);
-                aux.SaveScore();
             });
-        }
+        }*/
 
         public void Login(string emailField, string passwField)
         {
+
             if (ValidateInputFieldsLogin(emailField, passwField))
             {
-                auth.SignInWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
-                    if (task.IsCanceled)
+                try
+                {
+                    IMongoCollection<User> userCollection = db.GetCollection<User>("User");
+                    List<User> userModelList = userCollection.Find(user => true).ToList();
+                    User credential = userModelList[0];
+                    if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
                     {
-                        Debug.LogError("SignInWithEmailAndPasswordAsync was canceled.");
-                        return;
+                        //IdUser = userModelList[0]._id;
+                        SaveSessionDataUser(credential._id);
+                        ChangeScene(1);
                     }
-                    if (task.IsFaulted)
-                    {
-                        Debug.LogError("SignInWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                        return;
-                    }
-
-                    FirebaseUser userSignedUp = task.Result;
-                    Debug.LogFormat("User signed in successfully: {0} ({1})",
-                        userSignedUp.DisplayName, userSignedUp.UserId);
-                    IdUser = userSignedUp.UserId;
-                    SaveSessionDataUser();
-                    ChangeScene(1);
-                    ReadUser();
-                });
+                }
+                catch(MongoException)
+                {
+                    Debug.Log("USUARIO NO EXISTE O PASSWORD CREDENCIALES NO EXISTEN");
+                }
             }
             else
             {
@@ -129,14 +117,15 @@ namespace ARProject.User
 
         public void Logout()
         {
-            auth.SignOut();
+            //auth.SignOut();
+            StatusOnline = false;
             ChangeScene(0);
         }
 
 
         public void SaveUser()
         {
-            DocumentReference docRef = db.Collection("Users").Document(IdUser);
+ /*           DocumentReference docRef = db.Collection("Users").Document(IdUser);
             Dictionary<string, object> user = new Dictionary<string, object>
         {
                 { "birthday", DateTime.Now },
@@ -150,11 +139,12 @@ namespace ARProject.User
             {
                 Debug.Log("Added data to the alovelace document in the users collection.");
             });
+            */
         }
 
         public async System.Threading.Tasks.Task UpdateUserAsync()
         {
-            DocumentReference cityRef = db.Collection("Users").Document(GetSessionDataUser());
+ /*           DocumentReference cityRef = db.Collection("Users").Document(GetSessionDataUser());
             Dictionary<string, object> updates = new Dictionary<string, object>
             {
                 { "email", "Solo probando" }
@@ -162,13 +152,14 @@ namespace ARProject.User
             await cityRef.UpdateAsync(updates);
 
             // You can also update a single field with: await cityRef.UpdateAsync("Capital", false);
+            */
         }
 
 
         public void ReadUser()
         {
             Debug.Log("ENTRANDO EN READUSER");
-            DocumentReference docRef = db.Collection("Users").Document(GetSessionDataUser());
+/*            DocumentReference docRef = db.Collection("Users").Document(GetSessionDataUser());
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
                 DocumentSnapshot doc = task.Result;
@@ -186,12 +177,14 @@ namespace ARProject.User
             AchievementClass.Achievement ach = new AchievementClass.Achievement(db);
             ach.SaveAchievement("Nuevocontenido");
             ach.ReadAchievement("Nuevocontenido");
+            */
         }
 
 
-        public void SaveSessionDataUser()
+        public void SaveSessionDataUser(ObjectId IdUser)
         {
-            PlayerPrefs.SetString("IDUser", IdUser);
+            PlayerPrefs.SetString("IDUser", IdUser.ToString());
+            StatusOnline = true;
         }
 
         public string GetSessionDataUser()
@@ -221,7 +214,8 @@ namespace ARProject.User
         /* GetAllClassRoom: Gets the role from the specific classrooms (Admin or Student). */
         public string GetRoleUser(string idClassRoom)
         {
-            DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
+            return "";
+            /*DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
             collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
                 DocumentSnapshot doc = task.Result;
@@ -235,14 +229,17 @@ namespace ARProject.User
                     Role = "Student";
                 }
             });
+            Debug.Log("GetRoleUser: " + Role);
             return Role;
+            */
         }
 
         /* GetAllClassRoom: Gets all the classrooms where the user is the administrator. */
         public Dictionary<string, string> GetAllClassRoom()
         {
             Dictionary<string, string> aux = new Dictionary<string, string>();
-            CollectionReference collRef = db.Collection("Groups");
+            return null;
+            /*CollectionReference collRef = db.Collection("Groups");
             collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
                 QuerySnapshot query = task.Result;
@@ -255,8 +252,9 @@ namespace ARProject.User
                     }
                 }
             });
-            Debug.Log(string.Format("Longitud List: {0}", aux.Count));
+            Debug.Log(string.Format("GetAllClassRoom: Longitud List: {0}", aux.Count));
             return aux;
+            */
         }
 
 

@@ -1,22 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 namespace ARProject.RewardClass
 {
     class Reward
     {
         public string DescReward { get; set; }
-        FirebaseFirestore db;
 
-        public Reward(FirebaseFirestore db)
+        /*public Reward(FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
-        public void SaveContent(string idReward)
+        /*public void SaveContent(string idReward)
         {
             DocumentReference docRef = db.Collection("Reward").Document(idReward);
             Dictionary<string, object> content = new Dictionary<string, object>
@@ -28,9 +25,9 @@ namespace ARProject.RewardClass
             {
                 Debug.Log("Se registro de manera exitosa el Content");
             });
-        }
+        }*/
 
-        public void ReadReward(string idReward)
+        /*public void ReadReward(string idReward)
         {
             DocumentReference docRef = db.Collection("Reward").Document(idReward);
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -42,6 +39,6 @@ namespace ARProject.RewardClass
                 Debug.Log(string.Format("Description Content: {0}", DescReward));
 
             });
-        }
+        }*/
     }
 }

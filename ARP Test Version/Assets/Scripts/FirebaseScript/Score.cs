@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 
 namespace ARProject.Score
@@ -12,7 +10,6 @@ namespace ARProject.Score
         private int IdRecord { get; set; }
         private string IdUser { get; set; }
         private int Nota { get; set; }
-        FirebaseFirestore db;
         // TODO: Por agregar clase Content
         private Content.Content Programa { get; set; }
 
@@ -21,12 +18,12 @@ namespace ARProject.Score
 
         }
 
-        public Score (FirebaseFirestore db)
+        /*public Score (FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
-        public void SaveScore()
+        /*public void SaveScore()
         {
             Content.Content aux = new Content.Content();
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser());
@@ -40,10 +37,10 @@ namespace ARProject.Score
                 Debug.Log("Added data in the scores collection.");
                 CreateSubColeccionPersonalGame();
             });
-        }
+        }*/
 
 
-        public void CreateSubColeccionPersonalGame()
+        /*public void CreateSubColeccionPersonalGame()
         {
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser()).Collection("PersonalGame").Document();
             DocumentReference docRef = db.Collection("Scores").Document("prueba").Collection("test").Document();
@@ -58,11 +55,11 @@ namespace ARProject.Score
                 Debug.Log("Added data in the scores collection.");
             });
             ReadScore();
-        }
+        }*/
 
 
 
-        public void ReadScore()
+       /* public void ReadScore()
         {
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser());
             DocumentReference docRef = db.Collection("Scores").Document("prueba");
@@ -86,7 +83,7 @@ namespace ARProject.Score
                     Debug.Log(string.Format("     _> Subcolleccion: DAYPLAYED {0} ", data["dayPlayed"]));
                 }
             });
-        }
+        }*/
 
     }
 }

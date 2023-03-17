@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 namespace ARProject.Task
 {
@@ -15,14 +13,13 @@ namespace ARProject.Task
         private string PercentageTask { get; set; }
         private DateTime EndDate { get; set; }
         private DateTime StartDate { get; set; }
-        FirebaseFirestore db;
 
-        public Task(FirebaseFirestore db)
+        /*public Task(FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
-        public void SaveTask()
+        /*public void SaveTask()
         {
             DocumentReference docRef = db.Collection("Task").Document("SegundaTarea");
             Dictionary<string, object> taskToAdd = new Dictionary<string, object>
@@ -38,9 +35,9 @@ namespace ARProject.Task
             {
                 Debug.Log("Added data in the task collection.");
             });
-        }
+        }*/
 
-        public async System.Threading.Tasks.Task UpdateTaskAsync()
+        /*public async System.Threading.Tasks.Task UpdateTaskAsync()
         {
             DocumentReference taskRef = db.Collection("Task").Document("PrimeraTarea");
             Dictionary<string, object> updates = new Dictionary<string, object>
@@ -48,9 +45,9 @@ namespace ARProject.Task
                 { "pointTask", 15 }
             };
             await taskRef.UpdateAsync(updates);
-        }
+        }*/
 
-        public void ReadTask()
+        /*public void ReadTask()
         {
             Debug.Log("ENTRANDO EN READTASK");
             DocumentReference docRef = db.Collection("Task").Document("PrimeraTarea");
@@ -68,7 +65,7 @@ namespace ARProject.Task
                 Debug.Log("Read all data from the Task collection.");
 
             });
-        }
+        }*/
     }
 }
 

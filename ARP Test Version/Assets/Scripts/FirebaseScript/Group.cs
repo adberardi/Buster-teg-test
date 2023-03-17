@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 namespace ARProject.Group
 {
@@ -20,16 +18,14 @@ namespace ARProject.Group
 
         private string FinalTimer { get; set; }
 
-        private FirebaseFirestore db;
-        private FirestoreError ErrorCode;
 
-        public Group(FirebaseFirestore db)
+        /*public Group(FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
 
-        public void SaveGroup(string nameGroup)
+        /*public void SaveGroup(string nameGroup)
         {
             DocumentReference docRef = db.Collection("Groups").Document(nameGroup);
             Dictionary<string, object> group = new Dictionary<string, object>
@@ -48,9 +44,9 @@ namespace ARProject.Group
             });
 
             CreateGroupGamePlayed(nameGroup);
-        }
+        }*/
 
-        public void ReadGroup()
+        /*public void ReadGroup()
         {
                 DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
                 docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -77,9 +73,9 @@ namespace ARProject.Group
                     }
 
                 });
-            }
+            }*/
 
-        public void UpdateNameGroup ()
+        /*public void UpdateNameGroup ()
         {
             DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
             Dictionary<string, object> groupUpdate = new Dictionary<string, object>
@@ -100,9 +96,9 @@ namespace ARProject.Group
                     Debug.Log("La atualizacion fue interrumpida");
                 }
             });
-        }
+        }*/
 
-        public void UpdateParticipantsGroup(List<object> member)
+        /*public void UpdateParticipantsGroup(List<object> member)
         {
             DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
             Dictionary<string, object> groupUpdate = new Dictionary<string, object>
@@ -123,14 +119,14 @@ namespace ARProject.Group
                     Debug.Log("La atualizacion fue interrumpida");
                 }
             });
-        }
+        }*/
 
         public void SendEmailNotification(ArrayList member)
         {
 
         }
 
-        public void CreateGroupGamePlayed(string nameGroup)
+        /*public void CreateGroupGamePlayed(string nameGroup)
         {
             DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
             Dictionary<string, object> group = new Dictionary<string, object>
@@ -142,9 +138,9 @@ namespace ARProject.Group
             {
                 Debug.Log("Se registro de manera exitosa el grupo");
             });
-        }
+        }*/
 
-        public void SaveSubCollectionGamePlayed(string nameGame, string idPlayer)
+        /*public void SaveSubCollectionGamePlayed(string nameGame, string idPlayer)
         {
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser()).Collection("PersonalGame").Document();
             DocumentReference docRef = db.Collection("GamesPlayedGroup").Document().Collection(nameGame).Document(idPlayer);
@@ -158,52 +154,52 @@ namespace ARProject.Group
             {
                 Debug.Log("Added data in the scores collection.");
             });
-        }
+        }*/
 
         /*GetClassRoom: Get All participants from the Class Room */
-        public List<string> GetClassRoom(string idClassRoom, string IdUser)
-        {
-            List<string> aux = new List<string>();
-            DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
-            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> p = doc.ToDictionary();
-                aux = (List<string>) p["participantsGroup"];
-            });
-            Debug.Log(string.Format("Longitud List: {0}", aux.Count));
-            return aux;
-        }
+        //public List<string> GetClassRoom(string idClassRoom, string IdUser)
+        //{
+        //    List<string> aux = new List<string>();
+        //    DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
+        //    collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        //    {
+        //        DocumentSnapshot doc = task.Result;
+        //        Dictionary<string, object> p = doc.ToDictionary();
+        //        aux = (List<string>) p["participantsGroup"];
+        //    });
+        //    Debug.Log(string.Format("Longitud List: {0}", aux.Count));
+        //    return aux;
+        //}
 
-        public void ReadSubColeccionGroupGame(string nameGame)
-        {
-            //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser());
-            DocumentReference docRef = db.Collection("GamesPlayedGroup").Document(nameGame);
-            Debug.Log("///VOY POR READ SCORE");
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
+        //public void ReadSubColeccionGroupGame(string nameGame)
+        //{
+        //    //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser());
+        //    DocumentReference docRef = db.Collection("GamesPlayedGroup").Document(nameGame);
+        //    Debug.Log("///VOY POR READ SCORE");
+        //    docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        //    {
 
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> documentDic = doc.ToDictionary();
-                Debug.Log(string.Format("user: {0}", documentDic["username"]));
-                Debug.Log("Read all data from the scores collection.");
-            });
+        //        DocumentSnapshot doc = task.Result;
+        //        Dictionary<string, object> documentDic = doc.ToDictionary();
+        //        Debug.Log(string.Format("user: {0}", documentDic["username"]));
+        //        Debug.Log("Read all data from the scores collection.");
+        //    });
 
-            CollectionReference subcollRef = docRef.Collection(nameGame);
-            subcollRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                QuerySnapshot subcoll = task.Result;
-                foreach (DocumentSnapshot sub in subcoll.Documents)
-                {
-                    Dictionary<string, object> data = sub.ToDictionary();
-                    Debug.Log(string.Format("     _> Subcolleccion: DAYPLAYED {0} ", data["dayPlayed"]));
-                }
-            });
+        //    CollectionReference subcollRef = docRef.Collection(nameGame);
+        //    subcollRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+        //    {
+        //        QuerySnapshot subcoll = task.Result;
+        //        foreach (DocumentSnapshot sub in subcoll.Documents)
+        //        {
+        //            Dictionary<string, object> data = sub.ToDictionary();
+        //            Debug.Log(string.Format("     _> Subcolleccion: DAYPLAYED {0} ", data["dayPlayed"]));
+        //        }
+        //    });
 
 
-        }
+        //}
 
-        public void UpdateSubColeccionGroupGame()
+        /*public void UpdateSubColeccionGroupGame()
         {
             //DocumentReference docRef = db.Collection("Scores").Document(new User.User().GetSessionDataUser()).Collection("PersonalGame").Document();
             DocumentReference docRef = db.Collection("GamesPlayedGroup").Document("DKxpe27YWpey5VtLnD18").Collection("SumaCasa1").Document();
@@ -217,9 +213,9 @@ namespace ARProject.Group
             {
                 Debug.Log("Added data in the scores collection.");
             });
-        }
+        }*/
 
-        public Dictionary<string, object> GetRecord(string IdUser)
+        /*public Dictionary<string, object> GetRecord(string IdUser)
         {
             Dictionary<string, object> aux = new Dictionary<string, object>();
             CollectionReference collRef = db.Collection("Scores").Document(IdUser).Collection("GamesPlayed");
@@ -234,12 +230,12 @@ namespace ARProject.Group
                     {
                         { "datePlayed": p["datePlayed"].ToString()};
 
-                    };*/
+                    };
                 }
             });
             Debug.Log(string.Format("Longitud List: {0}", aux.Count));
             return aux;
-        }
+        }*/
     }
 
     }

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
-using Firebase.Extensions;
 
 namespace ARProject.Content
 {
@@ -14,19 +12,17 @@ namespace ARProject.Content
         private string LevelContent { get; set; }
         private string GradeContent { get; set; }
 
-        private FirebaseFirestore db;
-
         public Content()
         {
 
         }
 
-        public Content(FirebaseFirestore db)
+        /*public Content(FirebaseFirestore db)
         {
             this.db = db;
-        }
+        }*/
 
-        public void SaveContent(string idContent)
+        /*public void SaveContent(string idContent)
         {
             DocumentReference docRef = db.Collection("Content").Document(idContent);
             Dictionary<string, object> content = new Dictionary<string, object>
@@ -41,9 +37,9 @@ namespace ARProject.Content
             {
                 Debug.Log("Se registro de manera exitosa el Content");
             });
-        }
+        }*/
 
-        public void ReadContent(string idContent)
+        /*public void ReadContent(string idContent)
         {
             DocumentReference docRef = db.Collection("Content").Document(idContent);
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -59,9 +55,9 @@ namespace ARProject.Content
 
             });
 
-        }
+        }*/
 
-        public Dictionary<string, string> GetContent()
+        /*public Dictionary<string, string> GetContent()
         {
             return new Dictionary<string, string>
             {
@@ -69,7 +65,7 @@ namespace ARProject.Content
                 { "level", "1"},
                 { "titleContent", "Matematica"},
             };
-        }
+        }*/
     }
 }
 

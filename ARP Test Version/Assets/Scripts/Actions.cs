@@ -4,23 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.User;
-using Firebase.Auth;
-using Firebase.Firestore;
+using MongoDB.Driver;
 
 public class Actions : MonoBehaviour
 {
-    FirebaseAuth auth;
     public InputField email;
     public InputField passw;
     public InputField userName;
     public InputField firstName;
     public InputField lastName;
     private static User user;
+    public IMongoDatabase db;
     // Start is called before the first frame update
     void Start()
     {
         //auth = FirebaseAuth.DefaultInstance;
-       user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
+       //user = new User(FirebaseAuth.DefaultInstance, db);
     }
 
     // Update is called once per frame
@@ -36,13 +35,13 @@ public class Actions : MonoBehaviour
 
     public void CreateUser()
     {
-        user.CreateUser(email.text, "userName.text", passw.text, "firstName.text", "lastName.text");
+        //user.CreateUser(email.text, "userName.text", passw.text, "firstName.text", "lastName.text");
     }
 
     public void Login()
     {
         
-        user.Login(email.text, passw.text);
+        //user.Login(email.text, passw.text);
     }
 
     public void Logout()
