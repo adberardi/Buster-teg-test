@@ -143,9 +143,9 @@ public class DivisionController : MonoBehaviour
                 answer["middle"] = question.ToString();
 
 
-                aux["top"] = Random.Range(seed, 10) * factor1;
+                aux["top"] = Random.Range(seed, 10) / factor1;
                 aux["mid"] = question;
-                aux["bot"] = Random.Range(1, seed) * factor2;
+                aux["bot"] = Random.Range(1, seed) / factor2;
 
 
                 if (aux["mid"] == aux["top"])
@@ -160,8 +160,8 @@ public class DivisionController : MonoBehaviour
             case "BottomIsland":
                 responseCorrect = option;
                 answer["bottom"] = question.ToString();
-                aux["top"] = Random.Range(seed, 10) * factor1;
-                aux["mid"] = Random.Range(1, seed) * factor2;
+                aux["top"] = Random.Range(seed, 10) / factor1;
+                aux["mid"] = Random.Range(1, seed) / factor2;
                 aux["bot"] = question;
 
 
@@ -183,8 +183,8 @@ public class DivisionController : MonoBehaviour
         seed = Random.Range(0, 10);
         factor1 = Random.Range(seed, 10);
         factor2 = Random.Range(factor1, 10);
-        question = factor1 * factor2;
-        answer["operation"] = factor1.ToString() + "x" + factor2.ToString();
+        question = factor1 / factor2;
+        answer["operation"] = factor1.ToString() + "/" + factor2.ToString();
         AssignValuesToIsland();
     }
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using MongoDB.Driver;
 
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
-   
+
     //Login variables
     [Header("Login")]
     public InputField emailLoginField;
@@ -24,56 +26,88 @@ public class AuthManager : MonoBehaviour
     public Text warningRegisterText;
 
 
- 
+    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
+    public const string DATABASE_NAME = "Mercurio";
+    public MongoClient client;
+    public IMongoDatabase db;
 
 
-
-   
     void Awake()
     {
-       
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+
+
+
+        //auth = FirebaseAuth.DefaultInstance;
+        //user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
     }
 
     private void InitializeFirebase()
     {
- 
-      
+
+
 
     }
 
     //Function for the login button
     public void LoginButton()
     {
-       
-        Debug.Log("entreeeee " );
+
+        Debug.Log("entreeeee " + emailLoginField.text + " Password: " + passwordLoginField.text);
+        client = new MongoClient(MONGO_URI);
+        db = client.GetDatabase(DATABASE_NAME);
+        IMongoCollection<User> userCollection = db.GetCollection<User>("usuario");
+        List<User> userModelList = userCollection.Find(user => true).ToList();
+
+        Debug.Log("conexion_ ");
+        Debug.Log("datos extaridos:"+ userModelList[0].Name);
+
+
+
         //Call the login coroutine passing the email and password
-        StartCoroutine(Login(emailLoginField.text, passwordLoginField.text));
+        //user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
+        //user.Login(emailLoginField.text, passwordLoginField.text);
+        SceneManager.LoadScene("Home");
+        //Login(emailLoginField.text, passwordLoginField.text);
     }
+
     //Function for the register button
-    public IEnumerator RegisterButton()
+    public void RegisterButton()
     {
         SceneManager.LoadScene("Registro");
-        yield return "";
+        //yield return "";
         ////Call the register coroutine passing the email, password, and username
         //StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
 
-    
+
 
 
     //Function for the save button
     public void SaveDataButton()
     {
-       
 
-        
+
+
     }
-    private IEnumerator Login(string _email, string _password)
+    public void Login(string _email, string _password)
     {
-      
-            SceneManager.LoadScene("home");
-        yield return "";
+        Debug.Log("AuthManager Login");
+      //  user.Login(_email, _password);
+        SceneManager.LoadScene("Home");
 
+    }
+
+
+    public void CreateUser()
+    {
+       // user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
     }
 
     //private IEnumerator Register(string _email, string _password, string _username)

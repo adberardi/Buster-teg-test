@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puntuajes.unity
     guid: 63ace8143cacd4647ae1bfc5850b6651
+  - enabled: 1
+    path: Assets/Scenes/MenuGrupos.unity
+    guid: 5daf4cce36d5883419c01235f6b33e86
   m_configObjects: {}
