@@ -26,8 +26,6 @@ public class AuthManager : MonoBehaviour
 
     private static User user;
 
-    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
-    public const string DATABASE_NAME = "Mercurio";
     public MongoClient client;
     public IMongoDatabase db;
 
@@ -42,15 +40,7 @@ public class AuthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //auth = FirebaseAuth.DefaultInstance;
-        client = new MongoClient(MONGO_URI);
-        db = client.GetDatabase(DATABASE_NAME);
-        user = new User(db);
-    }
-
-    private void InitializeFirebase()
-    {
-
+        user = new User();
     }
 
     //Function for the login button
@@ -58,9 +48,6 @@ public class AuthManager : MonoBehaviour
     {
        
         Debug.Log("entreeeee "+ emailLoginField.text+" Password: "+ passwordLoginField.text);
-        //Call the login coroutine passing the email and password
-
-
         user.Login(emailLoginField.text, passwordLoginField.text);
     }
 
@@ -94,7 +81,17 @@ public class AuthManager : MonoBehaviour
 
     public void CreateUser()
     {
-        //user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
+        //if (passwordRegisterField.text == passwordRegisterVerifyField.text)
+        if (passwordRegisterField.text == "123456789")
+        {
+            User newUser = new User(usernameRegisterField.text, emailRegisterField.text, passwordRegisterField.text);
+            user.CreateUser(newUser);
+        }
+        else
+        {
+            Debug.Log("Las contrasenas no coinciden");
+        }
+        SceneManager.LoadScene("Login");
     }
 
     //private IEnumerator Register(string _email, string _password, string _username)

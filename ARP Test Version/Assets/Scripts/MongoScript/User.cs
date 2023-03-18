@@ -12,11 +12,6 @@ namespace ARProject.User
     class User
     {
 
-        [SerializeField]
-        //protected FirebaseFirestore db;
-        public InputField emailField;
-        public InputField passwField;
-
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
 
@@ -26,65 +21,53 @@ namespace ARProject.User
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Birthday { get; set; }
-        public string Role { get; set; }
+        //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
 
-        public IMongoDatabase db;
-
-        /*public User (FirebaseAuth auth, InputField emailField, InputField passwField)
+        public User (string usernameField, string emailField, string passwField)
         {
-            this.auth = auth;
-            this.emailField = emailField;
-            this.passwField = passwField;
-        }*/
-
-        public User (IMongoDatabase db)
-        {
-            this.db = db;
+            UserName = usernameField;
+            Email = emailField;
+            Password= passwField;
+            Profile = "Default";
+            StatusOnline = false;
+            Birthday = DateTime.Now.ToString();
+            FirstName = "Dora";
+            LastName = "Rodriguez";
         }
 
-        /*public User (FirebaseAuth auth, IMongoDatabase db)
+        private MongoClient _client;
+
+        public User()
         {
-            this.auth = auth;
-            this.db = db;
-        }*/
+            _client = MongoDBManager.GetClient();
+        }
+
+        public IMongoCollection<User> GetCollection()
+        {
+            var db = _client.GetDatabase("Mercurio");
+            return db.GetCollection<User>("User");
+        }
 
         public void ChangeScene(int index)
         {
             SceneManager.LoadScene(index);
         }
 
-        /*public void CreateUser(string emailField, string usernameField, string passwField, string firstnameField, string lastnameField)
+        public void CreateUser(User newUser)
         {
-
-            auth.CreateUserWithEmailAndPasswordAsync(emailField, passwField).ContinueWith(task => {
-                if (task.IsCanceled)
-                {
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
-                    return;
-                }
-
-                // Firebase user has been created.
-                FirebaseUser newUser = task.Result;
-                Debug.LogFormat("Firebase user created successfully: {0} ({1})",
-                    newUser.DisplayName, newUser.UserId);
-                IdUser = newUser.UserId;
-                //Username = usernameField;
-                Email = emailField;
-                Username = "Pepito123";
-                FirstName = "Jaimito";
-                LastName = "Perez";
-                Profile = "Ruta Imagen Perfil";
-                SaveSessionDataUser();
-                SaveUser();
-            });
-        }*/
+            Debug.LogFormat("Firebase user created successfully: {0} ({1})", newUser.UserName, newUser._id);
+            //_id = newUser._id;
+            UserName = newUser.UserName;
+            Email = newUser.Email;
+            FirstName =newUser.FirstName;
+            LastName = newUser.LastName;
+            Profile = newUser.Profile;
+            Birthday = newUser.Birthday;
+            User registerUser = new User();
+            registerUser.GetCollection().InsertOne(newUser);
+        }
 
         public void Login(string emailField, string passwField)
         {
@@ -93,7 +76,7 @@ namespace ARProject.User
             {
                 try
                 {
-                    IMongoCollection<User> userCollection = db.GetCollection<User>("User");
+                    IMongoCollection<User> userCollection = GetCollection();
                     List<User> userModelList = userCollection.Find(user => true).ToList();
                     User credential = userModelList[0];
                     if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
@@ -102,10 +85,14 @@ namespace ARProject.User
                         SaveSessionDataUser(credential._id);
                         ChangeScene(1);
                     }
+                    else
+                    {
+                        Debug.Log("USUARIO NO EXISTE O CREDENCIALES NO COINCIDEN");
+                    }
                 }
-                catch(MongoException)
+                catch(MongoExecutionTimeoutException)
                 {
-                    Debug.Log("USUARIO NO EXISTE O PASSWORD CREDENCIALES NO EXISTEN");
+                    Debug.Log("TIEMPO AGOTADO DE ESPERA - ERROR DE CONEXION");
                 }
             }
             else
@@ -122,62 +109,47 @@ namespace ARProject.User
             ChangeScene(0);
         }
 
-
-        public void SaveUser()
+        //Almacena los cambios datos de un usuario en especifico
+        public async void SaveUser(string IdUser, string newFirstName)
         {
- /*           DocumentReference docRef = db.Collection("Users").Document(IdUser);
-            Dictionary<string, object> user = new Dictionary<string, object>
-        {
-                { "birthday", DateTime.Now },
-                { "email", emailField },
-                { "firstName", FirstName },
-                { "lastName", LastName },
-                { "userName", Username},
-                { "profile", Profile }
-        };
-            docRef.SetAsync(user).ContinueWithOnMainThread(task =>
+            try
             {
-                Debug.Log("Added data to the alovelace document in the users collection.");
-            });
-            */
-        }
+                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(IdUser));
+                var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName);
+                IMongoCollection<User> userCollection = GetCollection();
+                var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
 
-        public async System.Threading.Tasks.Task UpdateUserAsync()
-        {
- /*           DocumentReference cityRef = db.Collection("Users").Document(GetSessionDataUser());
-            Dictionary<string, object> updates = new Dictionary<string, object>
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("La operacion resulto exitosa");
+                }
+                else
+                {
+                    Debug.Log("La operacion fallo");
+                }
+            }
+            catch(MongoException)
             {
-                { "email", "Solo probando" }
-            };
-            await cityRef.UpdateAsync(updates);
-
-            // You can also update a single field with: await cityRef.UpdateAsync("Capital", false);
-            */
+                Debug.Log("Un error ha ocurrido");
+            }
         }
 
 
         public void ReadUser()
         {
             Debug.Log("ENTRANDO EN READUSER");
-/*            DocumentReference docRef = db.Collection("Users").Document(GetSessionDataUser());
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> documentDic = doc.ToDictionary();
-                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", documentDic["birthday"], documentDic["email"], documentDic["firstName"], documentDic["lastName"], documentDic["userName"]));
-                Email = documentDic["email"].ToString();
-                Username = documentDic["userName"].ToString();
-                Birthday = DateTime.Parse(documentDic["birthday"].ToString());
-                FirstName = documentDic["firstName"].ToString();
-                LastName = documentDic["lastName"].ToString();
-                Profile = documentDic["profile"].ToString();
+            IMongoCollection<User> docRef = GetCollection();
+            //IMongoCollection<User> userCollection = GetCollection();
+            List<User> userModelList = docRef.Find(user => true).ToList();
+            User credential = userModelList[0];
+                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
+                Email = credential.Email;
+                UserName = credential.UserName;
+                Birthday = credential.Birthday;
+                FirstName = credential.FirstName;
+                LastName = credential.LastName;
+                Profile = credential.Profile;
                 Debug.Log("Read all data from the users collection.");
-                
-            });
-            AchievementClass.Achievement ach = new AchievementClass.Achievement(db);
-            ach.SaveAchievement("Nuevocontenido");
-            ach.ReadAchievement("Nuevocontenido");
-            */
         }
 
 

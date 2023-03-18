@@ -409,7 +409,7 @@ PrefabInstance:
     - target: {fileID: 114006663463390892, guid: 97c55bc5d7c184901bdaf95ada5b655c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114006663463390892, guid: 97c55bc5d7c184901bdaf95ada5b655c,
         type: 3}
@@ -420,11 +420,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1261968152}
+      objectReference: {fileID: 226664349}
     - target: {fileID: 114006663463390892, guid: 97c55bc5d7c184901bdaf95ada5b655c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: CreateUser
       objectReference: {fileID: 0}
     - target: {fileID: 114006663463390892, guid: 97c55bc5d7c184901bdaf95ada5b655c,
         type: 3}
@@ -482,9 +482,9 @@ MonoBehaviour:
   passwordLoginField: {fileID: 617283655}
   warningLoginText: {fileID: 0}
   confirmLoginText: {fileID: 0}
-  usernameRegisterField: {fileID: 0}
-  emailRegisterField: {fileID: 0}
-  passwordRegisterField: {fileID: 0}
+  usernameRegisterField: {fileID: 1068240440}
+  emailRegisterField: {fileID: 1373885284}
+  passwordRegisterField: {fileID: 617283655}
   passwordRegisterVerifyField: {fileID: 0}
   warningRegisterText: {fileID: 0}
 --- !u!4 &226664350
@@ -1319,6 +1319,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1068240440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+    type: 3}
+  m_PrefabInstance: {fileID: 1195278730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 575553740, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160490919
 GameObject:
   m_ObjectHideFlags: 0
