@@ -140,16 +140,15 @@ namespace ARProject.User
             Debug.Log("ENTRANDO EN READUSER");
             IMongoCollection<User> docRef = GetCollection();
             //IMongoCollection<User> userCollection = GetCollection();
-            List<User> userModelList = docRef.Find(user => true).ToList();
-            User credential = userModelList[0];
-                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
-                Email = credential.Email;
-                UserName = credential.UserName;
-                Birthday = credential.Birthday;
-                FirstName = credential.FirstName;
-                LastName = credential.LastName;
-                Profile = credential.Profile;
-                Debug.Log("Read all data from the users collection.");
+            User credential = docRef.Find(task => task._id.ToString() == GetSessionDataUser()).ToList()[0];
+            Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
+            Email = credential.Email;
+            UserName = credential.UserName;
+            Birthday = credential.Birthday;
+            FirstName = credential.FirstName;
+            LastName = credential.LastName;
+            Profile = credential.Profile;
+            Debug.Log("Read all data from the users collection.");
         }
 
 
