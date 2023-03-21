@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MongoDB.Driver;
-
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using ARProject.User;
+using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
 
 public class AuthManager : MonoBehaviour
 {
@@ -24,12 +25,12 @@ public class AuthManager : MonoBehaviour
     public InputField passwordRegisterField;
     public InputField passwordRegisterVerifyField;
     public Text warningRegisterText;
+    public GameObject WarningBackground;
+    private static User user;
 
-
-    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
-    public const string DATABASE_NAME = "Mercurio";
     public MongoClient client;
     public IMongoDatabase db;
+
 
 
     void Awake()
@@ -37,69 +38,42 @@ public class AuthManager : MonoBehaviour
 
     }
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
-        
-
-
-
-        //auth = FirebaseAuth.DefaultInstance;
-        //user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
-    }
-
-    private void InitializeFirebase()
-    {
-
-
-
+        user = new User();
     }
 
     //Function for the login button
     public void LoginButton()
     {
-
-        Debug.Log("entreeeee " + emailLoginField.text + " Password: " + passwordLoginField.text);
-        client = new MongoClient(MONGO_URI);
-        db = client.GetDatabase(DATABASE_NAME);
-        IMongoCollection<User> userCollection = db.GetCollection<User>("usuario");
-        List<User> userModelList = userCollection.Find(user => true).ToList();
-
-        Debug.Log("conexion_ ");
-        Debug.Log("datos extaridos:"+ userModelList[0].Name);
-
-
-
-        //Call the login coroutine passing the email and password
-        //user = new User(FirebaseAuth.DefaultInstance, FirebaseFirestore.DefaultInstance);
-        //user.Login(emailLoginField.text, passwordLoginField.text);
-        SceneManager.LoadScene("Home");
-        //Login(emailLoginField.text, passwordLoginField.text);
+       
+        Debug.Log("entreeeee "+ emailLoginField.text+" Password: "+ passwordLoginField.text);
+        user.Login(emailLoginField.text, passwordLoginField.text);
     }
 
     //Function for the register button
     public void RegisterButton()
     {
         SceneManager.LoadScene("Registro");
-        //yield return "";
-        ////Call the register coroutine passing the email, password, and username
-        //StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
 
 
 
 
     //Function for the save button
-    public void SaveDataButton()
+    public void CloseWarning()
     {
-
+        WarningBackground.SetActive(false);
 
 
     }
     public void Login(string _email, string _password)
     {
         Debug.Log("AuthManager Login");
-      //  user.Login(_email, _password);
+        //user.Login(_email, _password);
         SceneManager.LoadScene("Home");
 
     }
@@ -107,127 +81,72 @@ public class AuthManager : MonoBehaviour
 
     public void CreateUser()
     {
-       // user.CreateUser(emailRegisterField.text, "usernameRegisterField", passwordRegisterField.text, "firstName.text", "lastName.text");
+        string password = passwordRegisterField.text;
+
+        if (ValidatePassword(password))
+        {
+            if (ValidateEmail(emailRegisterField.text))
+            {
+                User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password);
+                user.CreateUser(newUser);
+
+                SceneManager.LoadScene("Login");
+            }
+            else
+            {
+                warningRegisterText.text = "La dirección de correo electrónico no es válida. Asegúrese de que la dirección de correo electrónico esté en el formato correcto (ejemplo@ejemplo.com).";
+                WarningBackground.SetActive(true);
+            }
+        }
+        else
+        {
+            warningRegisterText.text = "La contraseña no cumple con los requisitos mínimos. Asegúrese de que la contraseña tenga al menos 8 caracteres, contenga al menos un número, una letra mayúscula y una letra minúscula.";
+            WarningBackground.SetActive(true);
+        }
+
     }
 
-    //private IEnumerator Register(string _email, string _password, string _username)
-    //{
-    //    if (_username == "")
-    //    {
-    //        //If the username field is blank show a warning
-    //        warningRegisterText.text = "Missing Username";
-    //    }
-    //    else if(passwordRegisterField.text != passwordRegisterVerifyField.text)
-    //    {
-    //        //If the password does not match show a warning
-    //        warningRegisterText.text = "Password Does Not Match!";
-    //    }
-    //    else 
-    //    {
-    //        //Call the Firebase auth signin function passing the email and password
-    //        var RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
-    //        //Wait until the task completes
-    //        yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
+    public bool ValidateEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+    public bool ValidatePassword(string password)
+    {
+        // Requerir una longitud mínima de 8 caracteres
+        if (password.Length < 8)
+        {
+            return false;
+        }
 
-    //        if (RegisterTask.Exception != null)
-    //        {
-    //            //If there are errors handle them
-    //            Debug.LogWarning(message: $"Failed to register task with {RegisterTask.Exception}");
-    //            FirebaseException firebaseEx = RegisterTask.Exception.GetBaseException() as FirebaseException;
-    //            AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+        // Requerir al menos un número
+        if (!password.Any(char.IsDigit))
+        {
+            return false;
+        }
 
-    //            string message = "Register Failed!";
-    //            switch (errorCode)
-    //            {
-    //                case AuthError.MissingEmail:
-    //                    message = "Missing Email";
-    //                    break;
-    //                case AuthError.MissingPassword:
-    //                    message = "Missing Password";
-    //                    break;
-    //                case AuthError.WeakPassword:
-    //                    message = "Weak Password";
-    //                    break;
-    //                case AuthError.EmailAlreadyInUse:
-    //                    message = "Email Already In Use";
-    //                    break;
-    //            }
-    //            warningRegisterText.text = message;
-    //        }
-    //        else
-    //        {
-    //            //User has now been created
-    //            //Now get the result
-    //            User = RegisterTask.Result;
+        // Requerir al menos una letra mayúscula
+        if (!password.Any(char.IsUpper))
+        {
+            return false;
+        }
 
-    //            if (User != null)
-    //            {
-    //                //Create a user profile and set the username
-    //                UserProfile profile = new UserProfile{DisplayName = _username};
+        // Requerir al menos una letra minúscula
+        if (!password.Any(char.IsLower))
+        {
+            return false;
+        }
 
-    //                //Call the Firebase auth update user profile function passing the profile with the username
-    //                var ProfileTask = User.UpdateUserProfileAsync(profile);
-    //                //Wait until the task completes
-    //                yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+        return true;
+    }
 
-    //                if (ProfileTask.Exception != null)
-    //                {
-    //                    //If there are errors handle them
-    //                    Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-    //                    FirebaseException firebaseEx = ProfileTask.Exception.GetBaseException() as FirebaseException;
-    //                    AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
-    //                    warningRegisterText.text = "Username Set Failed!";
-    //                }
-    //                else
-    //                {
-    //                    //Username is now set
-    //                    //Now return to login screen
-    //                    UIManager.instance.LoginScreen();
-    //                    warningRegisterText.text = "good";
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
 
-    //private IEnumerator UpdateUsernameAuth(string _username)
-    //{
-    //    //Create a user profile and set the username
-    //    UserProfile profile = new UserProfile { DisplayName = _username };
-
-    //    //Call the Firebase auth update user profile function passing the profile with the username
-    //    var ProfileTask = User.UpdateUserProfileAsync(profile);
-    //    //Wait until the task completes
-    //    yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
-
-    //    if (ProfileTask.Exception != null)
-    //    {
-    //        Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-    //    }
-    //    else
-    //    {
-    //        //Auth username is now updated
-    //    }
-    //}
-
-    //private IEnumerator UpdateUsernameDatabase(string _username)
-    //{
-    //    int oldCount = 2;
-    //    // Using Structs
-    //    Counter counter = new Counter
-    //    {
-    //        Count = oldCount + 1,
-    //        UpdatedBy = "Vikings"
-    //    };
-    //    Debug.Log("entreeeee en la funcion ");
-    //    DocumentReference countRef = db.Collection("counters").Document("counter");
-    //    countRef.SetAsync(counter).ContinueWithOnMainThread(task =>
-    //    {
-    //        Debug.Log("Updated Counter");
-    //        // GetData();
-    //    });
-
-    //    yield return "";
-    //}
 }
 

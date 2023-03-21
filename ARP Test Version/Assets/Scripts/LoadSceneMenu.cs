@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ARProject.User;
+using MongoDB.Driver;
 
 public class LoadSceneMenu : MonoBehaviour
 {
-   
+    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
+    public const string DATABASE_NAME = "Mercurio";
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,19 @@ public class LoadSceneMenu : MonoBehaviour
             MultiplicationController.current.RestartGame();
         }
 
+    }
+
+
+    public void ButtonSaveUser()
+    {
+        User user = new User();
+        user.SaveUser("6411384514070dd6d438055b","Fulanito");
+    }
+
+    public void ButtonGetProfile()
+    {
+        User user = new User();
+        user.ReadUser();
     }
 
 }
