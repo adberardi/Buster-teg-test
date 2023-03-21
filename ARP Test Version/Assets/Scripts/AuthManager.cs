@@ -7,6 +7,8 @@ using ARProject.User;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using System.Globalization;
 
 public class AuthManager : MonoBehaviour
 {
@@ -24,6 +26,7 @@ public class AuthManager : MonoBehaviour
     public InputField emailRegisterField;
     public InputField passwordRegisterField;
     public InputField passwordRegisterVerifyField;
+    public InputField birthDateRegisterField;
     public Text warningRegisterText;
     public GameObject WarningBackground;
     private static User user;
@@ -87,10 +90,18 @@ public class AuthManager : MonoBehaviour
         {
             if (ValidateEmail(emailRegisterField.text))
             {
-                User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password);
-                user.CreateUser(newUser);
+                if (ValidateBirthDate(birthDateRegisterField.text))
+                {
+                    User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password);
+                    user.CreateUser(newUser);
 
-                SceneManager.LoadScene("Login");
+                    SceneManager.LoadScene("Login");
+                }
+                else
+                {
+                    warningRegisterText.text = "La fecha de nacimiento no es válida. Asegúrese de que la fecha de nacimiento esté en el formato correcto (DD/MM/AAAA).";
+                    WarningBackground.SetActive(true);
+                }
             }
             else
             {
@@ -103,7 +114,18 @@ public class AuthManager : MonoBehaviour
             warningRegisterText.text = "La contraseña no cumple con los requisitos mínimos. Asegúrese de que la contraseña tenga al menos 8 caracteres, contenga al menos un número, una letra mayúscula y una letra minúscula.";
             WarningBackground.SetActive(true);
         }
-
+    }
+    bool ValidateBirthDate(string birthDateString)
+    {
+        DateTime birthDate;
+        if (DateTime.TryParseExact(birthDateString, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out birthDate))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public bool ValidateEmail(string email)
