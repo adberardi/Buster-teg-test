@@ -4315,9 +4315,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 344e46bb37b634774affc42a52cca42a, type: 3}
-        m_MethodName: 
-        m_Mode: 5
+      - m_Target: {fileID: 234364685}
+        m_MethodName: ButtonDeleteGroup
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

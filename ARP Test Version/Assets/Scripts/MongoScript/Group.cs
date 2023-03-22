@@ -78,6 +78,26 @@ namespace ARProject.Group
             }
         }
 
+        public async void DeleteGroup(string IdGroup)
+        {
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                var deleteFilter = Builders<Group>.Filter.Eq("_id", ObjectId.Parse(IdGroup));
+                DeleteResult result = await docRef.DeleteOneAsync(deleteFilter);
+
+                if (result.IsAcknowledged & result.DeletedCount > 0)
+                    Debug.Log("Grupo borrado exitosamente");
+                else
+                    Debug.Log("Error al borrar el grupo");
+
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Error al borrar el grupo");
+            }
+        }
+
         /*public void UpdateParticipantsGroup(List<object> member)
         {
             DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
