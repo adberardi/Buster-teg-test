@@ -10,15 +10,16 @@ namespace ARProject.Group
     class Group
     {
         [MongoDB.Bson.Serialization.Attributes.BsonId]
-        private ObjectId _id { get; set; }
-        private string NameGroup { get; set; }
-        private DateTime DateCreated { get; set; }
-        private string Admin { get; set; }
+        public ObjectId _id { get; set; }
+        public string NameGroup { get; set; }
+        public DateTime DateCreated { get; set; }
+        public string Admin { get; set; }
         // TODO: Por agregar clases Estudiante y Tarea
-        private List<object> ParticipantsGroup { get; set; }
-        private List<object> AssignedActivities { get; set; }
+        //private List<object> ParticipantsGroup { get; set; }
+        public string[] ParticipantsGroup { get; set; }
+        public string[] AssignedActivities { get; set; }
 
-        private string FinalTimer { get; set; }
+        public string FinalTimer { get; set; }
 
 
         private MongoClient _client;
@@ -26,6 +27,16 @@ namespace ARProject.Group
         public Group()
         {
             _client = MongoDBManager.GetClient();
+        }
+
+        public Group(string nameGroup, DateTime dateCreated, string admin)
+        {
+            NameGroup = nameGroup;
+            DateCreated = dateCreated;
+            Admin = admin;
+            ParticipantsGroup = new string[] { };
+            AssignedActivities = new string[] { };
+            FinalTimer = "00:00:00";
         }
 
         public IMongoCollection<Group> GetCollection()
@@ -38,6 +49,7 @@ namespace ARProject.Group
         public void CreateGroup(Group newGroup)
         {
             Group registerGroup = new Group();
+            Debug.LogFormat("Firebase user created successfully: {0}", newGroup.Admin);
             registerGroup.GetCollection().InsertOne(newGroup);
         }
 
@@ -50,8 +62,8 @@ namespace ARProject.Group
             DateCreated = credential.DateCreated;
             AssignedActivities = credential.AssignedActivities;
             ParticipantsGroup = credential.ParticipantsGroup;
-            Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
-            Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
+            //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
+            //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
             }
 
         public async void UpdateNameGroup (string IdGroup, string newNameGroup)

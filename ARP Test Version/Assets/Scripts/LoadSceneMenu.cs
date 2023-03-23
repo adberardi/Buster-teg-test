@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using ARProject.User;
 using ARProject.Group;
+using System;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 public class LoadSceneMenu : MonoBehaviour
 {
@@ -54,6 +56,12 @@ public class LoadSceneMenu : MonoBehaviour
     {
         //User user = new User();
         user.ReadUser();
+    }
+
+    public void ButtonCreateGroup()
+    {
+        Group newGroup = new Group("nameGroup", DateTime.Now, "llllll");
+        group.CreateGroup(newGroup);
     }
 
     public void ButtonDeleteGroup()
