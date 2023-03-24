@@ -179,7 +179,7 @@ namespace ARProject.User
             Debug.Log("ENTRANDO EN READUSER");
             IMongoCollection<User> docRef = GetCollection();
             //IMongoCollection<User> userCollection = GetCollection();
-            User credential = docRef.Find(task => task._id.ToString() == GetSessionDataUser()).ToList()[0];
+            User credential = docRef.Find(task => task._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
             Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
             Email = credential.Email;
             UserName = credential.UserName;
