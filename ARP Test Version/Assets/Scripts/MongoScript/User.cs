@@ -71,10 +71,17 @@ namespace ARProject.User
             registerUser.GetCollection().InsertOne(newUser);
         }
 
+        public bool PassowrdRequirements(string passw)
+        {
+            if (passw.Length >= 5)
+                return true;
+            return false;
+        }
+
         public void Login(string emailField, string passwField)
         {
 
-            if (ValidateInputFieldsLogin(emailField, passwField))
+            if (ValidateInputFieldsLogin(emailField, passwField) && PassowrdRequirements(passwField))
             {
                 try
                 {
