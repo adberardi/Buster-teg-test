@@ -24,6 +24,7 @@ namespace ARProject.User
         //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
+        //private List<ObjectId> MemberGroup { get; set; }
 
         public User (string usernameField, string emailField, string passwField)
         {
@@ -33,6 +34,7 @@ namespace ARProject.User
             Profile = "Default";
             StatusOnline = false;
             Birthday = DateTime.Now.ToString();
+            //MemberGroup = new List<ObjectId>();
             FirstName = "Dora";
             LastName = "Rodriguez";
         }
@@ -69,21 +71,33 @@ namespace ARProject.User
             registerUser.GetCollection().InsertOne(newUser);
         }
 
+        public bool PassowrdRequirements(string passw)
+        {
+            if (passw.Length >= 5)
+                return true;
+            return false;
+        }
+
         public void Login(string emailField, string passwField)
         {
 
-            if (ValidateInputFieldsLogin(emailField, passwField))
+            if (ValidateInputFieldsLogin(emailField, passwField) && PassowrdRequirements(passwField))
             {
                 try
                 {
+                    
                     IMongoCollection<User> userCollection = GetCollection();
-                    List<User> userModelList = userCollection.Find(user => true).ToList();
+                    Debug.Log("USER.LOGIN");
+                    //List<User> userModelList = userCollection.Find(user => true).ToList();
+                    List<User> userModelList = userCollection.Find(user => user.Email == emailField).ToList();
+                    
                     User credential = userModelList[0];
                     if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
                     {
                         //IdUser = userModelList[0]._id;
                         SaveSessionDataUser(credential._id);
                         ChangeScene(1);
+                       // AddToGroup(GetSessionDataUser(),new ObjectId());
                     }
                     else
                     {
@@ -109,6 +123,39 @@ namespace ARProject.User
             ChangeScene(0);
         }
 
+        public bool IsSuccessfullyOperation(UpdateResult result)
+        {
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                Debug.Log("La operacion resulto exitosa");
+                return true;
+            }
+            else
+            {
+                Debug.Log("La operacion fallo");
+                return false;
+            }
+        }
+
+        /*public async void AddToGroup(string IdUser, ObjectId newGroupId)
+        {
+            try
+            {
+                IMongoCollection<User> userCollection = GetCollection();
+                List<User> userModelList = userCollection.Find(user => true).ToList();
+                User credential = userModelList[0];
+                //credential.MemberGroup.Add(newGroupId);
+                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(IdUser));
+                var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, credential.MemberGroup);
+                var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+                IsSuccessfullyOperation(result);
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Un error ha ocurrido al agregar un nuevo grupo al estudiante");
+            }
+        }*/
+
         //Almacena los cambios datos de un usuario en especifico
         public async void SaveUser(string IdUser, string newFirstName)
         {
@@ -118,15 +165,7 @@ namespace ARProject.User
                 var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName);
                 IMongoCollection<User> userCollection = GetCollection();
                 var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
-
-                if (result.IsAcknowledged && result.ModifiedCount > 0)
-                {
-                    Debug.Log("La operacion resulto exitosa");
-                }
-                else
-                {
-                    Debug.Log("La operacion fallo");
-                }
+                IsSuccessfullyOperation(result);
             }
             catch(MongoException)
             {
@@ -140,16 +179,15 @@ namespace ARProject.User
             Debug.Log("ENTRANDO EN READUSER");
             IMongoCollection<User> docRef = GetCollection();
             //IMongoCollection<User> userCollection = GetCollection();
-            List<User> userModelList = docRef.Find(user => true).ToList();
-            User credential = userModelList[0];
-                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
-                Email = credential.Email;
-                UserName = credential.UserName;
-                Birthday = credential.Birthday;
-                FirstName = credential.FirstName;
-                LastName = credential.LastName;
-                Profile = credential.Profile;
-                Debug.Log("Read all data from the users collection.");
+            User credential = docRef.Find(task => task._id.ToString() == GetSessionDataUser()).ToList()[0];
+            Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
+            Email = credential.Email;
+            UserName = credential.UserName;
+            Birthday = credential.Birthday;
+            FirstName = credential.FirstName;
+            LastName = credential.LastName;
+            Profile = credential.Profile;
+            Debug.Log("Read all data from the users collection.");
         }
 
 

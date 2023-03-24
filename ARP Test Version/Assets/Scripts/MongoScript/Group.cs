@@ -2,101 +2,113 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ARProject.Group
 {
     class Group
     {
-        
-        private int IdGroup { get; set; }
-        private string NombreGroup { get; set; }
-        private DateTime FechaCreacion { get; set; }
-        private string Admin { get; set; }
+        [MongoDB.Bson.Serialization.Attributes.BsonId]
+        public ObjectId _id { get; set; }
+        public string NameGroup { get; set; }
+        public DateTime DateCreated { get; set; }
+        public string Admin { get; set; }
         // TODO: Por agregar clases Estudiante y Tarea
-        private List<object> Participante { get; set; }
-        private List<object> Asignacion { get; set; }
+        //private List<object> ParticipantsGroup { get; set; }
+        public string[] ParticipantsGroup { get; set; }
+        public string[] AssignedActivities { get; set; }
 
-        private string FinalTimer { get; set; }
+        public string FinalTimer { get; set; }
 
 
-        /*public Group(FirebaseFirestore db)
+        private MongoClient _client;
+
+        public Group()
         {
-            this.db = db;
-        }*/
+            _client = MongoDBManager.GetClient();
+        }
 
-
-        /*public void SaveGroup(string nameGroup)
+        public Group(string nameGroup, DateTime dateCreated, string admin)
         {
-            DocumentReference docRef = db.Collection("Groups").Document(nameGroup);
-            Dictionary<string, object> group = new Dictionary<string, object>
+            NameGroup = nameGroup;
+            DateCreated = dateCreated;
+            Admin = admin;
+            ParticipantsGroup = new string[] { };
+            AssignedActivities = new string[] { };
+            FinalTimer = "00:00:00";
+        }
+
+        public IMongoCollection<Group> GetCollection()
+        {
+            var db = _client.GetDatabase("Mercurio");
+            return db.GetCollection<Group>("Groups");
+        }
+
+
+        public void CreateGroup(Group newGroup)
+        {
+            Group registerGroup = new Group();
+            Debug.LogFormat("Firebase user created successfully: {0}", newGroup.Admin);
+            registerGroup.GetCollection().InsertOne(newGroup);
+        }
+
+        public void ReadGroup(string IdGroup)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id.ToString() == IdGroup).ToList()[0];         
+            NameGroup = credential.NameGroup;
+            Admin = credential.Admin;
+            DateCreated = credential.DateCreated;
+            AssignedActivities = credential.AssignedActivities;
+            ParticipantsGroup = credential.ParticipantsGroup;
+            //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
+            //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
+            }
+
+        public async void UpdateNameGroup (string IdGroup, string newNameGroup)
+        {
+            try
             {
-                { "admin", "8nkf5pBPwFcRhUjShQmnwmlPlyE3" },
-                { "name", "Grupo 1er grado teresiano" },
-                { "assignedActivities", new List<object>() { "Task/PrimeraTarea" } },
-                { "dateCreated",  DateTime.Now.ToString()},
-                { "participantsGroup", new List<object>() {"b72406d79978ea67095af8c75c24eac0","8nkf5pBPwFcRhUjShQmnwmlPlyE3", "8f128e1e2473092b221b2a89030b817e" } },
-
-            };
-
-            docRef.SetAsync(group).ContinueWithOnMainThread(task =>
-            {
-                Debug.Log("Se registro de manera exitosa el grupo");
-            });
-
-            CreateGroupGamePlayed(nameGroup);
-        }*/
-
-        /*public void ReadGroup()
-        {
-                DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
-                docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+                IMongoCollection<Group> docRef = GetCollection();
+                var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.NameGroup, newNameGroup);
+                IMongoCollection<Group> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
                 {
-                    if (task.IsCanceled)
-                    {
-                        Debug.Log(" La operaion ha sido cancelada");
-                    }
-                    else
-                    {
-                        DocumentSnapshot doc = task.Result;
-                        Dictionary<string, object> docGroup = doc.ToDictionary();
-                        //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2}", docGroup["admin"], docGroup["name"], docGroup["participantsGroup"].GetType()));
-
-                        Debug.Log(string.Format("> Leyendo Fecha Creacion: {0}", docGroup["dateCreated"].GetType()));
-
-                        NombreGroup = docGroup["name"].ToString();
-                        Admin = docGroup["admin"].ToString();
-                        FechaCreacion = DateTime.Parse(docGroup["dateCreated"].ToString());
-                        Asignacion = (List<object>)docGroup["assignedActivities"];
-                        Participante = (List<object>)docGroup["participantsGroup"];
-                        Debug.Log(string.Format("=> Longitud Asignacion: {0}", Participante.Count));
-                        Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | FechaCreacion {3} | Asignacion {4}", Admin, NombreGroup, Participante.Count, FechaCreacion, Asignacion.Count));
-                    }
-
-                });
-            }*/
-
-        /*public void UpdateNameGroup ()
-        {
-            DocumentReference docRef = db.Collection("Groups").Document(new User.User().GetSessionDataUser());
-            Dictionary<string, object> groupUpdate = new Dictionary<string, object>
-            {
-                { "name", "Nuevo Nombre Grupo"}
-            };
-
-            docRef.UpdateAsync(groupUpdate).ContinueWithOnMainThread(task =>
-            {
-                if (task.IsCompleted)
-                    Debug.Log("Atualizacion de nombre para grupo completada");
-                else if (task.IsCanceled)
-                {
-                    Debug.Log("La atualizacion fue cancelada");
+                    Debug.Log("Operacion completada");
                 }
                 else
                 {
-                    Debug.Log("La atualizacion fue interrumpida");
+                    Debug.Log("Operacion Fallida");
                 }
-            });
-        }*/
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
+            }
+        }
+
+        public async void DeleteGroup(string IdGroup)
+        {
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                var deleteFilter = Builders<Group>.Filter.Eq("_id", ObjectId.Parse(IdGroup));
+                DeleteResult result = await docRef.DeleteOneAsync(deleteFilter);
+
+                if (result.IsAcknowledged & result.DeletedCount > 0)
+                    Debug.Log("Grupo borrado exitosamente");
+                else
+                    Debug.Log("Error al borrar el grupo");
+
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Error al borrar el grupo");
+            }
+        }
 
         /*public void UpdateParticipantsGroup(List<object> member)
         {

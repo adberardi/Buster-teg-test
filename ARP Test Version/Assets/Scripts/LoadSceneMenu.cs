@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using ARProject.User;
+using ARProject.Group;
+using System;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 public class LoadSceneMenu : MonoBehaviour
 {
-    public const string MONGO_URI = "mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority";
-    public const string DATABASE_NAME = "Mercurio";
+    private User user;
+    private Group group;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        user = new User();
+        group = new Group();
     }
 
     // Update is called once per frame
@@ -44,14 +48,24 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void ButtonSaveUser()
     {
-        User user = new User();
+        //User user = new User();
         user.SaveUser("6411384514070dd6d438055b","Fulanito");
     }
 
     public void ButtonGetProfile()
     {
-        User user = new User();
+        //User user = new User();
         user.ReadUser();
     }
 
+    public void ButtonCreateGroup()
+    {
+        Group newGroup = new Group("nameGroup", DateTime.Now, "llllll");
+        group.CreateGroup(newGroup);
+    }
+
+    public void ButtonDeleteGroup()
+    {
+        group.DeleteGroup("641a85a533e6f58db731c316");
+    }
 }
