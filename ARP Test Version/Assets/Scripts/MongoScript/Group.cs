@@ -19,8 +19,6 @@ namespace ARProject.Group
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
 
-        public string FinalTimer { get; set; }
-
 
         private MongoClient _client;
 
@@ -36,7 +34,6 @@ namespace ARProject.Group
             Admin = admin;
             ParticipantsGroup = new string[] { };
             AssignedActivities = new string[] { };
-            FinalTimer = "00:00:00";
         }
 
         public IMongoCollection<Group> GetCollection()
@@ -49,7 +46,7 @@ namespace ARProject.Group
         public void CreateGroup(Group newGroup)
         {
             Group registerGroup = new Group();
-            Debug.LogFormat("Firebase user created successfully: {0}", newGroup.Admin);
+            Debug.LogFormat("MongoDB user created successfully: {0}", newGroup.Admin);
             registerGroup.GetCollection().InsertOne(newGroup);
         }
 

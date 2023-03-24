@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using ARProject.User;
 using ARProject.Group;
+using ARProject.Score;
 using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
@@ -12,12 +13,14 @@ public class LoadSceneMenu : MonoBehaviour
 {
     private User user;
     private Group group;
+    private Score score;
 
     // Start is called before the first frame update
     void Start()
     {
         user = new User();
         group = new Group();
+        score = new Score();
     }
 
     // Update is called once per frame
@@ -67,5 +70,16 @@ public class LoadSceneMenu : MonoBehaviour
     public void ButtonDeleteGroup()
     {
         group.DeleteGroup("641a85a533e6f58db731c316");
+    }
+
+    public void ButtonSaveScore()
+    {
+        Score newScore = new Score("6411384514070dd6d438055b", 10, new ObjectId());
+        score.SaveScore(newScore);
+    }
+
+    public void ButtonReadscore()
+    {
+        score.ReadScore(user.GetSessionDataUser());
     }
 }
