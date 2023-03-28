@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using ARProject.User;
 using ARProject.Group;
 using ARProject.Score;
+using ARProject.Task;
 using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
@@ -14,6 +15,7 @@ public class LoadSceneMenu : MonoBehaviour
     private User user;
     private Group group;
     private Score score;
+    private Task taskClass;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +23,8 @@ public class LoadSceneMenu : MonoBehaviour
         user = new User();
         group = new Group();
         score = new Score();
-    }
+        taskClass = new Task();
+}
 
     // Update is called once per frame
     void Update()
@@ -81,5 +84,14 @@ public class LoadSceneMenu : MonoBehaviour
     public void ButtonReadscore()
     {
         score.ReadScore(user.GetSessionDataUser());
+    }
+
+    public void ButtonCreateTask()
+    {
+        Task newTask = new Task("contentTask", DateTime.Now.ToString(), DateTime.Now.ToString(), "groupTask", 15, 20);
+        taskClass.SaveTask(newTask);
+        //taskClass.ReadTask("6420fca5daf7d33604c8e65f");
+        //taskClass.UpdateTask("6420fca5daf7d33604c8e65f", "New Content Updated");
+        //taskClass.DeleteTask("6420fca5daf7d33604c8e65f");
     }
 }

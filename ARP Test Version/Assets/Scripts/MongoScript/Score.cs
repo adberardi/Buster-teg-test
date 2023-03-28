@@ -16,9 +16,6 @@ namespace ARProject.Score
         // TODO: Por agregar clase Content
         public ObjectId Program { get; set; }
         private MongoClient _client;
-        private string v1;
-        private int v2;
-        private string v3;
 
         public Score()
         {
