@@ -55,7 +55,10 @@ public class LoadSceneMenu : MonoBehaviour
     public void ButtonSaveUser()
     {
         //User user = new User();
-        user.SaveUser("6411384514070dd6d438055b","Fulanito");
+        //user.SaveUser("6411384514070dd6d438055b","Fulanito");
+        //User newUser = new User("usernameField", "probando@email.com", "123456789");
+        //user.CreateUser(newUser);
+        user.AddGroupToUser(new ObjectId());
     }
 
     public void ButtonGetProfile()
@@ -68,7 +71,7 @@ public class LoadSceneMenu : MonoBehaviour
     {
         Group newGroup = new Group("nameGroup", DateTime.Now, "llllll");
         //group.CreateGroup(newGroup);
-        group.ReadGroup("64223f4f46c68d58e7d344c4");
+        group.ReadGroup("641bcdb046c68d6ae5968c4c");
     }
 
     public void ButtonDeleteGroup()

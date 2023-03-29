@@ -24,7 +24,7 @@ namespace ARProject.User
         //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
-        //private List<ObjectId> MemberGroup { get; set; }
+        public List<string> MemberGroup { get; set; }
 
         public User (string usernameField, string emailField, string passwField)
         {
@@ -34,7 +34,7 @@ namespace ARProject.User
             Profile = "Default";
             StatusOnline = false;
             Birthday = DateTime.Now.ToString();
-            //MemberGroup = new List<ObjectId>();
+            MemberGroup = new List<string>();
             FirstName = "Dora";
             LastName = "Rodriguez";
         }
@@ -67,8 +67,20 @@ namespace ARProject.User
             LastName = newUser.LastName;
             Profile = newUser.Profile;
             Birthday = newUser.Birthday;
+            MemberGroup = newUser.MemberGroup;
             User registerUser = new User();
             registerUser.GetCollection().InsertOne(newUser);
+        }
+
+        public async void AddGroupToUser(ObjectId idGroup)
+        {
+            IMongoCollection<User> userCollection = GetCollection();
+            User userModelList = userCollection.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+            userModelList.MemberGroup.Add(idGroup.ToString());
+            var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
+            var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
+            var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+            IsSuccessfullyOperation(result);
         }
 
         public bool PassowrdRequirements(string passw)

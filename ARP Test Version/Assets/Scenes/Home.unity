@@ -1516,9 +1516,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 234364685}
-        m_MethodName: ButtonCreateTask
-        m_Mode: 1
+      - m_Target: {fileID: 1912437767}
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2392,9 +2392,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 234364685}
-        m_MethodName: ButtonSaveScore
-        m_Mode: 1
+      - m_Target: {fileID: 1912437767}
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2638,7 +2638,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 234364685}
-        m_MethodName: ButtonGetProfile
+        m_MethodName: ButtonSaveUser
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3795,7 +3795,7 @@ PrefabInstance:
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
       propertyPath: m_Text
-      value: "/  Divisi\xF3n  /"
+      value: "\xF7  Divisi\xF3n \xF7"
       objectReference: {fileID: 0}
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
@@ -4030,7 +4030,7 @@ PrefabInstance:
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
       propertyPath: m_Text
-      value: "* Multiplicaci\xF3n *"
+      value: "X Multiplicaci\xF3n X"
       objectReference: {fileID: 0}
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
