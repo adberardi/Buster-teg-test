@@ -67,7 +67,8 @@ public class LoadSceneMenu : MonoBehaviour
     public void ButtonCreateGroup()
     {
         Group newGroup = new Group("nameGroup", DateTime.Now, "llllll");
-        group.CreateGroup(newGroup);
+        //group.CreateGroup(newGroup);
+        group.ReadGroup("64223f4f46c68d58e7d344c4");
     }
 
     public void ButtonDeleteGroup()

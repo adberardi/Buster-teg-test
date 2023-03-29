@@ -53,7 +53,7 @@ namespace ARProject.Group
         public void ReadGroup(string IdGroup)
         {
             IMongoCollection<Group> docRef = GetCollection();
-            Group credential = docRef.Find(group => group._id.ToString() == IdGroup).ToList()[0];         
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];         
             NameGroup = credential.NameGroup;
             Admin = credential.Admin;
             DateCreated = credential.DateCreated;
