@@ -58,7 +58,15 @@ public class LoadSceneMenu : MonoBehaviour
         //user.SaveUser("6411384514070dd6d438055b","Fulanito");
         //User newUser = new User("usernameField", "probando@email.com", "123456789");
         //user.CreateUser(newUser);
-        user.AddGroupToUser(new ObjectId());
+        //user.AddGroupToUser(new ObjectId());
+        //user.DeleteGroupUser("6411384514070dd6d438055i");
+        /*List<string> aux = user.GetAllGroupsFromUser();
+        foreach (var index in aux)
+        {
+            Debug.Log("Group: "+index);
+        }*/
+        user.EmailExist("prueba@email.com");
+
     }
 
     public void ButtonGetProfile()

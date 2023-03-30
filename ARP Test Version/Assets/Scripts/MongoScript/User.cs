@@ -60,7 +60,6 @@ namespace ARProject.User
         public void CreateUser(User newUser)
         {
             Debug.LogFormat("Firebase user created successfully: {0} ({1})", newUser.UserName, newUser._id);
-            //_id = newUser._id;
             UserName = newUser.UserName;
             Email = newUser.Email;
             FirstName =newUser.FirstName;
@@ -81,6 +80,37 @@ namespace ARProject.User
             var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
             var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
             IsSuccessfullyOperation(result);
+        }
+
+        public async void DeleteGroupUser(string idGroup)
+        {
+            try
+            {
+                IMongoCollection<User> docRef = GetCollection();
+                User userModelList = docRef.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+                userModelList.MemberGroup.Remove(idGroup);
+                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
+                var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
+                var result = await docRef.UpdateOneAsync(filterData, dataToUpdate);
+                
+            
+                if (result.IsAcknowledged & result.ModifiedCount > 0)
+                    Debug.Log("Grupo borrado exitosamente");
+                else
+                    Debug.Log("Error al borrar el grupo");
+            }
+            catch (MongoException)
+            {
+                Debug.Log("Error al borrar el grupo");
+            }
+
+        }
+
+        public List<string> GetAllGroupsFromUser()
+        {
+            IMongoCollection<User> docRef = GetCollection();
+            User userModelList = docRef.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+            return userModelList.MemberGroup;
         }
 
         public bool PassowrdRequirements(string passw)
@@ -149,25 +179,6 @@ namespace ARProject.User
             }
         }
 
-        /*public async void AddToGroup(string IdUser, ObjectId newGroupId)
-        {
-            try
-            {
-                IMongoCollection<User> userCollection = GetCollection();
-                List<User> userModelList = userCollection.Find(user => true).ToList();
-                User credential = userModelList[0];
-                //credential.MemberGroup.Add(newGroupId);
-                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(IdUser));
-                var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, credential.MemberGroup);
-                var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
-                IsSuccessfullyOperation(result);
-            }
-            catch(MongoException)
-            {
-                Debug.Log("Un error ha ocurrido al agregar un nuevo grupo al estudiante");
-            }
-        }*/
-
         //Almacena los cambios datos de un usuario en especifico
         public async void SaveUser(string IdUser, string newFirstName)
         {
@@ -233,50 +244,12 @@ namespace ARProject.User
             return false;
         }
 
-        /* GetAllClassRoom: Gets the role from the specific classrooms (Admin or Student). */
-        public string GetRoleUser(string idClassRoom)
+        public void EmailExist(string emailToValidate)
         {
-            return "";
-            /*DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
-            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> p = doc.ToDictionary();
-                if (p["admin"].ToString() == IdUser)
-                {
-                    Role = "Admin";
-                }
-                else
-                {
-                    Role = "Student";
-                }
-            });
-            Debug.Log("GetRoleUser: " + Role);
-            return Role;
-            */
-        }
-
-        /* GetAllClassRoom: Gets all the classrooms where the user is the administrator. */
-        public Dictionary<string, string> GetAllClassRoom()
-        {
-            Dictionary<string, string> aux = new Dictionary<string, string>();
-            return null;
-            /*CollectionReference collRef = db.Collection("Groups");
-            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                QuerySnapshot query = task.Result;
-                foreach(DocumentSnapshot doc in query.Documents)
-                {
-                    Dictionary<string, object> p = doc.ToDictionary();
-                    if (p["admin"].ToString() == IdUser)
-                    {
-                        aux.Add(p["name"].ToString(), p["id"].ToString());
-                    }
-                }
-            });
-            Debug.Log(string.Format("GetAllClassRoom: Longitud List: {0}", aux.Count));
-            return aux;
-            */
+            IMongoCollection<User> userCollection = GetCollection();
+            User credential = userCollection.Find(user => user.Email.Equals(emailToValidate)).ToList()[0];
+            //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);
+            Debug.Log(credential.Email);
         }
 
 
