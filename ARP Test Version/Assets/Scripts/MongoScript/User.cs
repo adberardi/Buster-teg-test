@@ -171,6 +171,7 @@ namespace ARProject.User
             if (result.IsAcknowledged && result.ModifiedCount > 0)
             {
                 Debug.Log("La operacion resulto exitosa");
+                ChangeScene(1);
                 return true;
             }
             else
