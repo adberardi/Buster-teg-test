@@ -43,11 +43,11 @@ namespace ARProject.Group
         }
 
 
-        public void CreateGroup(Group newGroup)
+        public ObjectId CreateGroup(Group newGroup)
         {
             Group registerGroup = new Group();
-            Debug.LogFormat("MongoDB user created successfully: {0}", newGroup.Admin);
             registerGroup.GetCollection().InsertOne(newGroup);
+            return new ObjectId();
         }
 
         public void ReadGroup(string IdGroup)
