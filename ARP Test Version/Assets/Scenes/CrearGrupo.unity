@@ -1432,8 +1432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6cc237ffd4fcf42939fba8cba96801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GroupSchool>k__BackingField: 
-  <LevelSchool>k__BackingField: 
   nameGroup: {fileID: 1385418104}
   dropdown: {fileID: 1020056237}
 --- !u!4 &990149190

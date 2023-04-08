@@ -77,7 +77,7 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void ButtonCreateGroup()
     {
-        Group newGroup = new Group("nameGroup", DateTime.Now, "llllll");
+        Group newGroup = new Group("nameGroup", DateTime.Now, "llllll", "U.E. Instituto Humanitas");
         //group.CreateGroup(newGroup);
         group.ReadGroup("641bcdb046c68d6ae5968c4c");
     }
