@@ -24,6 +24,7 @@ namespace ARProject.User
         //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
+        public int Reward { get; set; }
         public List<string> MemberGroup { get; set; }
 
         public User (string usernameField, string emailField, string passwField)
@@ -210,6 +211,7 @@ namespace ARProject.User
             FirstName = credential.FirstName;
             LastName = credential.LastName;
             Profile = credential.Profile;
+            Reward = credential.Reward;
             Debug.Log("Read all data from the users collection.");
         }
 
