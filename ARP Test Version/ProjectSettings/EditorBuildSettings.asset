@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuGrupos.unity
     guid: 5daf4cce36d5883419c01235f6b33e86
+  - enabled: 1
+    path: Assets/Scenes/CrearGrupo.unity
+    guid: 76e9aa64f21aa9843af5dc776b844c06
   m_configObjects: {}

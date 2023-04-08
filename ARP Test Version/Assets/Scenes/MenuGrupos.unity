@@ -1570,7 +1570,7 @@ PrefabInstance:
     - target: {fileID: 114988753295396860, guid: cdb4c257e53a14d18bcf90a0b0f75914,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114988753295396860, guid: cdb4c257e53a14d18bcf90a0b0f75914,
         type: 3}
@@ -1585,12 +1585,17 @@ PrefabInstance:
     - target: {fileID: 114988753295396860, guid: cdb4c257e53a14d18bcf90a0b0f75914,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CreateGroup
+      value: ChangeScene
       objectReference: {fileID: 0}
     - target: {fileID: 114988753295396860, guid: cdb4c257e53a14d18bcf90a0b0f75914,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114988753295396860, guid: cdb4c257e53a14d18bcf90a0b0f75914,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114941099990551190, guid: cdb4c257e53a14d18bcf90a0b0f75914,
         type: 3}

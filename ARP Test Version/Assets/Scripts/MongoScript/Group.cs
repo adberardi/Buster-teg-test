@@ -14,8 +14,7 @@ namespace ARProject.Group
         public string NameGroup { get; set; }
         public DateTime DateCreated { get; set; }
         public string Admin { get; set; }
-        // TODO: Por agregar clases Estudiante y Tarea
-        //private List<object> ParticipantsGroup { get; set; }
+        public string School { get; set; }
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
 
@@ -27,11 +26,12 @@ namespace ARProject.Group
             _client = MongoDBManager.GetClient();
         }
 
-        public Group(string nameGroup, DateTime dateCreated, string admin)
+        public Group(string nameGroup, DateTime dateCreated, string admin, string school)
         {
             NameGroup = nameGroup;
             DateCreated = dateCreated;
             Admin = admin;
+            School = school;
             ParticipantsGroup = new string[] { };
             AssignedActivities = new string[] { };
         }
@@ -56,6 +56,7 @@ namespace ARProject.Group
             Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];         
             NameGroup = credential.NameGroup;
             Admin = credential.Admin;
+            School = credential.School;
             DateCreated = credential.DateCreated;
             AssignedActivities = credential.AssignedActivities;
             ParticipantsGroup = credential.ParticipantsGroup;
@@ -64,13 +65,14 @@ namespace ARProject.Group
             //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
             }
 
-        public async void UpdateNameGroup (string IdGroup, string newNameGroup)
+        public async void UpdateGroup (string IdGroup, string newNameGroup, string newSchool)
         {
             try
             {
                 IMongoCollection<Group> docRef = GetCollection();
                 var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
-                var dataToUpdate = Builders<Group>.Update.Set(query => query.NameGroup, newNameGroup);
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.NameGroup, newNameGroup)
+                    .Set(query => query.School, newSchool);
                 IMongoCollection<Group> groupRef = GetCollection();
                 var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
                 if (result.IsAcknowledged && result.ModifiedCount > 0)
