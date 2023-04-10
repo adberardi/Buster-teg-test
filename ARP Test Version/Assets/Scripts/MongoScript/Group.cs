@@ -15,6 +15,7 @@ namespace ARProject.Group
         public DateTime DateCreated { get; set; }
         public string Admin { get; set; }
         public string School { get; set; }
+        public string LevelSchool { get; set; }
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
 
@@ -26,12 +27,13 @@ namespace ARProject.Group
             _client = MongoDBManager.GetClient();
         }
 
-        public Group(string nameGroup, DateTime dateCreated, string admin, string school)
+        public Group(string nameGroup, DateTime dateCreated, string admin, string school, string levelSchool)
         {
             NameGroup = nameGroup;
             DateCreated = dateCreated;
             Admin = admin;
             School = school;
+            LevelSchool = levelSchool;
             ParticipantsGroup = new string[] { };
             AssignedActivities = new string[] { };
         }
@@ -48,6 +50,18 @@ namespace ARProject.Group
             Group registerGroup = new Group();
             registerGroup.GetCollection().InsertOne(newGroup);
             return new ObjectId();
+        }
+
+        // Valida si ya existe un grupo con; el mismo nombre (name), colegio (groupSchool), y grado escolar (levelSchool) del curso
+        public bool ExistsSameGroup(string name, string groupSchool, string levelSchool)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            List<Group> result = docRef.Find(group => (group.NameGroup == name) && (group.School == groupSchool) && (group.LevelSchool == levelSchool)).ToList();
+            if (result.Count > 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void ReadGroup(string IdGroup)

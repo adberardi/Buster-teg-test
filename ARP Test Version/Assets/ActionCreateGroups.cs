@@ -9,7 +9,7 @@ using MongoDB.Bson;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ActionGroups : MonoBehaviour
+public class ActionCreateGroups : MonoBehaviour
 {
     private Group group;
     private User user;
@@ -58,9 +58,9 @@ public class ActionGroups : MonoBehaviour
 
     public void CreateGroup()
     {
-        if (nameGroup.text != "")
+        if ((nameGroup.text != "") && (!group.ExistsSameGroup(nameGroup.text, GroupSchool, LevelSchool)))
         {
-            Group newGroup = new Group(nameGroup.text, DateTime.Now, PlayerPrefs.GetString("IDUser"), GroupSchool);
+            Group newGroup = new Group(nameGroup.text, DateTime.Now, PlayerPrefs.GetString("IDUser"), GroupSchool, LevelSchool);
             ObjectId idGroup = group.CreateGroup(newGroup);
             //Se agrega al usuario que creo al grupo como el administrador y el primero en ser agregado.
             user.AddGroupToUser(idGroup);
@@ -77,6 +77,14 @@ public class ActionGroups : MonoBehaviour
 
     public void ListOptions(ToggleGroup op)
     {
-        LevelSchool = op.name;
+        foreach(Toggle toggleSelected in op.ActiveToggles())
+        {
+            if (toggleSelected != null)
+            {
+                LevelSchool = toggleSelected.name;
+                Debug.Log("LEVELSCHOOL: " + LevelSchool);
+            }
+        }
+        //LevelSchool = op.name;
     }
 }
