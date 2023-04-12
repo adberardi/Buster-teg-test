@@ -1211,7 +1211,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 10
           m_FloatArgument: 0
           m_StringArgument: activitysMenu
           m_BoolArgument: 0
@@ -1522,7 +1522,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2398,7 +2398,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 11
+          m_IntArgument: 12
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2637,13 +2637,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 234364685}
-        m_MethodName: ButtonGetProfile
-        m_Mode: 1
+      - m_Target: {fileID: 1912437767}
+        m_MethodName: ChangeScene
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 14
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3795,7 +3795,7 @@ PrefabInstance:
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
       propertyPath: m_Text
-      value: "/  Divisi\xF3n  /"
+      value: "\xF7  Divisi\xF3n \xF7"
       objectReference: {fileID: 0}
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
@@ -4030,7 +4030,7 @@ PrefabInstance:
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
       propertyPath: m_Text
-      value: "* Multiplicaci\xF3n *"
+      value: "X Multiplicaci\xF3n X"
       objectReference: {fileID: 0}
     - target: {fileID: 114243920038845880, guid: 788ea4ee41016408b9f8ea7e8f4fd215,
         type: 3}
@@ -4704,7 +4704,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 12
+          m_IntArgument: 13
           m_FloatArgument: 0
           m_StringArgument: scoreBoard
           m_BoolArgument: 0
@@ -5441,7 +5441,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 9
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

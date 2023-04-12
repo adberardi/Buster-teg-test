@@ -20,10 +20,13 @@ namespace ARProject.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
         public string Birthday { get; set; }
         //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
+        public int Reward { get; set; }
+        public List<string> MemberGroup { get; set; }
 
         public User (string usernameField, string emailField, string passwField)
         {
@@ -33,6 +36,7 @@ namespace ARProject.User
             Profile = "Default";
             StatusOnline = false;
             Birthday = DateTime.Now.ToString();
+            MemberGroup = new List<string>();
             FirstName = "Dora";
             LastName = "Rodriguez";
         }
@@ -58,32 +62,86 @@ namespace ARProject.User
         public void CreateUser(User newUser)
         {
             Debug.LogFormat("Firebase user created successfully: {0} ({1})", newUser.UserName, newUser._id);
-            //_id = newUser._id;
             UserName = newUser.UserName;
             Email = newUser.Email;
             FirstName =newUser.FirstName;
             LastName = newUser.LastName;
             Profile = newUser.Profile;
             Birthday = newUser.Birthday;
+            MemberGroup = newUser.MemberGroup;
             User registerUser = new User();
             registerUser.GetCollection().InsertOne(newUser);
+        }
+
+        public async void AddGroupToUser(ObjectId idGroup)
+        {
+            IMongoCollection<User> userCollection = GetCollection();
+            User userModelList = userCollection.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+            userModelList.MemberGroup.Add(idGroup.ToString());
+            var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
+            var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
+            var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+            IsSuccessfullyOperation(result);
+        }
+
+        public async void DeleteGroupUser(string idGroup)
+        {
+            try
+            {
+                IMongoCollection<User> docRef = GetCollection();
+                User userModelList = docRef.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+                userModelList.MemberGroup.Remove(idGroup);
+                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
+                var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
+                var result = await docRef.UpdateOneAsync(filterData, dataToUpdate);
+                
+            
+                if (result.IsAcknowledged & result.ModifiedCount > 0)
+                    Debug.Log("Grupo borrado exitosamente");
+                else
+                    Debug.Log("Error al borrar el grupo");
+            }
+            catch (MongoException)
+            {
+                Debug.Log("Error al borrar el grupo");
+            }
+
+        }
+
+        public List<string> GetAllGroupsFromUser()
+        {
+            IMongoCollection<User> docRef = GetCollection();
+            User userModelList = docRef.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+            return userModelList.MemberGroup;
+        }
+
+        public bool PassowrdRequirements(string passw)
+        {
+            if (passw.Length >= 5)
+                return true;
+            return false;
         }
 
         public void Login(string emailField, string passwField)
         {
 
-            if (ValidateInputFieldsLogin(emailField, passwField))
+            if (ValidateInputFieldsLogin(emailField, passwField) && PassowrdRequirements(passwField))
             {
                 try
                 {
+                    
                     IMongoCollection<User> userCollection = GetCollection();
-                    List<User> userModelList = userCollection.Find(user => true).ToList();
+                    Debug.Log("USER.LOGIN");
+                    //List<User> userModelList = userCollection.Find(user => true).ToList();
+                    List<User> userModelList = userCollection.Find(user => user.Email == emailField).ToList();
+                    
                     User credential = userModelList[0];
                     if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
                     {
                         //IdUser = userModelList[0]._id;
-                        SaveSessionDataUser(credential._id);
+                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email);
                         ChangeScene(1);
+                       // AddToGroup(GetSessionDataUser(),new ObjectId());
                     }
                     else
                     {
@@ -109,24 +167,83 @@ namespace ARProject.User
             ChangeScene(0);
         }
 
+        public bool IsSuccessfullyOperation(UpdateResult result)
+        {
+            if (result.IsAcknowledged && result.ModifiedCount > 0)
+            {
+                Debug.Log("La operacion resulto exitosa");
+                ChangeScene(1);
+                return true;
+            }
+            else
+            {
+                Debug.Log("La operacion fallo");
+                return false;
+            }
+        }
+
+        //Se actualiza los datos del usuario, excluyendo la contrasena.
+        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newEmail, string newBirthday, string newProfile)
+        {
+            IMongoCollection<User> userCollection = GetCollection();
+            var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName)
+                .Set(query => query.LastName, newLastName)
+                .Set(query => query.Email, newEmail)
+                .Set(query => query.Birthday, newBirthday)
+                .Set(query => query.Profile, newProfile);
+            var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+            IsSuccessfullyOperation(result);
+        }
+
+        //Se actualiza los datos del usuario, incluyendo la contrasena.
+        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile)
+        {
+            IMongoCollection<User> userCollection = GetCollection();
+            var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName)
+                .Set(query => query.LastName, newLastName)
+                .Set(query => query.Email, newEmail)
+                .Set(query => query.Birthday, newBirthday)
+                .Set(query => query.Password, newPassword)
+                .Set(query => query.Profile, newProfile);
+            var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+            IsSuccessfullyOperation(result);
+        }
+
         //Almacena los cambios datos de un usuario en especifico
-        public async void SaveUser(string IdUser, string newFirstName)
+        public void SaveUser(string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile)
         {
             try
             {
-                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(IdUser));
-                var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName);
                 IMongoCollection<User> userCollection = GetCollection();
-                var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
-
-                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
+                if (newEmail == GetDataUser()["Email"])
                 {
-                    Debug.Log("La operacion resulto exitosa");
+                    //Si el correo es el mismo que el actual, no se procede a validar si existe algun otro correo igual.
+                    if (newPassword != "")
+                    {
+                        UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile);
+                    }
+                    else
+                    {
+                        UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile);
+                    }
                 }
                 else
                 {
-                    Debug.Log("La operacion fallo");
+                    if (EmailExist(newEmail) == false)
+                    {
+                        // Si el correo ingresado es distinto al actual, se procede a validar que no exista algun correo igual, es decir, que sea igual a false
+                        if (newPassword != "")
+                        {
+                            UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile);
+                        }
+                        else
+                        {
+                            UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile);
+                        }
+                    }
                 }
+               
             }
             catch(MongoException)
             {
@@ -134,28 +251,33 @@ namespace ARProject.User
             }
         }
 
-
         public void ReadUser()
         {
             Debug.Log("ENTRANDO EN READUSER");
             IMongoCollection<User> docRef = GetCollection();
             //IMongoCollection<User> userCollection = GetCollection();
-            List<User> userModelList = docRef.Find(user => true).ToList();
-            User credential = userModelList[0];
-                Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
-                Email = credential.Email;
-                UserName = credential.UserName;
-                Birthday = credential.Birthday;
-                FirstName = credential.FirstName;
-                LastName = credential.LastName;
-                Profile = credential.Profile;
-                Debug.Log("Read all data from the users collection.");
+            User credential = docRef.Find(task => task._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
+            Debug.Log(string.Format("Birthday: {0} , Email: {1}, FirstName: {2}, LastName: {3}, Username: {4}", credential.Birthday, credential.Email, credential.FirstName, credential.LastName, credential.UserName));
+            Email = credential.Email;
+            UserName = credential.UserName;
+            Birthday = credential.Birthday;
+            FirstName = credential.FirstName;
+            LastName = credential.LastName;
+            Profile = credential.Profile;
+            Reward = credential.Reward;
+            Debug.Log("Read all data from the users collection.");
         }
 
 
-        public void SaveSessionDataUser(ObjectId IdUser)
+        public void SaveSessionDataUser(ObjectId IdUser, string userName, string firstName, string lastName, string birthday, string email)
         {
             PlayerPrefs.SetString("IDUser", IdUser.ToString());
+            PlayerPrefs.SetString("Username", userName);
+            PlayerPrefs.SetString("Firstname", firstName);
+            PlayerPrefs.SetString("Lastname",lastName);
+            PlayerPrefs.SetString("Birthday", birthday);
+            PlayerPrefs.SetString("Email", email);
+
             StatusOnline = true;
         }
 
@@ -183,52 +305,29 @@ namespace ARProject.User
             return false;
         }
 
-        /* GetAllClassRoom: Gets the role from the specific classrooms (Admin or Student). */
-        public string GetRoleUser(string idClassRoom)
+        public bool EmailExist(string emailToValidate)
         {
-            return "";
-            /*DocumentReference collRef = db.Collection("Groups").Document(idClassRoom);
-            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> p = doc.ToDictionary();
-                if (p["admin"].ToString() == IdUser)
-                {
-                    Role = "Admin";
-                }
-                else
-                {
-                    Role = "Student";
-                }
-            });
-            Debug.Log("GetRoleUser: " + Role);
-            return Role;
-            */
+            IMongoCollection<User> userCollection = GetCollection();
+            User credential = userCollection.Find(user => user.Email.Equals(emailToValidate)).ToList()[0];
+            //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);
+            Debug.Log(credential.Email);
+            return false;
         }
 
-        /* GetAllClassRoom: Gets all the classrooms where the user is the administrator. */
-        public Dictionary<string, string> GetAllClassRoom()
-        {
-            Dictionary<string, string> aux = new Dictionary<string, string>();
-            return null;
-            /*CollectionReference collRef = db.Collection("Groups");
-            collRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                QuerySnapshot query = task.Result;
-                foreach(DocumentSnapshot doc in query.Documents)
-                {
-                    Dictionary<string, object> p = doc.ToDictionary();
-                    if (p["admin"].ToString() == IdUser)
-                    {
-                        aux.Add(p["name"].ToString(), p["id"].ToString());
-                    }
-                }
-            });
-            Debug.Log(string.Format("GetAllClassRoom: Longitud List: {0}", aux.Count));
-            return aux;
-            */
-        }
 
+        public Dictionary<string, string> GetDataUser()
+        {
+            Dictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "Username", PlayerPrefs.GetString("Username") },
+                { "Firstname", PlayerPrefs.GetString("Firstname") },
+                { "Lastname", PlayerPrefs.GetString("Lastname") },
+                { "Birthday", PlayerPrefs.GetString("Birthday") },
+                { "Email", PlayerPrefs.GetString("Email") }
+            };
+
+            return data;
+        }
 
     }
 

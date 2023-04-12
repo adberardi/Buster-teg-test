@@ -2,66 +2,116 @@
 using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace ARProject.Group
 {
     class Group
     {
+        [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
-        public List<string> AssignedActivities { get; set; }
-        public string DateCreated { get; set; }
-        public string DateUpdated { get; set; }
-        public List<string> ParticipantsGroup { get; set; }
+        public string NameGroup { get; set; }
+        public DateTime DateCreated { get; set; }
+        public string Admin { get; set; }
+        public string School { get; set; }
+        public string[] ParticipantsGroup { get; set; }
+        public string[] AssignedActivities { get; set; }
+
+
         private MongoClient _client;
-
-   
-
-        public Group(List<string> assignedActivities, string dateCreated, string dateUpdated, List<string> participantsGroup)
-        {
-            AssignedActivities = assignedActivities;
-            DateCreated = dateCreated;
-            DateUpdated = dateUpdated;
-            ParticipantsGroup = participantsGroup; 
-        }
 
         public Group()
         {
             _client = MongoDBManager.GetClient();
         }
+
+        public Group(string nameGroup, DateTime dateCreated, string admin, string school)
+        {
+            NameGroup = nameGroup;
+            DateCreated = dateCreated;
+            Admin = admin;
+            School = school;
+            ParticipantsGroup = new string[] { };
+            AssignedActivities = new string[] { };
+        }
+
         public IMongoCollection<Group> GetCollection()
         {
             var db = _client.GetDatabase("Mercurio");
             return db.GetCollection<Group>("Groups");
         }
 
-        public void Insert()
+
+        public ObjectId CreateGroup(Group newGroup)
         {
-            IMongoCollection<Group> collection = GetCollection();
-            collection.InsertOne(this);
+            Group registerGroup = new Group();
+            registerGroup.GetCollection().InsertOne(newGroup);
+            return new ObjectId();
         }
 
-        public  List<Group> FindAll()
+        public void ReadGroup(string IdGroup)
         {
-            IMongoCollection<Group> collection = GetCollection();
-            return collection.Find(new BsonDocument()).ToList();
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];         
+            NameGroup = credential.NameGroup;
+            Admin = credential.Admin;
+            School = credential.School;
+            DateCreated = credential.DateCreated;
+            AssignedActivities = credential.AssignedActivities;
+            ParticipantsGroup = credential.ParticipantsGroup;
+            Debug.Log(" Total Actividades asignadas: " + AssignedActivities.Length);
+            //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
+            //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
+            }
+
+        public async void UpdateGroup (string IdGroup, string newNameGroup, string newSchool)
+        {
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.NameGroup, newNameGroup)
+                    .Set(query => query.School, newSchool);
+                IMongoCollection<Group> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("Operacion completada");
+                }
+                else
+                {
+                    Debug.Log("Operacion Fallida");
+                }
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
+            }
         }
 
-        public  Group FindById(ObjectId id)
+        public async void DeleteGroup(string IdGroup)
         {
-            IMongoCollection<Group> collection = GetCollection();
-            return collection.Find(group => group._id == id).FirstOrDefault();
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                var deleteFilter = Builders<Group>.Filter.Eq("_id", ObjectId.Parse(IdGroup));
+                DeleteResult result = await docRef.DeleteOneAsync(deleteFilter);
+
+                if (result.IsAcknowledged & result.DeletedCount > 0)
+                    Debug.Log("Grupo borrado exitosamente");
+                else
+                    Debug.Log("Error al borrar el grupo");
+
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Error al borrar el grupo");
+            }
         }
 
-        public void Update()
-        {
-            IMongoCollection<Group> collection = GetCollection();
-            collection.ReplaceOne(group => group._id == this._id, this);
-        }
+    }
 
-        public void Delete()
-        {
-            IMongoCollection<Group> collection = GetCollection();
-            collection.DeleteOne(group => group._id == this._id);
-        }
     }
 }

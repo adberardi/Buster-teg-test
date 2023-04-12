@@ -19,7 +19,8 @@ public class Actions : MonoBehaviour
     void Start()
     {
         //auth = FirebaseAuth.DefaultInstance;
-       //user = new User(FirebaseAuth.DefaultInstance, db);
+        //user = new User(FirebaseAuth.DefaultInstance, db);
+        user = new User();
     }
 
     // Update is called once per frame
@@ -50,4 +51,6 @@ public class Actions : MonoBehaviour
         //auth.SignOut();
         //ChangeScene(0);
     }
+
+
 }
