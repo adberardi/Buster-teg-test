@@ -5,7 +5,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;
 
-namespace ARPoject.School
+namespace ARProject.School
 {
     class School
     {

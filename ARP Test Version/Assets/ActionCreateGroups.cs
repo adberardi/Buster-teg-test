@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ARProject.Group;
 using ARProject.User;
-using ARPoject.School;
+using ARProject.School;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;

@@ -12,7 +12,7 @@ namespace ARProject.Group
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
         public string NameGroup { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
         public string Admin { get; set; }
         public string School { get; set; }
         public string LevelSchool { get; set; }
@@ -30,7 +30,7 @@ namespace ARProject.Group
         public Group(string nameGroup, DateTime dateCreated, string admin, string school, string levelSchool)
         {
             NameGroup = nameGroup;
-            DateCreated = dateCreated;
+            DateCreated = dateCreated.ToString();
             Admin = admin;
             School = school;
             LevelSchool = levelSchool;
@@ -78,6 +78,13 @@ namespace ARProject.Group
             //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
             //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
             }
+
+        public Group GetGroup(string IdGroup)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
+            return credential;
+        }
 
         public async void UpdateGroup (string IdGroup, string newNameGroup, string newSchool)
         {
