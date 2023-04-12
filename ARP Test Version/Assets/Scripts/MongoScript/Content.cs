@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,67 +7,64 @@ namespace ARProject.Content
 {
     class Content
     {
-        private string IdContent { get; set; }
-        private string TitleContent { get; set; }
-        private string DescContent { get; set; }
-        private string LevelContent { get; set; }
-        private string GradeContent { get; set; }
+        public ObjectId _id { get; set; }
+      
+        public string DescContent { get; set; }
+        public string GradeContent { get; set; }
+        public string Level { get; set; }
+        public string TitleContent { get; set; }
+        public string NameContent { get; set; }
+        private MongoClient _client;
+
+
+
+        public Content( string descContent, string gradeContent,string level, string titleContent,string nameContent)
+        {
+            DescContent = descContent;
+            GradeContent = gradeContent;
+            Level = level;
+            TitleContent = titleContent;
+            NameContent = nameContent;
+        }
 
         public Content()
         {
-
+            _client = MongoDBManager.GetClient();
+        }
+        public IMongoCollection<Content> GetCollection()
+        {
+            var db = _client.GetDatabase("Mercurio");
+            return db.GetCollection<Content>("Contents");
         }
 
-        /*public Content(FirebaseFirestore db)
+        public void Insert()
         {
-            this.db = db;
-        }*/
+            IMongoCollection<Content> collection = GetCollection();
+            collection.InsertOne(this);
+        }
 
-        /*public void SaveContent(string idContent)
+        public List<Content> FindAll()
         {
-            DocumentReference docRef = db.Collection("Content").Document(idContent);
-            Dictionary<string, object> content = new Dictionary<string, object>
-            {
-                { "descContent", "TituloUno" },
-                { "level", "1"},
-                { "titleContent", "Matematica"},
-                {"gradeContent", "2" }
-            };
+            IMongoCollection<Content> collection = GetCollection();
+            return collection.Find(new BsonDocument()).ToList();
+        }
 
-            docRef.SetAsync(content).ContinueWithOnMainThread(task =>
-            {
-                Debug.Log("Se registro de manera exitosa el Content");
-            });
-        }*/
-
-        /*public void ReadContent(string idContent)
+        public Content FindById(ObjectId id)
         {
-            DocumentReference docRef = db.Collection("Content").Document(idContent);
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> docContent = doc.ToDictionary();
-                DescContent = docContent["descContent"].ToString();
-                LevelContent = docContent["level"].ToString();
-                TitleContent = docContent["titleContent"].ToString();
-                GradeContent = docContent["gradeContent"].ToString();
+            IMongoCollection<Content> collection = GetCollection();
+            return collection.Find(Content => Content._id == id).FirstOrDefault();
+        }
 
-                Debug.Log(string.Format("Description Content: {0}", DescContent));
-
-            });
-
-        }*/
-
-        /*public Dictionary<string, string> GetContent()
+        public void Update()
         {
-            return new Dictionary<string, string>
-            {
-                { "descContent", "TituloUno" },
-                { "level", "1"},
-                { "titleContent", "Matematica"},
-            };
-        }*/
+            IMongoCollection<Content> collection = GetCollection();
+            collection.ReplaceOne(Content => Content._id == this._id, this);
+        }
+
+        public void Delete()
+        {
+            IMongoCollection<Content> collection = GetCollection();
+            collection.DeleteOne(Content => Content._id == this._id);
+        }
     }
 }
-
-

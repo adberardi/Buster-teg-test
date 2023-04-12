@@ -1,44 +1,62 @@
-﻿using System.Collections;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ARProject.RewardClass
+namespace ARProject.Reward
 {
     class Reward
     {
+        public ObjectId _id { get; set; }
+       
         public string DescReward { get; set; }
+        private MongoClient _client;
 
-        /*public Reward(FirebaseFirestore db)
+
+
+        public Reward( string descReward)
         {
-            this.db = db;
-        }*/
+            DescReward = descReward;        
+        }
 
-        /*public void SaveContent(string idReward)
+        public Reward()
         {
-            DocumentReference docRef = db.Collection("Reward").Document(idReward);
-            Dictionary<string, object> content = new Dictionary<string, object>
-            {
-                { "descReward", "TituloUnoReward" },
-            };
-
-            docRef.SetAsync(content).ContinueWithOnMainThread(task =>
-            {
-                Debug.Log("Se registro de manera exitosa el Content");
-            });
-        }*/
-
-        /*public void ReadReward(string idReward)
+            _client = MongoDBManager.GetClient();
+        }
+        public IMongoCollection<Reward> GetCollection()
         {
-            DocumentReference docRef = db.Collection("Reward").Document(idReward);
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> docContent = doc.ToDictionary();
-                DescReward = docContent["descReward"].ToString();
+            var db = _client.GetDatabase("Mercurio");
+            return db.GetCollection<Reward>("Rewards");
+        }
 
-                Debug.Log(string.Format("Description Content: {0}", DescReward));
+        public void Insert()
+        {
+            IMongoCollection<Reward> collection = GetCollection();
+            collection.InsertOne(this);
+        }
 
-            });
-        }*/
+        public List<Reward> FindAll()
+        {
+            IMongoCollection<Reward> collection = GetCollection();
+            return collection.Find(new BsonDocument()).ToList();
+        }
+
+        public Reward FindById(ObjectId id)
+        {
+            IMongoCollection<Reward> collection = GetCollection();
+            return collection.Find(Reward => Reward._id == id).FirstOrDefault();
+        }
+
+        public void Update()
+        {
+            IMongoCollection<Reward> collection = GetCollection();
+            collection.ReplaceOne(Reward => Reward._id == this._id, this);
+        }
+
+        public void Delete()
+        {
+            IMongoCollection<Reward> collection = GetCollection();
+            collection.DeleteOne(Reward => Reward._id == this._id);
+        }
     }
 }
