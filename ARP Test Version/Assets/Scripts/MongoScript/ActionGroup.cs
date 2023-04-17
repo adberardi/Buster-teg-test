@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.User;
 using ARProject.Group;
@@ -9,6 +10,12 @@ public class ActionGroup : MonoBehaviour
 {
     private Group group;
     private User user;
+    public GameObject item;
+    public Transform Logo;
+    public Text textOne;
+    public Text textTwo;
+    public Button btnIngresar;
+    Transform NewParent;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +29,13 @@ public class ActionGroup : MonoBehaviour
         foreach (var index in dataGroup)
         {
             aux.Add(group.GetGroup(index));
+            
         }
 
         Debug.Log("Total de grupos a los que pertenezco: " + aux.Count);
+
+        GameObject newItem = new GameObject("Item "+ aux.Count);
+        newItem.AddComponent<Button>();
     }
 
     // Update is called once per frame
