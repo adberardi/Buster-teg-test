@@ -13,7 +13,7 @@ namespace ARProject.Group
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
         public string NameGroup { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
         public string Admin { get; set; }
         public string School { get; set; }
         public string[] ParticipantsGroup { get; set; }
@@ -27,7 +27,7 @@ namespace ARProject.Group
             _client = MongoDBManager.GetClient();
         }
 
-        public Group(string nameGroup, DateTime dateCreated, string admin, string school)
+        public Group(string nameGroup, string dateCreated, string admin, string school)
         {
             NameGroup = nameGroup;
             DateCreated = dateCreated;
@@ -111,7 +111,14 @@ namespace ARProject.Group
             }
         }
 
+
+        public Group GetGroup(string IdGroup)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
+            return credential;
+        }
     }
 
     }
-}
+

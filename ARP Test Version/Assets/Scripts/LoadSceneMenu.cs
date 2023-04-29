@@ -77,7 +77,7 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void ButtonCreateGroup()
     {
-        Group newGroup = new Group("nameGroup", DateTime.Now, "llllll", "U.E. Instituto Humanitas");
+        Group newGroup = new Group("nameGroup", "12/12/12 00:00:00", "llllll", "U.E. Instituto Humanitas");
         //group.CreateGroup(newGroup);
         group.ReadGroup("641bcdb046c68d6ae5968c4c");
     }
@@ -100,8 +100,8 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void ButtonCreateTask()
     {
-        Task newTask = new Task("contentTask", DateTime.Now.ToString(), DateTime.Now.ToString(), "groupTask", 15, 20);
-        taskClass.SaveTask(newTask);
+       // Task newTask = new Task("contentTask", DateTime.Now.ToString(), DateTime.Now.ToString(), "groupTask", 15, 20);
+       // taskClass.SaveTask(newTask);
         //taskClass.ReadTask("6420fca5daf7d33604c8e65f");
         //taskClass.UpdateTask("6420fca5daf7d33604c8e65f", "New Content Updated");
         //taskClass.DeleteTask("6420fca5daf7d33604c8e65f");
