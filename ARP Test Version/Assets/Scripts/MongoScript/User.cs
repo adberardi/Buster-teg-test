@@ -283,7 +283,8 @@ namespace ARProject.User
 
         public string GetSessionDataUser()
         {
-            return PlayerPrefs.GetString("IDUser");
+            //return PlayerPrefs.GetString("IDUser");
+            return "6411384514070dd6d438055b";
         }
 
         public void ClearSessionDataUser()
