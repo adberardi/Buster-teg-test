@@ -8,10 +8,18 @@ using ARProject.Task;
 using System;
 using ARProject.User;
 using ARProject.Group;
+using UnityEngine.SceneManagement;
 
 public class ListGroups : MonoBehaviour
 {
- 
+    //Panel Main; Muestra los grupos, funciona como vista "Home" de MenuGrupos.
+    public GameObject PanelGroupMain;
+    //Panel Detail; muestra informacion detalle del grupo seleccionado.
+    public GameObject PanelGroupDetail;
+
+    public GameObject BtnBackMain;
+    public GameObject BtnBackDetail;
+
 
     // Variables para los objetos a generar
     public GameObject activityPrefab;   // Prefab del objeto de la actividad
@@ -34,11 +42,11 @@ public class ListGroups : MonoBehaviour
        Group group = new Group();
         User user = new User();
 
-        List<string> groupList = user.GetAllGroupsFromUser();
+        List<Group> groupBelongs = group.GetGroup(user);
 
-        activitySprites = new Sprite[groupList.Count];
+        activitySprites = new Sprite[groupBelongs.Count];
         //activitySprites = new Sprite[dataGroup.Count];
-        activityNames = new string[groupList.Count];
+        activityNames = new string[groupBelongs.Count];
         Debug.Log(activitySprites.Length);
         // Obtener el tamaño del objeto de la actividad
         activitySize = activityPrefab.GetComponent<RectTransform>().sizeDelta;
@@ -68,9 +76,11 @@ public class ListGroups : MonoBehaviour
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
 
 
-            activityNames[i] = "Actividad#" + i;
+            //activityNames[i] = "Actividad#" + i;
+            activityNames[i] = groupBelongs[i].NameGroup;
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            descriptionText.text = "Nueva descripción";
+            //descriptionText.text = "Nueva descripción";
+            descriptionText.text = groupBelongs[i].School;
 
             // Actualizar la posición para el siguiente objeto de la actividad
             //  activityPosition += new Vector2(activitySize.x + spacing, 0f);
@@ -80,11 +90,38 @@ public class ListGroups : MonoBehaviour
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
     }
 
+    private void OnBackToScene()
+    {
+        
+       // BtnSceneBack.gameObject.SetActive(true);
+    }
+
 
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void ChangePanelToDetail()
+    {
+        BtnBackDetail.SetActive(true);
+        PanelGroupDetail.SetActive(true);
+        PanelGroupMain.SetActive(false);
+        BtnBackMain.SetActive(false);
+    }
+
+    public void ChangePanelToMain()
+    {
+        BtnBackDetail.SetActive(false);
+        PanelGroupDetail.SetActive(false);
+        PanelGroupMain.SetActive(true);
+        BtnBackMain.SetActive(true);
     }
 }

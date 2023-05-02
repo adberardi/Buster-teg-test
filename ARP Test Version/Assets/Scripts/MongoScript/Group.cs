@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using ARProject.User;
 
 namespace ARProject.Group
 {
@@ -44,7 +45,6 @@ namespace ARProject.Group
             return db.GetCollection<Group>("Groups");
         }
 
-
         public ObjectId CreateGroup(Group newGroup)
         {
             Group registerGroup = new Group();
@@ -78,6 +78,22 @@ namespace ARProject.Group
             //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
             //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
             }
+
+
+        public List<Group> GetGroup(User.User user)
+        {
+
+            List<string> groupList = user.GetAllGroupsFromUser();
+            IMongoCollection<Group> docRef = GetCollection();
+            List<Group> result = new List<Group>();
+            foreach(var index in groupList)
+            {
+                Group credential = docRef.Find(group => group._id == ObjectId.Parse(index)).ToList()[0];
+                result.Add(credential);
+            }
+            
+            return result;
+        }
 
         public Group GetGroup(string IdGroup)
         {
