@@ -19,12 +19,19 @@ public class ListGroups : MonoBehaviour
 
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
+    List<Group> groupBelongs;
+    public Text TextNameGroup;
+    public Text TextSchool;
+    public Text TextActivityActual;
+    public Text TextRecord;
+    private Group group;
 
 
     // Variables para los objetos a generar
     public GameObject activityPrefab;   // Prefab del objeto de la actividad
     public Sprite[] activitySprites;    // Array de sprites para las actividades
     public string[] activityNames;      // Array de nombres para las actividades
+    private GameObject AuxObj { get; set; }
 
     // Variables para el scroll bar
     public ScrollRect scrollRect;       // Referencia al Scroll Rect en la escena
@@ -39,10 +46,10 @@ public class ListGroups : MonoBehaviour
     void Start()
     {
 
-       Group group = new Group();
+        group = new Group();
         User user = new User();
-
-        List<Group> groupBelongs = group.GetGroup(user);
+        string itemName = "Item ";
+        groupBelongs = group.GetGroup(user);
 
         activitySprites = new Sprite[groupBelongs.Count];
         //activitySprites = new Sprite[dataGroup.Count];
@@ -76,27 +83,17 @@ public class ListGroups : MonoBehaviour
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
 
 
-            //activityNames[i] = "Actividad#" + i;
+            itemName = i.ToString();
+            activityObject.name = itemName;
             activityNames[i] = groupBelongs[i].NameGroup;
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            //descriptionText.text = "Nueva descripción";
             descriptionText.text = groupBelongs[i].School;
 
-            // Actualizar la posición para el siguiente objeto de la actividad
-            //  activityPosition += new Vector2(activitySize.x + spacing, 0f);
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
     }
-
-    private void OnBackToScene()
-    {
-        
-       // BtnSceneBack.gameObject.SetActive(true);
-    }
-
-
 
     // Update is called once per frame
     void Update()
@@ -109,12 +106,19 @@ public class ListGroups : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void ChangePanelToDetail()
+    public void ChangePanelToDetail(GameObject activityObj)
     {
+        int indexData = int.Parse(activityObj.name);
         BtnBackDetail.SetActive(true);
         PanelGroupDetail.SetActive(true);
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
+        LoadDataPanel(groupBelongs[indexData]);
+    }
+
+    public void UpdatePosSCroll(Vector2 value)
+    {
+        Debug.Log("UpdatePosSCroll: "+value.y);
     }
 
     public void ChangePanelToMain()
@@ -123,5 +127,13 @@ public class ListGroups : MonoBehaviour
         PanelGroupDetail.SetActive(false);
         PanelGroupMain.SetActive(true);
         BtnBackMain.SetActive(true);
+    }
+
+    private void LoadDataPanel(Group groupItem)
+    {
+        TextNameGroup.text = groupItem.NameGroup;
+        TextSchool.text = groupItem.School;
+        TextActivityActual.text = "Actividad actual";
+        //TextRecord.text = "Posicion Actual!";
     }
 }
