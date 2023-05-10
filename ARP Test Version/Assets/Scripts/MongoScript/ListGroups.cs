@@ -6,9 +6,11 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using ARProject.Task;
 using System;
+using System.Linq;
 using ARProject.User;
 using ARProject.Group;
 using UnityEngine.SceneManagement;
+using System.Globalization;
 
 public class ListGroups : MonoBehaviour
 {
@@ -25,6 +27,7 @@ public class ListGroups : MonoBehaviour
     public Text TextActivityActual;
     public Text TextRecord;
     private Group group;
+    private Task activity;
 
 
     // Variables para los objetos a generar
@@ -48,6 +51,8 @@ public class ListGroups : MonoBehaviour
 
         group = new Group();
         User user = new User();
+        activity = new Task();
+
         string itemName = "Item ";
         groupBelongs = group.GetGroup(user);
 
@@ -133,7 +138,29 @@ public class ListGroups : MonoBehaviour
     {
         TextNameGroup.text = groupItem.NameGroup;
         TextSchool.text = groupItem.School;
-        TextActivityActual.text = "Actividad actual";
+        bool flag = true;
+        DateTime next;
+        List<Task> listDates = new List<Task>();
+        for(int c = 0; (c < groupItem.AssignedActivities.Length) && flag; c++){
+            Task nextDate = activity.GetTask(ObjectId.Parse(groupItem.AssignedActivities[c]));
+            DateTime dateConvert = DateTime.ParseExact(nextDate.EndDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
+            int resultDates = DateTime.Compare(dateConvert, DateTime.Now);
+            if (resultDates > 0)
+            {
+                //La fecha es posterior
+            } else if (resultDates == 0)
+            {
+                //La fecha es igual, en este caso es el dia actual.
+                next = dateConvert;
+                flag = false;
+            } else
+            {
+                //La fecha es anterior a la comparada.
+                listDates.Add(nextDate);
+            }
+        }
+        var listSorted = listDates.OrderByDescending(x => x.EndDate);
+        TextActivityActual.text = listSorted.ToList()[0].EndDate.ToString();
         //TextRecord.text = "Posicion Actual!";
     }
 }

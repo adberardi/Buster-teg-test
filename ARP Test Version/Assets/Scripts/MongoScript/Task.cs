@@ -14,10 +14,15 @@ namespace ARProject.Task
 
         public string GroupTask { get; set; }
         public string ContentTask { get; set; }
-        public int PointsTask { get; set; }
+        public int PointTask { get; set; }
         public float PercentageTask { get; set; }
-        public DateTime EndDate { get; set; }
-        public DateTime StartDate { get; set; }
+        public string EndDate { get; set; }
+        public string StartDate { get; set; }
+        public int Cont { get; set; }
+        public string Description { get; set; }
+        public int Reward { get; set; }
+        public string GameType { get; set; }
+        public string Name { get; set; }
         private MongoClient _client;
 
         public Task()
@@ -28,11 +33,11 @@ namespace ARProject.Task
         public Task(string contentTask, string startDate, string endDate, string groupTask, float percentageTask, int pointTask)
         {
             ContentTask = contentTask;
-            StartDate = DateTime.Parse(startDate);
-            EndDate= DateTime.Parse(endDate);
+            StartDate = startDate;
+            EndDate= endDate;
             GroupTask = groupTask;
             PercentageTask = percentageTask;
-            PointsTask = pointTask;
+            PointTask = pointTask;
         }
 
         public IMongoCollection<Task> GetCollection()
@@ -79,8 +84,17 @@ namespace ARProject.Task
             StartDate = result.EndDate;
             GroupTask = result.GroupTask;
             PercentageTask = result.PercentageTask;
-            PointsTask = result.PointsTask;
+            PointTask = result.PointTask;
             Debug.Log("Read all data from the task collection.");
+        }
+
+
+        public Task GetTask(ObjectId idTask)
+        {
+            IMongoCollection<Task> docRef = GetCollection();
+            //DateTime.ParseExact(this.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            Task result = docRef.Find(task => task._id == idTask).ToList()[0];
+            return result;
         }
 
         public async void UpdateTask(string IdTask, string newTask)
