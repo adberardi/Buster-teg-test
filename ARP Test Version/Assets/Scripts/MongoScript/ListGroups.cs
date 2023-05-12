@@ -25,7 +25,7 @@ public class ListGroups : MonoBehaviour
     public Text TextNameGroup;
     public Text TextSchool;
     public Text TextActivityActual;
-    public Text TextRecord;
+    public Text TextTaskDescription;
     private Group group;
     private Task activity;
 
@@ -136,31 +136,48 @@ public class ListGroups : MonoBehaviour
 
     private void LoadDataPanel(Group groupItem)
     {
+        TextActivityActual.text = "";
+        TextNameGroup.text = "";
+        TextSchool.text = "";
+        TextTaskDescription.text = "";
         TextNameGroup.text = groupItem.NameGroup;
         TextSchool.text = groupItem.School;
         bool flag = true;
-        DateTime next;
         List<Task> listDates = new List<Task>();
         for(int c = 0; (c < groupItem.AssignedActivities.Length) && flag; c++){
             Task nextDate = activity.GetTask(ObjectId.Parse(groupItem.AssignedActivities[c]));
-            DateTime dateConvert = DateTime.ParseExact(nextDate.EndDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
-            int resultDates = DateTime.Compare(dateConvert, DateTime.Now);
-            if (resultDates > 0)
+            DateTime dateEndConvert = DateTime.ParseExact(nextDate.EndDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
+            DateTime dateStartConvert = DateTime.ParseExact(nextDate.StartDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
+            int resultStartDates = DateTime.Compare(dateStartConvert, DateTime.Now);
+            int resultEndDates = DateTime.Compare(dateEndConvert, DateTime.Now);
+            if (((resultStartDates < 0) || (resultStartDates == 0)) && !(resultEndDates < 0))
             {
-                //La fecha es posterior
-            } else if (resultDates == 0)
-            {
-                //La fecha es igual, en este caso es el dia actual.
-                next = dateConvert;
-                flag = false;
-            } else
-            {
-                //La fecha es anterior a la comparada.
-                listDates.Add(nextDate);
+                if (resultEndDates == 0)
+                {
+                    //La fecha es igual, en este caso es el dia actual.
+                    //next = dateConvert;
+                    flag = false;
+                    TextActivityActual.text = dateEndConvert.ToString();
+                    TextTaskDescription.text = nextDate.Description;
+                }
+                else
+                {
+                    //La fecha es anterior a la comparada.
+                    listDates.Add(nextDate);
+                }
             }
         }
-        var listSorted = listDates.OrderByDescending(x => x.EndDate);
-        TextActivityActual.text = listSorted.ToList()[0].EndDate.ToString();
-        //TextRecord.text = "Posicion Actual!";
+        if ((flag) && (listDates.Count > 0))
+        {
+            var listSorted = listDates.OrderBy(x => x.EndDate);
+            var result = listSorted.ToList()[0];
+            TextActivityActual.text = result.EndDate.ToString();
+            TextTaskDescription.text = result.Description.ToString();
+        }
+        else
+        {
+            TextActivityActual.text = "No hay actividad actual";
+            TextTaskDescription.text = "No hay actividad actual";
+        }
     }
 }
