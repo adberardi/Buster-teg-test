@@ -4,13 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using ARProject.Task;
+using TaskUser = ARProject.Task;
 using System;
 using System.Linq;
 using ARProject.User;
 using ARProject.Group;
+using ARProject.GamesPlayed;
 using UnityEngine.SceneManagement;
 using System.Globalization;
+using Task = System.Threading.Tasks.Task;
 
 public class ListGroups : MonoBehaviour
 {
@@ -27,7 +29,9 @@ public class ListGroups : MonoBehaviour
     public Text TextActivityActual;
     public Text TextTaskDescription;
     private Group group;
-    private Task activity;
+    private User user;
+    private GamesPlayed record;
+    private TaskUser.Task activity;
 
 
     // Variables para los objetos a generar
@@ -50,8 +54,9 @@ public class ListGroups : MonoBehaviour
     {
 
         group = new Group();
-        User user = new User();
-        activity = new Task();
+        record = new GamesPlayed();
+        user = new User();
+        activity = new TaskUser.Task();
 
         string itemName = "Item ";
         groupBelongs = group.GetGroup(user);
@@ -134,7 +139,7 @@ public class ListGroups : MonoBehaviour
         BtnBackMain.SetActive(true);
     }
 
-    private void LoadDataPanel(Group groupItem)
+    private async void LoadDataPanel(Group groupItem)
     {
         TextActivityActual.text = "";
         TextNameGroup.text = "";
@@ -142,10 +147,13 @@ public class ListGroups : MonoBehaviour
         TextTaskDescription.text = "";
         TextNameGroup.text = groupItem.NameGroup;
         TextSchool.text = groupItem.School;
+        List<GamesPlayed> container;
+        //container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse(user.GetSessionDataUser()), groupItem._id)); 
+        container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), groupItem._id));
         bool flag = true;
-        List<Task> listDates = new List<Task>();
+        List<TaskUser.Task> listDates = new List<TaskUser.Task>();
         for(int c = 0; (c < groupItem.AssignedActivities.Length) && flag; c++){
-            Task nextDate = activity.GetTask(ObjectId.Parse(groupItem.AssignedActivities[c]));
+            TaskUser.Task nextDate = activity.GetTask(ObjectId.Parse(groupItem.AssignedActivities[c]));
             DateTime dateEndConvert = DateTime.ParseExact(nextDate.EndDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
             DateTime dateStartConvert = DateTime.ParseExact(nextDate.StartDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
             int resultStartDates = DateTime.Compare(dateStartConvert, DateTime.Now);
@@ -179,5 +187,13 @@ public class ListGroups : MonoBehaviour
             TextActivityActual.text = "No hay actividad actual";
             TextTaskDescription.text = "No hay actividad actual";
         }
+        Debug.Log("Valores recopilados en coleccion: " + container.Count);
+    }
+
+    public void LoadRecord(ObjectId idUser, ObjectId idGroup)
+    {
+        List<GamesPlayed> result = record.ReadGamesPlayedGroup(idUser, idGroup);
+        Debug.Log("Valores recopilados en coleccion: " + result.Count);
+
     }
 }

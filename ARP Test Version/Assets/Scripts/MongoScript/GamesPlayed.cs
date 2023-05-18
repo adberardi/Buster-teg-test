@@ -5,7 +5,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;
 
-namespace ARproject
+namespace ARProject.GamesPlayed
 {
     class GamesPlayed
     {
@@ -71,7 +71,7 @@ namespace ARproject
         //Se registra por primera vez una partida del jugador.
         public void CreateRecord(GamesPlayed newGp)
         {
-            Debug.LogFormat("Firebase user created successfully: {0} ({1})", newGp.User, newGp._id);
+            Debug.LogFormat("Fcreated successfully: {0} ({1})", newGp.User, newGp._id);
             User = newGp.User;
             Group = newGp.Group;
             DayPlayed = newGp.DayPlayed;
