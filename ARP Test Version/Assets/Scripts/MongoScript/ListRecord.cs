@@ -42,7 +42,7 @@ public class ListRecord : MonoBehaviour
 
         string itemName = "Item ";
         recordBelongs = record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), ObjectId.Parse("6411373b14070dd6d4380557"));
-
+        Debug.Log("Total recordBelongs "+ recordBelongs.Count);
         activitySprites = new Sprite[recordBelongs.Count];
         //activitySprites = new Sprite[dataGroup.Count];
         activityNames = new string[recordBelongs.Count];
@@ -79,17 +79,23 @@ public class ListRecord : MonoBehaviour
             activityObject.name = itemName;
             activityNames[i] = "ACtividad #"+i;
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            //descriptionText.text = recordBelongs[i].School;
-
+            descriptionText.text = recordBelongs[i].FinalScore.ToString();
+            Debug.Log("Ciclo FOR");
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
+        Debug.Log("Saliendo del start");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdatePosSCroll(Vector2 value)
+    {
+        Debug.Log("UpdatePosSCroll: " + value.y);
     }
 }
