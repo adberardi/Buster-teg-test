@@ -9,7 +9,7 @@ using System;
 using ARProject.User;
 using ARProject.Group;
 
-public class prueba : MonoBehaviour
+public class pruebaPuntuajes : MonoBehaviour
 {
     
 
@@ -18,6 +18,7 @@ public class prueba : MonoBehaviour
     public GameObject activityPrefab;   // Prefab del objeto de la actividad
     public Sprite[] activitySprites;    // Array de sprites para las actividades
     public string[] activityNames;      // Array de nombres para las actividades
+    public string[] activityNames2;      // Array de nombres para las actividades
 
     // Variables para el scroll bar
     public ScrollRect scrollRect;       // Referencia al Scroll Rect en la escena
@@ -32,36 +33,21 @@ public class prueba : MonoBehaviour
     void Start()
     {
         //string iduser=PlayerPrefs.GetString("IDUser");
-        string iduser = "6411384514070dd6d438055b";
-        Task newTask = new Task();
-         Task dataTask = new Task();
+       
+        
+         
         User dataUser = new User();
-        Group group = new Group();
-        Group dataGroup = new Group();
-        List<string> groups = dataUser.GetAllGroupsFromUser();
-        List<string> assignedActivitiesList = new List<string>();
+        var userRewards = dataUser.GetUserRewards();
 
-        for (int i = 0; i < groups.Count; i++) {
-            Debug.Log("grupo::" + i);
-            dataGroup =group.GetGroup(groups[i]);
-            Debug.Log("actividades::"+dataGroup.AssignedActivities.Length);
-            if (dataGroup.AssignedActivities.Length>0) {
-                Debug.Log("en el if");
-                for (int iw = 0; iw < dataGroup.AssignedActivities.Length; iw++) {
-                    Debug.Log(dataGroup.AssignedActivities[iw]);
-                    assignedActivitiesList.Add(dataGroup.AssignedActivities[iw]);
-                }
-                Debug.Log("Fuera");
-            };
-            
-        }
+
 
             
  
 
 
-        activitySprites = new Sprite[assignedActivitiesList.Count];
-        activityNames = new string[assignedActivitiesList.Count];
+        activitySprites = new Sprite[userRewards.Count];
+        activityNames = new string[userRewards.Count];
+        activityNames2 = new string[userRewards.Count];
         Debug.Log(activitySprites.Length);
        // Obtener el tamaño del objeto de la actividad
        activitySize = activityPrefab.GetComponent<RectTransform>().sizeDelta;
@@ -82,28 +68,30 @@ public class prueba : MonoBehaviour
 
             // Asignar la imagen y el nombre de la actividad
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
-            activitySprites[i] = Resources.Load<Sprite>("Sprites/btn_square_blue_pressed");
+            activitySprites[i] = Resources.Load<Sprite>("Sprites/btn_small_green");
 
-            dataTask = newTask.GetTaskById(assignedActivitiesList[i]);
+            //dataTask = newTask.GetTaskById(assignedActivitiesList[i]);
 
             // Encontrar el componente de texto de la descripción de la actividad
-            Text descriptionText = activityObject.transform.Find("Description").GetComponent<Text>();
-            Text rewardNumber = activityObject.transform.Find("RewardNumber").GetComponent<Text>();
+            Text descriptionText = activityObject.transform.Find("Text").GetComponent<Text>();
+            Text rewardNumber = activityObject.transform.Find("rewardText").GetComponent<Text>();
             // Cargar el sprite de la imagen
-            Sprite checkboxSprite = Resources.Load<Sprite>(dataTask.Checked);
+           
             // ...
             // Asignar la imagen y el nombre de la actividad
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
             // ...
             // Asignar el sprite de la imagen del checkbox
-            activityObject.transform.Find("Checkbox").GetComponent<Image>().sprite = checkboxSprite;
+          
 
-            activityNames[i] = dataTask.Name;
-            
+            activityNames[i] = userRewards[i].UserName;
+            activityNames2[i] = userRewards[i].Reward.ToString();
+            Debug.Log(userRewards[i].UserName);
+
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            string pointTaskAsString = dataTask.PointTask.ToString();
-            descriptionText.text = dataTask.Description;
-            rewardNumber.text = pointTaskAsString;
+            //string pointTaskAsString = dataTask.PointTask.ToString();
+            //descriptionText.text = dataTask.Description;
+           rewardNumber.text = activityNames2[i];
           
             // Actualizar la posición para el siguiente objeto de la actividad
             //  activityPosition += new Vector2(activitySize.x + spacing, 0f);

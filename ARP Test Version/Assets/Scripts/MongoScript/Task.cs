@@ -22,10 +22,11 @@ namespace ARProject.Task
         public float PercentageTask { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
+        public string Checked { get; set; }
 
         private MongoClient _client;
 
-        public Task(int cont, string gameType, int reward, string name, string description, int pointTask, float percentageTask, string startDate, string endDate)
+        public Task(int cont, string gameType, int reward, string name, string description, int pointTask, float percentageTask, string startDate, string endDate, string cheCked)
         {
             Cont = cont;
             GameType = gameType;
@@ -35,6 +36,7 @@ namespace ARProject.Task
             PointTask = pointTask;
             PercentageTask = percentageTask;
             EndDate = endDate;
+            Checked = cheCked;
         }
 
 

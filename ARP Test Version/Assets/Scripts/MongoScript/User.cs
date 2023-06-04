@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Linq;
 
 namespace ARProject.User
 {
@@ -329,11 +330,45 @@ namespace ARProject.User
             return data;
         }
 
+
+
+        public List<UserReward> GetUserRewards()
+        {
+            List<UserReward> userRewards = new List<UserReward>();
+
+            MongoClient client = MongoDBManager.GetClient();
+            IMongoCollection<User> userCollection = client.GetDatabase("Mercurio").GetCollection<User>("User");
+            List<User> users = userCollection.Find(_ => true).ToList();
+
+            foreach (User user in users)
+            {
+                UserReward userReward = new UserReward
+                {
+                    UserName = user.UserName,
+                    Reward = user.Reward
+                };
+
+                userRewards.Add(userReward);
+            }
+
+            // Ordenar la lista por Reward de forma descendente
+            userRewards = userRewards.OrderByDescending(u => u.Reward).ToList();
+
+            return userRewards;
+        }
+
     }
 
 }
 
 
+
+
+class UserReward
+{
+    public string UserName { get; set; }
+    public int Reward { get; set; }
+}
 
 
 
