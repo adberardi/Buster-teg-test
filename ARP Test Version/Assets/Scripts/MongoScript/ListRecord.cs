@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using ARProject.User;
 using ARProject.GamesPlayed;
 using ARProject.Group;
+using ARProject.Game;
 using TaskUser = ARProject.Task;
 
 public class ListRecord : MonoBehaviour
@@ -14,6 +15,7 @@ public class ListRecord : MonoBehaviour
 
     private User user;
     private Group group;
+    private Game game;
     private GamesPlayed record;
     private TaskUser.Task activity;
     List<GamesPlayed> recordBelongs;
@@ -38,6 +40,7 @@ public class ListRecord : MonoBehaviour
         group = new Group();
         record = new GamesPlayed();
         user = new User();
+        game = new Game();
         activity = new TaskUser.Task();
 
         string itemName = "Item ";
@@ -52,7 +55,7 @@ public class ListRecord : MonoBehaviour
 
         // Calcular la posición inicial del primer objeto de la actividad
         activityPosition = new Vector2(spacing + activitySize.x / 2f, -spacing - activitySize.y / 2f);
-
+        List<Game> gameList = game.ReadGame(recordBelongs);
         // Generar los objetos de la actividad
         for (int i = 0; i < activitySprites.Length; i++)
         {
@@ -68,8 +71,10 @@ public class ListRecord : MonoBehaviour
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
             activitySprites[i] = Resources.Load<Sprite>("Sprites/btn_square_blue");
 
+            Text titleText = activityObject.transform.Find("TitleGame").GetComponent<Text>();
+
             // Encontrar el componente de texto de la descripción de la actividad
-            Text descriptionText = activityObject.transform.Find("Description").GetComponent<Text>();
+            Text descriptionText = activityObject.transform.Find("DescriptionGame").GetComponent<Text>();
 
             // Asignar la imagen y el nombre de la actividad
             activityObject.GetComponent<Image>().sprite = activitySprites[i];
@@ -79,7 +84,8 @@ public class ListRecord : MonoBehaviour
             activityObject.name = itemName;
             activityNames[i] = "ACtividad #"+i;
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            descriptionText.text = recordBelongs[i].FinalScore.ToString();
+            titleText.text = "Nota " + recordBelongs[i].FinalScore.ToString() + "  -  "+ recordBelongs[i].FinalTimer;
+            descriptionText.text = gameList[i].DescGame;
             Debug.Log("Ciclo FOR");
         }
         activityPrefab.SetActive(false);
