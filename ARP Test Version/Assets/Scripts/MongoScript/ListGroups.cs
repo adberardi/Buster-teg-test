@@ -123,6 +123,7 @@ public class ListGroups : MonoBehaviour
         PanelGroupDetail.SetActive(true);
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
+        PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
         LoadDataPanel(groupBelongs[indexData]);
     }
 
@@ -148,8 +149,8 @@ public class ListGroups : MonoBehaviour
         TextNameGroup.text = groupItem.NameGroup;
         TextSchool.text = groupItem.School;
         List<GamesPlayed> container;
-        //container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse(user.GetSessionDataUser()), groupItem._id)); 
-        container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), groupItem._id));
+        container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse(user.GetSessionDataUser()), groupItem._id)); 
+        //container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), groupItem._id));
         bool flag = true;
         List<TaskUser.Task> listDates = new List<TaskUser.Task>();
         for(int c = 0; (c < groupItem.AssignedActivities.Length) && flag; c++){

@@ -23,6 +23,7 @@ namespace ARProject.Task
         public int Reward { get; set; }
         public string GameType { get; set; }
         public string Name { get; set; }
+        public string Checked { get; set; }
         private MongoClient _client;
 
         public Task()
