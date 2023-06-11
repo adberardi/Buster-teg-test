@@ -12,8 +12,12 @@ namespace ARProject.Task
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
 
-        public string GroupTask { get; set; }
-        public string ContentTask { get; set; }
+        public int Cont { get; set; }
+        public string GameType { get; set; }
+        public int Reward { get; set; }
+
+        public string Name { get; set; }
+        public string Description { get; set; }
         public int PointTask { get; set; }
         public float PercentageTask { get; set; }
         public string EndDate { get; set; }
@@ -26,12 +30,21 @@ namespace ARProject.Task
         public string Checked { get; set; }
         private MongoClient _client;
 
-        public Task()
+        public Task(int cont, string gameType, int reward, string name, string description, int pointTask, float percentageTask, string startDate, string endDate, string cheCked)
         {
-            _client = MongoDBManager.GetClient();
+            Cont = cont;
+            GameType = gameType;
+            Reward = reward;
+            Name = name;
+            Description = description;
+            PointTask = pointTask;
+            PercentageTask = percentageTask;
+            EndDate = endDate;
+            Checked = cheCked;
         }
 
-        public Task(string contentTask, string startDate, string endDate, string groupTask, float percentageTask, int pointTask)
+
+        public Task()
         {
             ContentTask = contentTask;
             StartDate = startDate;
@@ -41,8 +54,12 @@ namespace ARProject.Task
             PointTask = pointTask;
         }
 
+     
+       
+
         public IMongoCollection<Task> GetCollection()
         {
+          //  _client = new MongoClient("mongodb+srv://zilus13:canuto13@cluster0.ds89fgp.mongodb.net/?retryWrites=true&w=majority");
             var db = _client.GetDatabase("Mercurio");
             return db.GetCollection<Task>("Task");
         }
@@ -100,27 +117,43 @@ namespace ARProject.Task
 
         public async void UpdateTask(string IdTask, string newTask)
         {
-            try
-            {
-                IMongoCollection<Task> docRef = GetCollection();
-                var filterData = Builders<Task>.Filter.Eq(query => query._id, ObjectId.Parse(IdTask));
-                var dataToUpdate = Builders<Task>.Update.Set(query => query.ContentTask, newTask);
-                IMongoCollection<Task> groupRef = GetCollection();
-                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
-                if (result.IsAcknowledged && result.ModifiedCount > 0)
-                {
-                    Debug.Log("Operacion completada");
-                }
-                else
-                {
-                    Debug.Log("Operacion Fallida");
-                }
-            }
-            catch (MongoException)
-            {
-                Debug.Log("Un error ha ocurido");
-            }
+            //try
+            //{
+            //    IMongoCollection<Task> docRef = GetCollection();
+            //    var filterData = Builders<Task>.Filter.Eq(query => query._id, ObjectId.Parse(IdTask));
+            //    var dataToUpdate = Builders<Task>.Update.Set(query => query.ContentTask, newTask);
+            //    IMongoCollection<Task> groupRef = GetCollection();
+            //    var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+            //    if (result.IsAcknowledged && result.ModifiedCount > 0)
+            //    {
+            //        Debug.Log("Operacion completada");
+            //    }
+            //    else
+            //    {
+            //        Debug.Log("Operacion Fallida");
+            //    }
+            //}
+            //catch (MongoException)
+            //{
+            //    Debug.Log("Un error ha ocurido");
+            //}
         }
+
+
+        public Task GetTaskById(string id)
+        {
+            Debug.Log("GetTaskById");
+            
+            IMongoCollection<Task> docRef = GetCollection();
+     
+            Debug.Log(docRef);
+           
+            Task result = docRef.Find(task => task._id == ObjectId.Parse(id)).ToList()[0];
+            Debug.Log("Result: " + result.Description);
+            return result;
+        }
+
+
     }
 }
 

@@ -277,3 +277,6 @@ C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-
 C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.dll
 C:\Users\User\Documents\TEG\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.pdb
+C:\Users\luis_\Desktop\tesis\definitivo\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\luis_\Desktop\tesis\definitivo\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\luis_\Desktop\tesis\definitivo\Buster-teg-test\ARP Test Version\obj\Debug\Assembly-CSharp.dll

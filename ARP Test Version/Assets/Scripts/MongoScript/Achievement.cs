@@ -1,52 +1,67 @@
-﻿using System.Collections;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ARProject.AchievementClass
+namespace ARProject.Achievement
 {
     class Achievement
     {
-        public string DescAch { get; set; }
-        public string GoalAch { get; set; }
-        public string ImgAch { get; set; }
+        public ObjectId _id { get; set; }
+        public List<string> AssignedActivities { get; set; }
+        public string DateCreated { get; set; }
+        public string DateUpdated { get; set; }
+        public List<string> ParticipantsAchievement { get; set; }
+        private MongoClient _client;
 
 
-        /*public Achievement(FirebaseFirestore db)
+
+        public Achievement(List<string> assignedActivities, string dateCreated, string dateUpdated, List<string> participantsAchievement)
         {
-            this.db = db;
-        }*/
+            AssignedActivities = assignedActivities;
+            DateCreated = dateCreated;
+            DateUpdated = dateUpdated;
+            ParticipantsAchievement = participantsAchievement;
+        }
 
-        /*public void SaveAchievement(string idAchievement)
+        public Achievement()
         {
-            DocumentReference docRef = db.Collection("Achievement").Document(idAchievement);
-            Dictionary<string, object> content = new Dictionary<string, object>
-            {
-                { "descAch", "TituloUno" },
-                { "goalAch", "1"},
-                { "imgAch", "Matematica/imagen"},
-            };
-
-            docRef.SetAsync(content).ContinueWithOnMainThread(task =>
-            {
-                Debug.Log("Se registro de manera exitosa la logro");
-            });
-        }*/
-
-        /*public void ReadAchievement(string idAchievement)
+            _client = MongoDBManager.GetClient();
+        }
+        public IMongoCollection<Achievement> GetCollection()
         {
-            DocumentReference docRef = db.Collection("Achievement").Document(idAchievement);
-            docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-            {
-                DocumentSnapshot doc = task.Result;
-                Dictionary<string, object> docContent = doc.ToDictionary();
-                DescAch = docContent["descAch"].ToString();
-                GoalAch = docContent["goalAch"].ToString();
-                ImgAch = docContent["imgAch"].ToString();
+            var db = _client.GetDatabase("Mercurio");
+            return db.GetCollection<Achievement>("Achievements");
+        }
 
-                Debug.Log(string.Format("Description Achievement: {0}", DescAch));
+        public void Insert()
+        {
+            IMongoCollection<Achievement> collection = GetCollection();
+            collection.InsertOne(this);
+        }
 
-            });
+        public List<Achievement> FindAll()
+        {
+            IMongoCollection<Achievement> collection = GetCollection();
+            return collection.Find(new BsonDocument()).ToList();
+        }
 
-        }*/
+        public Achievement FindById(ObjectId id)
+        {
+            IMongoCollection<Achievement> collection = GetCollection();
+            return collection.Find(Achievement => Achievement._id == id).FirstOrDefault();
+        }
+
+        public void Update()
+        {
+            IMongoCollection<Achievement> collection = GetCollection();
+            collection.ReplaceOne(Achievement => Achievement._id == this._id, this);
+        }
+
+        public void Delete()
+        {
+            IMongoCollection<Achievement> collection = GetCollection();
+            collection.DeleteOne(Achievement => Achievement._id == this._id);
+        }
     }
 }

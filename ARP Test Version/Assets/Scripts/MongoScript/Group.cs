@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -13,6 +14,7 @@ namespace ARProject.Group
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
         public string NameGroup { get; set; }
+        public string DateCreated { get; set; }
         public string DateCreated { get; set; }
         public string Admin { get; set; }
         public string School { get; set; }
@@ -147,9 +149,14 @@ namespace ARProject.Group
             }
         }
 
+
+        public Group GetGroup(string IdGroup)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
+            return credential;
+        }
     }
 
     }
-
-
 

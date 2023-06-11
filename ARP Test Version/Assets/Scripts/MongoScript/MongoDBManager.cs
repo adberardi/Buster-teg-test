@@ -11,6 +11,8 @@ public class MongoDBManager
 
     public static MongoClient GetClient()
     {
+        Debug.Log("ENTRANDO mongo"+ _client);
+
         return _client;
     }
 }
