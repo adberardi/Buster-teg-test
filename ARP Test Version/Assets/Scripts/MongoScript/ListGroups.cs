@@ -58,8 +58,11 @@ public class ListGroups : MonoBehaviour
         user = new User();
         activity = new TaskUser.Task();
 
-        string itemName = "Item ";
+        
         groupBelongs = group.GetGroup(user);
+
+
+        string itemName = "Item ";
 
         activitySprites = new Sprite[groupBelongs.Count];
         //activitySprites = new Sprite[dataGroup.Count];
@@ -103,6 +106,11 @@ public class ListGroups : MonoBehaviour
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
+
+        if (PlayerPrefs.GetString("EnableGroupDetails") == "True")
+        {
+            ChangePanelToDetail(PlayerPrefs.GetInt("IndexData"));
+        }
     }
 
     // Update is called once per frame
@@ -124,7 +132,19 @@ public class ListGroups : MonoBehaviour
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
         PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
+        PlayerPrefs.SetInt("IndexData",indexData);
         LoadDataPanel(groupBelongs[indexData]);
+    }
+
+    public void ChangePanelToDetail(int pos)
+    {
+        
+        BtnBackDetail.SetActive(true);
+        PanelGroupDetail.SetActive(true);
+        PanelGroupMain.SetActive(false);
+        BtnBackMain.SetActive(false);
+        PlayerPrefs.SetString("IDGroup", groupBelongs[pos]._id.ToString());
+        LoadDataPanel(groupBelongs[pos]);
     }
 
     public void UpdatePosSCroll(Vector2 value)
@@ -134,6 +154,7 @@ public class ListGroups : MonoBehaviour
 
     public void ChangePanelToMain()
     {
+        PlayerPrefs.SetString("EnableGroupDetails", "False");
         BtnBackDetail.SetActive(false);
         PanelGroupDetail.SetActive(false);
         PanelGroupMain.SetActive(true);

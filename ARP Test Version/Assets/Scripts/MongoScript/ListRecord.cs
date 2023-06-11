@@ -45,6 +45,8 @@ public class ListRecord : MonoBehaviour
         game = new Game();
         activity = new TaskUser.Task();
 
+        PlayerPrefs.SetString("EnableGroupDetails", "False");
+
         string itemName = "Item ";
         recordBelongs = record.ReadGamesPlayedGroup(ObjectId.Parse(PlayerPrefs.GetString("IDUser")), ObjectId.Parse(PlayerPrefs.GetString("IDGroup")));
         //recordBelongs = record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), ObjectId.Parse("6411373b14070dd6d4380557"));
@@ -121,5 +123,6 @@ public class ListRecord : MonoBehaviour
     public void BackToGropMenu()
     {
         record.ChangeScene(14);
+        PlayerPrefs.SetString("EnableGroupDetails", "True");
     }
 }

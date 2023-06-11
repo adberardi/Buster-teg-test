@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.User;
 using ARProject.Group;
@@ -17,6 +16,8 @@ public class LoadSceneMenu : MonoBehaviour
     private Score score;
     private Task taskClass;
 
+    public GameObject UsernameText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,8 @@ public class LoadSceneMenu : MonoBehaviour
         group = new Group();
         score = new Score();
         taskClass = new Task();
-}
+        UsernameText.GetComponent<Text>().text = PlayerPrefs.GetString("Username");
+    }
 
     // Update is called once per frame
     void Update()
