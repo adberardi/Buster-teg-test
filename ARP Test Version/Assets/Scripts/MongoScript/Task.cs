@@ -22,11 +22,6 @@ namespace ARProject.Task
         public float PercentageTask { get; set; }
         public string EndDate { get; set; }
         public string StartDate { get; set; }
-        public int Cont { get; set; }
-        public string Description { get; set; }
-        public int Reward { get; set; }
-        public string GameType { get; set; }
-        public string Name { get; set; }
         public string Checked { get; set; }
         private MongoClient _client;
 
@@ -43,19 +38,10 @@ namespace ARProject.Task
             Checked = cheCked;
         }
 
-
         public Task()
         {
-            ContentTask = contentTask;
-            StartDate = startDate;
-            EndDate= endDate;
-            GroupTask = groupTask;
-            PercentageTask = percentageTask;
-            PointTask = pointTask;
+            _client = MongoDBManager.GetClient();
         }
-
-     
-       
 
         public IMongoCollection<Task> GetCollection()
         {
@@ -97,10 +83,8 @@ namespace ARProject.Task
             IMongoCollection<Task> docRef = GetCollection();
             //IMongoCollection<User> userCollection = GetCollection();
             Task result = docRef.Find(task => task._id == ObjectId.Parse(idTask)).ToList()[0];
-            Debug.Log(string.Format("ContentTask: {0} , StartDate: {1}, GroupTask: {2}", result.ContentTask, result.StartDate, result.GroupTask));
-            ContentTask = result.ContentTask;
+            Description = result.Description;
             StartDate = result.EndDate;
-            GroupTask = result.GroupTask;
             PercentageTask = result.PercentageTask;
             PointTask = result.PointTask;
             Debug.Log("Read all data from the task collection.");
@@ -117,26 +101,26 @@ namespace ARProject.Task
 
         public async void UpdateTask(string IdTask, string newTask)
         {
-            //try
-            //{
-            //    IMongoCollection<Task> docRef = GetCollection();
-            //    var filterData = Builders<Task>.Filter.Eq(query => query._id, ObjectId.Parse(IdTask));
-            //    var dataToUpdate = Builders<Task>.Update.Set(query => query.ContentTask, newTask);
-            //    IMongoCollection<Task> groupRef = GetCollection();
-            //    var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
-            //    if (result.IsAcknowledged && result.ModifiedCount > 0)
-            //    {
-            //        Debug.Log("Operacion completada");
-            //    }
-            //    else
-            //    {
-            //        Debug.Log("Operacion Fallida");
-            //    }
-            //}
-            //catch (MongoException)
-            //{
-            //    Debug.Log("Un error ha ocurido");
-            //}
+            try
+            {
+                IMongoCollection<Task> docRef = GetCollection();
+                var filterData = Builders<Task>.Filter.Eq(query => query._id, ObjectId.Parse(IdTask));
+                var dataToUpdate = Builders<Task>.Update.Set(query => query.Description, newTask);
+                IMongoCollection<Task> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("Operacion completada");
+                }
+                else
+                {
+                    Debug.Log("Operacion Fallida");
+                }
+            }
+            catch (MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
+            }
         }
 
 

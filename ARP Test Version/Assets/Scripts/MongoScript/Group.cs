@@ -15,7 +15,6 @@ namespace ARProject.Group
         public ObjectId _id { get; set; }
         public string NameGroup { get; set; }
         public string DateCreated { get; set; }
-        public string DateCreated { get; set; }
         public string Admin { get; set; }
         public string School { get; set; }
         public string LevelSchool { get; set; }
@@ -30,8 +29,9 @@ namespace ARProject.Group
             _client = MongoDBManager.GetClient();
         }
 
-        public Group(string nameGroup, DateTime dateCreated, string admin, string school, string levelSchool)
+        public Group(ObjectId idGroup, string nameGroup, DateTime dateCreated, string admin, string school, string levelSchool)
         {
+            _id = idGroup;
             NameGroup = nameGroup;
             DateCreated = dateCreated.ToString();
             Admin = admin;
@@ -51,7 +51,7 @@ namespace ARProject.Group
         {
             Group registerGroup = new Group();
             registerGroup.GetCollection().InsertOne(newGroup);
-            return new ObjectId();
+            return newGroup._id;
         }
 
         // Valida si ya existe un grupo con; el mismo nombre (name), colegio (groupSchool), y grado escolar (levelSchool) del curso
@@ -147,14 +147,6 @@ namespace ARProject.Group
             {
                 Debug.Log("Error al borrar el grupo");
             }
-        }
-
-
-        public Group GetGroup(string IdGroup)
-        {
-            IMongoCollection<Group> docRef = GetCollection();
-            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
-            return credential;
         }
     }
 

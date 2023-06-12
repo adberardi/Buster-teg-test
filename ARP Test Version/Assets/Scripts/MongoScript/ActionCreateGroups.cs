@@ -60,8 +60,9 @@ public class ActionCreateGroups : MonoBehaviour
     {
         if ((nameGroup.text != "") && (!group.ExistsSameGroup(nameGroup.text, GroupSchool, LevelSchool)))
         {
-            Group newGroup = new Group(nameGroup.text, DateTime.Now, PlayerPrefs.GetString("IDUser"), GroupSchool, LevelSchool);
+            Group newGroup = new Group(ObjectId.GenerateNewId(), nameGroup.text, DateTime.Now, PlayerPrefs.GetString("IDUser"), GroupSchool, LevelSchool);
             ObjectId idGroup = group.CreateGroup(newGroup);
+            Debug.Log("Id Grupo Nuevo: " + idGroup.ToString()+" PRUEBA: "+ ObjectId.GenerateNewId().ToString());
             //Se agrega al usuario que creo al grupo como el administrador y el primero en ser agregado.
             user.AddGroupToUser(idGroup);
         }
