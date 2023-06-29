@@ -21,6 +21,7 @@ public class ListRecord : MonoBehaviour
     List<GamesPlayed> recordBelongs;
 
     public GameObject MsgError;
+    public GameObject SubTitle;
 
     // Variables para los objetos a generar
     public GameObject activityPrefab;   // Prefab del objeto de la actividad
@@ -46,6 +47,8 @@ public class ListRecord : MonoBehaviour
         activity = new TaskUser.Task();
 
         PlayerPrefs.SetString("EnableGroupDetails", "False");
+        Group aux = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
+        SubTitle.GetComponent<Text>().text = aux.NameGroup;
 
         string itemName = "Item ";
         recordBelongs = record.ReadGamesPlayedGroup(ObjectId.Parse(PlayerPrefs.GetString("IDUser")), ObjectId.Parse(PlayerPrefs.GetString("IDGroup")));

@@ -694,6 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MsgError: {fileID: 1434312640}
+  SubTitle: {fileID: 1721431675}
   activityPrefab: {fileID: 2010614351}
   activitySprites: []
   activityNames: []
@@ -1285,8 +1286,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 282}
-  m_SizeDelta: {x: 214.05, y: 45.3}
+  m_AnchoredPosition: {x: 88, y: 241.3}
+  m_SizeDelta: {x: 214.1, y: 126.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721431677
 MonoBehaviour:
@@ -1315,13 +1316,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1721431678
 CanvasRenderer:
   m_ObjectHideFlags: 0

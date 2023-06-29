@@ -161,7 +161,7 @@ public class ListGroups : MonoBehaviour
         BtnBackMain.SetActive(true);
     }
 
-    private async void LoadDataPanel(Group groupItem)
+    private void LoadDataPanel(Group groupItem)
     {
         TextActivityActual.text = "";
         TextNameGroup.text = "";
@@ -170,7 +170,7 @@ public class ListGroups : MonoBehaviour
         TextNameGroup.text = groupItem.NameGroup;
         TextSchool.text = groupItem.School;
         List<GamesPlayed> container;
-        container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse(user.GetSessionDataUser()), groupItem._id)); 
+        container = record.ReadGamesPlayedGroup(ObjectId.Parse(user.GetSessionDataUser()), groupItem._id); 
         //container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), groupItem._id));
         bool flag = true;
         List<TaskUser.Task> listDates = new List<TaskUser.Task>();

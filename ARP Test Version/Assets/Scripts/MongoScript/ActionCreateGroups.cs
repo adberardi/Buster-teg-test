@@ -46,6 +46,11 @@ public class ActionCreateGroups : MonoBehaviour
         
     }
 
+    public void UpdatePosSCroll(Vector2 value)
+    {
+        Debug.Log("UpdatePosSCroll: " + value.y);
+    }
+
     public void ChangeScene(int index)
     {
         SceneManager.LoadScene(index);
