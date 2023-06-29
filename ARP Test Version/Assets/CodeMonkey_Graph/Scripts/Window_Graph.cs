@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using MongoDB.Bson;
+using ARProject.GamesPlayed;
 
 public class Window_Graph : MonoBehaviour {
 
@@ -39,6 +41,10 @@ public class Window_Graph : MonoBehaviour {
     private Func<float, string> getAxisLabelY;
 
     private void Awake() {
+
+
+     
+
         instance = this;
         // Grab base objects references
         graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
@@ -78,9 +84,24 @@ public class Window_Graph : MonoBehaviour {
         
         HideTooltip();
 
+
+        ObjectId userId = new ObjectId("6411384514070dd6d438055b");
+        GamesPlayed gamesPlayed = new GamesPlayed();
+        (List<string>, List<int>) result = gamesPlayed.GetGamesPlayedByUserId(userId);
+
+        List<string> dayPlayedList = result.Item1;
+        List<int> dayPlayedCountList = result.Item2;
+
+        for (int i = 0; i < dayPlayedList.Count; i++)
+        {
+            Debug.Log("Day Played: " + dayPlayedList[i] + ", Count: " + dayPlayedCountList[i]);
+        }
+
+        Debug.Log("ssssssssssssssssssssssss");
+        Debug.Log(dayPlayedList.Count);
         // Set up base values
-        List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15};
-        ShowGraph(valueList, barChartVisual, -1, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
+        List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15,78};
+        ShowGraph(dayPlayedCountList, barChartVisual, -1, (int _i) => dayPlayedList[_i]);
 
         /*
         // Automatically modify graph values and visual
