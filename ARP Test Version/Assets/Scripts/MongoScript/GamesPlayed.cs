@@ -4,7 +4,7 @@ using UnityEngine;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;
-
+using System.Linq;
 
 namespace ARProject.GamesPlayed
 {
@@ -99,6 +99,9 @@ namespace ARProject.GamesPlayed
             SceneManager.LoadScene(index);
         }
 
+
+
+
         public bool IsSuccessfullyOperation(UpdateResult result)
         {
             if (result.IsAcknowledged && result.ModifiedCount > 0)
@@ -113,5 +116,32 @@ namespace ARProject.GamesPlayed
                 return false;
             }
         }
+        public (List<string>, List<int>) GetGamesPlayedByUserId(ObjectId userId)
+        {
+            IMongoCollection<GamesPlayed> collection = GetCollection();
+            List<GamesPlayed> gamesPlayed = collection.Find(gp => gp.User.Equals(userId)).ToList();
+            Dictionary<string, int> dayPlayedCount = new Dictionary<string, int>();
+            Debug.Log("ddddddddddd");
+
+            foreach (GamesPlayed game in gamesPlayed)
+            {
+                string dayPlayed = game.DayPlayed;
+                if (dayPlayedCount.ContainsKey(dayPlayed))
+                {
+                    dayPlayedCount[dayPlayed]++;
+                }
+                else
+                {
+                    dayPlayedCount[dayPlayed] = 1;
+                }
+            }
+
+            List<string> dayPlayedList = dayPlayedCount.Keys.ToList();
+            List<int> dayPlayedCountList = dayPlayedCount.Values.ToList();
+
+            return (dayPlayedList, dayPlayedCountList);
+        }
+
+
     }
 }
