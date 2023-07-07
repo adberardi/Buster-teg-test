@@ -12,6 +12,7 @@ namespace ARProject.School
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
         public string SchoolName { get; set; }
+        public List<ObjectId> Students { get; set; }
         private List<School> ListSchools {get; set;}
         private MongoClient _client;
 
@@ -36,6 +37,15 @@ namespace ARProject.School
             Debug.Log(string.Format("SchoolName: {0}", credential.SchoolName));
             SchoolName = credential.SchoolName;
             Debug.Log("Read all data from the School collection.");
+        }
+
+        public List<ObjectId> ListStudents(string IdSchool)
+        {
+            Debug.Log("ENTRANDO EN ReadSchool");
+            IMongoCollection<School> docRef = GetCollection();
+            School result = docRef.Find(task => task._id == ObjectId.Parse(IdSchool)).ToList()[0];
+            return result.Students;
+;
         }
 
         public List<School> GetListSchools()

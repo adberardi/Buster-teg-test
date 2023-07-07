@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace ARProject.User
 {
-    class User
+    public class User
     {
 
         [MongoDB.Bson.Serialization.Attributes.BsonId]
@@ -358,6 +358,21 @@ namespace ARProject.User
             return userRewards;
         }
 
+
+        public List<User> GetStudents(List<ObjectId> listParam)
+        {
+            List<User> data = new List<User>();
+            IMongoCollection<User> userCollection = GetCollection();
+            foreach (var index in listParam)
+            {
+                User credential = userCollection.Find(user => user._id == index).ToList()[0];
+                data.Add(credential);
+            }
+            //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);
+            //Debug.Log(credential.Email);
+            return data;
+        }
+
     }
 
 }
@@ -365,7 +380,7 @@ namespace ARProject.User
 
 
 
-class UserReward
+public class UserReward
 {
     public string UserName { get; set; }
     public int Reward { get; set; }
