@@ -23,7 +23,7 @@ public class ActionCreateGroups : MonoBehaviour
     public GameObject BtnBackForm;
     public List<ObjectId> studentsList = new List<ObjectId>();
     List<User> dataResult;
-    //List<Group> groupBelongs;
+    List<GameObject> listMembers = new List<GameObject>();
 
 
     // Variables para los objetos a generar
@@ -149,9 +149,10 @@ public class ActionCreateGroups : MonoBehaviour
         //LevelSchool = op.name;
     }
 
-    public void ChangePanelToDetail(/*GameObject activityObj*/)
+    public void ChangePanelToDetail()
     {
-        studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
+        //studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
+        //studentsList = school.ListStudents();
         SearchStudents(studentsList);
         //int indexData = int.Parse(activityObj.name);
         //PanelMember.SetActive(true);
@@ -166,6 +167,11 @@ public class ActionCreateGroups : MonoBehaviour
     {
         List<User> result = new List<User>();
         List<ObjectId> aux = school.ListStudents("64302d6b274b7b781c82ebcf");
+        //List<ObjectId> aux = new List<ObjectId>();
+        /*for (int i = 0; i < param.Count; i++ )
+        {
+            aux.Add(ObjectId.Parse(param[i].ToString()));
+        }*/
         result = user.GetStudents(aux);
         
         LoadScroll(result);
@@ -213,11 +219,18 @@ public class ActionCreateGroups : MonoBehaviour
             //descriptionText.text = groupBelongs[i].School;
             optionCheckbox.isOn = false;
             Debug.Log("Dentro del Loop");
+            listMembers.Add(activityObject);
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
         Debug.Log("Saliendo a LoadScroll ");
+    }
+
+    //Metodo que se invoca al presionar el boton de Submit
+    public void OnSubmit()
+    {
+        school.ProcessRequest(listMembers);
     }
 
 }

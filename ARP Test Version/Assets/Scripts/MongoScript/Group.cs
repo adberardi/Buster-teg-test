@@ -76,6 +76,7 @@ namespace ARProject.Group
             DateCreated = credential.DateCreated;
             AssignedActivities = credential.AssignedActivities;
             ParticipantsGroup = credential.ParticipantsGroup;
+            PlayerPrefs.SetString("NameSchool",School);
             Debug.Log(" Total Actividades asignadas: " + AssignedActivities.Length);
             //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
             //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));

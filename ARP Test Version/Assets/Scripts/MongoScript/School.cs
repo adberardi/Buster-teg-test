@@ -4,6 +4,7 @@ using UnityEngine;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace ARProject.School
 {
@@ -39,13 +40,21 @@ namespace ARProject.School
             Debug.Log("Read all data from the School collection.");
         }
 
-        public List<ObjectId> ListStudents(string IdSchool)
+        public List<ObjectId> ListStudents()
+        {
+            Debug.Log("ENTRANDO EN ReadSchool");
+            string nameSchool = PlayerPrefs.GetString("NameSchool");
+            IMongoCollection<School> docRef = GetCollection();
+            School result = docRef.Find(query => query.SchoolName == nameSchool).ToList()[0];
+            return result.Students;
+        }
+
+        public List<ObjectId> ListStudents(string idSchool)
         {
             Debug.Log("ENTRANDO EN ReadSchool");
             IMongoCollection<School> docRef = GetCollection();
-            School result = docRef.Find(task => task._id == ObjectId.Parse(IdSchool)).ToList()[0];
+            School result = docRef.Find(query => query._id == ObjectId.Parse(idSchool)).ToList()[0];
             return result.Students;
-;
         }
 
         public List<School> GetListSchools()
@@ -56,6 +65,22 @@ namespace ARProject.School
         public async void GetAllSchools()
         {
 
+        }
+
+        // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
+        public void ProcessRequest(List<GameObject> activityObject)
+        {
+            for(int index=0; index < activityObject.Count; index++)
+            {
+                if (activityObject[index].transform.Find("ToggleGreen").GetComponent<Toggle>().isOn)
+                {
+                    Debug.Log("ProcessRequest: Hay una persona con casilla marcada");
+                }
+                else
+                {
+                    Debug.Log("ProcessRequest: NO hay una persona con casilla marcada");
+                }
+            }
         }
     }
 }
