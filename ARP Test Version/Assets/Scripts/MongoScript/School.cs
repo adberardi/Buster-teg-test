@@ -66,21 +66,5 @@ namespace ARProject.School
         {
 
         }
-
-        // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
-        public void ProcessRequest(List<GameObject> activityObject)
-        {
-            for(int index=0; index < activityObject.Count; index++)
-            {
-                if (activityObject[index].transform.Find("ToggleGreen").GetComponent<Toggle>().isOn)
-                {
-                    Debug.Log("ProcessRequest: Hay una persona con casilla marcada");
-                }
-                else
-                {
-                    Debug.Log("ProcessRequest: NO hay una persona con casilla marcada");
-                }
-            }
-        }
     }
 }

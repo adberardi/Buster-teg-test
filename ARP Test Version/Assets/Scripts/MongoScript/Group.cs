@@ -6,6 +6,9 @@ using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using ARProject.User;
+using UnityEngine.UI;
+using System.Net.Mail;
+using System.Net;
 
 namespace ARProject.Group
 {
@@ -20,7 +23,6 @@ namespace ARProject.Group
         public string LevelSchool { get; set; }
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
-
 
         private MongoClient _client;
 
@@ -73,10 +75,13 @@ namespace ARProject.Group
             NameGroup = credential.NameGroup;
             Admin = credential.Admin;
             School = credential.School;
+            LevelSchool = credential.LevelSchool;
             DateCreated = credential.DateCreated;
             AssignedActivities = credential.AssignedActivities;
             ParticipantsGroup = credential.ParticipantsGroup;
+            PlayerPrefs.SetString("NameGroup", NameGroup);
             PlayerPrefs.SetString("NameSchool",School);
+            PlayerPrefs.SetString("LevelSchool",LevelSchool);
             Debug.Log(" Total Actividades asignadas: " + AssignedActivities.Length);
             //Debug.Log(string.Format("=> Longitud AssignedActivities: {0}", ParticipantsGroup.Count));
             //Debug.Log(string.Format("> Leyendo Grupo: Admin {0} | Name {1} | Participantes {2} | DateCreated {3} | AssignedActivities {4}", Admin, NameGroup, ParticipantsGroup.Count, DateCreated, AssignedActivities.Count));
@@ -147,6 +152,49 @@ namespace ARProject.Group
             catch(MongoException)
             {
                 Debug.Log("Error al borrar el grupo");
+            }
+        }
+
+        // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
+        public void ProcessRequest(List<GameObject> activityObject, List<string> listDataMember)
+        {
+            for (int index = 0; index < activityObject.Count; index++)
+            {
+                if (activityObject[index].transform.Find("ToggleGreen").GetComponent<Toggle>().isOn)
+                {
+                    Debug.Log("ProcessRequest: Hay una persona con casilla marcada");
+                    //SendNotificationByEmail(listDataMember[index], PlayerPrefs.GetString("NameGroup"),PlayerPrefs.GetString("NameSchool"),PlayerPrefs.GetString("LevelSchool"));
+                    SendNotificationByEmail("antoberar@gmail.com", PlayerPrefs.GetString("NameGroup"), PlayerPrefs.GetString("NameSchool"), PlayerPrefs.GetString("LevelSchool"));
+
+                }
+                else
+                {
+                    Debug.Log("ProcessRequest: NO hay una persona con casilla marcada");
+                }
+            }
+        }
+
+        private const string ElasticEmailApiUrl = "https://api.elasticemail.com/v2";
+        private const string ElasticEmailApiKey = "E3AA2FEED5E74C762766D756CF1F5E046AE51141B33611EDC49E26920E88FFEC9DB04112DC172709EF1D39C72E9883B4"; // Reemplaza con tu clave de API de Elastic Email
+
+        public void SendNotificationByEmail(string userEmail, string nameGroup, string nameSchool, string levelSchool)
+        {
+            string fromEmail = "antoberar@gmail.com"; // Reemplaza con tu dirección de correo electrónico
+
+            // Create the email message
+            MailMessage mailMessage = new MailMessage(fromEmail, userEmail, "Recuperación de contraseña", "Su contraseña es: " + nameGroup);
+            mailMessage.IsBodyHtml = true;
+
+            // Send the email using the Elastic Email API
+            using (var httpClient = new WebClient())
+            {
+                var formData = new System.Collections.Specialized.NameValueCollection();
+                formData["apikey"] = ElasticEmailApiKey;
+                formData["from"] = fromEmail;
+                formData["to"] = userEmail;
+                formData["subject"] = "Te han agregado al grupo: "+nameGroup;
+                formData["bodyHtml"] = "Ahora formas parte del grupo "+nameGroup+" del colegio "+nameSchool+" para el grado "+LevelSchool+"\n";
+                httpClient.UploadValues($"{ElasticEmailApiUrl}/email/send", "POST", formData);
             }
         }
     }

@@ -24,6 +24,7 @@ public class ActionCreateGroups : MonoBehaviour
     public List<ObjectId> studentsList = new List<ObjectId>();
     List<User> dataResult;
     List<GameObject> listMembers = new List<GameObject>();
+    List<string> listDataMembers = new List<string>();
 
 
     // Variables para los objetos a generar
@@ -220,6 +221,7 @@ public class ActionCreateGroups : MonoBehaviour
             optionCheckbox.isOn = false;
             Debug.Log("Dentro del Loop");
             listMembers.Add(activityObject);
+            listDataMembers.Add(groupBelongs[i].Email);
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
@@ -230,7 +232,7 @@ public class ActionCreateGroups : MonoBehaviour
     //Metodo que se invoca al presionar el boton de Submit
     public void OnSubmit()
     {
-        school.ProcessRequest(listMembers);
+        group.ProcessRequest(listMembers, listDataMembers);
     }
 
 }
