@@ -32,12 +32,14 @@ public class MultiplicationController : MonoBehaviour
     public string routeSelected { get; set; }
     public bool AllowAnswers { get; set; }
     public Text btnTextSound;
+    public GameObject BtnBack;
     public Text textField;
     public GameObject boat;
     public GameObject effectsToWinner;
     public AudioClip soundWinner;
     public AudioClip soundLoser;
     public AudioClip soundMain;
+    public GameObject BtnSound;
     public TextMesh txtop;
     public TextMesh txtmiddle;
     public TextMesh txtbottom;
@@ -73,6 +75,7 @@ public class MultiplicationController : MonoBehaviour
         onGoingGame = false;
         AllowAnswers = false;
         CalculateAnswer();
+        PanelTime.SetActive(false);
     }
 
 
@@ -293,8 +296,11 @@ public class MultiplicationController : MonoBehaviour
         }
         else
         {
-            TimerStart.current.DisplayFinalTimers();
+            //TimerStart.current.DisplayFinalTimers();
             PanelTime.SetActive(true);
+            BtnSound.SetActive(false);
+            BtnBack.SetActive(false);
+            PanelResultado.SetActive(false);
         }
 
         UpdateRemainingAttempts();
@@ -347,9 +353,7 @@ public class MultiplicationController : MonoBehaviour
             repeats = repeats + 1;
             btnRestart.gameObject.SetActive(false);
             PanelResultado.SetActive(false);
-        }
-
-        
+        }        
     }
 
     // Return if gets the limit of attempts.

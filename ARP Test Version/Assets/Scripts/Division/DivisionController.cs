@@ -124,16 +124,16 @@ public class DivisionController : MonoBehaviour
             case "TopIsland":
                 responseCorrect = option;
                 answer["top"] = question.ToString();
-                factor1 = factor1 - 1;
+                factor1 = Math.Abs(factor1 - 1);
                 aux["top"] = question;
-                aux["mid"] = (Random.Range(seed, 10) * factor1);
-                aux["bot"] = (Random.Range(1, seed) * factor2);
+                aux["mid"] = (Random.Range(seed, 10));
+                aux["bot"] = (Random.Range(1, factor2));
 
 
                 if (aux["top"] == aux["mid"])
-                    aux["mid"] = aux["mid"] - factor2;
+                    aux["mid"] = Math.Abs(aux["mid"] - factor2);
                 if (aux["top"] == aux["bot"])
-                    aux["bot"] = aux["bot"] + factor1;
+                    aux["bot"] = Math.Abs(aux["bot"] + factor1);
 
                 answer["middle"] = aux["mid"].ToString();
                 answer["bottom"] = aux["bot"].ToString();
@@ -143,15 +143,15 @@ public class DivisionController : MonoBehaviour
                 answer["middle"] = question.ToString();
 
 
-                aux["top"] = Random.Range(seed, 10) / factor1;
+                aux["top"] = Random.Range(seed, 10);
                 aux["mid"] = question;
-                aux["bot"] = Random.Range(1, seed) / factor2;
+                aux["bot"] = Random.Range(1, factor2);
 
 
                 if (aux["mid"] == aux["top"])
-                    aux["top"] = aux["top"] - factor1;
+                    aux["top"] = Math.Abs(aux["top"] - factor1);
                 if (aux["mid"] == aux["bot"])
-                    aux["bot"] = aux["bot"] + factor2;
+                    aux["bot"] = Math.Abs(aux["bot"] + factor2);
 
 
                 answer["top"] = aux["top"].ToString();
@@ -160,15 +160,15 @@ public class DivisionController : MonoBehaviour
             case "BottomIsland":
                 responseCorrect = option;
                 answer["bottom"] = question.ToString();
-                aux["top"] = Random.Range(seed, 10) / factor1;
-                aux["mid"] = Random.Range(1, seed) / factor2;
+                aux["top"] = Random.Range(seed, 10);
+                aux["mid"] = Random.Range(1, factor2);
                 aux["bot"] = question;
 
 
                 if (aux["bot"] == aux["top"])
-                    aux["top"] = aux["top"] - factor2;
+                    aux["top"] = Math.Abs(aux["top"] - factor2);
                 if (aux["bot"] == aux["mid"])
-                    aux["mid"] = aux["mid"] + factor1;
+                    aux["mid"] = Math.Abs(aux["mid"] + factor1);
 
                 answer["top"] = aux["top"].ToString();
                 answer["middle"] = aux["mid"].ToString();
@@ -183,8 +183,9 @@ public class DivisionController : MonoBehaviour
         seed = Random.Range(0, 10);
         factor1 = Random.Range(seed, 10);
         factor2 = Random.Range(factor1, 10);
-        question = factor1 / factor2;
-        answer["operation"] = factor1.ToString() + "/" + factor2.ToString();
+        int resultMultiplication = factor1 * factor2;
+        question = factor1;
+        answer["operation"] = resultMultiplication.ToString() + "/" + factor2.ToString();
         AssignValuesToIsland();
     }
 
