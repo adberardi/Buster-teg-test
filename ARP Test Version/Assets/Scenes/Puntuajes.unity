@@ -478,7 +478,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2003703449}
     - target: {fileID: 114309850482710702, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1792,6 +1792,7 @@ MonoBehaviour:
   activityPrefab: {fileID: 1752256963}
   activitySprites: []
   activityNames: []
+  activityNames2: []
   scrollRect: {fileID: 771736002}
   contentRect: {fileID: 1334981864}
   spacing: 0

@@ -8,6 +8,7 @@ using ARProject.Task;
 using System;
 using ARProject.User;
 using ARProject.Group;
+using UnityEngine.SceneManagement;
 
 public class pruebaPuntuajes : MonoBehaviour
 {
@@ -107,5 +108,10 @@ public class pruebaPuntuajes : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }

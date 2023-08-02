@@ -8,6 +8,7 @@ using ARProject.Task;
 using System;
 using ARProject.User;
 using ARProject.Group;
+using UnityEngine.SceneManagement;
 
 public class prueba : MonoBehaviour
 {
@@ -119,5 +120,10 @@ public class prueba : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }

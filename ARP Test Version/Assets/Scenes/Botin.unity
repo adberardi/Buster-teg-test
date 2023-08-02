@@ -1056,7 +1056,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1428266227}
     - target: {fileID: 114309850482710702, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -1071,6 +1071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447447402055378, guid: 3e2910ed5795543aabc124d6ceedd7bd,
+        type: 3}
+      propertyPath: m_Text
+      value: Crear Cuenta
       objectReference: {fileID: 0}
     - target: {fileID: 224346768099681416, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
@@ -1096,11 +1101,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: -39
-      objectReference: {fileID: 0}
-    - target: {fileID: 114447447402055378, guid: 3e2910ed5795543aabc124d6ceedd7bd,
-        type: 3}
-      propertyPath: m_Text
-      value: Crear Cuenta
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114447447402055378, guid: 3e2910ed5795543aabc124d6ceedd7bd, type: 3}
@@ -2767,6 +2767,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameGroup: {fileID: 0}
   dropdown: {fileID: 0}
+  PanelMember: {fileID: 0}
+  PanelForm: {fileID: 0}
+  BtnBackForm: {fileID: 0}
+  studentsList: []
+  activityPrefab: {fileID: 0}
+  activitySprites: []
+  activityNames: []
+  scrollRect: {fileID: 0}
+  contentRect: {fileID: 0}
+  spacing: 0
 --- !u!1 &1757788920
 GameObject:
   m_ObjectHideFlags: 0
