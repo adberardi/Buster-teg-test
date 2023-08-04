@@ -293,18 +293,20 @@ public class MultiplicationController : MonoBehaviour
         if (ValidateAttempts())
         {
             btnRestart.gameObject.SetActive(true);
+            PanelResultado.SetActive(true);
         }
         else
         {
             //TimerStart.current.DisplayFinalTimers();
             PanelTime.SetActive(true);
+            PanelTime.gameObject.GetComponent<Text>().text = "Hola";
             BtnSound.SetActive(false);
             BtnBack.SetActive(false);
             PanelResultado.SetActive(false);
         }
 
         UpdateRemainingAttempts();
-        PanelResultado.SetActive(true);
+        //PanelResultado.SetActive(true);
         
 
     }
