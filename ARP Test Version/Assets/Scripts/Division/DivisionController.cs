@@ -294,12 +294,17 @@ public class DivisionController : MonoBehaviour
         }
         else
         {
-            TimerStart.current.DisplayFinalTimers();
+            //TimerStart.current.DisplayFinalTimers();
             PanelTime.SetActive(true);
+            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = "Hola";
+            PanelResultado.SetActive(false);
+
         }
 
         UpdateRemainingAttempts();
-        PanelResultado.SetActive(true);
+        //PanelResultado.SetActive(true);
 
 
     }

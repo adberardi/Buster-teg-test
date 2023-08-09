@@ -299,7 +299,9 @@ public class MultiplicationController : MonoBehaviour
         {
             //TimerStart.current.DisplayFinalTimers();
             PanelTime.SetActive(true);
-            PanelTime.gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = "Hola";
             BtnSound.SetActive(false);
             BtnBack.SetActive(false);
             PanelResultado.SetActive(false);
