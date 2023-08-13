@@ -297,11 +297,14 @@ public class MultiplicationController : MonoBehaviour
         }
         else
         {
-            //TimerStart.current.DisplayFinalTimers();
+            List <string> resultTime = TimerStart.current.DisplayFinalTimers();
             PanelTime.SetActive(true);
-            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = "Hola";
-            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = "Hola";
-            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = "Hola";
+            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = resultTime[0];
+            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = resultTime[1];
+            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = resultTime[2];
+            /*GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = TimerStart.current.GetFinalTextOne();
+            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = TimerStart.current.GetFinalTextTwo();
+            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = TimerStart.current.GetFinalTextThree();*/
             BtnSound.SetActive(false);
             BtnBack.SetActive(false);
             PanelResultado.SetActive(false);

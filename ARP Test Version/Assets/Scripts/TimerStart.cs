@@ -47,6 +47,26 @@ public class TimerStart : MonoBehaviour
         StartCoroutine(TimerUpdate());
     }
 
+    public string GetFinalTextOne()
+    {
+        return finalTextOne.text;
+    }
+
+    public string GetFinalTextTwo()
+    {
+        return finalTextTwo.text;
+    }
+
+    public string GetFinalTextThree()
+    {
+        return finalTextThree.text;
+    }
+
+    public string GetFinalText()
+    {
+        return finalText.text;
+    }
+
     public void StopTimer()
     {
         runningTimer = false;
@@ -60,12 +80,13 @@ public class TimerStart : MonoBehaviour
         txtChrono.text = "00:00:00";
     }
 
-    public void DisplayFinalTimers()
+    public List<string> DisplayFinalTimers()
     {
         finalTextOne.text = resultsTimer[0];
         finalTextTwo.text = resultsTimer[1];
         finalTextThree.text = resultsTimer[2];
         finalText.text = TimeFinal.ToString("mm':'ss':'ff");
+        return resultsTimer;
     }
 
     public void DisplayTimerResult()
