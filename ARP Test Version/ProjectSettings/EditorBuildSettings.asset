@@ -59,4 +59,10 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/RecuperarContrase\xF1a.unity"
     guid: ddd0f7bdb4899db45903a68de67d7167
+  - enabled: 1
+    path: Assets/Scenes/MenuJuegosSuma.unity
+    guid: 731bf3d42837dd74d8d6efc86f1e1c7d
+  - enabled: 1
+    path: Assets/Scenes/MenuJuegosResta.unity
+    guid: c12d785ae5002fa4babdb17fb3e13dbe
   m_configObjects: {}
