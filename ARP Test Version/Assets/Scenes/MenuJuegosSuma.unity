@@ -1103,7 +1103,53 @@ PrefabInstance:
       propertyPath: m_Text
       value: Gente Fiestera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1601716118}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 95464317432310270, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 95464317432310270, guid: a99dcdc892e0f43cf9a7670cc12f481d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a99dcdc892e0f43cf9a7670cc12f481d, type: 3}
 --- !u!224 &1284014938 stripped
 RectTransform:
@@ -1731,6 +1777,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114014345959106140, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_Text
+      value: Cuenta Personas
+      objectReference: {fileID: 0}
     - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1766,12 +1817,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114014345959106140, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+    - target: {fileID: 114986828894586862, guid: a99dcdc892e0f43cf9a7670cc12f481d,
         type: 3}
-      propertyPath: m_Text
-      value: Cuenta Personas
+      propertyPath: m_Transition
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 95464317432310270, guid: a99dcdc892e0f43cf9a7670cc12f481d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 95464317432310270, guid: a99dcdc892e0f43cf9a7670cc12f481d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a99dcdc892e0f43cf9a7670cc12f481d, type: 3}
 --- !u!224 &1998898154 stripped
 RectTransform:
