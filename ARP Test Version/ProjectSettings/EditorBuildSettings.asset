@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuJuegosResta.unity
     guid: c12d785ae5002fa4babdb17fb3e13dbe
+  - enabled: 1
+    path: Assets/Scenes/Suma Dance.unity
+    guid: 2581f2d72adbe8a40b4674171393332f
   m_configObjects: {}
