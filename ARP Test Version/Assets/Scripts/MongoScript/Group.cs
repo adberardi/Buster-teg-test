@@ -23,6 +23,7 @@ namespace ARProject.Group
         public string LevelSchool { get; set; }
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
+        public List<string> ListNewMembers = new List<string>();
 
         private MongoClient _client;
 
@@ -53,6 +54,7 @@ namespace ARProject.Group
         {
             Group registerGroup = new Group();
             registerGroup.GetCollection().InsertOne(newGroup);
+
             return newGroup._id;
         }
 
@@ -156,7 +158,7 @@ namespace ARProject.Group
         }
 
         // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
-        public void ProcessRequest(List<GameObject> activityObject, List<string> listDataMember)
+        public void ProcessRequest(List<GameObject> activityObject, List<string> listDataMember, List<string> listDataMembersId)
         {
             for (int index = 0; index < activityObject.Count; index++)
             {
@@ -166,11 +168,43 @@ namespace ARProject.Group
                     //SendNotificationByEmail(listDataMember[index], PlayerPrefs.GetString("NameGroup"),PlayerPrefs.GetString("NameSchool"),PlayerPrefs.GetString("LevelSchool"));
                     SendNotificationByEmail("antoberar@gmail.com", PlayerPrefs.GetString("NameGroup"), PlayerPrefs.GetString("NameSchool"), PlayerPrefs.GetString("LevelSchool"));
 
+                    //Registra las personas que fueron seleccionadas que van a ser agregadas en el grupo.
+                    //ListNewMembers.Add(listDataMember[index]);
+                    Debug.Log("Validando cantidad de miembros a ingresar " + listDataMembersId[index]);
+                    ListNewMembers.Add(listDataMembersId[index]);
                 }
                 else
                 {
                     Debug.Log("ProcessRequest: NO hay una persona con casilla marcada");
                 }
+            }
+            //Si por lo menos hay una persona que fue seleccionada, se procedera a registrarlo en la Base de Datos. En caso contrario, se hara caso omiso.
+            if (ListNewMembers.Count > 0)
+                AddMembersToGroup();
+        }
+        //Se registrara los miembros del grupo en la Base de Datos.
+        public async void AddMembersToGroup()
+        {
+            string IdGroup = "64473b3b3ab67dd41cbdda45";
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.ParticipantsGroup, ListNewMembers.ToArray());
+                IMongoCollection<Group> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("Operacion completada");
+                }
+                else
+                {
+                    Debug.Log("Operacion Fallida");
+                }
+            }
+            catch (MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
             }
         }
 

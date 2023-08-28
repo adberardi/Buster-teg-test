@@ -24,6 +24,7 @@ public class ActionCreateGroups : MonoBehaviour
     public List<ObjectId> studentsList = new List<ObjectId>();
     List<User> dataResult;
     List<GameObject> listMembers = new List<GameObject>();
+    List<string> listDataMembersEmail = new List<string>();
     List<string> listDataMembers = new List<string>();
 
 
@@ -173,8 +174,9 @@ public class ActionCreateGroups : MonoBehaviour
         {
             aux.Add(ObjectId.Parse(param[i].ToString()));
         }*/
-        result = user.GetStudents(aux);
         
+        result = user.GetStudents(aux);
+
         LoadScroll(result);
     }
 
@@ -219,9 +221,10 @@ public class ActionCreateGroups : MonoBehaviour
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
             //descriptionText.text = groupBelongs[i].School;
             optionCheckbox.isOn = false;
-            Debug.Log("Dentro del Loop");
+            Debug.Log("Dentro del Loop ");
             listMembers.Add(activityObject);
-            listDataMembers.Add(groupBelongs[i].Email);
+            listDataMembersEmail.Add(groupBelongs[i].Email);
+            listDataMembers.Add(groupBelongs[i]._id.ToString());
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
@@ -232,7 +235,7 @@ public class ActionCreateGroups : MonoBehaviour
     //Metodo que se invoca al presionar el boton de Submit
     public void OnSubmit()
     {
-        group.ProcessRequest(listMembers, listDataMembers);
+        group.ProcessRequest(listMembers, listDataMembersEmail, listDataMembers);
     }
 
 }
