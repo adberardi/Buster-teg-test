@@ -94,7 +94,7 @@ public class ActionCreateGroups : MonoBehaviour
 
         DropdownitemSelectd(dropdown);
 
-        ChangePanelToDetail();
+        //ChangePanelToDetail();
     }
 
     // Update is called once per frame
@@ -124,9 +124,11 @@ public class ActionCreateGroups : MonoBehaviour
         {
             Group newGroup = new Group(ObjectId.GenerateNewId(), nameGroup.text, DateTime.Now, PlayerPrefs.GetString("IDUser"), GroupSchool, LevelSchool);
             ObjectId idGroup = group.CreateGroup(newGroup);
+            PlayerPrefs.SetString("IdGroupCreated", idGroup.ToString());
             Debug.Log("Id Grupo Nuevo: " + idGroup.ToString()+" PRUEBA: "+ ObjectId.GenerateNewId().ToString());
             //Se agrega al usuario que creo al grupo como el administrador y el primero en ser agregado.
             user.AddGroupToUser(idGroup);
+            ChangePanelToDetail();
         }
 
     }
@@ -155,20 +157,15 @@ public class ActionCreateGroups : MonoBehaviour
     {
         //studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
         //studentsList = school.ListStudents();
+        PanelMember.SetActive(true);
+        PanelForm.SetActive(false);
         SearchStudents(studentsList);
-        //int indexData = int.Parse(activityObj.name);
-        //PanelMember.SetActive(true);
-        //PanelForm.SetActive(false);
-        //BtnBackForm.SetActive(false);
-        //PlayerPrefs.SetString("IDGroup", dataResult[indexData]._id.ToString());
-        //PlayerPrefs.SetInt("IndexData", indexData);
-        //LoadDataPanel(studentsList[indexData]);
     }
 
     public void SearchStudents(List<ObjectId> param)
     {
         List<User> result = new List<User>();
-        List<ObjectId> aux = school.ListStudents("64302d6b274b7b781c82ebcf");
+        List<ObjectId> aux = school.ListStudents(GroupSchool);
         //List<ObjectId> aux = new List<ObjectId>();
         /*for (int i = 0; i < param.Count; i++ )
         {

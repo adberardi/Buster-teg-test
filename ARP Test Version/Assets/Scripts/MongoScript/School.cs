@@ -49,12 +49,21 @@ namespace ARProject.School
             return result.Students;
         }
 
-        public List<ObjectId> ListStudents(string idSchool)
+        public List<ObjectId> ListStudents(string nameSchool)
         {
             Debug.Log("ENTRANDO EN ReadSchool");
+            ObjectId idSchool = GetSchoolIdByName(nameSchool);
             IMongoCollection<School> docRef = GetCollection();
-            School result = docRef.Find(query => query._id == ObjectId.Parse(idSchool)).ToList()[0];
+            School result = docRef.Find(query => query._id == idSchool).ToList()[0];
             return result.Students;
+        }
+
+        //Retorna el id de un colegio a partir del nombre del colegio.
+        public ObjectId GetSchoolIdByName(string nameSchool)
+        {
+            IMongoCollection<School> docRef = GetCollection();
+            School result = docRef.Find(query => query.SchoolName == nameSchool).ToList()[0];
+            return result._id;
         }
 
         public List<School> GetListSchools()

@@ -185,7 +185,7 @@ namespace ARProject.Group
         //Se registrara los miembros del grupo en la Base de Datos.
         public async void AddMembersToGroup()
         {
-            string IdGroup = "64473b3b3ab67dd41cbdda45";
+            string IdGroup = PlayerPrefs.GetString("IdGroupCreated");
             try
             {
                 IMongoCollection<Group> docRef = GetCollection();

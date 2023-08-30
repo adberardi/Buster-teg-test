@@ -82,7 +82,7 @@ namespace ARProject.User
             var filterData = Builders<User>.Filter.Eq(query => query._id, ObjectId.Parse(GetSessionDataUser()));
             var dataToUpdate = Builders<User>.Update.Set(query => query.MemberGroup, userModelList.MemberGroup);
             var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
-            IsSuccessfullyOperation(result);
+            //IsSuccessfullyOperation(result);
         }
 
         public async void DeleteGroupUser(string idGroup)
