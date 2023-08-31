@@ -305,8 +305,8 @@ RectTransform:
   m_Children:
   - {fileID: 248369353}
   - {fileID: 143487248}
-  - {fileID: 1887018329}
   - {fileID: 1964067162}
+  - {fileID: 1887018329}
   - {fileID: 777760963}
   m_Father: {fileID: 1353385530}
   m_RootOrder: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 41049c3ca7a1c4db48ae333351bbcc78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 796615c837c36493fbd23746058411a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -692,32 +692,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_Text
-      value: Gente Fiestera
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759572860274602, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 69e185236f584fd4c821c6cc3bd8332c,
-        type: 3}
     - target: {fileID: 114747477787702896, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -768,6 +742,32 @@ PrefabInstance:
       propertyPath: m_Colors.m_DisabledColor.b
       value: 0.9765041
       objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_Text
+      value: Gente Fiestera
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759572860274602, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 69e185236f584fd4c821c6cc3bd8332c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d292b8db030c47228ab4ced77891a2b, type: 3}
 --- !u!224 &777760963 stripped
@@ -1551,26 +1551,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_Text
-      value: Regresar
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -20
-      objectReference: {fileID: 0}
     - target: {fileID: 114747477787702896, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1605,6 +1585,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_Text
+      value: Regresar
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d292b8db030c47228ab4ced77891a2b, type: 3}
@@ -1802,32 +1802,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_Text
-      value: Cuenta Personas
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759572860274602, guid: 9d292b8db030c47228ab4ced77891a2b,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 69e185236f584fd4c821c6cc3bd8332c,
-        type: 3}
     - target: {fileID: 114747477787702896, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1878,6 +1852,32 @@ PrefabInstance:
       propertyPath: m_Colors.m_DisabledColor.b
       value: 0.9765041
       objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_Text
+      value: Cuenta Personas
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759572860274602, guid: 9d292b8db030c47228ab4ced77891a2b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 69e185236f584fd4c821c6cc3bd8332c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d292b8db030c47228ab4ced77891a2b, type: 3}
 --- !u!224 &1964067162 stripped
