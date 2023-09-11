@@ -31,6 +31,6 @@ public class TutorialController : MonoBehaviour
     //Carga la escena anterior (Pueden ser escenas como; Menu de juego de Suma, Menu de Resta o Home)
     public void BtnBack()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("IdPrevious"));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("IdPreviousScene"));
     }
 }
