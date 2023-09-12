@@ -10,7 +10,7 @@ namespace ARProject.Tutorial
     class Tutorial
     {
         public ObjectId _id { get; set; }
-        public string Description { get; set; }
+        public string DescriptionGame { get; set; }
         public ObjectId IdGame { get; set; }
         public string TitleGame { get; set; }
         private MongoClient _client;
@@ -28,10 +28,10 @@ namespace ARProject.Tutorial
         }
 
         //Busca el tutorial y retorna la informacion a mostrar.
-        public Tutorial GetGameTutorial()
+        public Tutorial GetGameTutorial(string titleGame)
         {
             IMongoCollection<Tutorial> docRef = GetCollection();
-            Tutorial data = docRef.Find(task => task._id == ObjectId.Parse(PlayerPrefs.GetString("IdGame"))).ToList()[0];
+            Tutorial data = docRef.Find(task => task.TitleGame == titleGame).ToList()[0];
             return data;
         }
 

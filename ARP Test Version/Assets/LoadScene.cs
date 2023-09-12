@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LoadScene : MonoBehaviour
 {
@@ -24,5 +26,7 @@ public class LoadScene : MonoBehaviour
         PlayerPrefs.SetInt("IdPreviousScene", SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene(index);
         PlayerPrefs.SetInt("IdNextScene", IdNextScene);
+        string clickedButtonNameGame = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+        PlayerPrefs.SetString("NameGame", clickedButtonNameGame);
     }
 }

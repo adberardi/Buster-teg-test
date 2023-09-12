@@ -1326,7 +1326,7 @@ GameObject:
   - component: {fileID: 2003703453}
   - component: {fileID: 2003703452}
   m_Layer: 0
-  m_Name: AuthManager
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1357,7 +1357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3641c35012b4aba47a1d9e0898e275ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextArea: {fileID: 1383650842}
+  TextDescription: {fileID: 1383650842}
+  TextTitle: {fileID: 1014977454}
 --- !u!114 &2003703452
 MonoBehaviour:
   m_ObjectHideFlags: 0

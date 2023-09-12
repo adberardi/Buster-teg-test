@@ -8,12 +8,15 @@ using ARProject.Tutorial;
 public class TutorialController : MonoBehaviour
 {
     Tutorial demo = new Tutorial();
-    public Text TextArea;
+    public Text TextDescription;
+    public Text TextTitle;
 
     // Start is called before the first frame update
     void Start()
     {
-        TextArea.text = demo.Description;
+        Tutorial result = demo.GetGameTutorial(PlayerPrefs.GetString("NameGame"));
+        TextTitle.text = result.TitleGame;
+        TextDescription.text = result.DescriptionGame;
     }
 
     // Update is called once per frame
