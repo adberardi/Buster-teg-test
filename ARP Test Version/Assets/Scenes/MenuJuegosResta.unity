@@ -376,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 114122517142111934, guid: 97c55bc5d7c184901bdaf95ada5b655c,
         type: 3}
       propertyPath: m_Text
-      value: Cuenta Personas
+      value: Cuantas Personas Quedan
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c55bc5d7c184901bdaf95ada5b655c, type: 3}
