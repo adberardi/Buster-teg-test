@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 1941c3e1e599bb949a4e16e0e48c3281
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Archery academy
+    100004: Arrow
+    100006: Arrow.001
+    100008: Arrow.002
+    100010: Arrow.003
+    100012: Arrow.004
+    100014: Arrow.005
+    100016: Arrow.006
+    100018: Bow
+    100020: Floor
+    100022: Gate.001
+    100024: House 2.002
+    100026: House 2.003
+    100028: Pillars.002
+    100030: Range beams
+    100032: Range cloth
+    100034: Range Ladder
+    100036: Target A 1
+    100038: Target A 2
+    100040: Target A 3
+    100042: target B.001
+    100044: target B.002
+    100046: Wall
+    400000: //RootNode
+    400002: Archery academy
+    400004: Arrow
+    400006: Arrow.001
+    400008: Arrow.002
+    400010: Arrow.003
+    400012: Arrow.004
+    400014: Arrow.005
+    400016: Arrow.006
+    400018: Bow
+    400020: Floor
+    400022: Gate.001
+    400024: House 2.002
+    400026: House 2.003
+    400028: Pillars.002
+    400030: Range beams
+    400032: Range cloth
+    400034: Range Ladder
+    400036: Target A 1
+    400038: Target A 2
+    400040: Target A 3
+    400042: target B.001
+    400044: target B.002
+    400046: Wall
+    2100000: Main
+    2300000: Archery academy
+    2300002: Arrow
+    2300004: Arrow.001
+    2300006: Arrow.002
+    2300008: Arrow.003
+    2300010: Arrow.004
+    2300012: Arrow.005
+    2300014: Arrow.006
+    2300016: Bow
+    2300018: Floor
+    2300020: Gate.001
+    2300022: House 2.002
+    2300024: House 2.003
+    2300026: Pillars.002
+    2300028: Range beams
+    2300030: Range cloth
+    2300032: Range Ladder
+    2300034: Target A 1
+    2300036: Target A 2
+    2300038: Target A 3
+    2300040: target B.001
+    2300042: target B.002
+    2300044: Wall
+    3300000: Archery academy
+    3300002: Arrow
+    3300004: Arrow.001
+    3300006: Arrow.002
+    3300008: Arrow.003
+    3300010: Arrow.004
+    3300012: Arrow.005
+    3300014: Arrow.006
+    3300016: Bow
+    3300018: Floor
+    3300020: Gate.001
+    3300022: House 2.002
+    3300024: House 2.003
+    3300026: Pillars.002
+    3300028: Range beams
+    3300030: Range cloth
+    3300032: Range Ladder
+    3300034: Target A 1
+    3300036: Target A 2
+    3300038: Target A 3
+    3300040: target B.001
+    3300042: target B.002
+    3300044: Wall
+    4300000: Range beams
+    4300002: Range Ladder
+    4300004: Range cloth
+    4300006: Target A 1
+    4300008: Arrow
+    4300010: Arrow.004
+    4300012: Arrow.005
+    4300014: Archery academy
+    4300016: Gate.001
+    4300018: Pillars.002
+    4300020: House 2.002
+    4300022: House 2.003
+    4300024: Wall
+    4300026: Bow
+    4300028: Target A 2
+    4300030: Arrow.006
+    4300032: Target A 3
+    4300034: Arrow.001
+    4300036: Arrow.002
+    4300038: Arrow.003
+    4300040: Floor
+    4300042: target B.001
+    4300044: target B.002
+    6400000: Archery academy
+    6400002: Arrow
+    6400004: Arrow.001
+    6400006: Arrow.002
+    6400008: Arrow.003
+    6400010: Arrow.004
+    6400012: Arrow.005
+    6400014: Arrow.006
+    6400016: Bow
+    6400018: Floor
+    6400020: Gate.001
+    6400022: House 2.002
+    6400024: House 2.003
+    6400026: Pillars.002
+    6400028: Range beams
+    6400030: Range cloth
+    6400032: Range Ladder
+    6400034: Target A 1
+    6400036: Target A 2
+    6400038: Target A 3
+    6400040: target B.001
+    6400042: target B.002
+    6400044: Wall
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.4
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

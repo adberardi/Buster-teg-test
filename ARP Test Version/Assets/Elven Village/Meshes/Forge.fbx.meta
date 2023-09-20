@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: fc6dd85a326d7b54ba33deae0e9d86e4
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Anvil
+    100002: Anvil.001
+    100004: Apron
+    100006: Coal
+    100008: Door 2.003
+    100010: Door 2.004
+    100012: //RootNode
+    100014: forge house
+    100016: Furnace
+    100018: hammer
+    100020: hammer.001
+    100022: Log
+    100024: sign
+    100026: Sword
+    100028: target B
+    100030: tenaz
+    100032: Wall B
+    100034: WIndow 2
+    100036: window 2
+    100038: workbench
+    400000: Anvil
+    400002: Anvil.001
+    400004: Apron
+    400006: Coal
+    400008: Door 2.003
+    400010: Door 2.004
+    400012: //RootNode
+    400014: forge house
+    400016: Furnace
+    400018: hammer
+    400020: hammer.001
+    400022: Log
+    400024: sign
+    400026: Sword
+    400028: target B
+    400030: tenaz
+    400032: Wall B
+    400034: WIndow 2
+    400036: window 2
+    400038: workbench
+    2100000: Main
+    2300000: Anvil
+    2300002: Anvil.001
+    2300004: Apron
+    2300006: Coal
+    2300008: Door 2.003
+    2300010: Door 2.004
+    2300012: //RootNode
+    2300014: forge house
+    2300016: Furnace
+    2300018: hammer
+    2300020: hammer.001
+    2300022: Log
+    2300024: sign
+    2300026: Sword
+    2300028: target B
+    2300030: tenaz
+    2300032: Wall B
+    2300034: WIndow 2
+    2300036: window 2
+    2300038: workbench
+    3300000: Anvil
+    3300002: Anvil.001
+    3300004: Apron
+    3300006: Coal
+    3300008: Door 2.003
+    3300010: Door 2.004
+    3300012: //RootNode
+    3300014: forge house
+    3300016: Furnace
+    3300018: hammer
+    3300020: hammer.001
+    3300022: Log
+    3300024: sign
+    3300026: Sword
+    3300028: target B
+    3300030: tenaz
+    3300032: Wall B
+    3300034: WIndow 2
+    3300036: window 2
+    3300038: workbench
+    4300000: Forge
+    4300002: forge house
+    4300004: Furnace
+    4300006: Coal
+    4300008: workbench
+    4300010: hammer.001
+    4300012: tenaz
+    4300014: Sword
+    4300016: Apron
+    4300018: Wall B
+    4300020: sign
+    4300022: Anvil.001
+    4300024: window 2
+    4300026: Door 2.003
+    4300028: Door 2.004
+    4300030: WIndow 2
+    4300032: Log
+    4300034: Anvil
+    4300036: hammer
+    4300038: target B
+    6400000: Anvil
+    6400002: Anvil.001
+    6400004: Apron
+    6400006: Coal
+    6400008: Door 2.003
+    6400010: Door 2.004
+    6400012: //RootNode
+    6400014: forge house
+    6400016: Furnace
+    6400018: hammer
+    6400020: hammer.001
+    6400022: Log
+    6400024: sign
+    6400026: Sword
+    6400028: target B
+    6400030: tenaz
+    6400032: Wall B
+    6400034: WIndow 2
+    6400036: window 2
+    6400038: workbench
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.4
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

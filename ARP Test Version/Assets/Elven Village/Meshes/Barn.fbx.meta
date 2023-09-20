@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 1a6f79810f3fe2e47a0b07f7e791a2fd
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Barn Roof
+    100004: Barn.001
+    100006: Fence Gate 1
+    100008: Fence Gate 2
+    100010: Fence Gate 3
+    100012: Fence Link 1
+    100014: Fence Link 2
+    100016: Fence Link 2.001
+    100018: Fence Link 3
+    100020: Fence Link 4
+    100022: Fence Link 5
+    100024: Fence Link 6
+    100026: Fence Link 7
+    100028: Fence Link 8
+    100030: Lame 1
+    100032: Lame 2
+    100034: Lame 3
+    100036: Lame Food.001
+    100038: Lame Food.002
+    100040: Lame Water
+    100042: Pillars
+    100044: Pole
+    100046: Pole 1
+    100048: Pole 2
+    400000: //RootNode
+    400002: Barn Roof
+    400004: Barn.001
+    400006: Fence Gate 1
+    400008: Fence Gate 2
+    400010: Fence Gate 3
+    400012: Fence Link 1
+    400014: Fence Link 2
+    400016: Fence Link 2.001
+    400018: Fence Link 3
+    400020: Fence Link 4
+    400022: Fence Link 5
+    400024: Fence Link 6
+    400026: Fence Link 7
+    400028: Fence Link 8
+    400030: Lame 1
+    400032: Lame 2
+    400034: Lame 3
+    400036: Lame Food.001
+    400038: Lame Food.002
+    400040: Lame Water
+    400042: Pillars
+    400044: Pole
+    400046: Pole 1
+    400048: Pole 2
+    2100000: Main
+    2300000: //RootNode
+    2300002: Barn Roof
+    2300004: Barn.001
+    2300006: Fence Gate 1
+    2300008: Fence Gate 2
+    2300010: Fence Gate 3
+    2300012: Fence Link 1
+    2300014: Fence Link 2
+    2300016: Fence Link 2.001
+    2300018: Fence Link 3
+    2300020: Fence Link 4
+    2300022: Fence Link 5
+    2300024: Fence Link 6
+    2300026: Fence Link 7
+    2300028: Fence Link 8
+    2300030: Lame 1
+    2300032: Lame 2
+    2300034: Lame 3
+    2300036: Lame Food.001
+    2300038: Lame Food.002
+    2300040: Lame Water
+    2300042: Pillars
+    2300044: Pole
+    2300046: Pole 1
+    2300048: Pole 2
+    3300000: //RootNode
+    3300002: Barn Roof
+    3300004: Barn.001
+    3300006: Fence Gate 1
+    3300008: Fence Gate 2
+    3300010: Fence Gate 3
+    3300012: Fence Link 1
+    3300014: Fence Link 2
+    3300016: Fence Link 2.001
+    3300018: Fence Link 3
+    3300020: Fence Link 4
+    3300022: Fence Link 5
+    3300024: Fence Link 6
+    3300026: Fence Link 7
+    3300028: Fence Link 8
+    3300030: Lame 1
+    3300032: Lame 2
+    3300034: Lame 3
+    3300036: Lame Food.001
+    3300038: Lame Food.002
+    3300040: Lame Water
+    3300042: Pillars
+    3300044: Pole
+    3300046: Pole 1
+    3300048: Pole 2
+    4300000: Barn
+    4300002: Barn.001
+    4300004: Barn Roof
+    4300006: Fence Gate 1
+    4300008: Fence Gate 2
+    4300010: Fence Link 2.001
+    4300012: Pole 2
+    4300014: Fence Link 1
+    4300016: Pole 1
+    4300018: Pillars
+    4300020: Fence Gate 3
+    4300022: Fence Link 4
+    4300024: Fence Link 5
+    4300026: Fence Link 6
+    4300028: Fence Link 7
+    4300030: Fence Link 8
+    4300032: Fence Link 3
+    4300034: Fence Link 2
+    4300036: Pole
+    4300038: Lame 1
+    4300040: Lame Food.002
+    4300042: Lame 2
+    4300044: Lame Water
+    4300046: Lame 3
+    4300048: Lame Food.001
+    6400000: //RootNode
+    6400002: Barn Roof
+    6400004: Barn.001
+    6400006: Fence Gate 1
+    6400008: Fence Gate 2
+    6400010: Fence Gate 3
+    6400012: Fence Link 1
+    6400014: Fence Link 2
+    6400016: Fence Link 2.001
+    6400018: Fence Link 3
+    6400020: Fence Link 4
+    6400022: Fence Link 5
+    6400024: Fence Link 6
+    6400026: Fence Link 7
+    6400028: Fence Link 8
+    6400030: Lame 1
+    6400032: Lame 2
+    6400034: Lame 3
+    6400036: Lame Food.001
+    6400038: Lame Food.002
+    6400040: Lame Water
+    6400042: Pillars
+    6400044: Pole
+    6400046: Pole 1
+    6400048: Pole 2
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.4
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
