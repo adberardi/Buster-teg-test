@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ARProject.User;
 using MongoDB.Driver;
-using System.Collections.Generic;
+using ARProject.School;
 using System.Linq;
 using System;
 using System.Globalization;
@@ -33,6 +33,10 @@ public class AuthManager : MonoBehaviour
     public GameObject WarningBackground;
     private static User user;
 
+    private School school;
+    public Dropdown dropdown;
+    private string GroupSchool { get; set; }
+
     public MongoClient client;
     public IMongoDatabase db;
 
@@ -49,6 +53,22 @@ public class AuthManager : MonoBehaviour
     void Start()
     {
         user = new User();
+        school = new School();
+        dropdown.options.Clear();
+        IMongoCollection<School> docRef = school.GetCollection();
+        List<School> result = docRef.Find(Builders<School>.Filter.Empty).ToList();
+        //Llena la lista desplegable.
+        foreach (var i in result)
+        {
+            dropdown.options.Add(new Dropdown.OptionData() { text = i.SchoolName });
+        }
+    }
+
+    //Obtiene la escuela seleccionada cuando se crea el grupo
+    public void DropdownitemSelectd(Dropdown dropdown)
+    {
+        int index = dropdown.value;
+        GroupSchool = dropdown.options[index].text;
     }
 
     //Function for the login button

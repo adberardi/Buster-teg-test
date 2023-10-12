@@ -1131,7 +1131,7 @@ Transform:
   - {fileID: 29259559}
   - {fileID: 1649143691}
   m_Father: {fileID: 2080840819}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518451159
 GameObject:
@@ -2932,7 +2932,7 @@ PrefabInstance:
     - target: {fileID: 4819874549862270530, guid: 47c096f27ad8b7d4ab43a2bec720eb41,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4819874549862177378, guid: 47c096f27ad8b7d4ab43a2bec720eb41,
         type: 3}
@@ -3265,6 +3265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: House 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1772419405513756, guid: 7aea3dec1693c3c4b9ad92cfcb7ad816, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4157074718181328, guid: 7aea3dec1693c3c4b9ad92cfcb7ad816, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.251
@@ -3445,9 +3449,9 @@ Transform:
   - {fileID: 618122551}
   - {fileID: 1529422741}
   - {fileID: 852429421}
+  - {fileID: 481727569}
   - {fileID: 1216806731}
   - {fileID: 1257195078}
-  - {fileID: 481727569}
   - {fileID: 1534184159}
   m_Father: {fileID: 1460223743}
   m_RootOrder: 7

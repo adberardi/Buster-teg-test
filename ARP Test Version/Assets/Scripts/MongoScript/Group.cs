@@ -3,8 +3,6 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using MongoDB.Driver;
-using MongoDB.Bson;
 using ARProject.User;
 using UnityEngine.UI;
 using System.Net.Mail;
@@ -92,16 +90,33 @@ namespace ARProject.Group
 
         public List<Group> GetGroup(User.User user)
         {
-
             List<string> groupList = user.GetAllGroupsFromUser();
             IMongoCollection<Group> docRef = GetCollection();
+
             List<Group> result = new List<Group>();
-            foreach(var index in groupList)
+            Debug.Log("Total groupList: " + groupList.Count.ToString());
+            int cont = 0;
+            foreach (var index in groupList)
             {
-                Group credential = docRef.Find(group => group._id == ObjectId.Parse(index)).ToList()[0];
-                result.Add(credential);
+                try
+                {
+                    Debug.Log("Dentro del Loop - Index:" + cont.ToString() + " | id: " + index.ToString());
+
+                    Group credential = docRef.Find(group => group._id == ObjectId.Parse(index)).ToList()[0];
+                    result.Add(credential);
+                    cont++;
+                }
+                catch(ArgumentOutOfRangeException)
+                {
+                    Debug.Log("Index Error into GetGroup: " + index.ToString());
+                }
+                catch(PlatformNotSupportedException)
+                {
+                    Debug.Log("PlatformNotSupportedException Error into GetGroup: " + index.ToString());
+                }
             }
-            
+            Debug.Log("Saliendo GetAllGroupsFromUser");
+
             return result;
         }
 

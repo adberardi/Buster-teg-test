@@ -28,6 +28,7 @@ namespace ARProject.User
         public bool StatusOnline { get; set; }
         public int Reward { get; set; }
         public List<string> MemberGroup { get; set; }
+        //public string[] MemberGroup { get; set; }
 
         public User (string usernameField, string emailField, string passwField)
         {
@@ -38,6 +39,7 @@ namespace ARProject.User
             StatusOnline = false;
             Birthday = DateTime.Now.ToString();
             MemberGroup = new List<string>();
+            //MemberGroup = new string[] { };
             FirstName = "Dora";
             LastName = "Rodriguez";
         }
@@ -109,9 +111,25 @@ namespace ARProject.User
 
         }
 
+        public void DeleteUser()
+        {
+            try
+            {
+                IMongoCollection<User> docRef = GetCollection();
+                docRef.DeleteOne(user => user._id == ObjectId.Parse(GetSessionDataUser()));
+                Debug.Log("DeleteUser - Usuario Borrado");
+            }
+            catch (MongoException)
+            {
+                Debug.Log("DeleteUser - Error al borrar Usuario");
+            }
+
+        }
+
         public List<string> GetAllGroupsFromUser()
         {
             IMongoCollection<User> docRef = GetCollection();
+            //Debug.Log("Adentro de GetAllGroupsFromUser");
             User userModelList = docRef.Find(user => user._id == ObjectId.Parse(GetSessionDataUser())).ToList()[0];
             return userModelList.MemberGroup;
         }

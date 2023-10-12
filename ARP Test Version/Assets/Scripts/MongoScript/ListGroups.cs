@@ -52,21 +52,22 @@ public class ListGroups : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log("Entrando a ListGroups");
         group = new Group();
         record = new GamesPlayed();
         user = new User();
         activity = new TaskUser.Task();
 
-        
-        groupBelongs = group.GetGroup(user);
 
+        groupBelongs = group.GetGroup(user);
 
         string itemName = "Item ";
 
-        activitySprites = new Sprite[groupBelongs.Count];
+        //activitySprites = new Sprite[groupBelongs.Count];
+        activitySprites = new Sprite[1];
         //activitySprites = new Sprite[dataGroup.Count];
-        activityNames = new string[groupBelongs.Count];
+        //activityNames = new string[groupBelongs.Count];
+        activityNames = new string[1];
         Debug.Log(activitySprites.Length);
         // Obtener el tamaño del objeto de la actividad
         activitySize = activityPrefab.GetComponent<RectTransform>().sizeDelta;
@@ -101,12 +102,12 @@ public class ListGroups : MonoBehaviour
             activityNames[i] = groupBelongs[i].NameGroup;
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
             descriptionText.text = groupBelongs[i].School;
-
+            Debug.Log("En Loop");
         }
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
-
+        
         if (PlayerPrefs.GetString("EnableGroupDetails") == "True")
         {
             ChangePanelToDetail(PlayerPrefs.GetInt("IndexData"));

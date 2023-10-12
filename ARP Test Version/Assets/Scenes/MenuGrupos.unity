@@ -934,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d33e0cdd477ff545b072d13df481467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnIngresar: {fileID: 0}
+  btnIngresar: {fileID: 1464863509}
 --- !u!1 &440384162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,6 +2656,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1464863509 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114958349015381200, guid: 8dbd417b27de0433f86410ca2b3b0bd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1963752095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1706726714
 GameObject:
   m_ObjectHideFlags: 0
