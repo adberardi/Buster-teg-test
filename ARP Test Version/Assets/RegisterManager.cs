@@ -11,20 +11,26 @@ using System.Globalization;
 using System.Net.Mail;
 using System.Net;
 
-public class AuthManager : MonoBehaviour
+public class RegisterManager : MonoBehaviour
 {
-
-    //Login variables
-    [Header("Login")]
-    public InputField emailLoginField;
-    public InputField passwordLoginField;
-    public Text warningLoginText;
-    public Text confirmLoginText;
-
+    //Register variables
+    [Header("Register")]
+    public InputField usernameRegisterField;
+    public InputField emailRegisterField;
+    public InputField firstNameField;
+    public InputField lastNameField;
+    public InputField passwordRegisterField;
+    public InputField passwordRegisterVerifyField;
+    public InputField birthDateRegisterField;
+    public Text warningRegisterText;
+    public GameObject WarningBackground;
     private static User user;
-
     private School school;
-
+    public Dropdown dropdown;
+    private string GroupSchool { get; set; }
+    private string LevelSchool { get; set; }
+    public GameObject FormOne;
+    public GameObject FormTwo;
     public MongoClient client;
     public IMongoDatabase db;
 
@@ -35,20 +41,36 @@ public class AuthManager : MonoBehaviour
 
     }
 
-   
+
 
     // Start is called before the first frame update
     void Start()
     {
         user = new User();
+        school = new School();
+        dropdown.options.Clear();
+        IMongoCollection<School> docRef = school.GetCollection();
+        List<School> result = docRef.Find(Builders<School>.Filter.Empty).ToList();
+        //Llena la lista desplegable.
+        foreach (var i in result)
+        {
+            dropdown.options.Add(new Dropdown.OptionData() { text = i.SchoolName });
+        }
     }
 
-    //Function for the login button
-    public void LoginButton()
+    //Obtiene la escuela seleccionada cuando se crea el grupo.
+    public void DropdownitemSelectd(Dropdown dropdown)
     {
-       
-        Debug.Log("entreeeee "+ emailLoginField.text+" Password: "+ passwordLoginField.text);
-        user.Login(emailLoginField.text, passwordLoginField.text);
+        int index = dropdown.value;
+        GroupSchool = dropdown.options[index].text;
+    }
+
+    //Obtiene el grado seleccionado por el usuario.
+    public void DropdownLeveltemSelectd(Dropdown dropdown)
+    {
+        int index = dropdown.value;
+        LevelSchool = dropdown.options[index].text.Trim();
+        Debug.Log("LevelSchool: " + LevelSchool);
     }
 
     //Function for the register button
@@ -57,15 +79,60 @@ public class AuthManager : MonoBehaviour
         SceneManager.LoadScene("Registro");
     }
 
-
-    public void Login(string _email, string _password)
+    //Function for the save button
+    public void CloseWarning()
     {
-        Debug.Log("AuthManager Login");
-        //user.Login(_email, _password);
-        SceneManager.LoadScene("Home");
-
+        WarningBackground.SetActive(false);
     }
 
+    //Change from FormOne to FormTwo
+    public void ChangeFormOneToFormTwo()
+    {
+        FormTwo.SetActive(true);
+        FormOne.SetActive(false);
+    }
+
+    //Change from FormTwo to FormOne
+    public void ChangeFormTwoToFormOne()
+    {
+        FormOne.SetActive(true);
+        FormTwo.SetActive(false);
+    }
+
+
+    public void CreateUser()
+    {
+        string password = passwordRegisterField.text;
+
+        if (ValidatePassword(password))
+        {
+            if (ValidateEmail(emailRegisterField.text))
+            {
+                if (ValidateBirthDate(birthDateRegisterField.text))
+                {
+                    User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password, birthDateRegisterField.text, firstNameField.text, lastNameField.text, LevelSchool);
+                    user.CreateUser(newUser);
+
+                    SceneManager.LoadScene("Login");
+                }
+                else
+                {
+                    warningRegisterText.text = "La fecha de nacimiento no es válida. Asegúrese de que la fecha de nacimiento esté en el formato correcto (DD/MM/AAAA).";
+                    WarningBackground.SetActive(true);
+                }
+            }
+            else
+            {
+                warningRegisterText.text = "La dirección de correo electrónico no es válida. Asegúrese de que la dirección de correo electrónico esté en el formato correcto (ejemplo@ejemplo.com).";
+                WarningBackground.SetActive(true);
+            }
+        }
+        else
+        {
+            warningRegisterText.text = "La contraseña no cumple con los requisitos mínimos. Asegúrese de que la contraseña tenga al menos 8 caracteres, contenga al menos un número, una letra mayúscula y una letra minúscula.";
+            WarningBackground.SetActive(true);
+        }
+    }
     bool ValidateBirthDate(string birthDateString)
     {
         DateTime birthDate;
@@ -125,22 +192,15 @@ public class AuthManager : MonoBehaviour
     // Function to validate user email, check if it exists, and send password via email
     public void ValidateEmailAndSendPassword()
     {
-        string email = emailLoginField.text;
-
-        // Check if the email is valid
-        if (!ValidateEmail(email))
-        {
-            warningLoginText.text = "La dirección de correo electrónico no es válida.";
-            return;
-        }
+        string email = emailRegisterField.text;
 
         // Check if the email exists in the database
         bool emailExists = CheckEmailExistsInDatabase(email);
-        if (!emailExists)
+       /* if (!emailExists)
         {
             warningLoginText.text = "El correo electrónico ingresado no está registrado.";
             return;
-        }
+        }*/
 
         // Get the user from the database
         User user = GetUserByEmail(email);
@@ -149,7 +209,7 @@ public class AuthManager : MonoBehaviour
         SendPasswordByEmail(user.Email, user.Password);
 
         // Display a confirmation message
-        confirmLoginText.text = "Se ha enviado un correo electrónico con la contraseña.";
+        //confirmLoginText.text = "Se ha enviado un correo electrónico con la contraseña.";
     }
 
     // Function to check if the email exists in the database
@@ -195,4 +255,3 @@ public class AuthManager : MonoBehaviour
     }
 
 }
-

@@ -23,25 +23,24 @@ namespace ARProject.User
         public string Email { get; set; }
 
         public string Birthday { get; set; }
-        //public string Role { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
         public int Reward { get; set; }
         public List<string> MemberGroup { get; set; }
-        //public string[] MemberGroup { get; set; }
 
-        public User (string usernameField, string emailField, string passwField)
+        public User (string usernameField, string emailField, string passwField, string birthday, string firstName, string lastName, string levelSchool)
         {
             UserName = usernameField;
             Email = emailField;
             Password= passwField;
             Profile = "Default";
             StatusOnline = false;
-            Birthday = DateTime.Now.ToString();
+            Birthday = birthday;
+            //Birthday = DateTime.Now.ToString();
             MemberGroup = new List<string>();
-            //MemberGroup = new string[] { };
-            FirstName = "Dora";
-            LastName = "Rodriguez";
+            FirstName = firstName;
+            LastName = lastName;
+            Reward = 0;
         }
 
         private MongoClient _client;
