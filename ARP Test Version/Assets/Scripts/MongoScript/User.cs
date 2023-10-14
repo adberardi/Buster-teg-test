@@ -21,7 +21,7 @@ namespace ARProject.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-
+        public string LevelSchool { get; set; }
         public string Birthday { get; set; }
         public string Profile { get; set; }
         public bool StatusOnline { get; set; }
@@ -40,6 +40,7 @@ namespace ARProject.User
             MemberGroup = new List<string>();
             FirstName = firstName;
             LastName = lastName;
+            LevelSchool = levelSchool;
             Reward = 0;
         }
 
@@ -157,7 +158,7 @@ namespace ARProject.User
                     if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
                     {
                         //IdUser = userModelList[0]._id;
-                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email);
+                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward);
                         ChangeScene(1);
                        // AddToGroup(GetSessionDataUser(),new ObjectId());
                     }
@@ -169,6 +170,10 @@ namespace ARProject.User
                 catch(MongoExecutionTimeoutException)
                 {
                     Debug.Log("TIEMPO AGOTADO DE ESPERA - ERROR DE CONEXION");
+                }
+                catch(ArgumentOutOfRangeException)
+                {
+                    Debug.Log("Usuario no encontrado");
                 }
             }
             else
@@ -201,20 +206,30 @@ namespace ARProject.User
         }
 
         //Se actualiza los datos del usuario, excluyendo la contrasena.
-        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newEmail, string newBirthday, string newProfile)
+        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newEmail, string newBirthday, string newProfile, string newGroupSchool, string newLevelSchool)
         {
-            IMongoCollection<User> userCollection = GetCollection();
-            var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName)
-                .Set(query => query.LastName, newLastName)
-                .Set(query => query.Email, newEmail)
-                .Set(query => query.Birthday, newBirthday)
-                .Set(query => query.Profile, newProfile);
-            var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
-            IsSuccessfullyOperation(result);
+            try
+            {
+                IMongoCollection<User> userCollection = GetCollection();
+                var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName)
+                    .Set(query => query.LastName, newLastName)
+                    .Set(query => query.Email, newEmail)
+                    .Set(query => query.Birthday, newBirthday)
+                    .Set(query => query.Profile, newProfile)
+                    .Set(query => query.LevelSchool, newLevelSchool);
+                var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
+                IsSuccessfullyOperation(result);
+                //Falta implementar el borrado de un estudiante en un colegio y agregarlo en el nuevo.
+            }
+            catch(MongoException)
+            {
+                Debug.Log("Se ha generado un error al actualizar en la Base de Datos");
+            }
+
         }
 
         //Se actualiza los datos del usuario, incluyendo la contrasena.
-        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile)
+        private async void UpdateUser(FilterDefinition<User> filterData, string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile, string groupSchool, string levelSchool)
         {
             IMongoCollection<User> userCollection = GetCollection();
             var dataToUpdate = Builders<User>.Update.Set(query => query.FirstName, newFirstName)
@@ -228,7 +243,7 @@ namespace ARProject.User
         }
 
         //Almacena los cambios datos de un usuario en especifico
-        public void SaveUser(string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile)
+        public void SaveUser(string newFirstName, string newLastName, string newPassword, string newEmail, string newBirthday, string newProfile, string groupSchool, string levelSchool)
         {
             try
             {
@@ -239,11 +254,11 @@ namespace ARProject.User
                     //Si el correo es el mismo que el actual, no se procede a validar si existe algun otro correo igual.
                     if (newPassword != "")
                     {
-                        UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile);
+                        UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile, groupSchool, levelSchool);
                     }
                     else
                     {
-                        UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile);
+                        UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile, groupSchool, levelSchool);
                     }
                 }
                 else
@@ -253,11 +268,11 @@ namespace ARProject.User
                         // Si el correo ingresado es distinto al actual, se procede a validar que no exista algun correo igual, es decir, que sea igual a false
                         if (newPassword != "")
                         {
-                            UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile);
+                            UpdateUser(filterData, newFirstName, newLastName, newPassword, newEmail, newBirthday, newProfile, groupSchool, levelSchool);
                         }
                         else
                         {
-                            UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile);
+                            UpdateUser(filterData, newFirstName, newLastName, newEmail, newBirthday, newProfile, groupSchool, levelSchool);
                         }
                     }
                 }
@@ -287,7 +302,7 @@ namespace ARProject.User
         }
 
 
-        public void SaveSessionDataUser(ObjectId IdUser, string userName, string firstName, string lastName, string birthday, string email)
+        public void SaveSessionDataUser(ObjectId IdUser, string userName, string firstName, string lastName, string birthday, string email, int reward)
         {
             PlayerPrefs.SetString("IDUser", IdUser.ToString());
             PlayerPrefs.SetString("Username", userName);
@@ -295,6 +310,7 @@ namespace ARProject.User
             PlayerPrefs.SetString("Lastname",lastName);
             PlayerPrefs.SetString("Birthday", birthday);
             PlayerPrefs.SetString("Email", email);
+            PlayerPrefs.SetString("UserReward", reward.ToString());
 
             StatusOnline = true;
         }

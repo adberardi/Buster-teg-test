@@ -17,6 +17,7 @@ public class LoadSceneMenu : MonoBehaviour
     private Task taskClass;
 
     public GameObject UsernameText;
+    public GameObject UserCollectedReward;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class LoadSceneMenu : MonoBehaviour
         score = new Score();
         taskClass = new Task();
         UsernameText.GetComponent<Text>().text = PlayerPrefs.GetString("Username");
+        UserCollectedReward.GetComponent<Text>().text = PlayerPrefs.GetString("UserReward");
     }
 
     // Update is called once per frame
@@ -77,17 +79,17 @@ public class LoadSceneMenu : MonoBehaviour
         user.ReadUser();
     }
 
-    public void ButtonCreateGroup()
+    /*public void ButtonCreateGroup()
     {
         //Group newGroup = new Group("nameGroup", DateTime.Now, "llllll", "U.E. Instituto Humanitas","1er Grado");
         //group.CreateGroup(newGroup);
         group.ReadGroup("641bcdb046c68d6ae5968c4c");
-    }
+    }*/
 
-    public void ButtonDeleteGroup()
+    /*public void ButtonDeleteGroup()
     {
         group.DeleteGroup("641a85a533e6f58db731c316");
-    }
+    }*/
 
     public void ButtonSaveScore()
     {
@@ -100,12 +102,12 @@ public class LoadSceneMenu : MonoBehaviour
         score.ReadScore(user.GetSessionDataUser());
     }
 
-    public void ButtonCreateTask()
+    /*public void ButtonCreateTask()
     {
        // Task newTask = new Task("contentTask", DateTime.Now.ToString(), DateTime.Now.ToString(), "groupTask", 15, 20);
        // taskClass.SaveTask(newTask);
         //taskClass.ReadTask("6420fca5daf7d33604c8e65f");
         //taskClass.UpdateTask("6420fca5daf7d33604c8e65f", "New Content Updated");
         //taskClass.DeleteTask("6420fca5daf7d33604c8e65f");
-    }
+    }*/
 }

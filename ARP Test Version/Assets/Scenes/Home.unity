@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 132618743}
   - component: {fileID: 132618742}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RewardText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,6 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsernameText: {fileID: 1525436442}
+  UserCollectedReward: {fileID: 132618740}
 --- !u!4 &234364686
 Transform:
   m_ObjectHideFlags: 0
