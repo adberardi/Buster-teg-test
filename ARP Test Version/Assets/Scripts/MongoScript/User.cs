@@ -27,6 +27,7 @@ namespace ARProject.User
         public bool StatusOnline { get; set; }
         public int Reward { get; set; }
         public List<string> MemberGroup { get; set; }
+        public string School { get; set; }
 
         public User (string usernameField, string emailField, string passwField, string birthday, string firstName, string lastName, string levelSchool)
         {
@@ -41,6 +42,7 @@ namespace ARProject.User
             FirstName = firstName;
             LastName = lastName;
             LevelSchool = levelSchool;
+            //School = School;
             Reward = 0;
         }
 
@@ -158,7 +160,7 @@ namespace ARProject.User
                     if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
                     {
                         //IdUser = userModelList[0]._id;
-                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward);
+                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward, credential.School, credential.LevelSchool);
                         ChangeScene(1);
                        // AddToGroup(GetSessionDataUser(),new ObjectId());
                     }
@@ -216,7 +218,8 @@ namespace ARProject.User
                     .Set(query => query.Email, newEmail)
                     .Set(query => query.Birthday, newBirthday)
                     .Set(query => query.Profile, newProfile)
-                    .Set(query => query.LevelSchool, newLevelSchool);
+                    .Set(query => query.LevelSchool, newLevelSchool)
+                    .Set(query => query.School, newGroupSchool);
                 var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
                 IsSuccessfullyOperation(result);
                 //Falta implementar el borrado de un estudiante en un colegio y agregarlo en el nuevo.
@@ -237,7 +240,9 @@ namespace ARProject.User
                 .Set(query => query.Email, newEmail)
                 .Set(query => query.Birthday, newBirthday)
                 .Set(query => query.Password, newPassword)
-                .Set(query => query.Profile, newProfile);
+                .Set(query => query.Profile, newProfile)
+                .Set(query => query.School,groupSchool)
+                .Set(query => query.LevelSchool ,levelSchool);
             var result = await userCollection.UpdateOneAsync(filterData, dataToUpdate);
             IsSuccessfullyOperation(result);
         }
@@ -276,11 +281,11 @@ namespace ARProject.User
                         }
                     }
                 }
-               
+                ChangeScene(1);
             }
-            catch(MongoException)
+            catch(MongoException error)
             {
-                Debug.Log("Un error ha ocurrido");
+                Debug.Log("Un error ha ocurrido "+ error);
             }
         }
 
@@ -298,11 +303,13 @@ namespace ARProject.User
             LastName = credential.LastName;
             Profile = credential.Profile;
             Reward = credential.Reward;
+            LevelSchool = credential.LevelSchool;
+            School = credential.School;
             Debug.Log("Read all data from the users collection.");
         }
 
 
-        public void SaveSessionDataUser(ObjectId IdUser, string userName, string firstName, string lastName, string birthday, string email, int reward)
+        public void SaveSessionDataUser(ObjectId IdUser, string userName, string firstName, string lastName, string birthday, string email, int reward, string school, string levelSchool)
         {
             PlayerPrefs.SetString("IDUser", IdUser.ToString());
             PlayerPrefs.SetString("Username", userName);
@@ -311,6 +318,8 @@ namespace ARProject.User
             PlayerPrefs.SetString("Birthday", birthday);
             PlayerPrefs.SetString("Email", email);
             PlayerPrefs.SetString("UserReward", reward.ToString());
+            PlayerPrefs.SetString("School", school);
+            PlayerPrefs.SetString("LevelSchool", levelSchool);
 
             StatusOnline = true;
         }

@@ -7,6 +7,8 @@ public class DialogManager : MonoBehaviour
 {
     private User user = new User();
     public GameObject dialogBox;
+    private string GroupSchool { get; set; }
+    private string LevelSchool { get; set; }
     //public Text dialogText;
 
     public void ShowDialog(User user)
@@ -25,5 +27,19 @@ public class DialogManager : MonoBehaviour
     public void CloseDialog()
     {
         dialogBox.SetActive(false);
+    }
+
+    //Dialog used in Module "User Edit Profile".
+    public void ConfirmSchoolSelected()
+    {
+        PlayerPrefs.SetString("ConfirmSchool", "True");
+        CloseDialog();
+    }
+
+    //Dialog used in Module "User Edit Profile".
+    public void ConfirmLevelSchoolSelected()
+    {
+        PlayerPrefs.SetString("ConfirmLevelSchool", "True");
+        CloseDialog();
     }
 }
