@@ -52,6 +52,7 @@ public class RegisterManager : MonoBehaviour
         IMongoCollection<School> docRef = school.GetCollection();
         List<School> result = docRef.Find(Builders<School>.Filter.Empty).ToList();
         //Llena la lista desplegable.
+        dropdown.options.Add(new Dropdown.OptionData() { text = "Seleccione Colegio" });
         foreach (var i in result)
         {
             dropdown.options.Add(new Dropdown.OptionData() { text = i.SchoolName });
@@ -103,33 +104,40 @@ public class RegisterManager : MonoBehaviour
     public void CreateUser()
     {
         string password = passwordRegisterField.text;
-
-        if (ValidatePassword(password))
+        if ((!emailRegisterField.text.Equals("")) && (!usernameRegisterField.text.Equals("")) && (!birthDateRegisterField.text.Equals("")) && (!firstNameField.text.Equals("")) && (!lastNameField.text.Equals("")))
         {
-            if (ValidateEmail(emailRegisterField.text))
+            if (ValidatePassword(password))
             {
-                if (ValidateBirthDate(birthDateRegisterField.text))
+                if (ValidateEmail(emailRegisterField.text))
                 {
-                    User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password, birthDateRegisterField.text, firstNameField.text, lastNameField.text, LevelSchool);
-                    user.CreateUser(newUser);
+                    if (ValidateBirthDate(birthDateRegisterField.text))
+                    {
+                        User newUser = new User(usernameRegisterField.text, emailRegisterField.text, password, birthDateRegisterField.text, firstNameField.text, lastNameField.text, LevelSchool, GroupSchool);
+                        user.CreateUser(newUser);
 
-                    SceneManager.LoadScene("Login");
+                        SceneManager.LoadScene("Login");
+                    }
+                    else
+                    {
+                        warningRegisterText.text = "La fecha de nacimiento no es válida. Asegúrese de que la fecha de nacimiento esté en el formato correcto (DD/MM/AAAA).";
+                        WarningBackground.SetActive(true);
+                    }
                 }
                 else
                 {
-                    warningRegisterText.text = "La fecha de nacimiento no es válida. Asegúrese de que la fecha de nacimiento esté en el formato correcto (DD/MM/AAAA).";
+                    warningRegisterText.text = "La dirección de correo electrónico no es válida. Asegúrese de que la dirección de correo electrónico esté en el formato correcto (ejemplo@ejemplo.com).";
                     WarningBackground.SetActive(true);
                 }
             }
             else
             {
-                warningRegisterText.text = "La dirección de correo electrónico no es válida. Asegúrese de que la dirección de correo electrónico esté en el formato correcto (ejemplo@ejemplo.com).";
+                warningRegisterText.text = "La contraseña no cumple con los requisitos mínimos. Asegúrese de que la contraseña tenga al menos 8 caracteres, contenga al menos un número, una letra mayúscula y una letra minúscula.";
                 WarningBackground.SetActive(true);
             }
         }
         else
         {
-            warningRegisterText.text = "La contraseña no cumple con los requisitos mínimos. Asegúrese de que la contraseña tenga al menos 8 caracteres, contenga al menos un número, una letra mayúscula y una letra minúscula.";
+            warningRegisterText.text = "No deben de haber campos vacios.";
             WarningBackground.SetActive(true);
         }
     }

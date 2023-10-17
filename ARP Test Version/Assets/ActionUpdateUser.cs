@@ -43,6 +43,7 @@ public class ActionUpdateUser : MonoBehaviour
         IMongoCollection<School> docRef = school.GetCollection();
         List<School> result = docRef.Find(Builders<School>.Filter.Empty).ToList();
         //Llena la lista desplegable.
+        dropdown.options.Add(new Dropdown.OptionData() { text = "Seleccione Colegio" });
         foreach (var i in result)
         {
             dropdown.options.Add(new Dropdown.OptionData() { text = i.SchoolName });

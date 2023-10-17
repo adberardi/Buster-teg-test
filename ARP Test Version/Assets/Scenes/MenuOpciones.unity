@@ -8047,6 +8047,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: Seleccione Grado
+      m_Image: {fileID: 0}
     - m_Text: 1er Grado
       m_Image: {fileID: 0}
     - m_Text: 2do Grado

@@ -396,13 +396,6 @@ MonoBehaviour:
   passwordLoginField: {fileID: 617283655}
   warningLoginText: {fileID: 0}
   confirmLoginText: {fileID: 0}
-  usernameRegisterField: {fileID: 0}
-  emailRegisterField: {fileID: 0}
-  passwordRegisterField: {fileID: 0}
-  passwordRegisterVerifyField: {fileID: 0}
-  birthDateRegisterField: {fileID: 0}
-  warningRegisterText: {fileID: 0}
-  WarningBackground: {fileID: 0}
 --- !u!4 &226664350
 Transform:
   m_ObjectHideFlags: 0
@@ -705,13 +698,6 @@ MonoBehaviour:
   passwordLoginField: {fileID: 0}
   warningLoginText: {fileID: 0}
   confirmLoginText: {fileID: 0}
-  usernameRegisterField: {fileID: 0}
-  emailRegisterField: {fileID: 0}
-  passwordRegisterField: {fileID: 0}
-  passwordRegisterVerifyField: {fileID: 0}
-  birthDateRegisterField: {fileID: 0}
-  warningRegisterText: {fileID: 0}
-  WarningBackground: {fileID: 0}
 --- !u!1001 &617283653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,6 +838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "Contrase\xF1a"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75220a5115d7e427caa112f720cca056, type: 3}
@@ -1456,6 +1447,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Email
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}

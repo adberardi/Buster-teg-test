@@ -29,7 +29,7 @@ namespace ARProject.User
         public List<string> MemberGroup { get; set; }
         public string School { get; set; }
 
-        public User (string usernameField, string emailField, string passwField, string birthday, string firstName, string lastName, string levelSchool)
+        public User (string usernameField, string emailField, string passwField, string birthday, string firstName, string lastName, string levelSchool, string school)
         {
             UserName = usernameField;
             Email = emailField;
@@ -42,7 +42,7 @@ namespace ARProject.User
             FirstName = firstName;
             LastName = lastName;
             LevelSchool = levelSchool;
-            //School = School;
+            School = school;
             Reward = 0;
         }
 
