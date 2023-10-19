@@ -39,4 +39,50 @@ public class LoadScene : MonoBehaviour
         string clickedButtonNameGame = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         PlayerPrefs.SetString("NameGame", clickedButtonNameGame);
     }
+
+    public void BtnDivision(int index)
+    {
+        if (ValidateLevelSchoolWithGame() == 3)
+        {
+            ChangeScene(index);
+        }
+        else
+        {
+            Debug.Log("Este juego solo esta disponible a partir de 3er Grado");
+        }
+
+    }
+
+    public void BtnMultiplication(int index)
+    {
+        if(ValidateLevelSchoolWithGame() == 2)
+        {
+            ChangeScene(index);
+        }
+        else
+        {
+            Debug.Log("Este juego solo esta disponible a partir de 2do Grado");
+        }
+
+    }
+
+
+    //Validate if the user can play the game.
+    public int ValidateLevelSchoolWithGame()
+    {
+        string op = PlayerPrefs.GetString("LevelSchool");
+        switch (op)
+        {
+            case "1erGrado":
+                return 1;
+            case "2doGrado":
+                return 2;
+            case "3erGrado":
+                return 3;
+            default:
+                return 0;
+        }
+    }
+
+
 }

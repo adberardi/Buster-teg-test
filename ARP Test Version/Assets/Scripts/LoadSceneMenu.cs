@@ -55,7 +55,6 @@ public class LoadSceneMenu : MonoBehaviour
 
     }
 
-
     public void ButtonSaveUser()
     {
         //User user = new User();

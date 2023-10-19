@@ -482,13 +482,6 @@ MonoBehaviour:
   passwordLoginField: {fileID: 0}
   warningLoginText: {fileID: 1596369238}
   confirmLoginText: {fileID: 1596369238}
-  usernameRegisterField: {fileID: 0}
-  emailRegisterField: {fileID: 1373885284}
-  passwordRegisterField: {fileID: 0}
-  passwordRegisterVerifyField: {fileID: 0}
-  birthDateRegisterField: {fileID: 0}
-  warningRegisterText: {fileID: 391748226}
-  WarningBackground: {fileID: 1572985166}
 --- !u!4 &226664350
 Transform:
   m_ObjectHideFlags: 0
@@ -1841,7 +1834,7 @@ PrefabInstance:
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: -2.1
       objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -1851,12 +1844,12 @@ PrefabInstance:
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 405.43
+      value: 521.2
       objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 76.91
+      value: 76.9
       objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -1922,6 +1915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: Email
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
