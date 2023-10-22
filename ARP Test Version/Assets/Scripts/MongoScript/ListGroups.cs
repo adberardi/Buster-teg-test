@@ -193,12 +193,14 @@ public class ListGroups : MonoBehaviour
 
     public void ChangePanelToDetail(GameObject activityObj)
     {
+        
         int indexData = int.Parse(activityObj.name);
+        PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
         BtnBackDetail.SetActive(true);
         PanelMembers.SetActive(true);
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
-        PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
+        //PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
         PlayerPrefs.SetInt("IndexData",indexData);
         LoadDataPanel(groupBelongs[indexData]);
     }
