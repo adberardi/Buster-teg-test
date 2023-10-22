@@ -142,6 +142,24 @@ namespace ARProject.GamesPlayed
             return (dayPlayedList, dayPlayedCountList);
         }
 
+        /*public Group GetGroup(string IdGroup)
+        {
+            IMongoCollection<Group> docRef = GetCollection();
+            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
+            return credential;
+        }*/
 
+        public void GetGamesPlayedByUserGroup(ObjectId groupId)
+        {
+            IMongoCollection<GamesPlayed> collection = GetCollection();
+            List<GamesPlayed> gamesPlayed = collection.Find(gp => gp.Group.Equals(groupId)).ToList();
+            Dictionary<string, int> dayPlayedCount = new Dictionary<string, int>();
+            Debug.Log("GetGamesPlayedByUserGroup");
+            int resultFinal = 0;
+            foreach (GamesPlayed game in gamesPlayed)
+            {
+                resultFinal += game.FinalScore;
+            }
+        }
     }
 }

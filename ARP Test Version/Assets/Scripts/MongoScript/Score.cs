@@ -11,10 +11,11 @@ namespace ARProject.Score
     {
         [MongoDB.Bson.Serialization.Attributes.BsonId]
         public ObjectId _id { get; set; }
-        public string IdUser { get; set; }
+        public ObjectId IdUser { get; set; }
         public int Note { get; set; }
         // TODO: Por agregar clase Content
         public ObjectId Program { get; set; }
+        public ObjectId Group { get; set; }
         private MongoClient _client;
 
         public Score()
@@ -22,11 +23,19 @@ namespace ARProject.Score
             _client = MongoDBManager.GetClient();
         }
 
-        public Score(string idUser, int note, ObjectId programId)
+        public Score(ObjectId idUser, int note, ObjectId programId)
         {
             IdUser = idUser;
             Note = note;
             Program = programId;
+        }
+
+        public Score(ObjectId idUser, int note, ObjectId programId, ObjectId groupId)
+        {
+            IdUser = idUser;
+            Note = note;
+            Program = programId;
+            Group = groupId;
         }
 
         public IMongoCollection<Score> GetCollection()
@@ -54,9 +63,46 @@ namespace ARProject.Score
             Debug.Log(string.Format("IdUser: {0} , Note: {1}, Program ID: {2}", credential.IdUser, credential.Note, credential.Program));
             Note = credential.Note;
             Program = credential.Program;
+            Group = credential.Group;
             Debug.Log("Read all data from the users collection.");
          }
 
+        public void GetScore(string idUser, string idGroup)
+        {
+            Debug.Log("ENTRANDO EN READUSER");
+            IMongoCollection<Score> docRef = GetCollection();
+            //IMongoCollection<User> userCollection = GetCollection();
+            Score credential = docRef.Find(score => score.IdUser == ObjectId.Parse(idUser) && score.Group == ObjectId.Parse(idGroup)).ToList()[0];
+            Debug.Log(string.Format("IdUser: {0} , Note: {1}, Program ID: {2}", credential.IdUser, credential.Note, credential.Program));
+
+            Debug.Log("Read all data from the scores collection.");
+        }
+
+        // Updates the Final Grade obtained in a Group.
+        public async void UpdateScoreNote(string idUser, string idGroup, int newNote)
+        {
+            try
+            {
+                IMongoCollection<Score> docRef = GetCollection();
+                var filterData = Builders<Score>.Filter.Eq(query => query.IdUser, ObjectId.Parse(idUser));
+                filterData = Builders<Score>.Filter.Eq(query => query.Group, ObjectId.Parse(idGroup));
+                var dataToUpdate = Builders<Score>.Update.Set(query => query.Note, newNote);
+                IMongoCollection<Score> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("Operacion completada");
+                }
+                else
+                {
+                    Debug.Log("Operacion Fallida");
+                }
+            }
+            catch (MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
+            }
+        }
     }
 }
 

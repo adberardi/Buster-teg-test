@@ -415,6 +415,20 @@ namespace ARProject.User
             return data;
         }
 
+
+        internal List<User> GetStudents(string[] listParam)
+        {
+            List<User> data = new List<User>();
+            IMongoCollection<User> userCollection = GetCollection();
+            foreach (var index in listParam)
+            {
+                User credential = userCollection.Find(user => user._id == ObjectId.Parse(index)).ToList()[0];
+                data.Add(credential);
+            }
+            //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);
+            //Debug.Log(credential.Email);
+            return data;
+        }
     }
 
 }

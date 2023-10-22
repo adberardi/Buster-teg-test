@@ -92,7 +92,7 @@ public class LoadSceneMenu : MonoBehaviour
 
     public void ButtonSaveScore()
     {
-        Score newScore = new Score("6411384514070dd6d438055b", 10, new ObjectId());
+        Score newScore = new Score(ObjectId.Parse("6411384514070dd6d438055b"), 10, new ObjectId());
         score.SaveScore(newScore);
     }
 

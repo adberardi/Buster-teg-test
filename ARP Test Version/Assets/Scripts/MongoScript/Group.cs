@@ -223,6 +223,8 @@ namespace ARProject.Group
             }
         }
 
+
+
         private const string ElasticEmailApiUrl = "https://api.elasticemail.com/v2";
         private const string ElasticEmailApiKey = "E3AA2FEED5E74C762766D756CF1F5E046AE51141B33611EDC49E26920E88FFEC9DB04112DC172709EF1D39C72E9883B4"; // Reemplaza con tu clave de API de Elastic Email
 

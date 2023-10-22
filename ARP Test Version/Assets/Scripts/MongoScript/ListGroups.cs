@@ -20,10 +20,12 @@ public class ListGroups : MonoBehaviour
     public GameObject PanelGroupMain;
     //Panel Detail; muestra informacion detalle del grupo seleccionado.
     public GameObject PanelGroupDetail;
+    public GameObject PanelMembers;
 
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
     List<Group> groupBelongs;
+    public string[] userBelongs;
     public Text TextNameGroup;
     public Text TextSchool;
     public Text TextActivityActual;
@@ -49,6 +51,18 @@ public class ListGroups : MonoBehaviour
     private Vector2 activitySize;
     private Vector2 activityPosition;
 
+    public Sprite[] activitySpritesMember;    // Array de sprites para las actividades
+    public string[] activityNamesMember;      // Array de nombres para las actividades
+
+    // Variables to Scroll Bar for Member Group
+    public ScrollRect scrollRectMemberGroup;       // Referencia al Scroll Rect en la escena
+    public RectTransform contentRectMemberGroup;  // Referencia al Rect Transform del contenido del Scroll Rect
+
+    // Variables para la posición y el tamaño de los objetos generados
+    private Vector2 activitySizeMember;
+    private Vector2 activityPositionMember;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,11 +77,11 @@ public class ListGroups : MonoBehaviour
 
         string itemName = "Item ";
 
-        //activitySprites = new Sprite[groupBelongs.Count];
-        activitySprites = new Sprite[1];
+        activitySprites = new Sprite[groupBelongs.Count];
+        //activitySprites = new Sprite[1];
         //activitySprites = new Sprite[dataGroup.Count];
-        //activityNames = new string[groupBelongs.Count];
-        activityNames = new string[1];
+        activityNames = new string[groupBelongs.Count];
+        //activityNames = new string[1];
         Debug.Log(activitySprites.Length);
         // Obtener el tamaño del objeto de la actividad
         activitySize = activityPrefab.GetComponent<RectTransform>().sizeDelta;
@@ -120,6 +134,58 @@ public class ListGroups : MonoBehaviour
 
     }
 
+    public void LoadListMembers()
+    {
+        Group ListMembersBelongs = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
+        userBelongs = ListMembersBelongs.ParticipantsGroup;
+        List<User> userMember = user.GetStudents(userBelongs);
+        string itemName = "Item ";
+
+        activitySpritesMember = new Sprite[(int) userBelongs.LongCount()];
+        activityNamesMember = new string[(int) userBelongs.LongCount()];
+        Debug.Log("Longitud de las lista participantes: "+activitySprites.Length);
+        // Obtener el tamaño del objeto de la actividad
+        activitySize = activityPrefab.GetComponent<RectTransform>().sizeDelta;
+
+        // Calcular la posición inicial del primer objeto de la actividad
+        activityPosition = new Vector2(spacing + activitySize.x / 2f, -spacing - activitySize.y / 2f);
+        // Generar los objetos de la actividad
+        for (int i = 0; i < activitySprites.Length; i++)
+        {
+            // Instanciar el prefab de la actividad
+            GameObject activityObject = Instantiate(activityPrefab, contentRect);
+
+            // Establecer la posición del objeto de la actividad
+            activityObject.GetComponent<RectTransform>().anchoredPosition = activityPosition;
+
+            // Asignar la imagen y el nombre de la actividad
+            activityObject.GetComponent<Image>().sprite = activitySprites[i];
+            activitySprites[i] = Resources.Load<Sprite>("Sprites/btn_square_blue");
+
+            // Encontrar el componente de texto de la descripción de la actividad
+            Text descriptionText = activityObject.transform.Find("Description").GetComponent<Text>();
+
+            // Asignar la imagen y el nombre de la actividad
+            activityObject.GetComponent<Image>().sprite = activitySprites[i];
+
+
+            itemName = i.ToString();
+            activityObject.name = itemName;
+            activityNames[i] = userMember[i].FirstName +" "+ userMember[i].LastName;
+            activityObject.GetComponentInChildren<Text>().text = activityNames[i];
+            descriptionText.text = userMember[i].UserName;
+            Debug.Log("En Loop");
+        }
+        activityPrefab.SetActive(false);
+        // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
+        contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
+
+        if (PlayerPrefs.GetString("EnableGroupDetails") == "True")
+        {
+            ChangePanelToDetail(PlayerPrefs.GetInt("IndexData"));
+        }
+    }
+
     public void ChangeScene(int index)
     {
         SceneManager.LoadScene(index);
@@ -129,13 +195,26 @@ public class ListGroups : MonoBehaviour
     {
         int indexData = int.Parse(activityObj.name);
         BtnBackDetail.SetActive(true);
-        PanelGroupDetail.SetActive(true);
+        PanelMembers.SetActive(true);
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
         PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
         PlayerPrefs.SetInt("IndexData",indexData);
         LoadDataPanel(groupBelongs[indexData]);
     }
+
+    /*public void ChangePanelToDetail(GameObject activityObj)
+    {
+        int indexData = int.Parse(activityObj.name);
+        BtnBackDetail.SetActive(true);
+        PanelGroupDetail.SetActive(true);
+        PanelGroupMain.SetActive(false);
+        BtnBackMain.SetActive(false);
+        PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
+        PlayerPrefs.SetInt("IndexData", indexData);
+        LoadDataPanel(groupBelongs[indexData]);
+    }*/
+
 
     public void ChangePanelToDetail(int pos)
     {
