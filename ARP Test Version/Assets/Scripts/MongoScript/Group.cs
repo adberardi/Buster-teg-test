@@ -21,7 +21,6 @@ namespace ARProject.Group
         public string LevelSchool { get; set; }
         public string[] ParticipantsGroup { get; set; }
         public string[] AssignedActivities { get; set; }
-        public List<string> ListNewMembers = new List<string>();
 
         private MongoClient _client;
 
@@ -175,6 +174,7 @@ namespace ARProject.Group
         // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
         public void ProcessRequest(List<GameObject> activityObject, List<string> listDataMember, List<string> listDataMembersId)
         {
+            List<string> ListNewMembers = new List<string>();
             for (int index = 0; index < activityObject.Count; index++)
             {
                 if (activityObject[index].transform.Find("ToggleGreen").GetComponent<Toggle>().isOn)
@@ -195,17 +195,17 @@ namespace ARProject.Group
             }
             //Si por lo menos hay una persona que fue seleccionada, se procedera a registrarlo en la Base de Datos. En caso contrario, se hara caso omiso.
             if (ListNewMembers.Count > 0)
-                AddMembersToGroup();
+                AddMembersToGroup(ListNewMembers);
         }
         //Se registrara los miembros del grupo en la Base de Datos.
-        public async void AddMembersToGroup()
+        public async void AddMembersToGroup(List<string> listNewMembers)
         {
             string IdGroup = PlayerPrefs.GetString("IdGroupCreated");
             try
             {
                 IMongoCollection<Group> docRef = GetCollection();
                 var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
-                var dataToUpdate = Builders<Group>.Update.Set(query => query.ParticipantsGroup, ListNewMembers.ToArray());
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.ParticipantsGroup, listNewMembers.ToArray());
                 IMongoCollection<Group> groupRef = GetCollection();
                 var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
                 if (result.IsAcknowledged && result.ModifiedCount > 0)
