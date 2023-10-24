@@ -78,6 +78,25 @@ namespace ARProject.Score
             Debug.Log("Read all data from the scores collection.");
         }
 
+
+        //Returns a List with the total scores by the one user from the activities assigned
+        public List<Score> GetListScoreByGroup(string idUser, string idGroup)
+        {
+            Debug.Log("ENTRANDO EN GetListScoreByGroup");
+            IMongoCollection<Score> docRef = GetCollection();
+            List<Score> result = docRef.Find(score => score.IdUser == ObjectId.Parse(idUser) && score.Group == ObjectId.Parse(idGroup)).ToList();
+            return result;
+        }
+
+        //Returns a List with the total scores by the one user from the lats seven's days
+        public List<Score> GetListScoreByUser(string idUser, string idGroup)
+        {
+            Debug.Log("ENTRANDO EN GetListScoreByGroup");
+            IMongoCollection<Score> docRef = GetCollection();
+            List<Score> result = docRef.Find(score => score.IdUser == ObjectId.Parse(idUser) && score.Group == ObjectId.Parse(idGroup)).ToList();
+            return result;
+        }
+
         // Updates the Final Grade obtained in a Group.
         public async void UpdateScoreNote(string idUser, string idGroup, int newNote)
         {
