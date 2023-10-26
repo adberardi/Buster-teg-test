@@ -21,6 +21,7 @@ public class ListGroups : MonoBehaviour
     //Panel Detail; muestra informacion detalle del grupo seleccionado.
     public GameObject PanelGroupDetail;
     public GameObject PanelMembers;
+    public GameObject PanelStatistics;
     public GameObject BtnActivities;
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
@@ -206,6 +207,29 @@ public class ListGroups : MonoBehaviour
         catch (ArgumentOutOfRangeException err)
         {
             Debug.Log("Se ha detectado un error del tipo ArgumentOutOfRangeException ListGroups - ChangePanelToDetail: " + err + ", el valor index: "+ indexData);
+        }
+
+    }
+
+    public void ChangeMemberToStatistics(GameObject activityObj)
+    {
+        int indexData = int.Parse(activityObj.name);
+        try
+        {
+            //Debug.Log("IndexData: " + indexData.ToString());
+            //LoadListMembers(indexData);
+            //BtnBackDetail.SetActive(true);
+            PanelMembers.SetActive(false);
+            PanelStatistics.SetActive(true);
+            //BtnBackMain.SetActive(false);
+            //BtnActivities.SetActive(true);
+            //PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
+            //PlayerPrefs.SetInt("IndexData", indexData);
+            //LoadDataPanel(groupBelongs[indexData]);
+        }
+        catch (ArgumentOutOfRangeException err)
+        {
+            Debug.Log("Se ha detectado un error del tipo ArgumentOutOfRangeException ListGroups - ChangePanelToDetail: " + err + ", el valor index: " + indexData);
         }
 
     }
