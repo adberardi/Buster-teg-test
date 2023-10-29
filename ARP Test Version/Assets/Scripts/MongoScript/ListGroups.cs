@@ -25,7 +25,10 @@ public class ListGroups : MonoBehaviour
     public GameObject BtnActivities;
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
+    public GameObject BtnBackToMember;
     List<Group> groupBelongs;
+    List<User> userMember;
+    Group ListMembersBelongs;
     public string[] userBelongs;
     public Text TextNameGroup;
     public Text TextSchool;
@@ -35,6 +38,7 @@ public class ListGroups : MonoBehaviour
     private User user;
     private GamesPlayed record;
     private TaskUser.Task activity;
+    public GraphScript graphScript;
 
 
     // Variables para los objetos a generar
@@ -62,6 +66,11 @@ public class ListGroups : MonoBehaviour
     // Variables para la posición y el tamaño de los objetos generados
     private Vector2 activitySizeMember;
     private Vector2 activityPositionMember;
+
+    private void Awake()
+    {
+        graphScript = GetComponent<GraphScript>();
+    }
 
 
     // Start is called before the first frame update
@@ -138,9 +147,9 @@ public class ListGroups : MonoBehaviour
     public void LoadListMembers(int indexData)
     {
         PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
-        Group ListMembersBelongs = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
+        ListMembersBelongs = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
         userBelongs = ListMembersBelongs.ParticipantsGroup;
-        List<User> userMember = user.GetStudents(userBelongs);
+        userMember = user.GetStudents(userBelongs);
         string itemName = "Item ";
 
         activitySpritesMember = new Sprite[(int) userBelongs.LongCount()];
@@ -216,22 +225,25 @@ public class ListGroups : MonoBehaviour
         int indexData = int.Parse(activityObj.name);
         try
         {
-            //Debug.Log("IndexData: " + indexData.ToString());
-            //LoadListMembers(indexData);
-            //BtnBackDetail.SetActive(true);
+            LoadRecord(userMember[indexData]._id, ListMembersBelongs._id);
+            BtnBackMain.SetActive(false);
             PanelMembers.SetActive(false);
             PanelStatistics.SetActive(true);
-            //BtnBackMain.SetActive(false);
-            //BtnActivities.SetActive(true);
-            //PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
-            //PlayerPrefs.SetInt("IndexData", indexData);
-            //LoadDataPanel(groupBelongs[indexData]);
+            BtnBackMain.SetActive(false);
+            BtnBackToMember.SetActive(true);
         }
         catch (ArgumentOutOfRangeException err)
         {
             Debug.Log("Se ha detectado un error del tipo ArgumentOutOfRangeException ListGroups - ChangePanelToDetail: " + err + ", el valor index: " + indexData);
         }
 
+    }
+
+    public void ChangeStatisticsToMember()
+    {
+        PanelStatistics.SetActive(false);
+        BtnBackToMember.SetActive(false);
+        PanelMembers.SetActive(true);
     }
 
     public void ChangePanelDetailToMenuGroups()
@@ -344,6 +356,16 @@ public class ListGroups : MonoBehaviour
     {
         List<GamesPlayed> result = record.ReadGamesPlayedGroup(idUser, idGroup);
         Debug.Log("Valores recopilados en coleccion: " + result.Count);
+        List<int> resultScores = new List<int>();
+        foreach (var score in result)
+        {
+            resultScores.Add(score.FinalScore);
+        }
 
+        if (resultScores.Count > 0)
+        {
+            Debug.Log("resultScores: " + resultScores[0].ToString());
+            graphScript.ShowGraph(resultScores);
+        }
     }
 }
