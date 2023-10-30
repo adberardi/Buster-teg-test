@@ -10,6 +10,7 @@ public class TutorialController : MonoBehaviour
     Tutorial demo = new Tutorial();
     public Text TextDescription;
     public Text TextTitle;
+    public GameObject DialogWindow;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class TutorialController : MonoBehaviour
     //Carga el juego seleccionado por el usuario.
     public void BtnContinue()
     {
+        Debug.Log("IdNextScene: " + PlayerPrefs.GetInt("IdNextScene").ToString());
         SceneManager.LoadScene(PlayerPrefs.GetInt("IdNextScene"));
     }
 
@@ -36,4 +38,5 @@ public class TutorialController : MonoBehaviour
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("IdPreviousScene"));
     }
+
 }

@@ -44,6 +44,7 @@ public class DivisionController : MonoBehaviour
     public TextMesh txtOperation;
     public GameObject PanelResultado;
     public GameObject PanelTime;
+    public GameObject PanelIntro;
     public Text TxtTotalCorrectas;
     public int TotalCorrectas { get; set; }
     public Text TxtTotalIncorrectas;
@@ -219,6 +220,7 @@ public class DivisionController : MonoBehaviour
         }
         else
         {
+            PanelIntro.SetActive(false);
             onGoingGame = true;
             txtop.text = answer["top"];
             txtmiddle.text = answer["middle"];

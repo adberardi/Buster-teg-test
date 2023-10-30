@@ -45,7 +45,7 @@ public class MultiplicationTextScript : MonoBehaviour
         else
         {
             //txtField.text = string.Format("{0}", newNum);
-            txtField.text = newNum.ToString();
+            txtField.text = "El juego empieza en:\n"+newNum.ToString();
         }
 
     }

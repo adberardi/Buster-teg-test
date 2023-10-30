@@ -34,6 +34,7 @@ public class MultiplicationController : MonoBehaviour
     public Text btnTextSound;
     public GameObject BtnBack;
     public Text textField;
+    public GameObject PanelIntro;
     public GameObject boat;
     public GameObject effectsToWinner;
     public AudioClip soundWinner;
@@ -221,6 +222,7 @@ public class MultiplicationController : MonoBehaviour
         }
         else
         {
+            PanelIntro.SetActive(false);
             onGoingGame = true;
             txtop.text = answer["top"];
             txtmiddle.text = answer["middle"];

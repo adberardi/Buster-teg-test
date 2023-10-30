@@ -44,6 +44,7 @@ public class LoadScene : MonoBehaviour
     {
         if (ValidateLevelSchoolWithGame() == 3)
         {
+            PlayerPrefs.SetInt("IdNextScene", IdNextScene);
             ChangeScene(index);
         }
         else
@@ -57,6 +58,7 @@ public class LoadScene : MonoBehaviour
     {
         if(ValidateLevelSchoolWithGame() == 2)
         {
+            PlayerPrefs.SetInt("IdNextScene", IdNextScene);
             ChangeScene(index);
         }
         else
