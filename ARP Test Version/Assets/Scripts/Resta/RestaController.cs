@@ -56,7 +56,22 @@ public class RestaController : MonoBehaviour
     {
         //soundGame = GetComponent<AudioSource>();
         showPeople = true;
-        counterDownHouse = 3;
+        string op = PlayerPrefs.GetString("LevelSchool");
+        switch (op)
+        {
+            case "1erGrado":
+                counterDownHouse = 5;
+                break;
+            case "2doGrado":
+                counterDownHouse = 4;
+                break;
+            case "3erGrado":
+                counterDownHouse = 3;
+                break;
+            default:
+                counterDownHouse = 0;
+                break;
+        }
         
     }
 
