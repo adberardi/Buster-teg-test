@@ -31,6 +31,7 @@ public class SumaController : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static SumaController controlCharacter;
+    public GameObject PanelIntro;
 
 
 
@@ -38,7 +39,6 @@ public class SumaController : MonoBehaviour
     {
         endRoute = false;
         onGoingGame = false;
-        counterToStart = 3;
         controlCharacter = this;
         startRigth = true;
         responseUser = 0;
@@ -56,6 +56,7 @@ public class SumaController : MonoBehaviour
     {
         //soundGame = GetComponent<AudioSource>();
         //SumaTextScript.current.SetText("Juego en progreso");
+        counterToStart = 3;
     }
 
     // Update is called once per frame
@@ -103,7 +104,7 @@ public class SumaController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Dentro del else");
+            PanelIntro.SetActive(false);
             onGoingGame = true;
             soundGame = GetComponent<AudioSource>();
             soundGame.Play();
@@ -126,6 +127,7 @@ public class SumaController : MonoBehaviour
     // Updates the TextField that show the countdown to start the game (void ShowCounterToStartGame)
     private void UpdateCounterToStart()
     {
+        Debug.Log("SumaController - UpdateCounterToStart: Valor de counterToStart: " + counterToStart.ToString());
         SumaTextScript.current.SetText(counterToStart);
         counterToStart--;
         Invoke("ShowCounterToStartGame", 1.0f);

@@ -33,12 +33,13 @@ public class RestaController : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static RestaController controlCharacter;
+    public GameObject PanelIntro;
 
     private void Awake()
     {
         endRoute = false;
         onGoingGame = false;
-        counterToStart = 3;
+
         controlCharacter = this;
         startLeft = true;
         responseUser = 0;
@@ -55,6 +56,7 @@ public class RestaController : MonoBehaviour
     void Start()
     {
         //soundGame = GetComponent<AudioSource>();
+        counterToStart = 3;
         showPeople = true;
         string op = PlayerPrefs.GetString("LevelSchool");
         switch (op)
@@ -119,6 +121,7 @@ public class RestaController : MonoBehaviour
         }
         else
         {
+            PanelIntro.SetActive(false);
             MoveHouseToUp();
             ShowPeopleResult();
             controlCharacter.UpdateCounterToDownHouse();

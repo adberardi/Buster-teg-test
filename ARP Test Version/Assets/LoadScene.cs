@@ -56,7 +56,7 @@ public class LoadScene : MonoBehaviour
 
     public void BtnMultiplication(int index)
     {
-        if(ValidateLevelSchoolWithGame() == 2)
+        if(ValidateLevelSchoolWithGame() >= 2)
         {
             PlayerPrefs.SetInt("IdNextScene", IdNextScene);
             ChangeScene(index);
