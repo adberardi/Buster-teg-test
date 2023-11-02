@@ -156,7 +156,7 @@ public class ActionCreateGroups : MonoBehaviour
     public void ChangePanelToDetail()
     {
         //studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
-        //studentsList = school.ListStudents();
+        studentsList = school.ListStudents();
         PanelMember.SetActive(true);
         PanelForm.SetActive(false);
         SearchStudents(studentsList);
@@ -171,7 +171,7 @@ public class ActionCreateGroups : MonoBehaviour
         {
             aux.Add(ObjectId.Parse(param[i].ToString()));
         }*/
-        
+        Debug.Log("ActionCreateGroups - SearchStudents: " + aux.Count);
         result = user.GetStudents(aux);
 
         LoadScroll(result);

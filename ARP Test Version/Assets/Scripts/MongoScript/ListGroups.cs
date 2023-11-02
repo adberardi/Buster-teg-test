@@ -231,6 +231,9 @@ public class ListGroups : MonoBehaviour
             PanelStatistics.SetActive(true);
             BtnBackMain.SetActive(false);
             BtnBackToMember.SetActive(true);
+            Text dataMember = PanelStatistics.GetComponent("MemberText") as Text;
+            dataMember.text = userMember[indexData].UserName+"\n"+ userMember[indexData].FirstName+" "+ userMember[indexData].LastName;
+            Debug.Log("ChangeMemberToStatistics: " + userMember[indexData].UserName + "\n" + userMember[indexData].FirstName + " " + userMember[indexData].LastName);
         }
         catch (ArgumentOutOfRangeException err)
         {
