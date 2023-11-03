@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using CodeMonkey.Utils;
@@ -7,6 +8,8 @@ public class GraphScript : MonoBehaviour
 {
     [SerializeField] private Sprite circleSprite;
     [SerializeField] private RectTransform graphContainer;
+    [SerializeField] private RectTransform labelTemplateX;
+    [SerializeField] private RectTransform labelTemplateY;
 
     private void Awake()
     {
@@ -14,7 +17,9 @@ public class GraphScript : MonoBehaviour
         //CreateCircle(new Vector2(200, 200));
         //List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 25, 37, 40, 36, 33 };
         //ShowGraph(valueList);
-    }
+        //labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
+        //labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
+}
 
     private GameObject CreateCircle(Vector2 anchoredPosition)
     {
@@ -32,28 +37,41 @@ public class GraphScript : MonoBehaviour
     //Receive and Display the values what we want to graph.
     public void ShowGraph(List<int> valueList)
     {
-        
-        //graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
-        //Top limit of graph in the Y axis.
-        float graphHeight = graphContainer.sizeDelta.y;
-        //Maximun value to Y axis.
-        float yMaximun = 50f;
-        GameObject lastCircleGameObject = null;
-        Debug.Log("valueList on ShowGraph: " + valueList.Count);
-        //Distance between each point on the X axis
-        float xSize = 25f;
-        for(int i = 0; i < valueList.Count; i++)
-        {
-            Debug.Log("Estoy en el loop de ShowGraph");
-            float xPosition = xSize + i * xSize;
-            float yPosition = (valueList[i] / yMaximun) * graphHeight;
-            GameObject circleGameObject = CreateCircle(new Vector2(xPosition, yPosition));
-            if (lastCircleGameObject != null)
+        try {
+            //graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
+            //Top limit of graph in the Y axis.
+            float graphHeight = graphContainer.sizeDelta.y;
+            //Maximun value to Y axis.
+            float yMaximun = 50f;
+            GameObject lastCircleGameObject = null;
+            Debug.Log("valueList on ShowGraph: " + valueList.Count);
+            //Distance between each point on the X axis
+            float xSize = 25f;
+            for (int i = 0; i < valueList.Count; i++)
             {
-                CreateDotConnection(lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition);
+                Debug.Log("Estoy en el loop de ShowGraph");
+                float xPosition = xSize + i * xSize;
+                float yPosition = (valueList[i] / yMaximun) * graphHeight;
+                GameObject circleGameObject = CreateCircle(new Vector2(xPosition, yPosition));
+                if (lastCircleGameObject != null)
+                {
+                    CreateDotConnection(lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition);
+                }
+                lastCircleGameObject = circleGameObject;
+
+
+                RectTransform labelX = Instantiate(labelTemplateX);
+                labelX.SetParent(graphContainer);
+                labelX.gameObject.SetActive(true);
+                labelX.anchoredPosition = new Vector2(xPosition, -20f);
+                labelX.GetComponent<Text>().text = i.ToString();
             }
-            lastCircleGameObject = circleGameObject;
         }
+        catch (Exception err)
+        {
+            Debug.Log("GraphScript - ShowGraph: Error detectado " + err);
+        }
+
     }
 
 
