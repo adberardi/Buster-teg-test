@@ -11,6 +11,7 @@ public class TutorialController : MonoBehaviour
     public Text TextDescription;
     public Text TextTitle;
     public GameObject DialogWindow;
+    private TutorialImageGif TutorialImageScript = new TutorialImageGif();
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,7 @@ public class TutorialController : MonoBehaviour
     public void BtnContinue()
     {
         Debug.Log("IdNextScene: " + PlayerPrefs.GetInt("IdNextScene").ToString());
+        DialogWindow.SetActive(true);
         SceneManager.LoadScene(PlayerPrefs.GetInt("IdNextScene"));
     }
 

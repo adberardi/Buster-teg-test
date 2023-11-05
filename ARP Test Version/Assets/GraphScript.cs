@@ -8,8 +8,9 @@ public class GraphScript : MonoBehaviour
 {
     [SerializeField] private Sprite circleSprite;
     [SerializeField] private RectTransform graphContainer;
-    [SerializeField] private RectTransform labelTemplateX;
-    [SerializeField] private RectTransform labelTemplateY;
+    private RectTransform labelTemplateX;
+    private RectTransform labelTemplateY;
+    private Text userGraph;
 
     private void Awake()
     {
@@ -17,8 +18,10 @@ public class GraphScript : MonoBehaviour
         //CreateCircle(new Vector2(200, 200));
         //List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 25, 37, 40, 36, 33 };
         //ShowGraph(valueList);
-        //labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
-        //labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
+        /*userGraph = GameObject.Find("UserGraph").GetComponent<Text>();
+        userGraph.text = "Usuario #1";*/
+        labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
+        labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
 }
 
     private GameObject CreateCircle(Vector2 anchoredPosition)
@@ -41,8 +44,9 @@ public class GraphScript : MonoBehaviour
             //graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
             //Top limit of graph in the Y axis.
             float graphHeight = graphContainer.sizeDelta.y;
+            //float graphHeight = graphContainer.pivot.y;
             //Maximun value to Y axis.
-            float yMaximun = 50f;
+            float yMaximun = 150f;
             GameObject lastCircleGameObject = null;
             Debug.Log("valueList on ShowGraph: " + valueList.Count);
             //Distance between each point on the X axis
@@ -61,11 +65,23 @@ public class GraphScript : MonoBehaviour
 
 
                 RectTransform labelX = Instantiate(labelTemplateX);
-                labelX.SetParent(graphContainer);
+                labelX.SetParent(graphContainer,false);
                 labelX.gameObject.SetActive(true);
-                labelX.anchoredPosition = new Vector2(xPosition, -20f);
+                labelX.anchoredPosition = new Vector2(xPosition, -7f);
                 labelX.GetComponent<Text>().text = i.ToString();
             }
+
+            int separatorCount = 10;
+            for (int i = 0; i <= separatorCount; i++)
+            {
+                RectTransform labelY = Instantiate(labelTemplateX);
+                labelY.SetParent(graphContainer, false);
+                float normalizedValue = i * 1f / separatorCount;
+                labelY.gameObject.SetActive(true);
+                labelY.anchoredPosition = new Vector2(-9f, normalizedValue * graphHeight);
+                labelY.GetComponent<Text>().text = Mathf.RoundToInt(normalizedValue * yMaximun).ToString();
+            }
+
         }
         catch (Exception err)
         {

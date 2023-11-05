@@ -306,8 +306,8 @@ RectTransform:
   - {fileID: 248369353}
   - {fileID: 143487248}
   - {fileID: 1964067162}
-  - {fileID: 1887018329}
   - {fileID: 777760963}
+  - {fileID: 1887018329}
   m_Father: {fileID: 1353385530}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -625,7 +625,7 @@ PrefabInstance:
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
@@ -645,22 +645,22 @@ PrefabInstance:
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: -90.7
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 316.3
+      value: 359.2
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 108
+      value: 129.4
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 114747477787702896, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114747477787702896, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
@@ -780,17 +780,17 @@ PrefabInstance:
     - target: {fileID: 114050337504501978, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_Text
-      value: Gente Fiestera
+      value: Cuenta Personas - Especial
       objectReference: {fileID: 0}
     - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224248712781574852, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114759572860274602, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
@@ -1514,7 +1514,7 @@ PrefabInstance:
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
@@ -1785,22 +1785,22 @@ PrefabInstance:
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 98
+      value: 88.5
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 316.3
+      value: 359.2
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 108
+      value: 127.1
       objectReference: {fileID: 0}
     - target: {fileID: 224931268140148492, guid: 9d292b8db030c47228ab4ced77891a2b,
         type: 3}

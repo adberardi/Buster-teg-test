@@ -1340,7 +1340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPCIONES
+  m_Text: PERFIL
 --- !u!222 &537798525
 CanvasRenderer:
   m_ObjectHideFlags: 0

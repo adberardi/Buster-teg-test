@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 [RequireComponent(typeof(Image))]
 public class TutorialImageGif : MonoBehaviour
@@ -8,7 +9,6 @@ public class TutorialImageGif : MonoBehaviour
     public float duration;
 
     [SerializeField] private Sprite[] sprites;
-
     private Image image;
     private int index = 0;
     private float timer = 0;
@@ -28,5 +28,6 @@ public class TutorialImageGif : MonoBehaviour
             image.sprite = sprites[index];
             index = (index + 1) % sprites.Length;
         }
+
     }
 }
