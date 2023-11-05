@@ -350,80 +350,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!1 &356865427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 356865428}
-  - component: {fileID: 356865430}
-  - component: {fileID: 356865429}
-  m_Layer: 5
-  m_Name: ImageLoading
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &356865428
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356865427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1118530873}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.7, y: -15.52}
-  m_SizeDelta: {x: 24.58, y: 31.05}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &356865429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356865427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
---- !u!222 &356865430
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356865427}
-  m_CullTransparentMesh: 0
 --- !u!224 &425821573 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
@@ -732,14 +658,13 @@ RectTransform:
   m_LocalScale: {x: 3.1519248, y: 2.0906987, z: 1}
   m_Children:
   - {fileID: 1368066398}
-  - {fileID: 356865428}
   m_Father: {fileID: 1044569347}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 56.599976}
-  m_SizeDelta: {x: 69.9, y: 98.9}
+  m_AnchoredPosition: {x: 2, y: 32}
+  m_SizeDelta: {x: 69.9, y: 69.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1118530874
 MonoBehaviour:
@@ -833,11 +758,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d86d08199657bec4f8d2be208677500b, type: 3}
   - {fileID: 21300000, guid: d86d08199657bec4f8d2be208677500b, type: 3}
   - {fileID: 21300000, guid: 0a4fe8c8ca5f70442ad49ca99c64d960, type: 3}
-  spritesLoading:
-  - {fileID: 21300000, guid: 0e74eef42bde47b46a41b2dda0aa49ef, type: 3}
-  - {fileID: 21300000, guid: f92f42ea4b0607d42983929b88098f4b, type: 3}
-  - {fileID: 21300000, guid: df828da328dd98b4b931d0650907b9f2, type: 3}
-  imageLoading: {fileID: 356865429}
 --- !u!114 &1185507896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,7 +1094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.22842407, y: 21.351}
+  m_AnchoredPosition: {x: -0.22842407, y: -0.5999985}
   m_SizeDelta: {x: 322.19, y: 84.108}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368066400
@@ -1199,11 +1119,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 493bb3a1a26bf4b60a712674ba4ef1e1, type: 3}
-    m_FontSize: 30
+    m_FontSize: 39
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
+    m_MaxSize: 53
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
