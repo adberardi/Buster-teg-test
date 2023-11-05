@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static Controller controlCharacter;
-
+    public GameObject PanelIntro;
 
 
     private void Awake()
@@ -106,10 +106,17 @@ public class Controller : MonoBehaviour
         }
         else
         {
+            PanelIntro.SetActive(false);
             onGoingGame = true;
             soundGame.Play();
             SpawnerStart.current.CreateObjectStart();
         }
+    }
+
+
+    public GameObject GetPanelIntro()
+    {
+        return PanelIntro;
     }
 
 
@@ -147,6 +154,7 @@ public class Controller : MonoBehaviour
                 {
                     if (count < valuef)
                     {
+                        //SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
                         SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
                         count++;
                     }

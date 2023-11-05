@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextScript : MonoBehaviour
 {
     Text txtField;
+    public GameObject PanelIntro;
     public static TextScript current;
 
     private void Awake()
@@ -38,7 +39,7 @@ public class TextScript : MonoBehaviour
         else
         {
             //txtField.text = string.Format("{0}", newNum);
-            txtField.text = newNum.ToString();
+            txtField.text = "El juego empieza en:\n" + newNum.ToString();
         }
 
     }
@@ -52,16 +53,17 @@ public class TextScript : MonoBehaviour
     // Assigns a specific text to the TextField when the game ends
     public void FinishText(int peopleInHouse,int responseUser)
     {
+        PanelIntro.SetActive(true);
         txtField.gameObject.SetActive(true);
         if (peopleInHouse == responseUser)
         {
             txtField.text = "Respuesta correcta!";
-            txtField.color = Color.green;
+            //txtField.color = Color.green;
         }
         else
         {
             txtField.text = "Respuesta erronea";
-            txtField.color = Color.red;
+            //txtField.color = Color.red;
         }
 
     }
