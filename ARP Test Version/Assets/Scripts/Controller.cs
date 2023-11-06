@@ -155,7 +155,7 @@ public class Controller : MonoBehaviour
                     if (count < valuef)
                     {
                         //SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
-                        SpawnerResult.current.CreateObjectResult(x * 10, z * 10);
+                        SpawnerResult.current.CreateObjectResult(x * 10, z * 2);
                         count++;
                     }
                 }
