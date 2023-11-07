@@ -173,6 +173,23 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void ShowResult()
+    {
+        if(onGoingGame == false)
+        {
+            int valuef = ObtainResult();
+            string nameActivity = "SpawnerResult_";
+            for(int i = 10; i > valuef;i--)
+            {
+                string characterToEnable = nameActivity + i.ToString();
+                GameObject character = GameObject.Find(characterToEnable);
+                //GameObject character = Resources.Load
+                character.SetActive(false);
+            }
+            ActivateInputResult();
+        }
+    }
+
     // Enables data input to the user to indicate their response.
     private void ActivateInputResult()
     {

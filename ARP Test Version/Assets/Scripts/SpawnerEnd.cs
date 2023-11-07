@@ -40,7 +40,8 @@ public class SpawnerEnd : MonoBehaviour
                         //Controller.controlCharacter.CreateObject("Rigth");
                         Controller.controlCharacter.onGoingGame = false;
                         Controller.controlCharacter.startLeft = true;
-                        Controller.controlCharacter.ShowResult(SpawnerResult.current.domain, SpawnerResult.current.range);
+                        //Controller.controlCharacter.ShowResult(SpawnerResult.current.domain, SpawnerResult.current.range);
+                        Controller.controlCharacter.ShowResult();
                     }
                     
                     else
