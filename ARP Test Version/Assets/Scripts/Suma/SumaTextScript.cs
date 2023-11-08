@@ -53,15 +53,16 @@ public class SumaTextScript : MonoBehaviour
     public void FinishText(int peopleInHouse, int responseUser)
     {
         txtField.gameObject.SetActive(true);
+        txtField.color = Color.white;
         if (peopleInHouse == responseUser)
         {
             txtField.text = "Respuesta correcta!";
-            txtField.color = Color.green;
+            //txtField.color = Color.green;
         }
         else
         {
             txtField.text = "Respuesta erronea";
-            txtField.color = Color.red;
+            //txtField.color = Color.red;
         }
 
     }

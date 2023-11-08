@@ -52,7 +52,8 @@ public class RestaSpawnerStart : MonoBehaviour
                     if (RestaController.controlCharacter.peopleCounterLeaving == 0)
                     {
                         RestaController.controlCharacter.onGoingGame = false;
-                        RestaController.controlCharacter.ShowResult(RestaSpawnerResult.current.domain, RestaSpawnerResult.current.range);
+                        //RestaController.controlCharacter.ShowResult(RestaSpawnerResult.current.domain, RestaSpawnerResult.current.range);
+                        RestaController.controlCharacter.ShowResult();
                     }
                     else
                     {

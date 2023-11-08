@@ -121,7 +121,7 @@ public class RestaController : MonoBehaviour
         }
         else
         {
-            PanelIntro.SetActive(false);
+            PanelIntro.SetActive(true);
             MoveHouseToUp();
             ShowPeopleResult();
             controlCharacter.UpdateCounterToDownHouse();
@@ -145,6 +145,7 @@ public class RestaController : MonoBehaviour
         else
         {
             showPeople = false;
+            PanelIntro.SetActive(false);
             controlCharacter.MoveHouseToDown();
             //RestaSpawnerStart.current.CreateObjectStart();
         }
@@ -183,24 +184,33 @@ public class RestaController : MonoBehaviour
     {
         Debug.Log(" --------> ShowPeopleResult");
         //float axisX = GetHouse().transform.localPosition.x;
-        float axisX = GetHouse().transform.localScale.x;
-        float axisZ = GetHouse().transform.localScale.z;
-            //int valuef = ObtainResult();
-            int valuef = peopleCounterRigth;
-            int count = 0;
-            axisX = (axisX + 0.0200f) / 2;
-            axisZ = (axisZ - 0.0200f) / 2;
-            for (float x = axisX; x > 0; x = x - 0.0100f)
-            {
-                for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
-                {
-                    if (count < valuef)
-                    {
-                        RestaSpawnerResult.current.CreateObjectResult(x * 10, z * 10);
-                        count++;
-                    }
-                }
-            }
+        /* float axisX = GetHouse().transform.localScale.x;
+         float axisZ = GetHouse().transform.localScale.z;
+             //int valuef = ObtainResult();
+             int valuef = peopleCounterRigth;
+             int count = 0;
+             axisX = (axisX + 0.0200f) / 2;
+             axisZ = (axisZ - 0.0200f) / 2;
+             for (float x = axisX; x > 0; x = x - 0.0100f)
+             {
+                 for (float z = axisZ; z > -axisZ; z = z - 0.0100f)
+                 {
+                     if (count < valuef)
+                     {
+                         RestaSpawnerResult.current.CreateObjectResult(x * 10, z * 10);
+                         count++;
+                     }
+                 }
+             }*/
+        int valuef = peopleCounterRigth;
+        string nameActivity = "SpawnerResult_";
+        for (int i = 10; i > valuef; i--)
+        {
+            string characterToEnable = nameActivity + i.ToString();
+            GameObject character = GameObject.Find(characterToEnable);
+            //GameObject character = Resources.Load
+            character.SetActive(false);
+        }
     }
 
     // show the final result
@@ -225,6 +235,24 @@ public class RestaController : MonoBehaviour
             }
 
 
+            ActivateInputResult();
+        }
+    }
+
+
+    public void ShowResult()
+    {
+        if (onGoingGame == false)
+        {
+            int valuef = ObtainResult();
+            string nameActivity = "SpawnerResult_";
+            for (int i = 10; i > valuef; i--)
+            {
+                string characterToEnable = nameActivity + i.ToString();
+                GameObject character = GameObject.Find(characterToEnable);
+                //GameObject character = Resources.Load
+                character.SetActive(false);
+            }
             ActivateInputResult();
         }
     }
@@ -254,6 +282,7 @@ public class RestaController : MonoBehaviour
     public void CallFinishText()
     {
         textInput.gameObject.SetActive(false);
+        PanelIntro.SetActive(true);
         RestaTextScript.current.FinishText(ObtainResult(), responseUser);
         if (ObtainResult() == responseUser)
         {

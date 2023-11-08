@@ -50,7 +50,8 @@ public class SumaSpawnerStart : MonoBehaviour
                     if (SumaController.controlCharacter.peopleCounterRigth == 0)
                     {
                         SumaController.controlCharacter.onGoingGame = false;
-                        SumaController.controlCharacter.ShowResult(SumaSpawnerResult.current.domain, SumaSpawnerResult.current.range);
+                        //SumaController.controlCharacter.ShowResult(SumaSpawnerResult.current.domain, SumaSpawnerResult.current.range);
+                        SumaController.controlCharacter.ShowResult();
                     }
                     else
                     {
