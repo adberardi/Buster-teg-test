@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 114549372605696428, guid: b9e7d15cc8f724b448e7f9d140c5bbdb,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CreateGroup
+      value: ChangePanelToDetail
       objectReference: {fileID: 0}
     - target: {fileID: 114549372605696428, guid: b9e7d15cc8f724b448e7f9d140c5bbdb,
         type: 3}
@@ -2719,22 +2719,6 @@ PrefabInstance:
       propertyPath: m_Text
       value: PROCESAR
       objectReference: {fileID: 0}
-    - target: {fileID: 224138896604227922, guid: f41bc8999948944f4b293625117640b1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.0000076293945
-      objectReference: {fileID: 0}
-    - target: {fileID: 224138896604227922, guid: f41bc8999948944f4b293625117640b1,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0.000015259
-      objectReference: {fileID: 0}
-    - target: {fileID: 114990143306126774, guid: f41bc8999948944f4b293625117640b1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 29ef1ad17db4147c2a31319e6ca72f82,
-        type: 3}
     - target: {fileID: 114139292230035692, guid: f41bc8999948944f4b293625117640b1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2765,6 +2749,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 224138896604227922, guid: f41bc8999948944f4b293625117640b1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 224138896604227922, guid: f41bc8999948944f4b293625117640b1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.000015259
+      objectReference: {fileID: 0}
+    - target: {fileID: 114990143306126774, guid: f41bc8999948944f4b293625117640b1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29ef1ad17db4147c2a31319e6ca72f82,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f41bc8999948944f4b293625117640b1, type: 3}
 --- !u!224 &1268086514 stripped

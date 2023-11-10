@@ -405,9 +405,10 @@ namespace ARProject.User
         {
             List<User> data = new List<User>();
             IMongoCollection<User> userCollection = GetCollection();
-            foreach (var index in listParam)
+            Debug.Log("User - GetStudents | Valor de listParam: " + listParam[0]);
+            for (int index = 0; index < listParam.Count; index++)
             {
-                User credential = userCollection.Find(user => user._id == index).ToList()[0];
+                User credential = userCollection.Find(user => user._id == listParam[0]).ToList()[0];
                 data.Add(credential);
             }
             //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);

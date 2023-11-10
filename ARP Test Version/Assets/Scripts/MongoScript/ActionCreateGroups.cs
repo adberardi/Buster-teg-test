@@ -52,6 +52,7 @@ public class ActionCreateGroups : MonoBehaviour
         school = new School();
 
         dropdown.options.Clear();
+        dropdown.options.Add(new Dropdown.OptionData() { text = "Seleccionar colegio" });
 
         IMongoCollection<School> docRef = school.GetCollection();
         List<School> result = docRef.Find(Builders<School>.Filter.Empty).ToList();
@@ -118,6 +119,7 @@ public class ActionCreateGroups : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    //Create Group
     public void CreateGroup()
     {
         if ((nameGroup.text != "") && (!group.ExistsSameGroup(nameGroup.text, GroupSchool, LevelSchool)))
@@ -128,7 +130,7 @@ public class ActionCreateGroups : MonoBehaviour
             Debug.Log("Id Grupo Nuevo: " + idGroup.ToString()+" PRUEBA: "+ ObjectId.GenerateNewId().ToString());
             //Se agrega al usuario que creo al grupo como el administrador y el primero en ser agregado.
             user.AddGroupToUser(idGroup);
-            ChangePanelToDetail();
+            //ChangePanelToDetail();
         }
 
     }
@@ -138,6 +140,7 @@ public class ActionCreateGroups : MonoBehaviour
     {
         int index = dropdown.value;
         GroupSchool = dropdown.options[index].text;
+        PlayerPrefs.SetString("NameSchool", GroupSchool);
     }
 
     public void ListOptions(ToggleGroup op)
@@ -153,6 +156,7 @@ public class ActionCreateGroups : MonoBehaviour
         //LevelSchool = op.name;
     }
 
+    //Change Panel to Member
     public void ChangePanelToDetail()
     {
         //studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
@@ -171,7 +175,7 @@ public class ActionCreateGroups : MonoBehaviour
         {
             aux.Add(ObjectId.Parse(param[i].ToString()));
         }*/
-        Debug.Log("ActionCreateGroups - SearchStudents: " + aux.Count);
+        Debug.Log("ActionCreateGroups - SearchStudents: " + aux[0]);
         result = user.GetStudents(aux);
 
         LoadScroll(result);
@@ -232,6 +236,7 @@ public class ActionCreateGroups : MonoBehaviour
     //Metodo que se invoca al presionar el boton de Submit
     public void OnSubmit()
     {
+        CreateGroup();
         group.ProcessRequest(listMembers, listDataMembersEmail, listDataMembers);
     }
 
