@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 namespace ARProject.School
 {
@@ -42,20 +43,37 @@ namespace ARProject.School
 
         public List<ObjectId> ListStudents()
         {
-            Debug.Log("ENTRANDO EN ReadSchool");
-            string nameSchool = PlayerPrefs.GetString("NameSchool");
-            IMongoCollection<School> docRef = GetCollection();
-            School result = docRef.Find(query => query.SchoolName == nameSchool).ToList()[0];
-            return result.Students;
+            try
+            {
+                Debug.Log("ENTRANDO EN ReadSchool");
+                string nameSchool = PlayerPrefs.GetString("NameSchool");
+                IMongoCollection<School> docRef = GetCollection();
+                School result = docRef.Find(query => query.SchoolName == nameSchool).ToList()[0];
+                return result.Students;
+            }
+            catch(Exception err)
+            {
+                Debug.Log("Error detectado en School - ListStudents: "+err);
+                return new List<ObjectId>();
+            }
         }
 
         public List<ObjectId> ListStudents(string nameSchool)
         {
-            Debug.Log("ENTRANDO EN ReadSchool");
-            ObjectId idSchool = GetSchoolIdByName(nameSchool);
-            IMongoCollection<School> docRef = GetCollection();
-            School result = docRef.Find(query => query._id == idSchool).ToList()[0];
-            return result.Students;
+            try
+            {
+                Debug.Log("ENTRANDO EN ReadSchool");
+                ObjectId idSchool = GetSchoolIdByName(nameSchool);
+                IMongoCollection<School> docRef = GetCollection();
+                School result = docRef.Find(query => query._id == idSchool).ToList()[0];
+                return result.Students;
+            }
+
+            catch(Exception err)
+            {
+                Debug.Log("Error detectado en School - ListStudents: " + err);
+                return new List<ObjectId>() { };
+            }
         }
 
         //Retorna el id de un colegio a partir del nombre del colegio.

@@ -20,6 +20,7 @@ public class ActionCreateGroups : MonoBehaviour
     public Dropdown dropdown;
     public GameObject PanelMember;
     public GameObject PanelForm;
+    public GameObject PanelGroupError;
     public GameObject BtnBackForm;
     public List<ObjectId> studentsList = new List<ObjectId>();
     List<User> dataResult;
@@ -161,8 +162,6 @@ public class ActionCreateGroups : MonoBehaviour
     {
         //studentsList = school.ListStudents("64302d6b274b7b781c82ebcf");
         studentsList = school.ListStudents();
-        PanelMember.SetActive(true);
-        PanelForm.SetActive(false);
         SearchStudents(studentsList);
     }
 
@@ -175,10 +174,23 @@ public class ActionCreateGroups : MonoBehaviour
         {
             aux.Add(ObjectId.Parse(param[i].ToString()));
         }*/
-        Debug.Log("ActionCreateGroups - SearchStudents: " + aux[0]);
-        result = user.GetStudents(aux);
+        Debug.Log("ActionCreateGroups - SearchStudents: " + aux.Count);
+        if (aux.Count > 0 )
+        {
+            result = user.GetStudents(aux);
+            PanelMember.SetActive(true);
+            PanelForm.SetActive(false);
+            LoadScroll(result);
+        }
+        else
+        {
+            PanelGroupError.SetActive(true);
+        }
+    }
 
-        LoadScroll(result);
+    public void DeactivatePanelGroupError()
+    {
+        PanelGroupError.SetActive(false);
     }
 
     public void LoadScroll(List<User> groupBelongs)
