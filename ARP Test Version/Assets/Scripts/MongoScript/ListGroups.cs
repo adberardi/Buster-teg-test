@@ -22,7 +22,9 @@ public class ListGroups : MonoBehaviour
     public GameObject PanelGroupDetail;
     public GameObject PanelMembers;
     public GameObject PanelStatistics;
+    public GameObject PanelActivities;
     public GameObject BtnActivities;
+    public GameObject BtnCreateActivities;
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
     public GameObject BtnBackToMember;
@@ -227,6 +229,7 @@ public class ListGroups : MonoBehaviour
         {
             LoadRecord(userMember[indexData]._id, ListMembersBelongs._id);
             BtnBackMain.SetActive(false);
+            PanelGroupDetail.SetActive(false);
             PanelMembers.SetActive(false);
             PanelStatistics.SetActive(true);
             BtnBackMain.SetActive(false);
@@ -262,8 +265,28 @@ public class ListGroups : MonoBehaviour
         BtnBackDetail.SetActive(true);
         PanelGroupDetail.SetActive(true);
         PanelMembers.SetActive(false);
+        PanelStatistics.SetActive(false);
+        BtnCreateActivities.SetActive(true);
         BtnActivities.SetActive(false);
         BtnBackMain.SetActive(false);
+    }
+
+    //Change the panel from PanelGroupDetail to PanelActivities.
+    public void ChangePanelActivitiesToCreateActivities()
+    {
+        BtnCreateActivities.SetActive(false);
+        PanelActivities.SetActive(true);
+        PanelGroupDetail.SetActive(false);
+        PanelStatistics.SetActive(false);
+    }
+
+    //Change the panel from PanelActivities to PanelGroupDetail.
+    public void ChangePanelCreateActivitiesToActivities()
+    {
+        BtnCreateActivities.SetActive(false);
+        PanelActivities.SetActive(true);
+        PanelGroupDetail.SetActive(false);
+        PanelStatistics.SetActive(false);
     }
 
     /*public void ChangePanelToDetail(GameObject activityObj)
