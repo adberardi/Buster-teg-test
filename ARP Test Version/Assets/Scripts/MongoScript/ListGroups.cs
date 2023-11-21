@@ -13,6 +13,7 @@ using ARProject.GamesPlayed;
 using UnityEngine.SceneManagement;
 using System.Globalization;
 using Task = System.Threading.Tasks.Task;
+using TaskAssigned = ARProject.Task;
 
 public class ListGroups : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class ListGroups : MonoBehaviour
     List<Group> groupBelongs;
     List<User> userMember;
     Group ListMembersBelongs;
+    private string GameAssigned { get; set; }
+    private int RewardAssigned { get; set; }
+    private string NameAssigned { get; set; }
+    private string StartDateAssigned { get; set; }
+    private string EndDateAssigned { get; set; }
     public string[] userBelongs;
     public Text TextNameGroup;
     public Text TextSchool;
@@ -289,11 +295,27 @@ public class ListGroups : MonoBehaviour
         PanelStatistics.SetActive(false);
     }
 
+    //Obtiene la escuela seleccionada cuando se crea el grupo
+    public void DropdownitemSelectd(Dropdown dropdown)
+    {
+        int index = dropdown.value;
+        GameAssigned = dropdown.options[index].text;
+        //PlayerPrefs.SetString("NameSchool", GroupSchool);
+
+    }
+
+
+    public void CreateActivity()
+    {
+        TaskAssigned.Task task = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
+        task.SaveTask();
+    }
+
     /*public void ChangePanelToDetail(GameObject activityObj)
     {
         int indexData = int.Parse(activityObj.name);
         BtnBackDetail.SetActive(true);
-        PanelGroupDetail.SetActive(true);
+        PanelGroupDetail.SetActive(true 
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
         PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());

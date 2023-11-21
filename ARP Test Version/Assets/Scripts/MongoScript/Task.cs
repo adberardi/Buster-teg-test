@@ -36,6 +36,7 @@ namespace ARProject.Task
             PercentageTask = percentageTask;
             EndDate = endDate;
             Checked = cheCked;
+            _client = MongoDBManager.GetClient();
         }
 
         public Task()
@@ -55,6 +56,13 @@ namespace ARProject.Task
             Task registerTask = new Task();
             Debug.Log(" Entrando en SaveTask");
             registerTask.GetCollection().InsertOne(newTask);
+        }
+
+        public void SaveTask()
+        {
+            Task registerTask = new Task();
+            Debug.Log(" Entrando en SaveTask");
+            registerTask.GetCollection().InsertOne(this);
         }
 
         public async void DeleteTask(string IdTask)
