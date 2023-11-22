@@ -307,6 +307,11 @@ public class ListGroups : MonoBehaviour
 
     public void CreateActivity()
     {
+        //Implementar busqueda de los GameObject - InputField
+        RewardAssigned = int.Parse(GameObject.Find("RewardActivity").GetComponent<Text>().text);
+        NameAssigned = GameObject.Find("NameActivity").GetComponent<Text>().text;
+        StartDateAssigned = GameObject.Find("StartDateActivity").GetComponent<Text>().text;
+        EndDateAssigned = GameObject.Find("StartDateActivity").GetComponent<Text>().text;
         TaskAssigned.Task task = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
         task.SaveTask();
     }
