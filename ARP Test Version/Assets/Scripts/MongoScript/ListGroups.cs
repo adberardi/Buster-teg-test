@@ -14,6 +14,7 @@ using UnityEngine.SceneManagement;
 using System.Globalization;
 using Task = System.Threading.Tasks.Task;
 using TaskAssigned = ARProject.Task;
+using RegExpress = System.Text.RegularExpressions;
 
 public class ListGroups : MonoBehaviour
 {
@@ -47,6 +48,11 @@ public class ListGroups : MonoBehaviour
     private GamesPlayed record;
     private TaskUser.Task activity;
     public GraphScript graphScript;
+
+    public Text RewardActivity;
+    public Text NameActivity;
+    public Text StartDateActivity;
+    public Text EndDateActivity;
 
 
     // Variables para los objetos a generar
@@ -272,7 +278,10 @@ public class ListGroups : MonoBehaviour
         PanelGroupDetail.SetActive(true);
         PanelMembers.SetActive(false);
         PanelStatistics.SetActive(false);
-        BtnCreateActivities.SetActive(true);
+        if(group.GetGroup(PlayerPrefs.GetString("IdGroup")).Admin == PlayerPrefs.GetString("IdUser"))
+        {
+            BtnCreateActivities.SetActive(true);
+        }
         BtnActivities.SetActive(false);
         BtnBackMain.SetActive(false);
     }
@@ -289,9 +298,9 @@ public class ListGroups : MonoBehaviour
     //Change the panel from PanelActivities to PanelGroupDetail.
     public void ChangePanelCreateActivitiesToActivities()
     {
-        BtnCreateActivities.SetActive(false);
-        PanelActivities.SetActive(true);
-        PanelGroupDetail.SetActive(false);
+        BtnCreateActivities.SetActive(true);
+        PanelActivities.SetActive(false);
+        PanelGroupDetail.SetActive(true);
         PanelStatistics.SetActive(false);
     }
 
@@ -308,12 +317,19 @@ public class ListGroups : MonoBehaviour
     public void CreateActivity()
     {
         //Implementar busqueda de los GameObject - InputField
-        RewardAssigned = int.Parse(GameObject.Find("RewardActivity").GetComponent<Text>().text);
-        NameAssigned = GameObject.Find("NameActivity").GetComponent<Text>().text;
-        StartDateAssigned = GameObject.Find("StartDateActivity").GetComponent<Text>().text;
-        EndDateAssigned = GameObject.Find("StartDateActivity").GetComponent<Text>().text;
-        TaskAssigned.Task task = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
-        task.SaveTask();
+
+        RewardAssigned = int.Parse(RewardActivity.text);
+        NameAssigned = NameActivity.text;
+        StartDateAssigned = StartDateActivity.text;
+        EndDateAssigned = StartDateActivity.text;
+        Debug.Log("ListGroup - CreateActivity: "+ RegExpress.Regex.IsMatch(StartDateAssigned, @"^\d{2}/\d{2}/\d{4}$"));
+        if((RegExpress.Regex.IsMatch(StartDateAssigned,@"^\d{2}/\d{2}/\d{4}$"))&&(RegExpress.Regex.IsMatch(EndDateAssigned, @"^\d{2}/\d{2}/\d{4}$")))
+        {
+            TaskAssigned.Task newtask = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
+            activity.SaveTask(newtask);
+            ChangePanelCreateActivitiesToActivities();
+        }
+
     }
 
     /*public void ChangePanelToDetail(GameObject activityObj)
