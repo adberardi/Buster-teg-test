@@ -121,7 +121,7 @@ namespace ARProject.GamesPlayed
             IMongoCollection<GamesPlayed> collection = GetCollection();
             List<GamesPlayed> gamesPlayed = collection.Find(gp => gp.User.Equals(userId)).ToList();
             Dictionary<string, int> dayPlayedCount = new Dictionary<string, int>();
-            Debug.Log("ddddddddddd");
+            
 
             foreach (GamesPlayed game in gamesPlayed)
             {

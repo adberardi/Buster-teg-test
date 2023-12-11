@@ -96,6 +96,13 @@ public class TimerStart : MonoBehaviour
         resultsTimer.Add(totalChrono.text);
     }
 
+    //Gets the Final Timer
+    public TimeSpan GetTimerResult()
+    {
+        totalChrono.text = timeChrono.ToString("mm':'ss':'ff");
+        return TimeFinal += timeChrono;
+    }
+
     public void AddPenalty()
     {
         TimeSpan penaltyAdd = new TimeSpan(0,0,5);

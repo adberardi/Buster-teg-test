@@ -43,6 +43,7 @@ public class ListGroups : MonoBehaviour
     public Text TextSchool;
     public Text TextActivityActual;
     public Text TextTaskDescription;
+    public string GameActivity { get; set; }
     private Group group;
     private User user;
     private GamesPlayed record;
@@ -278,7 +279,9 @@ public class ListGroups : MonoBehaviour
         PanelGroupDetail.SetActive(true);
         PanelMembers.SetActive(false);
         PanelStatistics.SetActive(false);
-        if(group.GetGroup(PlayerPrefs.GetString("IdGroup")).Admin == PlayerPrefs.GetString("IdUser"))
+
+        //If the user is the Group's Admin, can create a activity.
+        if (group.GetGroup(PlayerPrefs.GetString("IDGroup")).Admin == user.GetSessionDataUser())
         {
             BtnCreateActivities.SetActive(true);
         }
@@ -302,6 +305,7 @@ public class ListGroups : MonoBehaviour
         PanelActivities.SetActive(false);
         PanelGroupDetail.SetActive(true);
         PanelStatistics.SetActive(false);
+        PanelMembers.SetActive(false);
     }
 
     //Obtiene la escuela seleccionada cuando se crea el grupo
@@ -319,6 +323,7 @@ public class ListGroups : MonoBehaviour
         //Implementar busqueda de los GameObject - InputField
 
         RewardAssigned = int.Parse(RewardActivity.text);
+        PlayerPrefs.SetInt("RewardActivity",RewardAssigned);
         NameAssigned = NameActivity.text;
         StartDateAssigned = StartDateActivity.text;
         EndDateAssigned = StartDateActivity.text;
@@ -383,12 +388,15 @@ public class ListGroups : MonoBehaviour
         //container = await Task.Run(() => record.ReadGamesPlayedGroup(ObjectId.Parse("6411384514070dd6d438055b"), groupItem._id));
         bool flag = true;
         List<TaskUser.Task> listDates = new List<TaskUser.Task>();
+        Debug.Log("ListGroup - LoadDataPanel: " + groupItem.AssignedActivities.Length);
         for(int c = 0; (c < groupItem.AssignedActivities.Length) && flag; c++){
             TaskUser.Task nextDate = activity.GetTask(ObjectId.Parse(groupItem.AssignedActivities[c]));
+            GameActivity = nextDate.GameType;
             DateTime dateEndConvert = DateTime.ParseExact(nextDate.EndDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
             DateTime dateStartConvert = DateTime.ParseExact(nextDate.StartDate, "yyyy/MM/dd hh:mm:ss", CultureInfo.InvariantCulture);
             int resultStartDates = DateTime.Compare(dateStartConvert, DateTime.Now);
             int resultEndDates = DateTime.Compare(dateEndConvert, DateTime.Now);
+            Debug.Log("ListGroup - LoadDataPanel: resultStartDates " + resultStartDates);
             if (((resultStartDates < 0) || (resultStartDates == 0)) && !(resultEndDates < 0))
             {
                 if (resultEndDates == 0)
@@ -419,6 +427,34 @@ public class ListGroups : MonoBehaviour
             TextTaskDescription.text = "No hay actividad actual";
         }
         Debug.Log("Valores recopilados en coleccion: " + container.Count);
+    }
+
+    //Plays the activity.
+    public void PlayActivity()
+    {
+        Debug.Log("ListGroup - PlayActivity:"+ GameActivity);
+        int loadGame = 0;
+        switch (GameActivity)
+        {
+            case "Cuenta Personas":
+                loadGame = 2;
+                break;
+            case "Cuantas Personas Quedan":
+                loadGame = 3;
+                break;
+            case "División":
+                loadGame = 6;
+                break;
+            case "Multiplicación":
+                loadGame = 5;
+                break;
+            case "Cuenta Personas - Especial":
+                loadGame = 4;
+                break;
+            default: loadGame = 0;
+                break;
+        }
+        ChangeScene(loadGame);
     }
 
     public void LoadRecord(ObjectId idUser, ObjectId idGroup)

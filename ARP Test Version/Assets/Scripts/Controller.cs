@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ARProject.GamesPlayed;
+using MongoDB.Bson;
 
 public class Controller : MonoBehaviour
 {
+    private readonly int ScoreGame = 50;
     public bool onGoingGame { get; set; }
     public bool endRoute { get; set; }
     public bool startRigth;
@@ -32,6 +35,7 @@ public class Controller : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static Controller controlCharacter;
+    private GamesPlayed Gp;
     public GameObject PanelIntro;
 
 
@@ -219,8 +223,25 @@ public class Controller : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+            GamesPlayed newGame = new GamesPlayed();
+            newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
+            newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
+            newGame.DayPlayed = DateTime.Now.ToShortTimeString();
+            newGame.FinalTimer = "00:00:00";
+            //Game's id in specific.
+            newGame.Game = ObjectId.Parse("6503c4176bf01ab29fe956f0");
             effectsToWinner.SetActive(true);
             UpdateSound(soundWinner);
+            if (!PlayerPrefs.GetInt("RewardActivity").Equals(""))
+            {
+                newGame.FinalScore = PlayerPrefs.GetInt("RewardActivity") + ScoreGame;
+            }
+            else
+            {
+                newGame.FinalScore = ScoreGame;
+            }
+
+            Gp.CreateRecord(newGame);
         }
         else
         {

@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using ARProject.GamesPlayed;
+using MongoDB.Bson;
 
 public class SumaController : MonoBehaviour
 {
+    private readonly int ScoreGame = 50;
     public bool onGoingGame { get; set; }
     public bool endRoute { get; set; }
     public bool startRigth;
@@ -31,6 +34,7 @@ public class SumaController : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static SumaController controlCharacter;
+    private GamesPlayed Gp;
     public GameObject PanelIntro;
 
 
@@ -48,6 +52,7 @@ public class SumaController : MonoBehaviour
         peopleCounterRigth = rnd.Next(10);
         finalResult = peopleCounterRigth;
         house.GetComponent<Animator>().speed = 0;
+        Gp = new GamesPlayed();
         //soundGame = GetComponent<AudioSource>();
     }
 
@@ -207,8 +212,25 @@ public class SumaController : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+            GamesPlayed newGame = new GamesPlayed();
+            newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
+            newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
+            newGame.DayPlayed = DateTime.Now.ToShortDateString();
+            newGame.FinalTimer = "00:00:00";
+            //Game's id in specific.
+            newGame.Game = ObjectId.Parse("64f51341cc401f225d28727c");
             effectsToWinner.SetActive(true);
             UpdateSound(soundWinner);
+            if(!PlayerPrefs.GetInt("RewardActivity").Equals(""))
+            {
+                newGame.FinalScore = PlayerPrefs.GetInt("RewardActivity") + ScoreGame;
+            }
+            else
+            {
+                newGame.FinalScore = ScoreGame;
+            }
+            
+            Gp.CreateRecord(newGame);
         }
         else
         {

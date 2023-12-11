@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using MongoDB.Bson;
+using ARProject.GamesPlayed;
 
 public class RestaController : MonoBehaviour
 {
+    private readonly int ScoreGame = 50;
     public bool onGoingGame { get; set; }
     public bool endRoute { get; set; }
     public bool startLeft;
@@ -33,6 +36,7 @@ public class RestaController : MonoBehaviour
     public AudioClip soundLoser;
     public Text btnTextSound;
     public static RestaController controlCharacter;
+    private GamesPlayed Gp;
     public GameObject PanelIntro;
 
     private void Awake()
@@ -248,10 +252,13 @@ public class RestaController : MonoBehaviour
             string nameActivity = "SpawnerResult_";
             for (int i = 10; i > valuef; i--)
             {
+                Debug.Log("::::ShowResult = Dentro del Loop");
                 string characterToEnable = nameActivity + i.ToString();
+                Debug.Log("::::ShowResult = SpawnerResult_" + characterToEnable);
                 GameObject character = GameObject.Find(characterToEnable);
                 //GameObject character = Resources.Load
                 character.SetActive(false);
+                Debug.Log("::::ShowResult = character.SetActive(false);");
             }
             ActivateInputResult();
         }
@@ -287,8 +294,24 @@ public class RestaController : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+            GamesPlayed newGame = new GamesPlayed();
+            newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
+            newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
+            newGame.DayPlayed = DateTime.Now.ToShortTimeString();
+            newGame.FinalTimer = "00:00:00";
+            //Game's id in specific.
+            newGame.Game = ObjectId.Parse("6503c38c6bf01ab29fe956ea");
             effectsToWinner.SetActive(true);
             UpdateSound(soundWinner);
+            if (!PlayerPrefs.GetInt("RewardActivity").Equals(""))
+            {
+                newGame.FinalScore = PlayerPrefs.GetInt("RewardActivity") + ScoreGame;
+            }
+            else
+            {
+                newGame.FinalScore = ScoreGame;
+            }
+            Gp.CreateRecord(newGame);
         }
         else
         {

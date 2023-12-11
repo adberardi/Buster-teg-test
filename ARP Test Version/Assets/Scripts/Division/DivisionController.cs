@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using ARProject.GamesPlayed;
+using MongoDB.Bson;
 using System;
 using Random = UnityEngine.Random;
 
 public class DivisionController : MonoBehaviour
 {
     public static DivisionController current;
+    private readonly int MaxScoreGame = 50;
+    private readonly int MidScoreGame = 25;
+    private readonly int MinScoreGame = 5;
     AudioSource soundGame { get; set; }
     public bool onGoingGame { get; set; }
     List<string> islands = new List<string> { "TopIsland", "MiddleIsland", "BottomIsland" };
@@ -53,6 +57,7 @@ public class DivisionController : MonoBehaviour
     public int TotalIntentosRestantes { get; set; }
     public Button btnRestart;
     public UnityEvent OnClick = new UnityEvent();
+    private GamesPlayed Gp;
 
 
     private void Awake()
@@ -278,6 +283,41 @@ public class DivisionController : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+            GamesPlayed newGame = new GamesPlayed();
+            newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
+            newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
+            newGame.DayPlayed = DateTime.Now.ToShortTimeString();
+            newGame.FinalTimer = TimerStart.current.GetTimerResult().ToString();
+            //Game's id in specific.
+            newGame.Game = ObjectId.Parse("6503c4476bf01ab29fe956f1");
+            //Sets the ScoreGame value according to the total number of correct answers.
+            int ScoreGame = 0;
+            switch (TotalCorrectas)
+            {
+                case 3:
+                    ScoreGame = MidScoreGame;
+                    break;
+                case 2:
+                    ScoreGame = MidScoreGame;
+                    break;
+                case 1:
+                    ScoreGame = MinScoreGame;
+                    break;
+                default:
+                    ScoreGame = 0;
+                    break;
+
+            }
+            if (!PlayerPrefs.GetInt("RewardActivity").Equals(""))
+            {
+                newGame.FinalScore = PlayerPrefs.GetInt("RewardActivity") + ScoreGame;
+            }
+            else
+            {
+                newGame.FinalScore = ScoreGame;
+            }
+
+            Gp.CreateRecord(newGame);
             UpdateTotalCorrects();
             effectsToWinner.SetActive(true);
             TimerStart.current.DisplayTimerResult();
