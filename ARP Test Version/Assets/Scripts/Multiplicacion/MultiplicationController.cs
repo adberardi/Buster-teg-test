@@ -71,6 +71,7 @@ public class MultiplicationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Gp = new GamesPlayed();
         counterToStart = 3;
         repeats = 1;
         initialPos = boat.transform.localPosition;
@@ -224,6 +225,7 @@ public class MultiplicationController : MonoBehaviour
         Debug.Log("Entrando en ShowCounterToStartGame");
         if (counterToStart >= 0)
         {
+            textField.color = Color.white;
             Invoke("UpdateCounterToStart", 1.0f);
         }
         else
@@ -325,24 +327,18 @@ public class MultiplicationController : MonoBehaviour
             newGame.FinalTimer = TimerStart.current.GetTimerResult().ToString();
             //Game's id in specific.
             newGame.Game = ObjectId.Parse("6503c4176bf01ab29fe956f0");
-            Debug.Log("MultiplicationController - CallFinishText: Dentro del If");
+
             //Sets the ScoreGame value according to the total number of correct answers.
+            Debug.Log("MultiplicationController - CallFinishText: Valor de TotalCorrectas " + TotalCorrectas);
             int ScoreGame = 0;
-                switch (TotalCorrectas)
-                {
-                    case 3:
+                if (TotalCorrectas == 3)
                         ScoreGame = MaxScoreGame;
-                        break;
-                    case 2:
+                else if (TotalCorrectas == 2)
                         ScoreGame = MidScoreGame;
-                        break;
-                    case 1:
+                else if(TotalCorrectas == 1)
                         ScoreGame = MinScoreGame;
-                        break;
-                    default:
+                else
                         ScoreGame = 0;
-                        break;
-                }
                 if (!PlayerPrefs.GetInt("RewardActivity").Equals(""))
                 {
                     newGame.FinalScore = PlayerPrefs.GetInt("RewardActivity") + ScoreGame;
@@ -351,7 +347,7 @@ public class MultiplicationController : MonoBehaviour
                 {
                     newGame.FinalScore = ScoreGame;
                 }
-
+            Debug.Log("MultiplicationController - CallFinishText: antes de guardar en Base de Datos");
                 Gp.CreateRecord(newGame);
             
 
@@ -400,11 +396,13 @@ public class MultiplicationController : MonoBehaviour
             boat.GetComponent<Animator>().SetBool(FlagIdTransition, false);
             MultiplicationTextScript.current.DeactivateText();
             MultiplicationTextScript.current.ActivatedTextCounter();
+            PanelIntro.SetActive(true);
             ShowCounterToStartGame();
             
             effectsToWinner.SetActive(false);
             UpdateSound(soundMain);
             repeats = repeats + 1;
+
             btnRestart.gameObject.SetActive(false);
             PanelResultado.SetActive(false);
         }        

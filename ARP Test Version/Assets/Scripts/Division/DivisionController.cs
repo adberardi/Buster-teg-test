@@ -68,6 +68,7 @@ public class DivisionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Gp = new GamesPlayed();
         counterToStart = 3;
         repeats = 1;
         initialPos = boat.transform.localPosition;
@@ -221,6 +222,7 @@ public class DivisionController : MonoBehaviour
         Debug.Log("Entrando en ShowCounterToStartGame");
         if (counterToStart >= 0)
         {
+            textField.color = Color.white;
             Invoke("UpdateCounterToStart", 1.0f);
         }
         else
@@ -283,6 +285,34 @@ public class DivisionController : MonoBehaviour
         if (ObtainResult() == responseUser)
         {
             // User Win
+
+            UpdateTotalCorrects();
+            effectsToWinner.SetActive(true);
+            TimerStart.current.DisplayTimerResult();
+            UpdateSound(soundWinner);
+        }
+        else
+        {
+            // User Lose
+            TimerStart.current.AddPenalty();
+            UpdateTotalIncorrects();
+            UpdateSound(soundLoser);
+        }
+        if (ValidateAttempts())
+        {
+            btnRestart.gameObject.SetActive(true);
+            PanelResultado.SetActive(true);
+        }
+        else
+        {
+            PanelTime.SetActive(true);
+            List<string> resultTime = TimerStart.current.DisplayFinalTimers();
+            PanelTime.SetActive(true);
+            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = resultTime[0];
+            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = resultTime[1];
+            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = resultTime[2];
+            PanelResultado.SetActive(false);
+
             GamesPlayed newGame = new GamesPlayed();
             newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
             newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
@@ -318,32 +348,6 @@ public class DivisionController : MonoBehaviour
             }
 
             Gp.CreateRecord(newGame);
-            UpdateTotalCorrects();
-            effectsToWinner.SetActive(true);
-            TimerStart.current.DisplayTimerResult();
-            UpdateSound(soundWinner);
-        }
-        else
-        {
-            // User Lose
-            TimerStart.current.AddPenalty();
-            UpdateTotalIncorrects();
-            UpdateSound(soundLoser);
-        }
-        if (ValidateAttempts())
-        {
-            btnRestart.gameObject.SetActive(true);
-            PanelResultado.SetActive(true);
-        }
-        else
-        {
-            PanelTime.SetActive(true);
-            List<string> resultTime = TimerStart.current.DisplayFinalTimers();
-            PanelTime.SetActive(true);
-            GameObject.Find("TimeOne").gameObject.GetComponent<Text>().text = resultTime[0];
-            GameObject.Find("TimeTwo").gameObject.GetComponent<Text>().text = resultTime[1];
-            GameObject.Find("TimeThree").gameObject.GetComponent<Text>().text = resultTime[2];
-            PanelResultado.SetActive(false);
 
         }
 
