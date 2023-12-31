@@ -394,6 +394,7 @@ public class DivisionController : MonoBehaviour
             boat.GetComponent<Animator>().SetBool(FlagIdTransition, false);
             DivisionTextScript.current.DeactivateText();
             DivisionTextScript.current.ActivatedTextCounter();
+            PanelIntro.SetActive(true);
             ShowCounterToStartGame();
 
             effectsToWinner.SetActive(false);
