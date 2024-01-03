@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial/Tutorial.unity
     guid: 5954bb718e3c7f941af7affc87c589ce
+  - enabled: 1
+    path: Assets/Scenes/Graph_Members.unity
+    guid: 6987462640cd1ee4da0c723a26ba4801
   m_configObjects: {}

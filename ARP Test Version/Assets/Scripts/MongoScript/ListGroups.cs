@@ -240,6 +240,22 @@ public class ListGroups : MonoBehaviour
         int indexData = int.Parse(activityObj.name);
         try
         {
+            PlayerPrefs.SetString("StatisticsFromAMember", userMember[indexData]._id.ToString());
+            //LoadRecord(userMember[indexData]._id, ListMembersBelongs._id);
+            Debug.Log("Cambiando de escena");
+            ChangeScene(22);
+        }
+        catch (ArgumentOutOfRangeException err)
+        {
+            Debug.Log("Se ha detectado un error del tipo ArgumentOutOfRangeException ListGroups - ChangePanelToDetail: " + err + ", el valor index: " + indexData);
+        }
+    }
+
+ /*   public void ChangeMemberToStatistics(GameObject activityObj)
+    {
+        int indexData = int.Parse(activityObj.name);
+        try
+        {
             LoadRecord(userMember[indexData]._id, ListMembersBelongs._id);
             BtnBackMain.SetActive(false);
             PanelGroupDetail.SetActive(false);
@@ -247,16 +263,16 @@ public class ListGroups : MonoBehaviour
             PanelStatistics.SetActive(true);
             BtnBackMain.SetActive(false);
             BtnBackToMember.SetActive(true);
-            /*Text dataMember = PanelStatistics.GetComponent("MemberText") as Text;
-            dataMember.text = userMember[indexData].UserName+"\n"+ userMember[indexData].FirstName+" "+ userMember[indexData].LastName;
-            Debug.Log("ChangeMemberToStatistics: " + userMember[indexData].UserName + "\n" + userMember[indexData].FirstName + " " + userMember[indexData].LastName);*/
+            //Text dataMember = PanelStatistics.GetComponent("MemberText") as Text;
+            //dataMember.text = userMember[indexData].UserName+"\n"+ userMember[indexData].FirstName+" "+ userMember[indexData].LastName;
+            //Debug.Log("ChangeMemberToStatistics: " + userMember[indexData].UserName + "\n" + userMember[indexData].FirstName + " " + userMember[indexData].LastName);
         }
         catch (ArgumentOutOfRangeException err)
         {
             Debug.Log("Se ha detectado un error del tipo ArgumentOutOfRangeException ListGroups - ChangePanelToDetail: " + err + ", el valor index: " + indexData);
         }
 
-    }
+    }*/
 
     public void ChangeStatisticsToMember()
     {
@@ -470,7 +486,8 @@ public class ListGroups : MonoBehaviour
         if (resultScores.Count > 0)
         {
             Debug.Log("resultScores: " + resultScores[0].ToString());
-            graphScript.ShowGraph(resultScores);
+            //TODO: Pendiente hacer el pase de informacion a GrapScript
+            //graphScript.ShowGraph(resultScores);
         }
     }
 }

@@ -401,6 +401,15 @@ namespace ARProject.User
         }
 
 
+        public String GetStudent(ObjectId idUser)
+        {
+            IMongoCollection<User> userCollection = GetCollection();
+            User result = userCollection.Find(user => user._id == idUser).ToList()[0];
+            //var filterData = Builders<Group>.Filter.Eq(query => query._id, emailToValidate);
+            //Debug.Log(credential.Email);
+            return result.UserName;
+        }
+
         public List<User> GetStudents(List<ObjectId> listParam)
         {
             List<User> data = new List<User>();
