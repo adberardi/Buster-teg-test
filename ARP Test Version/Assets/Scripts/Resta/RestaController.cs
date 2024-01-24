@@ -212,6 +212,7 @@ public class RestaController : MonoBehaviour
         {
             string characterToEnable = nameActivity + i.ToString();
             GameObject character = GameObject.Find(characterToEnable);
+            Debug.Log("RestaController - ShowPeopleResult: Voy por aqui");
             //GameObject character = Resources.Load
             character.SetActive(false);
         }
@@ -246,21 +247,26 @@ public class RestaController : MonoBehaviour
 
     public void ShowResult()
     {
+        Debug.Log("RestaController - ShowResult: 1");
         if (onGoingGame == false)
         {
+            Debug.Log("RestaController - ShowResult: 2");
             int valuef = ObtainResult();
             string nameActivity = "SpawnerResult_";
+            Debug.Log("RestaController - ShowResult: 3");
             for (int i = 10; i > valuef; i--)
             {
                 Debug.Log("::::ShowResult = Dentro del Loop");
                 string characterToEnable = nameActivity + i.ToString();
-                Debug.Log("::::ShowResult = SpawnerResult_" + characterToEnable);
-                GameObject character = GameObject.Find(characterToEnable);
+                Debug.Log("::::ShowResult = " + characterToEnable+" valuef: "+ valuef);
+                GameObject character = GameObject.Find("/ARCamera/ImageTarget/SpawnersResults/" + characterToEnable);
                 //GameObject character = Resources.Load
                 character.SetActive(false);
                 Debug.Log("::::ShowResult = character.SetActive(false);");
             }
+            Debug.Log("RestaController - ShowResult: 4");
             ActivateInputResult();
+            Debug.Log("RestaController - ShowResult: 5");
         }
     }
 

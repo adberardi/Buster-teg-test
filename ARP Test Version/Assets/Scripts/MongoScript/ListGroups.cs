@@ -26,6 +26,7 @@ public class ListGroups : MonoBehaviour
     public GameObject PanelStatistics;
     public GameObject PanelActivities;
     public GameObject BtnActivities;
+    public GameObject BtnMembers;
     public GameObject BtnCreateActivities;
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
@@ -150,6 +151,7 @@ public class ListGroups : MonoBehaviour
         if (PlayerPrefs.GetString("EnableGroupDetails") == "True")
         {
             ChangePanelToDetail(PlayerPrefs.GetInt("IndexData"));
+            //SceneManager.LoadScene(23);
         }
     }
 
@@ -218,15 +220,18 @@ public class ListGroups : MonoBehaviour
         try
         {
             Debug.Log("IndexData: " + indexData.ToString());
-            LoadListMembers(indexData);
+            //LoadListMembers(indexData);
             BtnBackDetail.SetActive(true);
             PanelMembers.SetActive(true);
             PanelGroupMain.SetActive(false);
             BtnBackMain.SetActive(false);
             BtnActivities.SetActive(true);
+            BtnMembers.SetActive(true);
             //PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
+            ChangePanelToActivities();
             PlayerPrefs.SetInt("IndexData", indexData);
             LoadDataPanel(groupBelongs[indexData]);
+            //ChangeScene(23);
         }
         catch (ArgumentOutOfRangeException err)
         {
@@ -303,6 +308,7 @@ public class ListGroups : MonoBehaviour
         }
         BtnActivities.SetActive(false);
         BtnBackMain.SetActive(false);
+        BtnMembers.SetActive(true);
     }
 
     //Change the panel from PanelGroupDetail to PanelActivities.
@@ -337,7 +343,7 @@ public class ListGroups : MonoBehaviour
     public void CreateActivity()
     {
         //Implementar busqueda de los GameObject - InputField
-
+        Debug.Log("ListGroups -> CreateActivity: "+ RewardActivity);
         RewardAssigned = int.Parse(RewardActivity.text);
         PlayerPrefs.SetInt("RewardActivity",RewardAssigned);
         NameAssigned = NameActivity.text;
@@ -348,6 +354,7 @@ public class ListGroups : MonoBehaviour
         {
             TaskAssigned.Task newtask = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
             activity.SaveTask(newtask);
+            //Actualizar lista de Actividades Asignadas
             ChangePanelCreateActivitiesToActivities();
         }
 
@@ -374,6 +381,7 @@ public class ListGroups : MonoBehaviour
         PanelGroupMain.SetActive(false);
         BtnBackMain.SetActive(false);
         PlayerPrefs.SetString("IDGroup", groupBelongs[pos]._id.ToString());
+        ChangePanelToActivities();
         LoadDataPanel(groupBelongs[pos]);
     }
 

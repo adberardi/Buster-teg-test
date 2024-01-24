@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using MongoDB.Bson;
 using CodeMonkey.Utils;
 using ARProject.User;
+using UnityEngine.SceneManagement;
 
 public class GraphScript : MonoBehaviour
 {
@@ -113,6 +114,11 @@ public class GraphScript : MonoBehaviour
             useBarChart = !useBarChart;
         }, .5f);
         //*/
+    }
+
+    public void ChangeScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 
     public static void ShowTooltip_Static(string tooltipText, Vector2 anchoredPosition)

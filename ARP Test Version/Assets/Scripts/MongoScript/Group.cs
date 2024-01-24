@@ -7,6 +7,7 @@ using ARProject.User;
 using UnityEngine.UI;
 using System.Net.Mail;
 using System.Net;
+using UnityEngine.SceneManagement;
 
 namespace ARProject.Group
 {
@@ -139,6 +140,7 @@ namespace ARProject.Group
                 if (result.IsAcknowledged && result.ModifiedCount > 0)
                 {
                     Debug.Log("Operacion completada");
+                    SceneManager.LoadScene(1);
                 }
                 else
                 {
@@ -211,6 +213,7 @@ namespace ARProject.Group
                 if (result.IsAcknowledged && result.ModifiedCount > 0)
                 {
                     Debug.Log("Operacion completada");
+                   
                 }
                 else
                 {

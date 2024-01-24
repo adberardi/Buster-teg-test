@@ -11,6 +11,7 @@ public class RestaSpawnerStart : MonoBehaviour
     Transform newCharacterEnd;
     Vector3 initialPosition;
     public bool start;
+    private int timeCounter = 0;
     public static RestaSpawnerStart current;
     //public Transform limit;
     Transform limit;
@@ -43,12 +44,15 @@ public class RestaSpawnerStart : MonoBehaviour
                 newCharacterEnd.Translate(new Vector3(0, 0, RestaController.controlCharacter.Speed) * Time.deltaTime);
                 Vector3 pos = newCharacterEnd.localPosition;
                 Vector3 posLimit = limit.localPosition;
-                if (Vector3.Distance(pos, posLimit) < 0.003f)
+                if ((Vector3.Distance(pos, posLimit) < 0.003f))
                 {
+                    Debug.Log("Update - restaSpawner " + (Vector3.Distance(pos, posLimit)));
+                    timeCounter += 1;
                     RestaController.controlCharacter.endRoute = true;
                     //newCharacterEnd.localPosition = initialPosition;
                     DestroyObjectStart();
                     start = false;
+                    Debug.Log("Update - RestaSpawnerStart | peopleCounterLeaving: " + RestaController.controlCharacter.peopleCounterLeaving);
                     if (RestaController.controlCharacter.peopleCounterLeaving == 0)
                     {
                         RestaController.controlCharacter.onGoingGame = false;
@@ -67,6 +71,15 @@ public class RestaSpawnerStart : MonoBehaviour
 
     }
 
+
+    private IEnumerator WaitAndDestory(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("Waited for " + waitTime + " seconds");
+        Destroy(gameObject);
+        RestaController.controlCharacter.endRoute = true;
+    }
+
     // Creates the character that will enter the house
     public void CreateObjectStart()
     {
@@ -82,6 +95,8 @@ public class RestaSpawnerStart : MonoBehaviour
             start = true;
             RestaController.controlCharacter.onGoingGame = true;
             Debug.Log("Objeto creado ");
+            //probando autodestruccion.
+            Destroy(newCharacterEnd, 10);
         }
 
     }
