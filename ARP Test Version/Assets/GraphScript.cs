@@ -116,6 +116,11 @@ public class GraphScript : MonoBehaviour
         //*/
     }
 
+    private void Start()
+    {
+        
+    }
+
     public void ChangeScene(int index)
     {
         SceneManager.LoadScene(index);
