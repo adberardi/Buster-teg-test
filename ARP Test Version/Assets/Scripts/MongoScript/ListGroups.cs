@@ -475,10 +475,11 @@ public class ListGroups : MonoBehaviour
             case "Cuenta Personas - Especial":
                 loadGame = 4;
                 break;
-            default: loadGame = 0;
+            default:
                 break;
         }
-        ChangeScene(loadGame);
+        if (loadGame != 0)
+            ChangeScene(loadGame);
     }
 
     public void LoadRecord(ObjectId idUser, ObjectId idGroup)
