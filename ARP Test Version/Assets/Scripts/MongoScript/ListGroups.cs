@@ -34,6 +34,7 @@ public class ListGroups : MonoBehaviour
     List<Group> groupBelongs;
     List<User> userMember;
     Group ListMembersBelongs;
+    private string[] ListAssignedActivities;
     private string GameAssigned { get; set; }
     private int RewardAssigned { get; set; }
     private string NameAssigned { get; set; }
@@ -166,6 +167,7 @@ public class ListGroups : MonoBehaviour
         PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
         ListMembersBelongs = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
         userBelongs = ListMembersBelongs.ParticipantsGroup;
+        ListAssignedActivities = ListMembersBelongs.AssignedActivities;
         userMember = user.GetStudents(userBelongs);
         string itemName = "Item ";
 
@@ -354,6 +356,12 @@ public class ListGroups : MonoBehaviour
         {
             TaskAssigned.Task newtask = new TaskAssigned.Task(0, GameAssigned, RewardAssigned, NameAssigned, "", 0, 0f, StartDateAssigned, EndDateAssigned, "Sprites/checkbox_unchecked");
             activity.SaveTask(newtask);
+            ListMembersBelongs = group.GetGroup(PlayerPrefs.GetString("IDGroup"));
+            ListAssignedActivities = ListMembersBelongs.AssignedActivities;
+            Debug.Log(" CreateActivity - ListAssignedActivities: " + ListAssignedActivities.Length);
+            List<string> aux = new List<string>(ListAssignedActivities);
+            aux.Add(newtask._id.ToString());
+            group.UpdateGroupListAssignedActivities(PlayerPrefs.GetString("IDGroup"), aux);
             //Actualizar lista de Actividades Asignadas
             ChangePanelCreateActivitiesToActivities();
         }
