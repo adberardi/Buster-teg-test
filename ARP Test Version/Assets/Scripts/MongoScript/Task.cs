@@ -55,7 +55,8 @@ namespace ARProject.Task
         public void SaveTask(Task newTask)
         {
             Task registerTask = new Task();
-            Debug.Log(" Entrando en SaveTask");
+            Debug.Log(" Entrando en SaveTask: "+ newTask.StartDate);
+            newTask._id = ObjectId.GenerateNewId();
             registerTask.GetCollection().InsertOne(newTask);
         }
 

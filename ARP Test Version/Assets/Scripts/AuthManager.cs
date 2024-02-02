@@ -43,12 +43,57 @@ public class AuthManager : MonoBehaviour
         user = new User();
     }
 
+    public void Login(string emailField, string passwField)
+    {
+
+        if (user.ValidateInputFieldsLogin(emailField, passwField) && user.PassowrdRequirements(passwField))
+        {
+            try
+            {
+
+                IMongoCollection<User> userCollection = user.GetCollection();
+                Debug.Log("USER.LOGIN");
+                //List<User> userModelList = userCollection.Find(user => true).ToList();
+                List<User> userModelList = userCollection.Find(user => user.Email == emailField).ToList();
+
+                User credential = userModelList[0];
+                if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
+                {
+                    //IdUser = userModelList[0]._id;
+                    user.SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward, credential.School, credential.LevelSchool);
+                    user.ChangeScene(1);
+                    // AddToGroup(GetSessionDataUser(),new ObjectId());
+                }
+                else
+                {
+                    Debug.Log("USUARIO NO EXISTE O CREDENCIALES NO COINCIDEN");
+                    emailLoginField.text = "";
+                    passwordLoginField.text = "";
+                }
+            }
+            catch (MongoExecutionTimeoutException)
+            {
+                Debug.Log("TIEMPO AGOTADO DE ESPERA - ERROR DE CONEXION");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Debug.Log("Usuario no encontrado");
+            }
+        }
+        else
+        {
+            Debug.Log(" CAMPOS DE ENTRADA VACIO(S)");
+        }
+
+    }
+
     //Function for the login button
     public void LoginButton()
     {
        
         Debug.Log("entreeeee "+ emailLoginField.text+" Password: "+ passwordLoginField.text);
-        user.Login(emailLoginField.text, passwordLoginField.text);
+        //user.Login(emailLoginField.text, passwordLoginField.text);
+        Login(emailLoginField.text, passwordLoginField.text);
     }
 
     //Function for the register button
@@ -58,13 +103,13 @@ public class AuthManager : MonoBehaviour
     }
 
 
-    public void Login(string _email, string _password)
+    /*public void Login(string _email, string _password)
     {
         Debug.Log("AuthManager Login");
         //user.Login(_email, _password);
         SceneManager.LoadScene("Home");
 
-    }
+    } */
 
     bool ValidateBirthDate(string birthDateString)
     {
@@ -119,7 +164,6 @@ public class AuthManager : MonoBehaviour
 
         return true;
     }
-
 
 
     // Function to validate user email, check if it exists, and send password via email

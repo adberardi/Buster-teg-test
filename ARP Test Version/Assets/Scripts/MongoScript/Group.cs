@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using System.Net.Mail;
 using System.Net;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace ARProject.Group
 {
@@ -148,6 +149,33 @@ namespace ARProject.Group
                 }
             }
             catch(MongoException)
+            {
+                Debug.Log("Un error ha ocurido");
+            }
+        }
+
+
+        public async void UpdateGroupListAssignedActivities(string IdGroup, List<string> newListAssignedActivities)
+        {
+            try
+            {
+                string[] newValue = newListAssignedActivities.Select(i => i.ToString()).ToArray();
+                IMongoCollection<Group> docRef = GetCollection();
+                var filterData = Builders<Group>.Filter.Eq(query => query._id, ObjectId.Parse(IdGroup));
+                var dataToUpdate = Builders<Group>.Update.Set(query => query.AssignedActivities, newValue);
+                IMongoCollection<Group> groupRef = GetCollection();
+                var result = await groupRef.UpdateOneAsync(filterData, dataToUpdate);
+                if (result.IsAcknowledged && result.ModifiedCount > 0)
+                {
+                    Debug.Log("Operacion completada");
+                    SceneManager.LoadScene(1);
+                }
+                else
+                {
+                    Debug.Log("Operacion Fallida");
+                }
+            }
+            catch (MongoException)
             {
                 Debug.Log("Un error ha ocurido");
             }

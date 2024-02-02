@@ -143,47 +143,48 @@ namespace ARProject.User
             return false;
         }
 
-        public void Login(string emailField, string passwField)
-        {
-
-            if (ValidateInputFieldsLogin(emailField, passwField) && PassowrdRequirements(passwField))
-            {
-                try
+        //Login: For the moment in disuse. This method is invoked from AuthManager.
+        /*        public void Login(string emailField, string passwField)
                 {
-                    
-                    IMongoCollection<User> userCollection = GetCollection();
-                    Debug.Log("USER.LOGIN");
-                    //List<User> userModelList = userCollection.Find(user => true).ToList();
-                    List<User> userModelList = userCollection.Find(user => user.Email == emailField).ToList();
-                    
-                    User credential = userModelList[0];
-                    if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
+
+                    if (ValidateInputFieldsLogin(emailField, passwField) && PassowrdRequirements(passwField))
                     {
-                        //IdUser = userModelList[0]._id;
-                        SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward, credential.School, credential.LevelSchool);
-                        ChangeScene(1);
-                       // AddToGroup(GetSessionDataUser(),new ObjectId());
+                        try
+                        {
+
+                            IMongoCollection<User> userCollection = GetCollection();
+                            Debug.Log("USER.LOGIN");
+                            //List<User> userModelList = userCollection.Find(user => true).ToList();
+                            List<User> userModelList = userCollection.Find(user => user.Email == emailField).ToList();
+
+                            User credential = userModelList[0];
+                            if (userModelList.Count > 0 && credential.Email == emailField && credential.Password == passwField)
+                            {
+                                //IdUser = userModelList[0]._id;
+                                SaveSessionDataUser(credential._id, credential.UserName, credential.FirstName, credential.LastName, credential.Birthday, credential.Email, credential.Reward, credential.School, credential.LevelSchool);
+                                ChangeScene(1);
+                               // AddToGroup(GetSessionDataUser(),new ObjectId());
+                            }
+                            else
+                            {
+                                Debug.Log("USUARIO NO EXISTE O CREDENCIALES NO COINCIDEN");
+                            }
+                        }
+                        catch(MongoExecutionTimeoutException)
+                        {
+                            Debug.Log("TIEMPO AGOTADO DE ESPERA - ERROR DE CONEXION");
+                        }
+                        catch(ArgumentOutOfRangeException)
+                        {
+                            Debug.Log("Usuario no encontrado");
+                        }
                     }
                     else
                     {
-                        Debug.Log("USUARIO NO EXISTE O CREDENCIALES NO COINCIDEN");
+                        Debug.Log(" CAMPOS DE ENTRADA VACIO(S)");
                     }
-                }
-                catch(MongoExecutionTimeoutException)
-                {
-                    Debug.Log("TIEMPO AGOTADO DE ESPERA - ERROR DE CONEXION");
-                }
-                catch(ArgumentOutOfRangeException)
-                {
-                    Debug.Log("Usuario no encontrado");
-                }
-            }
-            else
-            {
-                Debug.Log(" CAMPOS DE ENTRADA VACIO(S)");
-            }
-                
-        }
+
+                }*/
 
         public void Logout()
         {
