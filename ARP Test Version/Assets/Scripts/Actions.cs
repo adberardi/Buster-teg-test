@@ -13,6 +13,7 @@ public class Actions : MonoBehaviour
     public InputField userName;
     public InputField firstName;
     public InputField lastName;
+    public GameObject UsernameText;
     private static User user;
     public IMongoDatabase db;
     // Start is called before the first frame update
@@ -21,6 +22,8 @@ public class Actions : MonoBehaviour
         //auth = FirebaseAuth.DefaultInstance;
         //user = new User(FirebaseAuth.DefaultInstance, db);
         user = new User();
+        if (!PlayerPrefs.GetString("Username").Equals(""))
+            UsernameText.GetComponent<Text>().text = PlayerPrefs.GetString("Username");
     }
 
     // Update is called once per frame

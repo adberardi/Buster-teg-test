@@ -249,7 +249,8 @@ public class ActionCreateGroups : MonoBehaviour
     public void OnSubmit()
     {
         CreateGroup();
-        group.ProcessRequest(listMembers, listDataMembersEmail, listDataMembers);
+        if (group.ProcessRequest(listMembers, listDataMembersEmail, listDataMembers))
+            ChangeScene(14);
     }
 
     //Metodo que incova para retroceder al Panel de formulario para crear un grupo.

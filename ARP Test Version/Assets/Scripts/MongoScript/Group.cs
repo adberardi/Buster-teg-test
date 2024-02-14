@@ -202,7 +202,7 @@ namespace ARProject.Group
         }
 
         // Valida los usuarios que que tengan el Toggle con estatus 'Checked'
-        public void ProcessRequest(List<GameObject> activityObject, List<string> listDataMember, List<string> listDataMembersId)
+        public bool ProcessRequest(List<GameObject> activityObject, List<string> listDataMember, List<string> listDataMembersId)
         {
             List<string> ListNewMembers = new List<string>();
             for (int index = 0; index < activityObject.Count; index++)
@@ -221,11 +221,20 @@ namespace ARProject.Group
                 else
                 {
                     Debug.Log("ProcessRequest: NO hay una persona con casilla marcada");
+                    
                 }
             }
             //Si por lo menos hay una persona que fue seleccionada, se procedera a registrarlo en la Base de Datos. En caso contrario, se hara caso omiso.
             if (ListNewMembers.Count > 0)
+            {
                 AddMembersToGroup(ListNewMembers);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
         }
         //Se registrara los miembros del grupo en la Base de Datos.
         public async void AddMembersToGroup(List<string> listNewMembers)

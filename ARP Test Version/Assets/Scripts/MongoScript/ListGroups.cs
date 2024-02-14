@@ -18,6 +18,7 @@ using RegExpress = System.Text.RegularExpressions;
 
 public class ListGroups : MonoBehaviour
 {
+    public GameObject UsernameText;
     //Panel Main; Muestra los grupos, funciona como vista "Home" de MenuGrupos.
     public GameObject PanelGroupMain;
     //Panel Detail; muestra informacion detalle del grupo seleccionado.
@@ -86,7 +87,7 @@ public class ListGroups : MonoBehaviour
 
     private void Awake()
     {
-        graphScript = GetComponent<GraphScript>();
+        //graphScript = GetComponent<GraphScript>();
     }
 
 
@@ -99,9 +100,9 @@ public class ListGroups : MonoBehaviour
         user = new User();
         activity = new TaskUser.Task();
 
-
+        //UsernameText.GetComponent<Text>().text = PlayerPrefs.GetString("Username");
         groupBelongs = group.GetGroup(user);
-
+        Debug.Log("ListGroups - Start: groupBelongs " + groupBelongs.Count);
         string itemName = "Item ";
 
         activitySprites = new Sprite[groupBelongs.Count];
@@ -116,6 +117,7 @@ public class ListGroups : MonoBehaviour
         // Calcular la posición inicial del primer objeto de la actividad
         activityPosition = new Vector2(spacing + activitySize.x / 2f, -spacing - activitySize.y / 2f);
 
+        Debug.Log("ListGroups - Start: " + activitySprites.Length);
         // Generar los objetos de la actividad
         for (int i = 0; i < activitySprites.Length; i++)
         {
