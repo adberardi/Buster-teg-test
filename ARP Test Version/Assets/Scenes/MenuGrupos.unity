@@ -2653,6 +2653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f91c6639286dd48afc65db7b5b3f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UsernameText: {fileID: 0}
   PanelGroupMain: {fileID: 1423315032}
   PanelGroupDetail: {fileID: 719459030}
   PanelMembers: {fileID: 1268968732}
@@ -2664,6 +2665,7 @@ MonoBehaviour:
   BtnBackMain: {fileID: 1176148774}
   BtnBackDetail: {fileID: 2086929697}
   BtnBackToMember: {fileID: 4702943}
+  BtnBackHome: {fileID: 1644186645}
   userBelongs: []
   TextNameGroup: {fileID: 155882034}
   TextSchool: {fileID: 64976262}
@@ -4203,6 +4205,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7705034
       objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_Text
+      value: Nombre de la Actividad
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_ContentType
@@ -4222,16 +4234,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CharacterValidation
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_Text
-      value: Nombre de la Actividad
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -4382,6 +4384,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7705034
       objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_Text
+      value: Recompensa
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_ContentType
@@ -4401,16 +4413,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CharacterValidation
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_Text
-      value: Recompensa
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -7073,6 +7075,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7705034
       objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_Text
+      value: ' Inicio: DD/MM/YYYY'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_ContentType
@@ -7092,16 +7104,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CharacterValidation
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_Text
-      value: ' Inicio: DD/MM/YYYY'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -7252,6 +7254,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.7705034
       objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_Text
+      value: ' Final: DD/MM/YYYY'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_ContentType
@@ -7271,16 +7283,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_CharacterValidation
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_Text
-      value: ' Final: DD/MM/YYYY'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224212670416832358, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -9610,7 +9612,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1068513212138920, guid: 3e2910ed5795543aabc124d6ceedd7bd, type: 3}
       propertyPath: m_Name
-      value: BtnYellowRounded
+      value: BtnBackHome
       objectReference: {fileID: 0}
     - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
@@ -9782,6 +9784,12 @@ PrefabInstance:
 --- !u!224 &1644186644 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1644186643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644186645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1068513212138920, guid: 3e2910ed5795543aabc124d6ceedd7bd,
     type: 3}
   m_PrefabInstance: {fileID: 1644186643}
   m_PrefabAsset: {fileID: 0}

@@ -32,6 +32,7 @@ public class ListGroups : MonoBehaviour
     public GameObject BtnBackMain;
     public GameObject BtnBackDetail;
     public GameObject BtnBackToMember;
+    public GameObject BtnBackHome;
     List<Group> groupBelongs;
     List<User> userMember;
     Group ListMembersBelongs;
@@ -230,6 +231,7 @@ public class ListGroups : MonoBehaviour
             PanelGroupMain.SetActive(false);
             BtnBackMain.SetActive(false);
             BtnActivities.SetActive(true);
+            BtnBackHome.SetActive(false);
             BtnMembers.SetActive(true);
             //PlayerPrefs.SetString("IDGroup", groupBelongs[indexData]._id.ToString());
             ChangePanelToActivities();

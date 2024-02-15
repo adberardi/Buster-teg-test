@@ -39,7 +39,7 @@ namespace ARProject.Group
             Admin = admin;
             School = school;
             LevelSchool = levelSchool;
-            ParticipantsGroup = new string[] { };
+            ParticipantsGroup = new string[] { _id.ToString() };
             AssignedActivities = new string[] { };
         }
 

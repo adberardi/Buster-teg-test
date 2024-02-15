@@ -151,7 +151,8 @@ public class ListMembers : MonoBehaviour
     {
         //int indexData = int.Parse(activityObj.name);
         //int indexData = 0;
-        int indexData = PlayerPrefs.GetInt("IndexData");
+        //int indexData = PlayerPrefs.GetInt("IndexData");
+        int indexData = int.Parse(activityObj.name);
         Debug.Log("-> Listmembers: ChangeMemberToStatistics "+ indexData);
         try
         {
