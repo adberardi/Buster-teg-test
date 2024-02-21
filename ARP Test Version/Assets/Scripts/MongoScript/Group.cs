@@ -123,9 +123,16 @@ namespace ARProject.Group
 
         public Group GetGroup(string IdGroup)
         {
-            IMongoCollection<Group> docRef = GetCollection();
-            Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
-            return credential;
+            try
+            {
+                IMongoCollection<Group> docRef = GetCollection();
+                Group credential = docRef.Find(group => group._id == ObjectId.Parse(IdGroup)).ToList()[0];
+                return credential;
+            }
+            catch (MongoException)
+            {
+                return null;
+            }
         }
 
         public async void UpdateGroup (string IdGroup, string newNameGroup, string newSchool)
