@@ -2,6 +2,7 @@
 using System;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -140,6 +141,41 @@ namespace ARProject.Task
             return result;
         }
 
+
+        //Se actualiza los datos de la actividad, incluyendo la contrasena.
+        private async void UpdateTask(FilterDefinition<Task> filterData, int newReward, string newName, string newStartDate, string newEndDate, string newGame)
+        {
+            IMongoCollection<Task> taskCollection = GetCollection();
+            var dataToUpdate = Builders<Task>.Update.Set(query => query.Reward, newReward)
+                .Set(query => query.Name, newName)
+                .Set(query => query.StartDate, newStartDate)
+                .Set(query => query.EndDate, newEndDate)
+                .Set(query => query.GameType, newGame);
+            var result = await taskCollection.UpdateOneAsync(filterData, dataToUpdate);
+            //IsSuccessfullyOperation(result);
+        }
+
+
+        //Almacena los cambios datos de un usuario en especifico
+        public void SaveTask(ObjectId idTask, int newReward, string newName, string newStartDate, string newEndDate, string newGame)
+        {
+            try
+            {
+                IMongoCollection<Task> taskCollection = GetCollection();
+                var filterData = Builders<Task>.Filter.Eq(query => query._id, idTask);
+                UpdateTask(filterData, newReward, newName, newStartDate, newEndDate, newGame);
+                ChangeScene(1);
+            }
+            catch (MongoException error)
+            {
+                Debug.Log("Un error ha ocurrido " + error);
+            }
+        }
+
+        public void ChangeScene(int index)
+        {
+            SceneManager.LoadScene(index);
+        }
 
     }
 }

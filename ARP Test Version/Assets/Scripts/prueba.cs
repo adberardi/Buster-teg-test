@@ -16,7 +16,9 @@ public class prueba : MonoBehaviour
 {
     private Group group;
     private string[] ListAssignedActivities;
+    private Task task;
     private TaskUser.Task activity;
+    private ObjectId IdTask { get; set; }
 
     public GameObject PanelMain;
     public GameObject PanelActivity;
@@ -26,11 +28,14 @@ public class prueba : MonoBehaviour
     private string NameAssigned { get; set; }
     private string StartDateAssigned { get; set; }
     private string EndDateAssigned { get; set; }
+    public string GameActivity { get; set; }
+    public string GameActivityActual { get; set; }
+
     public InputField RewardActivity;
     public InputField NameActivity;
     public InputField StartDateActivity;
     public InputField EndDateActivity;
-
+    public Dropdown GameDropdown;
 
     Group ListMembersBelongs;
 
@@ -137,6 +142,7 @@ public class prueba : MonoBehaviour
         activityPrefab.SetActive(false);
         // Actualizar el tamaño del contenido del Scroll Rect para mostrar todas las actividades
         contentRect.sizeDelta = new Vector2(activityPosition.x + activitySize.x / 2f + spacing, contentRect.sizeDelta.y);
+        DropdownitemSelectd(GameDropdown);
     }
 
 
@@ -200,8 +206,8 @@ public class prueba : MonoBehaviour
             //PlayerPrefs.SetInt("IndexData", indexData);
             Task data = new Task().GetTaskById(assignedActivitiesList[indexData]);
             Debug.Log("data: " + data.Name.ToString());
-            
-            
+            IdTask = data._id;
+            GameActivityActual = data.GameType;
             RewardActivity.text = data.Reward.ToString();
             NameActivity.text = data.Name.ToString();
             StartDateActivity.text = data.StartDate;
@@ -217,15 +223,33 @@ public class prueba : MonoBehaviour
 
     }
 
+    public void BtnUpdateTask()
+    {
+        task = new Task();
+        Debug.Log("prueba - BtnUpdateTask: GameActivity " + GameActivity + " | GameActivityActual "+ GameActivityActual);
+        if (GameActivity != "Seleccione un juego")
+            task.SaveTask(IdTask, int.Parse(RewardActivity.text), NameActivity.text, StartDateActivity.text, EndDateActivity.text,GameActivity);
+        else
+            task.SaveTask(IdTask, int.Parse(RewardActivity.text), NameActivity.text, StartDateActivity.text, EndDateActivity.text, GameActivityActual);
+        
+    }
+
     public void ChangePanelToMain()
     {
-        PanelActivity.SetActive(true);
-        PanelMain.SetActive(false);
+        PanelActivity.SetActive(false);
+        PanelMain.SetActive(true);
     }
 
     public void UpdatePosSCroll(Vector2 value)
     {
         Debug.Log("UpdatePosSCroll: " + value.y);
+    }
+
+    //Obtiene la escuela seleccionada cuando se crea el grupo
+    public void DropdownitemSelectd(Dropdown GameDropdown)
+    {
+        int index = GameDropdown.value;
+        GameActivity = GameDropdown.options[index].text;
     }
 
     public void CreateActivity()
@@ -266,12 +290,5 @@ public class prueba : MonoBehaviour
         PanelMembers.SetActive(false);*/
     }
 
-    //Obtiene la escuela seleccionada cuando se crea el grupo
-    public void DropdownitemSelectd(Dropdown dropdown)
-    {
-        int index = dropdown.value;
-        GameAssigned = dropdown.options[index].text;
-        //PlayerPrefs.SetString("NameSchool", GroupSchool);
 
-    }
 }
