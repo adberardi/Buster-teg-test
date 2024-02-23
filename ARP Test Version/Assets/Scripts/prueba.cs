@@ -205,7 +205,7 @@ public class prueba : MonoBehaviour
             Debug.Log("IndexData: " + indexData.ToString());
             //PlayerPrefs.SetInt("IndexData", indexData);
             Task data = new Task().GetTaskById(assignedActivitiesList[indexData]);
-            Debug.Log("data: " + data.Name.ToString());
+            Debug.Log("MenuActividades - ChangePanelToDetail: " + data.GameType);
             IdTask = data._id;
             GameActivityActual = data.GameType;
             RewardActivity.text = data.Reward.ToString();
@@ -227,7 +227,7 @@ public class prueba : MonoBehaviour
     {
         task = new Task();
         Debug.Log("prueba - BtnUpdateTask: GameActivity " + GameActivity + " | GameActivityActual "+ GameActivityActual);
-        if (GameActivity != "Seleccione un juego")
+        if (!(GameActivity is null))
             task.SaveTask(IdTask, int.Parse(RewardActivity.text), NameActivity.text, StartDateActivity.text, EndDateActivity.text,GameActivity);
         else
             task.SaveTask(IdTask, int.Parse(RewardActivity.text), NameActivity.text, StartDateActivity.text, EndDateActivity.text, GameActivityActual);
