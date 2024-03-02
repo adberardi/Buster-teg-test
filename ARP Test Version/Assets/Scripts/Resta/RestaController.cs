@@ -303,7 +303,7 @@ public class RestaController : MonoBehaviour
             GamesPlayed newGame = new GamesPlayed();
             newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
             newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
-            newGame.DayPlayed = DateTime.Now.ToShortTimeString();
+            newGame.DayPlayed = DateTime.Now.ToShortDateString();
             newGame.FinalTimer = "00:00:00";
             //Game's id in specific.
             newGame.Game = ObjectId.Parse("6503c38c6bf01ab29fe956ea");

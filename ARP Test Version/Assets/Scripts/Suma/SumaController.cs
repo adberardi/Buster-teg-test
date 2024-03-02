@@ -215,6 +215,7 @@ public class SumaController : MonoBehaviour
             GamesPlayed newGame = new GamesPlayed();
             newGame.User = ObjectId.Parse(PlayerPrefs.GetString("IDUser"));
             newGame.Group = ObjectId.Parse(PlayerPrefs.GetString("IDGroup"));
+            
             newGame.DayPlayed = DateTime.Now.ToShortDateString();
             newGame.FinalTimer = "00:00:00";
             //Game's id in specific.

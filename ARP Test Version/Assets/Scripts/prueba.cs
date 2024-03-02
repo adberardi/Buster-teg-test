@@ -30,6 +30,7 @@ public class prueba : MonoBehaviour
     private string EndDateAssigned { get; set; }
     public string GameActivity { get; set; }
     public string GameActivityActual { get; set; }
+    private string AdminGroup { get; set; }
 
     public InputField RewardActivity;
     public InputField NameActivity;
@@ -71,6 +72,7 @@ public class prueba : MonoBehaviour
         for (int i = 0; i < groups.Count; i++) {
             Debug.Log("grupo::" + groups[i]);
             dataGroup =group.GetGroup(groups[i]);
+            AdminGroup = dataGroup.Admin;
             //Debug.Log("actividades::"+dataGroup.AssignedActivities.Length);
             if ((dataGroup != null) && (dataGroup.AssignedActivities.Length>0)) {
                 Debug.Log("en el if");
@@ -198,23 +200,27 @@ public class prueba : MonoBehaviour
 
     public void ChangePanelToDetail(GameObject activityObj)
     {
-        Debug.Log("prueba - ChangePanelToDetail:" + activityObj.name);
+        Debug.Log("prueba - ChangePanelToDetail:group.Admin " + group.Admin + " | IDUser" + PlayerPrefs.GetString("IDUser"));
         int indexData = int.Parse(activityObj.name);
         try
         {
-            Debug.Log("IndexData: " + indexData.ToString());
-            //PlayerPrefs.SetInt("IndexData", indexData);
-            Task data = new Task().GetTaskById(assignedActivitiesList[indexData]);
-            Debug.Log("MenuActividades - ChangePanelToDetail: " + data.GameType);
-            IdTask = data._id;
-            GameActivityActual = data.GameType;
-            RewardActivity.text = data.Reward.ToString();
-            NameActivity.text = data.Name.ToString();
-            StartDateActivity.text = data.StartDate;
-            EndDateActivity.text = data.EndDate;
-            PanelActivity.SetActive(true);
-            PanelMain.SetActive(false);
-            //ChangeScene(23);
+            if (AdminGroup == PlayerPrefs.GetString("IDUser"))
+            {
+                Debug.Log("IndexData: " + indexData.ToString());
+                //PlayerPrefs.SetInt("IndexData", indexData);
+                Task data = new Task().GetTaskById(assignedActivitiesList[indexData]);
+                Debug.Log("MenuActividades - ChangePanelToDetail: " + data.GameType);
+                IdTask = data._id;
+                GameActivityActual = data.GameType;
+                RewardActivity.text = data.Reward.ToString();
+                NameActivity.text = data.Name.ToString();
+                StartDateActivity.text = data.StartDate;
+                EndDateActivity.text = data.EndDate;
+                PanelActivity.SetActive(true);
+                PanelMain.SetActive(false);
+                //ChangeScene(23);
+            }
+
         }
         catch (System.ArgumentOutOfRangeException err)
         {
