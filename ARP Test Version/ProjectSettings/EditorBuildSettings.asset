@@ -74,4 +74,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Graph_Members.unity
     guid: 6987462640cd1ee4da0c723a26ba4801
+  - enabled: 1
+    path: Assets/Scenes/ListadoParticipantes.unity
+    guid: f044087a67cde10478d8eef72ffc2a51
   m_configObjects: {}

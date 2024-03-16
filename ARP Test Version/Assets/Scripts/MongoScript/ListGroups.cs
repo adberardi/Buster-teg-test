@@ -297,7 +297,7 @@ public class ListGroups : MonoBehaviour
         //BtnBackDetail.SetActive(true);
         PanelMembers.SetActive(false);
         PanelGroupMain.SetActive(true);
-        BtnBackMain.SetActive(true);
+        BtnBackMain.SetActive(false);
     }
 
     public void ChangePanelToActivities()

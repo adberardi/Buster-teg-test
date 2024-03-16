@@ -620,7 +620,7 @@ PrefabInstance:
     - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -142.94
+      value: -123
       objectReference: {fileID: 0}
     - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
@@ -670,12 +670,17 @@ PrefabInstance:
     - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9276885
+      value: 0.7119453
       objectReference: {fileID: 0}
     - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.69262934
+      value: 0.5315515
+      objectReference: {fileID: 0}
+    - target: {fileID: 224052277500757078, guid: 3e2910ed5795543aabc124d6ceedd7bd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.76744
       objectReference: {fileID: 0}
     - target: {fileID: 114309850482710702, guid: 3e2910ed5795543aabc124d6ceedd7bd,
         type: 3}
@@ -1418,6 +1423,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: LastName
       objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1537,26 +1562,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.34715
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -1764,6 +1769,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Password
       objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1883,16 +1898,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.34715
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -3133,6 +3138,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Username
       objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3252,26 +3277,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.34715
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -3896,7 +3901,7 @@ RectTransform:
   m_GameObject: {fileID: 1360024617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8875, y: 1, z: 1}
   m_Children:
   - {fileID: 617283654}
   - {fileID: 1422567790}
@@ -3959,6 +3964,26 @@ PrefabInstance:
     - target: {fileID: 1224245032032542, guid: 75220a5115d7e427caa112f720cca056, type: 3}
       propertyPath: m_Name
       value: Email
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -4080,26 +4105,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.34715
       objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_Text
@@ -4166,6 +4171,16 @@ PrefabInstance:
     - target: {fileID: 1224245032032542, guid: 75220a5115d7e427caa112f720cca056, type: 3}
       propertyPath: m_Name
       value: ConfirmPasswor
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -4287,16 +4302,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.34715
       objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_Text
@@ -4364,7 +4369,7 @@ RectTransform:
   m_GameObject: {fileID: 1443085323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9125, y: 1, z: 1}
   m_Children:
   - {fileID: 1809550694}
   - {fileID: 493904786}
@@ -4927,6 +4932,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birthday
       objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5046,26 +5071,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.34715
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
@@ -5337,6 +5342,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirstName
       objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_InputType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 224978438451146796, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5456,26 +5481,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.34715
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_InputType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114031764730454316, guid: 75220a5115d7e427caa112f720cca056,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114726449382099406, guid: 75220a5115d7e427caa112f720cca056,
         type: 3}
