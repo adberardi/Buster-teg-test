@@ -134,7 +134,7 @@ public class prueba : MonoBehaviour
 
             
             activityObject.GetComponentInChildren<Text>().text = activityNames[i];
-            string pointTaskAsString = dataTask.PointTask.ToString();
+            string pointTaskAsString = dataTask.Reward.ToString();
             descriptionText.text = dataTask.Description;
             rewardNumber.text = pointTaskAsString;
           

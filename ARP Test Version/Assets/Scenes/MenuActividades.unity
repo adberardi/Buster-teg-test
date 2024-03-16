@@ -2674,7 +2674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45.499996, y: 77}
+  m_AnchoredPosition: {x: 108.500015, y: 77}
   m_SizeDelta: {x: 186.40002, y: -222.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965154759
@@ -2964,6 +2964,10 @@ PrefabInstance:
     - target: {fileID: 1327457878913290, guid: 5af9a76bc409945a7810623abca821f5, type: 3}
       propertyPath: m_Name
       value: Checkbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327457878913290, guid: 5af9a76bc409945a7810623abca821f5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224715534119718038, guid: 5af9a76bc409945a7810623abca821f5,
         type: 3}
@@ -3906,7 +3910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45, y: -12}
+  m_AnchoredPosition: {x: 106, y: -12}
   m_SizeDelta: {x: 186.40002, y: -222.59998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1356081923
@@ -4812,6 +4816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BtnProcessActivity
       objectReference: {fileID: 0}
+    - target: {fileID: 1409657680441024, guid: f41bc8999948944f4b293625117640b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224136000620953594, guid: f41bc8999948944f4b293625117640b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5237,7 +5245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 41, y: 3}
+  m_AnchoredPosition: {x: 104, y: 3}
   m_SizeDelta: {x: 305.6, y: 305.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1907715081
